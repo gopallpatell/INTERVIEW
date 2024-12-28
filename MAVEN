@@ -2,6 +2,9 @@ Q1 What do you mean by Maven?
   maven is opensource tool used to compile the the code and create the artifacts.
 
 Q2 What are the features or advantages of Maven?
+
+it will automatically download and manage the dependencies defined in pom.xml.it is free and open source.
+
    Manages Dependencies: Automatically downloads and manages libraries for your project.
 Automates Builds: Compiles code, runs tests, and packages the project with a single command.
 Standard Structure: Provides a consistent folder and project layout.
