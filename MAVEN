@@ -1,1 +1,168 @@
+Q1 What do you mean by Maven?
+  maven is opensource tool used to compile the the code and create the artifacts.
+
+Q2 What are the features or advantages of Maven?
+   Manages Dependencies: Automatically downloads and manages libraries for your project.
+Automates Builds: Compiles code, runs tests, and packages the project with a single command.
+Standard Structure: Provides a consistent folder and project layout.
+Uses Plugins: Extends functionality for tasks like testing, deployment, and analysis.
+Lifecycle Management: Runs tasks (e.g., compile, test, package) in the correct order.
+Less Configuration: Uses defaults to reduce manual setup.
+Handles Multi-Module Projects: Manages large projects split into smaller parts.
+Integrates Easily: Works with Jenkins, IDEs, Docker, and CI/CD pipelines.
+Free and Open Source: No cost, with strong community support.
+
+Q3 What is meant by Maven build lifecycle? Name these cycles.
+   it is a set of steps or phases to complete tasks like compiling code, running tests, and packaging the project.
+Default Lifecycle: Handles the core tasks of building and deploying a project.
+Clean Lifecycle: Cleans the project by removing old build files.
+Site Lifecycle: Creates project documentation.
+
+Default Lifecycle: Manages core build tasks like:
+
+validate: Check project readiness.
+compile: Compile code.
+test: Run tests.
+package: Create JAR/WAR.
+install: Add to local repository.
+deploy: Publish to a remote repository.
+
+Clean Lifecycle: Cleans the project:
+clean: Removes old build files.
+
+Site Lifecycle: Generates project documentation:
+site: Creates and publishes docs.
+
+Q4  What do you mean by POM and what does it contain?
+
+It is used to define the properties of application artifacts 
+				- It is used to define dependencies and the plugins required to perform build/unit-testing
+
+Q5   What do you mean by a Maven Repository?
+
+Maven Repositories Contains the Maven Dependencies and Plugins 
+
+Q6  Explain Maven Artifact.
+
+artifacts are the output of the maven build. artifacts are the binarys converted from high lavel language to system understable language.
+
+Q7 List down the various scopes of Maven Dependency.
+
+Maven scopes control when and how dependencies are used    
+
+Maven Scope determines when a dependency is available in your project:
+
+compile: Always available (default).
+provided: Available at compile/runtime but not in the final artifact.
+runtime: Available only at runtime.
+test: Available only for tests.
+system: Uses a local file path for the dependency.
+import
+
+Q8  What are the differences between Maven and Ant?
+
+Maven and Ant are tools for building projects:
+
+Maven:
+
+Simplifies project management with conventions.
+Manages dependencies and build lifecycle automatically.
+Easier to use and more modern.
+Ant:
+
+Requires custom build scripts.
+Manages dependencies manually.
+More flexible but more complex to set up.
+
+Q9 What do you mean by Maven Archetype?
+
+it is a plugin
+Maven Archetype is a template for creating a new Maven project with a predefined structure and configuration. 
+It helps quickly set up projects with a standard setup, such as project structure, dependencies, and build configurations.
+
+Q10 What is known as SNAPSHOT in Maven?
+
+SNAPSHOT is a version used for packages that are continuously updated:
+
+
+Q11  What does goal in Maven mean? 
+
+a goal is a specific task in Maven,
+
+Maven Goals : 
+				This defines the actions we perform using Maven 
+
+				● mvn compile 	- to compile the source code
+				● mvn test 		- to compile and execute junit test cases
+				● mvn package 	- to compile, test and create artifacts in the target folder of Project Library
+				● mvn clean 	- to clean the target folder.
+
+Q12  Name the build phases in Maven Build Lifecycle.
+
+Validate: Checks that the project is correct and all required information is available.
+Compile: Compiles the source code of the project.
+Test: Runs unit tests to ensure the code behaves as expected.
+Package: Packages the compiled code into a distributable format (e.g., JAR, WAR).
+Install: Installs the packaged artifact into the local repository for future use.
+Deploy: Deploys the packaged artifact to a remote repository (e.g., Maven Central).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
