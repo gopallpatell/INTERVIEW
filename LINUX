@@ -1,0 +1,148 @@
+Q1. Define the basic components of Linux
+
+Majorly there are five basic components of Linux:
+Kernel: Linux kernel is a core part of the operating system that works as a bridge between hardware and software.
+Shell: Shell is an interface between a kernel and a user.
+
+Q2. How do you mount and unmount filesystems in Linux?
+
+mount is used to attach a storage device (like a hard drive, USB drive, or disk image) to a specific directory (mount point) in the filesystem.
+umount is used to remove the device from the directory once you're done with it.
+
+
+Q3 How do you troubleshoot network connectivity issues in Linux?
+
+Check Physical and Wi-Fi Connections: Ensure your device is properly connected to the network (Wi-Fi or Ethernet).
+Test Local Network (Router and Gateway): Verify your device can communicate with the router or gateway.
+Verify Internet Access: Try accessing websites to check if the internet is working.
+Check DNS Configuration: Ensure correct DNS settings to resolve domain names.
+Firewall or Security Software: Make sure firewalls or security software aren’t blocking internet access.
+ISP or External Issues: If nothing works, check if the issue is with your ISP or an external network problem.
+restart network: 
+
+Q4  How do you list all the processes running in Linux?
+
+ps aux: Lists all processes running on the system with detailed information (like CPU and memory usage).
+top: Shows a real-time, continuously updating list of processes running on the system.
+htop: Similar to top, but with a more user-friendly, interactive interface (requires installation).
+pgrep -a <process_name>: Finds and lists all processes matching  specific name or pattern.
+
+Q5  How do you check disk space usage?
+
+df -h: Displays disk space usage for all mounted file systems in a human-readable format (e.g., GB, MB).
+
+du -sh <directory>: Shows the total disk space used by a specific directory in a human-readable format.
+
+df Command:
+The df or disk-free 
+du Command:
+The du or disk usage 
+
+Q6 How do you find the process ID (PID) of a running process?
+
+pgrep <process_1>
+
+Q7 How do you change the password for a user account?
+
+passwd username 
+
+Q8 What is the find command, and how do you use it?
+
+The find command in Linux is used to search for files and directories 
+find <directory> <options> <expression>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
