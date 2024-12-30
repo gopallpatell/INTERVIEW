@@ -7,7 +7,10 @@ Shell: Shell is an interface between a kernel and a user.
 Q2. How do you mount and unmount filesystems in Linux?
 
 mount is used to attach a storage device (like a hard drive, USB drive, or disk image) to a specific directory (mount point) in the filesystem.
+sudo mount /dev/sdb1 /mnt/mydrive
+
 umount is used to remove the device from the directory once you're done with it.
+sudo umount /mnt/mydrive
 
 
 Q3 How do you troubleshoot network connectivity issues in Linux?
@@ -51,18 +54,82 @@ Q8 What is the find command, and how do you use it?
 The find command in Linux is used to search for files and directories 
 find <directory> <options> <expression>
 
+Q9 What is a swap space? 
+
+Swap space is a portion of a computer's hard drive or solid-state drive (SSD) that is used as virtual memory when the physical RAM (Random Access Memory) is fully utilized. 
+
+In simple terms, swap space is like a helper that comes into play when your computer's memory is full, but it’s not as fast as your computer's regular memory (RAM).
+
+Q10 What are the environmental variables?
+
+Environment variables are predefined instructions like we have PATH env variable to define a path then we have HOME to define where files are store we have USER like tht 
+we have lots of env variables.
+
+Q11 What are the different modes when using the vi editor?
+
+Command Mode/ Regular Mode: Use the command Esc to enter Command Mode from any other mode.
+Insertion Mode/Edit Mode: You have to press i to enter Insertion Mode from Command Mode.
+Ex Mode/ Replacement Mode: You have to press the “:” (colon) to enter Ex Mode from Command Mode.
+
+Q12 What is the ulimit command, and how do you use it?
+
+You can use the ulimit command to set the limit on the system resource to prevent consuming the higher resources. 
+This command contains multiple options to set the limit. For example, you can use the u option to set a maximum number of processes to 50:
+
+ulimit -u 50 
+
+Q13 what is grep:  command in linux 
+
+In short, grep is a searching tool that makes it easy to find text patterns in files and directories quickly and efficiently.
+
+Imagine you have a large document or a bunch of text files, and you want to find a specific word, phrase, or pattern. 
+Instead of manually searching, you can use grep to automatically find and display lines that match what you're looking for.
+
+Find the word "apple" in a file named fruits.txt:
+
+grep 'apple' fruits.txt
+
+q14 What is SMTP? 
+
+SMTP stands for Simple Mail Transfer Protocol. It is a standard protocol used to send emails across the internet. 
+Think of it as the "postman" of the internet, delivering your email messages from your computer to the recipient's mail server.
+
+Q15 What is the difference between UDP and TCP?
+
+UDP (User Datagram Protocol) and TCP (Transmission Control Protocol) are both protocols used for sending data over the internet
+TCP is reliable, slow, and ensures data is delivered correctly.
+UDP is fast, but does not guarantee delivery or order, making it suitable for applications where speed is more important than accuracy (like live streaming or gaming).
 
 
+Q16 What is the difference between absolute and relative paths in Linux?
 
+Absolute Path
+Definition: An absolute path is the complete, full path from the root directory (/) to the file or directory. 
 
+Relative Path
+Definition: A relative path is the path relative to your current working directory.
 
+Q17 How do you check the status of a service or daemon in Linux?
 
+systemctl status apache2
 
+Q18 What is the difference between /etc/passwd and /etc/shadow files?
 
+The /etc/passwd file stores essential user information like usernames, user IDs, home directories, and default shells. Each line in the file represents a user account.
 
+The /etc/shadow file contains encrypted passwords and other security-related information. It is only accessible by the root user or privileged processes
 
+Q19 How do you compress and decompress files in Linux? 
 
+tar -czvf jayesh.tar.gz files
+tar -czvf jayesh.tar.gz files
 
+Q20 What is the sed command used for in Linux?
+
+In short, sed helps you make quick and automatic changes to text in files without needing to open them in an editor! 
+
+The sed command in Linux stands for stream editor. It is a powerful text manipulation tool used to process and modify text in files or streams (like output from other commands).
+You can use sed to perform various operations like search, replace, delete, and insert text in files, without opening them in an editor.
 
 
 
