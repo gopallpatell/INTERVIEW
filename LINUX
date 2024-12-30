@@ -131,6 +131,51 @@ In short, sed helps you make quick and automatic changes to text in files withou
 The sed command in Linux stands for stream editor. It is a powerful text manipulation tool used to process and modify text in files or streams (like output from other commands).
 You can use sed to perform various operations like search, replace, delete, and insert text in files, without opening them in an editor.
 
+Q21 How to find and kill a process in Linux?
+
+ps aux | grep <process>
+kill <PID>
+
+If you don’t want to find the PID, then you can use the pkill command to kill a process by its name:
+pkill <process>
+
+Q22 What is the purpose of the SSH protocol in Linux, and how do you securely connect to a remote server using SSH?
+
+SSH the secure shell it is used to securely establish the connection bwn client server machine and the host machine 
+ssh username@remote_ip
+
+Q23 How do you check the contents of a file without opening it in Linux? 
+
+using cat command
+
+Q24 How do you change the ownership of a file or directory in Linux using the chown command?
+
+chown [OPTION] USER[:GROUP] FILE...
+
+Q25 What is the purpose of the ping command in Linux, and how do you test network connectivity to a remote host?
+
+Ping command is used to test the network connectively between the local and remote hosts.
+
+ping remote_host_ip
+
+Q26 How do you recursively copy files and directories in Linux using the cp command? 
+
+cp -R folder1 /destination/
+
+
+Q27 How can you find the IP address of a Linux system?
+
+The ‘ifconfig’ or ‘ip addr show’ command can be used to display the IP address of a Linux system.
+
+Q28 why we use package managers 
+
+Package Managers are used to install/Uninstall/Upgrade the Packages/software 
+		
+				- Centos / RHEL 		===> 	yum package Manager 
+				- Debian / Ubuntu 		===>	apt/apt-get package Manager 
+				- Fedora				===>	dnf (Latest Version of Fedora)
+												yum (Previous Version of Fedora)
+
 
 
 
