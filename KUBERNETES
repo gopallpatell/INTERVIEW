@@ -100,7 +100,15 @@ Automatically running a specified number of copies (pods) of your app.
 Ensuring that the right version of the app is always running.
 Allowing you to easily update the app and automatically handle any failures or rollbacks.
 
-13 
+13 Explain the pod in Kubernetes.
+
+A Pod is the smallest unit in Kubernetes. It can hold:
+
+One container (like a single app).
+Or multiple containers that work together (like a team of apps that need to talk to each other).
+
+
+
 
 
 
