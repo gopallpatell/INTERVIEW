@@ -1,0 +1,68 @@
+1 What is Kubernetes and what does it do?
+
+It is a Open-Source Container Orchestration Tool 
+		- Kubernetes is used to Deploy any type of Containers.
+		- It is used to ensure high availability of the Applications/services running thru Containers.
+		- Used to Ensure High Availability of Containers by creating Replicas of Containers.
+		- It supports Auto-Scaling & Load Balancing.
+		- Self-Healing
+
+2 How are Kubernetes and Docker linked?
+
+Docker is focused on creating and running containers while kubernetes is used to deploy that container and ensure high availability load balancing auto-scaling and self healing 
+
+3 List the features of Kubernetes.
+
+Self-Healing: Restarts or replaces failed containers.
+Horizontal Scaling: Automatically scales applications based on demand.
+Load Balancing: Allows containers to find and communicate with each other.
+Rollouts and Rollbacks: Manages updates and can revert to previous versions if needed.
+Storage Orchestration: Manages persistent storage for containers.
+Namespace Support: Organizes resources for different teams or projects.
+
+4 What are clusters in Kubernetes?
+
+A Kubernetes cluster is a collection of nodes (machines) that work together, with the control plane managing and coordinating the worker nodes. 
+The cluster is responsible for running and managing applications in containers, ensuring high availability, scalability, and reliability.
+
+5 What do you know about Kubectl?
+
+kubectl (short for Kubernetes control) is the command-line tool used to interact with and manage Kubernetes clusters. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
