@@ -1,1 +1,40 @@
+1. what is ansible facts
+in ansible ansible facts is a peice of information about the system like os hardware software
 
+2. what is ansible vauld 
+it is used to to encrypt the sensitive data such as password api key and confidensial data 
+ansible-vault encrypt filename 
+
+3 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
