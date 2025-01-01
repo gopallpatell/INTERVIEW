@@ -57,11 +57,10 @@ Node (Worker Node): Runs containers and workloads (Kubelet, Container Runtime, K
 
 8 List the different types of services in Kubernetes.
 
-ClusterIP: Exposes service within the cluster (default type).
+ClusterIP: The ClusterIP service is used to expose a service only within the Kubernetes cluster, not to the outside world.
 NodePort: Exposes service on each node's IP, accessible externally.
 LoadBalancer: Provisions an external load balancer, exposing the service to the internet.
-ExternalName: Maps a service to an external DNS name, no proxy or load balancing involved.
-
+ExternalName: route the request to a external DNS name 
 
 9 What is Ingress network?
 
@@ -106,6 +105,52 @@ A Pod is the smallest unit in Kubernetes. It can hold:
 
 One container (like a single app).
 Or multiple containers that work together (like a team of apps that need to talk to each other).
+
+14 deff btn pod and deployment 
+
+Pod: it is a smallest unit in kubernetes  A single instance of a container or application.
+Deployment: it is used to manages multiple Pods, handles scaling, rolling updates, rollback and ensures high availability.
+
+15 What do you know about clusters of containers in Kubernetes?
+
+A Kubernetes Cluster consists of a control plane (master) and multiple worker nodes.
+Each node runs a container runtime (e.g., Docker, containerd) that runs Pods.
+Pods are the smallest deployable units in Kubernetes, and they can contain one or more containers.
+Kubernetes clusters provide features like scaling, self-healing, and load balancing for containerized applications, making them ideal for running large-scale distributed systems.
+
+16 Explain the two types of Kubernetes pods.
+
+single conatainer pod 
+multi-container pod
+
+17 Tell me about labels in Kubernetes. 
+
+labels are like tags used to select and identify the objects such as pods.
+
+18 What is persistent volume?
+
+In very simple terms, a Persistent Volume (PV) in Kubernetes is like a hard drive that stores data and doesn't go away even if the app (Pod) using it is deleted or recreated.
+
+19 what is namespace in kubernetes
+
+20 How can you achieve zero downtime in Kubernetes?
+
+We can achieve zero downtime in Kubernetes through RollingUpdate strategy. 
+
+21 list of exception you got while creating pod
+
+BadRequest – Invalid YAML syntax or missing required fields.
+Forbidden – Insufficient permissions (RBAC issue).
+InternalError – Kubernetes internal error (control plane issue).
+ServiceUnavailable – API server is down or unreachable.
+Conflict – Version mismatch (resource was modified concurrently).
+InvalidArgument – Incorrect resource format (e.g., invalid memory unit).
+NotFound – The resource doesn’t exist or is deleted.
+NotAcceptable – Invalid container image or missing registry.
+OutOfMemory – Insufficient resources to schedule the Pod.
+Unavailable – Pod cannot be scheduled due to resource constraints.
+RequiredValue – Missing required fields like container name.
+AlreadyExists – Pod name already in use.
 
 
 
