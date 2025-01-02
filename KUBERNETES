@@ -60,7 +60,7 @@ Node (Worker Node): Runs containers and workloads (Kubelet, Container Runtime, K
 ClusterIP: The ClusterIP service is used to expose a service only within the Kubernetes cluster, not to the outside world.
 NodePort: Exposes service on each node's IP, accessible externally.
 LoadBalancer: Provisions an external load balancer, exposing the service to the internet.
-ExternalName: route the request to a external DNS name 
+ExternalName: it is used to connect with external resource like database API
 
 9 What is Ingress network?
 
@@ -87,9 +87,11 @@ ReplicaSet and ReplicationController are both Kubernetes resources used to ensur
 
 ReplicaSet is an updated and more flexible version of ReplicationController, introduced in Kubernetes 1.2.
 
-we have extra features in replicaset like we can set a label we can rolling update 
+we have extra features in replicaset like we can set a label self healing no rolling upddate 
 
 12 deployment 
+
+in this we have extra features like rollback and rolling update 
 
 Deployment in Kubernetes is a higher-level resource that manages the deployment and lifecycle of your application’s pods. 
 It allows you to define the desired state of your application, such as the number of replicas, 
