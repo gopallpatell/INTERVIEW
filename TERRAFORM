@@ -1,0 +1,117 @@
+1. What is Terraform?
+Terraform is an open-source infrastructure as code (IaC) tool developed by HashiCorp that allows
+users to define and provision data center infrastructure using a high-level configuration language
+called HCL (HashiCorp Configuration Language) or JSON.
+Example:
+provider "aws" {
+region = "us-west-2"
+}
+resource "aws_instance" "example" {
+ami = "ami-0c55b159cbfafe1f0"
+instance_type = "t2.micro"
+}
+
+2. What are the main features of Terraform?
+Terraform's main features include Infrastructure as Code (IaC), execution plans, resource graphs,
+change automation, and state management.
+Example:
+terraform {
+backend "s3" {
+bucket = "my-terraform-state"
+key = "global/s3/terraform.tfstate"
+region = "us-west-2"
+}
+
+
+3. What is the difference between Terraform and other IaC tools like
+Ansible, Puppet, and Chef?
+
+Terraform focuses on infrastructure provisioning, is declarative, and uses HCL. Tools like Ansible,
+Puppet, and Chef focus on configuration management and are procedural.
+Example:
+resource "aws_instance" "example" {
+ami = "ami-0c55b159cbfafe1f0"
+instance_type = "t2.micro"
+}
+
+4. What is a provider in Terraform?
+A provider is a plugin, Providers define the resources and data sources available.
+Example:
+provider "aws" {
+region = "us-west-2"
+}
+
+5. How does Terraform manage dependencies?
+Terraform uses a dependency graph to manage dependencies 
+means it will Automatically determine correct order for resource creation, update, or deletion.
+Example:
+resource "aws_instance" "web" {
+ami = "ami-0c55b159cbfafe1f0"
+instance_type = "t2.micro"
+subnet_id = aws_subnet.example.id
+}
+resource "aws_subnet" "example" {
+vpc_id = aws_vpc.example.id
+cidr_block = "10.0.1.0/24"
+}
+resource "aws_vpc" "example" {
+cidr_block = "10.0.0.0/16"
+}
+
+6. What is a state file in Terraform?
+it is used to store and track the current state of the infrastructure. 
+Example:
+terraform state show
+
+7. Why is it important to manage the state file in Terraform?
+it is immportant to manage the terraformm state file bcz it has all the history about the infrastructure and if we lost
+the state file then we dont have longer history about the infrastructure like what changes we made what resouces are created 
+what is the size of resource. to avoiding all this we need to keep the state file upto date and secure..
+
+8. How can you secure the state file in Terraform?
+Use remote backends (S3, Terraform Cloud, etc.) instead of local files.
+Enable encryption for state files at rest and in transit.
+Use state locking to avoid concurrent writes.
+Restrict access to the state file using IAM policies or RBAC.
+Enable versioning to keep track of changes and roll back if needed.
+Use secrets management services to store sensitive information outside the state file.
+Limit access to only trusted users or systems.
+Back up your state file regularly.
+Example:
+terraform {
+backend "s3" {
+bucket = "my-terraform-state"
+key = "global/s3/terraform.tfstate"
+region = "us-west-2"
+encrypt = true
+}
+}
+
+9. What are modules in Terraform?
+modules are used for reusable work
+
+Modules are  used when we want to reuse anthing like i have created a ec2 instance and 
+i want to reuse this infrastructure in future for that we create module of this infrastructure 
+
+Example:
+module "vpc" {
+source = "./modules/vpc"
+}
+
+10. What is the purpose of the terraform init command
+it is used to initialize the provider To Download Terraform Provider to Terraform Project
+
+11. What does the terraform plan command do?
+Preview the Terraform Script 
+terraform plan creates an execution plan, 
+
+12. What is the terraform apply command used for?
+The terraform apply command is used to apply the terraform script or create and update the infrastructure 
+the changes defined in your Terraform configuration to your actual infrastructure.
+
+13. What is the purpose of the terraform destroy command?
+terraform destroy is used to destroy the infrastructure managed by Terraform. It removes all
+the resources defined in the configuration.
+Example:
+terraform destroy
+
