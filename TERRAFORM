@@ -209,7 +209,10 @@ Resource Dependency Issues: Terraform failing to create resources in the correct
 Manual Changes: Changes made directly in the cloud provider (e.g., AWS) causing Terraform to conflict when 
 managing the resource.
 
-30 
+30  What are the different ways to pass variables in Terraform?
+environment variables,  directly in the configuration file.
+
+
 
 
 
