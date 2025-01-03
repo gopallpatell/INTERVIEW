@@ -36,13 +36,14 @@ instance_type = "t2.micro"
 
 4. What is a provider in Terraform?
 A provider is a plugin, Providers define the resources and data sources available.
+it is a plugine used to define the resource and APIs
 Example:
 provider "aws" {
 region = "us-west-2"
 }
 
 5. How does Terraform manage dependencies?
-Terraform uses a dependency graph to manage dependencies 
+Terraform uses a dependency graph(resource graph) to manage dependencies.
 means it will Automatically determine correct order for resource creation, update, or deletion.
 Example:
 resource "aws_instance" "web" {
@@ -114,4 +115,141 @@ terraform destroy is used to destroy the infrastructure managed by Terraform. It
 the resources defined in the configuration.
 Example:
 terraform destroy
+
+14 What is a Terraform backend? 
+it is terraform state file storage loaction 
+terraform backend it is the loacation where the terraformm state file stored 
+like initially it is stored by default in local machine but for large and secure infrastructure 
+we store the state file remotely
+local backend
+remote backend 
+
+15 How do you handle sensitive data in Terraform?
+for that we use environment variables ,aws secret managers and we use hashicorp vault..
+
+16  What are Terraform workspaces?
+
+using terraform workspace we can create diff environment like dev, staging, production in single configuration script.
+
+17 What is the difference between terraform taint and terraform untaint?
+terraform taint is used to recreate the resource on next apply
+terraform untaint is used to cancel the recreation of the resource on the next apply.
+
+18 What is the purpose of the terraform refresh command?
+terraform refresh updates the state file with the actual infrastructure.
+
+19 What are data sources in Terraform?
+data source is used to use a external resource
+Latest AWS AMI: Fetches the latest Amazon Machine Image (AMI).
+AWS VPC: Retrieves an existing Virtual Private Cloud (VPC) from AWS.
+AWS Security Group: Gets an existing Security Group in AWS.
+
+20  . How can you import existing infrastructure into Terraform?
+using terraform import command 
+
+terraform import <resource_type>.<resource_name> <resource_id>
+terraform import aws_instance.example i-0abcd1234efgh5678
+
+21 How do you upgrade Terraform versions? 
+Update the Terraform binary and then run terraform init -upgrade to upgrade provider versions.
+
+for chocolatey choco upgrade terraform 
+for linux   sudo apt-get update
+            sudo apt-get upgrade terraform
+
+22  What are Terraform output values?
+it is used to display the information about the infrastructure that we defined in the output block 
+
+resource "aws_instance" "example" {
+  ami           = "ami-0abcdef1234567890"
+  instance_type = "t2.micro"
+}
+output "instance_id" {
+  value = aws_instance.example.id
+  description = "The ID of the EC2 instance"
+}
+output "public_ip" {
+  value = aws_instance.example.public_ip
+  description = "The public IP address of the EC2 instance"
+}
+
+terraform apply
+
+output 
+instance_id = i-0abcdef1234567890
+public_ip = 54.123.45.67
+
+23 What are Terraform’s limitations?
+
+Mutable Infrastructure: Terraform is better suited for immutable infrastructure; updating resources may require recreation.
+No Rollback: There’s no native rollback mechanism; recovery from errors often requires manual intervention.
+Sensitive Data in State: Sensitive information may be stored in the state, requiring care in handling.
+Slow Performance: Large-scale changes or many resources can lead to slow execution.
+
+24 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
