@@ -186,7 +186,32 @@ No Rollback: There’s no native rollback mechanism; recovery from errors often 
 Sensitive Data in State: Sensitive information may be stored in the state, requiring care in handling.
 Slow Performance: Large-scale changes or many resources can lead to slow execution.
 
-24 
+24 How do you handle dependencies in Terraform?
+
+Terraform automatically handles dependencies through resource relationships defined in configurations.
+
+25 How do you deal with state file locking?
+for this we use backends
+
+26 What are the benefits of using remote backends?
+it is used for large infrastructer and for versoning the infrastructure
+
+27 What is the purpose of the terraform validate command?
+The terraform validate command is used to check the syntax and 
+validity of your Terraform configuration files (.tf or .tf.json).
+
+28 What are depends_on in Terraform?
+when one resource is depend or relies on another resource we can use depend_on argument.
+
+29 Describe a time when you had to troubleshoot a Terraform configuration issue.
+State Locking Conflicts: Multiple users trying to apply changes at the same time, causing state file lock errors.
+Resource Dependency Issues: Terraform failing to create resources in the correct order due to missing dependencies.
+Manual Changes: Changes made directly in the cloud provider (e.g., AWS) causing Terraform to conflict when 
+managing the resource.
+
+30 
+
+
 
 
 
