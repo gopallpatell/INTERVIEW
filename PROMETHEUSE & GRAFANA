@@ -29,14 +29,56 @@ Ans:
 Prometheus metrics can be classified into four types: counters, gauges, histograms, and summaries.
 Each type has its own use case and behavior.
 
+8 How does Prometheus handle alerting and notifications?
+prommetheus has a built-in alert mmanager for alerting we need to define the alerting rule 
+then it will alert when it will triggers like emails and slack notification 
 
+9  How does Prometheus handle high availability and scalability?
+Prometheus is highly scalanle and available like we can do horizontel scaling using fedration and sharding then we can 
+replicate using externel tool like thanos we can use load balancing then we have built in alerting manager for alert notification
 
+1. What is Grafana and what is its role in monitoring?
+Ans:
+Grafana is an open-source platform for data visualization and monitoring. 
+It allows users to create dashboards with interactive charts and graphs to visualize metrics collected 
+from various data sources.
 
+2. Describe the architecture of Grafana.
+Ans:
+Grafana follows a client-server architecture.
 
+3. How does Grafana integrate with Prometheus?
+Ans:
+Grafana integrates with Prometheus as a data source it will collect the metrices and create the deshbords
 
+4. Explain the concept of dashboards in Grafana.
+Ans:
+Dashboards in Grafana are a collection of panels that visualize data from one or more data sources.
 
+5. What are panels in Grafana and how are they used?
+panels are individual visualization of the data source. it desplay the time series data and application matrices
+if graphs and tables 
 
+6. How does Grafana support different data sources apart from Prometheus?
+Ans:
+Grafana supports a wide range of data sources, including databases (like MySQL, and PostgreSQL), 
+cloud platforms (such as AWS CloudWatch, and Azure Monitor), and other monitoring systems (like InfluxDB, and Elasticsearch).
 
+7. Discuss the various visualization options available in Grafana.
+grafana can visualize time series graphs, tables, single matrices like disk usage and it can visualize active alerts.   
+
+8 alert manager in garafana 
+Alerts in Grafana are configured at the panel level 
+(for a specific visualization) or at the dashboard level (for monitoring a group of panels).
+
+Prometheus Alerting is highly suitable for backend monitoring 
+Grafana Alerting is more suited for dashboard visualization-based alerting
+
+11. How does Grafana support templating for dashboards?
+Ans:
+Grafana supports dashboard templating, 
+Templating enables users to create reusable dashboards 
+templating helps you reuse a single dashboard for different data
 
 
 
