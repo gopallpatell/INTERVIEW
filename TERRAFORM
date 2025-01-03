@@ -99,7 +99,7 @@ source = "./modules/vpc"
 }
 
 10. What is the purpose of the terraform init command
-it is used to initialize the provider To Download Terraform Provider to Terraform Project
+it is used to initialize the provider or we can say it is used to initialize the Project.
 
 11. What does the terraform plan command do?
 Preview the Terraform Script 
