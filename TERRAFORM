@@ -1,3 +1,13 @@
+terraform state to remove the resource update
+terraform state rm <resource_type>.<resource_name>
+terraform state rm aws_instance.example
+
+to delete perticuuler resource
+terraform destroy -target=aws_instance.example
+
+to delete all resource in one go 
+terrafrom destroy
+
 1. What is Terraform?
 Terraform is an open-source infrastructure as code (IaC) tool developed by HashiCorp that allows
 users to define and provision data center infrastructure using a high-level configuration language
