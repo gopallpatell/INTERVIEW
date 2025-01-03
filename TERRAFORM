@@ -2,6 +2,9 @@ terraform state to remove the resource update
 terraform state rm <resource_type>.<resource_name>
 terraform state rm aws_instance.example
 
+The terraform fmt command is used to format your Terraform configuration files 
+like in proper alignment and in propermanner and with proper spacing
+
 to delete perticuuler resource
 terraform destroy -target=aws_instance.example
 
