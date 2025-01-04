@@ -129,6 +129,8 @@ tar -czvf jayesh.tar.gz files
 
 Q20 What is the sed command used for in Linux?
 
+sed commmand is used to replace edit delete insert any text in file without opening of that file. 
+
 In short, sed helps you make quick and automatic changes to text in files without needing to open them in an editor! 
 
 The sed command in Linux stands for stream editor. It is a powerful text manipulation tool used to process and modify text in files or streams (like output from other commands).
