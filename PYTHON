@@ -10,4 +10,66 @@ print(result)    # Output: 8.2
 
 
 3 type casting
+Type Casting allows for converting data types manually in Python 
+
+# Converting float to int
+num = 10.75
+int_num = int(num)  # Converts 10.75 to 10
+print(int_num)      # Output: 10
+
+# Converting string to int
+str_num = "25"
+int_str = int(str_num)  # Converts "25" to 25
+print(int_str)      # Output: 25
+
+
+4 concatination
+
+it means it will add two strings in one entity
+
+str1 = "Hello"
+str2 = "World"
+result = str1 + " " + str2  # Concatenates with a space in between
+print(result)  # Output: "Hello World"
+
+
+5. What is the difference between a Mutable datatype and an Immutable data type?
+Mutable data types can be edited i.e., they can change at runtime. Eg – List, Dictionary, etc.
+Immutable data types can not be edited i.e., they can not change at runtime. Eg – String, Tuple, etc.
+
+
+What is Indexing?
+it use to find the items in a list or words
+
+What is Slicing?
+Slicing is like cutting a portion from a list, string, or other sequence in Python. 
+
+nums = [1, 2, 3, 4, 5, 6, 7, 8]
+print(nums[3:6])  # Output: [4, 5, 6]
+
+What is Scope in Python?
+The location where we can find a variable and also access it if required is called the scope of a variable.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
