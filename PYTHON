@@ -1,0 +1,13 @@
+1 what is identifire in python 
+In Python, an identifier is a name used to identify variables, functions, classes, modules
+
+2 Type Casting
+Type conversion in Python refers to the process of converting one data type to another.
+a = 5        # Integer
+b = 3.2      # Float
+result = a + b   # Python automatically converts 'a' (int) to float before performing addition
+print(result)    # Output: 8.2
+
+
+3 type casting
+ 
