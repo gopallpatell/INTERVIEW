@@ -51,6 +51,28 @@ What is Scope in Python?
 The location where we can find a variable and also access it if required is called the scope of a variable.
 
 
+frameworks
+
+Django	        Full-stack	Large,     complex web apps	Built-in admin, ORM, security features
+Flask	          Micro-framework	APIs,       small web apps	Minimalistic, highly flexible
+FastAPI        	Micro-framework	High-performance APIs	Fast   , automatic docs, async support
+Pyramid          	Full-stack	Scalable and flexible applications	Flexible,     configurable components
+Tornado	         Asynchronous	Real-time apps, WebSockets	Non-blocking I/O,        high scalability
+CherryPy           	Minimalist	Simple web apps, microservices	Built-in HTTP server      minimalist approach
+Bottle	       Micro-framework	Small apps, prototypes	Single-file framework,    lightweight
+
+
+int      	Integer numbers (whole numbers)	10, -5, 1000
+float	      Floating-point numbers (decimal values)	3.14, -0.99, 2.0
+complex	        Complex numbers (real + imaginary part)	3 + 4j, 1 - 2j
+str       	Sequence of characters (text)	"Hello", 'Python'
+list	      Ordered, mutable collection of items	[1, 2, 3, 'a']
+tuple     	Ordered, immutable collection of items	(1, 2, 3, 'a')
+range     	Sequence of numbers, used for looping	range(5), range(1, 10, 2)
+dict     	Unordered collection of key-value pairs	{'name': 'Alice', 'age': 25}
+set     	Unordered collection of unique items	{1, 2, 3, 4}
+frozenset	        Immutable set	frozenset([1, 2, 3])
+bool        	Boolean values (True or False)	True, False
 
 
 
