@@ -155,9 +155,9 @@ like a web app needing a database to be available first.
 
 Q. 16  Describe the role of Docker load and save command.
 
- it is use to import and export the file without internet. 
+ it is use to import and export the docker images without internet. 
 
-using docker save -o file.tar  gopallpatell/netflix:v1.0   we can compress the file for exporting the image 
+using docker save -o file.tar  gopallpatell/netflix:v1.0   we can compress the image in a file for exporting the image 
 
 and using docker load -i file.tar to extract that file offline 
 
