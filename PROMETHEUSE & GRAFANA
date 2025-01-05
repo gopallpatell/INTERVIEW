@@ -7,6 +7,8 @@ allowing for powerful queries and analysis, as well as alerting based on those m
 Ans:
 Prometheus follows a server-agent model.
 
+node_cpu_seconds_total    node_memory_MemTotal_bytes
+
 3. What is time-series data and how does Prometheus use it?
 Ans:
 it means it will collect the data time to time. prometheus uses timme series data to collect the metrices of the target 
