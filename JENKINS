@@ -1,6 +1,8 @@
 Agile = How to build software fast and efficiently.
 DevOps = How to deliver and maintain that software smoothly in the real world.
 
+The Blue Ocean Plugin is a tool that improves the user interface of Jenkins,
+
 agile is to how to build the software and devops is for how to manage and deliver the software 
 
 Agile: Build software in small chunks, improve regularly based on feedback, and ensure users get usable features quickly.
