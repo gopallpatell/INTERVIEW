@@ -8,10 +8,12 @@ i have configured all the required tools in the servers then wwrite the jenkins 
 we have diff stages in the pipeline first stage is used to version controle the source code for this i used github 
 then in second step i have used maven plugin to compile the code and create the artifacts for that i have used 
 maven clean package this command will clean the old files and create the artifacts then in third stage i have build a
-dockker image for create based on dockerfile and then pushed to docker repository for version controle it then in fourth 
-stage i have create the container using that image and deploy that images to the test server using ansible 
-then i have created next step to deploy that containers to production server using kubernetes for ensure the high
+dockker image based on dockerfile and then pushed to docker repository for version controle it then in fourth 
+stage i have create the container using that image and in fifth stage deploy that container to the test server using 
+ansible 
+then i have created next step to deploy that containers to production server using kubernetes for ensure high
 availability of the containers and create the replicas 
+and enable webhook to trigger the pipeline if any changes is happened in the source code.
 
 then the third phase is for monitering where i have configured node exporter in the master of master node and in the
 production server to collect the matrices such as cpu utilization memory utilization and send that in a formate that 
