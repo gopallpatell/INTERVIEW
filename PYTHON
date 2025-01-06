@@ -96,7 +96,7 @@ objects= an object is a specific instance of a class. It is a collection of data
 function are used for reusability and for simplification of code 
 like we have def function lambda function 
 
-Function: A function is a block of reusable code that performs a specific task. 
+Function: A function is used for reusability  that is used performs a specific task. 
 It takes inputs (parameters), performs some operation, and often returns a result. Functions can be defined independently 
 or inside classes (methods).
 
