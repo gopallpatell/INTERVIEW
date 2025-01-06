@@ -87,9 +87,47 @@ if 5 > 2:
 Comments can be used to explain Python code.  
 Variables are used to store the value
 
+__init__ Method: It's specifically used for initializing objects in a class. 
+
+Class: A blueprint for creating objects. It defines the structure and behavior of the objects.
+
+objects= an object is a specific instance of a class. It is a collection of data and functions 
+
+function are used for reusability and for simplification of code 
+like we have def function lambda function 
+
+Function: A function is a block of reusable code that performs a specific task. 
+It takes inputs (parameters), performs some operation, and often returns a result. Functions can be defined independently 
+or inside classes (methods).
 
 
+a sequence is a ordered collection of items,
 
+Lists (Mutable)
+Tuples (Immutable)
+Strings (Immutable)
+Ranges (Immutable)
+
+Indexing: Access elements using an index (sequence[index]).
+Slicing: Access a subrange of elements (sequence[start:end]).
+Concatenation: Combine sequences using the + operator (sequence1 + sequence2)
+Length: Get the length of a sequence using len(sequence).
+
+
+"r" - Read - Default value. Opens a file for reading, error if the file does not exist
+
+"a" - Append - Opens a file for appending, creates the file if it does not exist
+
+"w" - Write - Opens a file for writing, creates the file if it does not exist
+
+"x" - Create - Creates the specified file, returns an error if the file exists
+
+
+a module is a file that contains Python code, 
+
+
+Flask: Lightweight micro based framework, flexible, and easy to get started with. 
+Suitable for small to medium-sized applications or APIs where you need more control.
 
 
 
