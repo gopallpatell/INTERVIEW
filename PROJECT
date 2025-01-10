@@ -1,1 +1,26 @@
+my project is about banking and finance 
+the requierement of this project is it is monolith architecture based application and need to convert in microservice based
+architectre 
 
+object of this is to ensure high vailibility and scalibilty of the application 
+
+i have devided my projects in 3 phases 
+1st is to provitioning the infrastructure i have used terraform to create the infrastructure from local machine
+i have created one master of mmaster server one server if for jenkins slave one is for test one is for prod and one is for 
+monitering 
+
+then the second phase is for server configuration and do automation of the builds and deployments
+i have configured all the required tools in the servers then wwrite the jenkins pipeline for builds and deployments 
+we have diff stages in the pipeline first stage is used to version controle the source code for this i used github 
+then in second step i have used maven plugin to compile the code and create the artifacts for that i have used 
+maven clean package this command will clean the old files and create the artifacts then in third stage i have build a
+dockker image based on dockerfile and then pushed to docker repository for version controle it then in fourth 
+stage i have create the container using that image and in fifth stage deploy that container to the test server using 
+ansible 
+then i have created next step to deploy that containers to production server using kubernetes for ensure high
+availability of the containers and create the replicas 
+and enable webhook to trigger the pipeline if any changes is happened in the source code.
+
+then the third phase is for monitering where i have configured node exporter in the master of master node and in the
+production server to collect the matrices such as cpu utilization memory utilization and send that in a formate that 
+prometheus can scrape and store then using grafana i have created the deshbords for visualization.
