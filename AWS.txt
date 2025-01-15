@@ -55,7 +55,8 @@
 
 1. Amazon Route 53
 Service Type: Domain Name System (DNS) and Domain Registration
-Description: A scalable DNS web service that routes traffic to various AWS resources. It also supports domain name registration globally.
+Amazon Route 53 is a scalable and highly available Domain Name System (DNS) web service provided by Amazon Web Services
+(AWS). It is designed to route end-user requests to various internet resources, such as websites, web applications,
 
 2. AWS Identity and Access Management (IAM)
 Service Type: Security and Access Management
@@ -65,7 +66,7 @@ Description: Manages user access to AWS services and resources across all region
 Service Type: Content Delivery Network (CDN)
 Amazon CloudFront is a Content Delivery Network (CDN) that helps deliver your content, such as websites, images, videos, and apps, to users faster. 
 It works by copying your content to servers (called edge locations) around the world.
-When someone requests your content, CloudFront sends it from the nearest server, reducing load times and improving performance. 
+When someone requests your content, CloudFront sends it from the nearest server
 
 4. Amazon S3 (with Global S3 Access Points)
 Amazon S3 (Simple Storage Service) is a cloud storage service provided by Amazon Web Services (AWS)
