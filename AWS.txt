@@ -5,7 +5,7 @@ it is a process which is used to serve the content based on their geographic loc
 eg; English content for users in the US
 
 Q  What is an Elastic Transcoder?
-
+ It allows users to conversion of the media files, convert video and audio files from one format to another.
 
 AWS Snowball is a physical data transport appliance used to securely transfer large volumes of data from on-premises 
 systems to AWS cloud storage.
