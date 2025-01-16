@@ -8,11 +8,17 @@ Q  What is an Elastic Transcoder?
  It allows users to conversion of the media files, convert video and audio files from one format to another.
 
 AWS Snowball is a physical data transport appliance used to securely transfer large volumes of data from on-premises 
-systems to AWS cloud storage.
+systems to AWS cloud storage.To transfer terabytes of data outside and inside of the AWS environment, a small application
+called SnowBall is used. 
+
+
 
 snowball edge is a advance version of snowball which has extra feature like before transfer the data we can process the 
 data locally 
 
+ What is Amazon EC2?
+Amazon EC2 (Elastic Compute Cloud) is a web service provided by Amazon Web Services (AWS) that allows users to rent virtual 
+servers, known as instances, in the cloud.
 
 1 diff between authorization and authentication.
 
