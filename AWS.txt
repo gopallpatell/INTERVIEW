@@ -1,6 +1,6 @@
 Q   What is geo-targeting in CloudFront?
 
-it is a process which is used to server the content based on their geographic location.
+it is a process which is used to serve the content based on their geographic location.
 
 eg; English content for users in the US
 
