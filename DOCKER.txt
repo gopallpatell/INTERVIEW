@@ -1,8 +1,35 @@
 Q.1 Tell me some about Hypervisor. 
 
+hypervisor is used to create the vms using hypervisor we can create multiple vms on a single physical server
+
 Q.2 Can you state the advantages of Docker over Hypervisor?
 
+Virtual Machines :
+	
+		- VMs are application level Virtualization 
+		- VMs are created using Hypervisor 
+		- VMs are used to run the Operating Systems
+		- VMs will continue to execute even if there is no task or active applications
+		- VMs consume more space and time to start up.
+		
+	Containers :
+	
+		- Containers are hardware level Virtualization 
+		- Containers are created using Container Engine 
+		- Containers are used to run the the Application. NOT Operating Systems
+		- Containers will immediately go to EXIT state, if there is no task or active applications
+		- Containers consume less space and time to start up
+		- Using Containers we can reduce the no. of VM, But we cannot completely elimate VMs
+		- Container run in its own isolated address spac, the scope of the container application is within the container 
+	
+docker commit 
+docker commit is used to create new image based on the modified continers or we can say existing containers
+docker commit <container_id> my_ubuntu_with_vim:latest
+
+
 Q.3 Define Docker images.
+
+Is a Static file that defined the properties of the Container and its dependencies 
 
 Q.4 what is the current docker version
 
