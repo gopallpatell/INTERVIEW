@@ -77,6 +77,10 @@ To change the preceding commit in Git, use 'git commit --amend' after making cha
 
 20. How do you switch branches in Git?
 To switch branches in Git, use 'git checkout ' to move to a present branch. On the other hand, use git switch in newer Git versions for the same objective. This permits you to work on different versions or features of your project stored in separate branches.
+Restoring files from a specific commit or branch:
+git checkout <commit-or-branch> -- <path/to/file>
+
+
 
 21. Name some popular Git hosting services?
 GitHub
