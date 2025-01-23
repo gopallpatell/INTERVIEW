@@ -1,4 +1,6 @@
-terraform state to remove the resource update
+terraform state to modify and manage the state of the infrastructure 
+terraform state mv <old_address> <new_address>
+
 terraform state rm <resource_type>.<resource_name>
 terraform state rm aws_instance.example
 
