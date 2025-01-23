@@ -142,16 +142,8 @@ We can achieve zero downtime in Kubernetes through RollingUpdate strategy.
 21 list of exception you got while creating pod
 
 BadRequest – Invalid YAML syntax or missing required fields.
-Forbidden – Insufficient permissions (RBAC issue).
-InternalError – Kubernetes internal error (control plane issue).
-ServiceUnavailable – API server is down or unreachable.
-Conflict – Version mismatch (resource was modified concurrently).
-InvalidArgument – Incorrect resource format (e.g., invalid memory unit).
 NotFound – The resource doesn’t exist or is deleted.
 NotAcceptable – Invalid container image or missing registry.
-OutOfMemory – Insufficient resources to schedule the Pod.
-Unavailable – Pod cannot be scheduled due to resource constraints.
-RequiredValue – Missing required fields like container name.
 AlreadyExists – Pod name already in use.
 
 
