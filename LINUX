@@ -125,7 +125,7 @@ The /etc/shadow file contains encrypted passwords and other security-related inf
 Q19 How do you compress and decompress files in Linux? 
 
 tar -czvf jayesh.tar.gz files
-tar -czvf jayesh.tar.gz files
+tar -xzvf jayesh.tar.gz
 
 Q20 What is the sed command used for in Linux?
 
@@ -133,8 +133,7 @@ sed commmand is used to replace edit delete insert any text in file without open
 
 In short, sed helps you make quick and automatic changes to text in files without needing to open them in an editor! 
 
-The sed command in Linux stands for stream editor. It is a powerful text manipulation tool used to process and modify text in files or streams (like output from other commands).
-You can use sed to perform various operations like search, replace, delete, and insert text in files, without opening them in an editor.
+sed 's/old_text/new_text/' file
 
 Q21 How to find and kill a process in Linux?
 
@@ -156,6 +155,8 @@ using cat command
 Q24 How do you change the ownership of a file or directory in Linux using the chown command?
 
 chown [OPTION] USER[:GROUP] FILE...
+chown alice example.txt
+
 
 Q25 What is the purpose of the ping command in Linux, and how do you test network connectivity to a remote host?
 
