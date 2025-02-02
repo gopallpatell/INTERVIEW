@@ -4,15 +4,7 @@ Q1 What do you mean by Maven?
 Q2 What are the features or advantages of Maven?
 
 it will automatically download and manage the dependencies defined in pom.xml.it is free and open source.
-
-   Manages Dependencies: Automatically downloads and manages libraries for your project.
-Automates Builds: Compiles code, runs tests, and packages the project with a single command.
-Standard Structure: Provides a consistent folder and project layout.
-Uses Plugins: Extends functionality for tasks like testing, deployment, and analysis.
-Lifecycle Management: Runs tasks (e.g., compile, test, package) in the correct order.
-Less Configuration: Uses defaults to reduce manual setup.
-Handles Multi-Module Projects: Manages large projects split into smaller parts.
-Integrates Easily: Works with Jenkins, IDEs, Docker, and CI/CD pipelines.
+we can easily intergate with jenkins and IDEs
 Free and Open Source: No cost, with strong community support.
 
 Q3 What is meant by Maven build lifecycle? Name these cycles.
@@ -81,7 +73,11 @@ Q9 What do you mean by Maven Archetype?
 
 it is a plugin
 Maven Archetype is a template for creating a new Maven project with a predefined structure and configuration. 
-It helps quickly set up projects with a standard setup, such as project structure, dependencies, and build configurations.
+maven-archetype-quickstart: A simple Java project setup (ideal for small Java applications).
+maven-archetype-spring: A template specifically for creating Spring-based applications.
+
+<groupId>: A unique identifier for the group or organization 
+<artifactId>: A unique identifier for the project or module.
 
 Q10 What is known as SNAPSHOT in Maven?
 
@@ -108,6 +104,28 @@ Test: Runs unit tests to ensure the code behaves as expected.
 Package: Packages the compiled code into a distributable format (e.g., JAR, WAR).
 Install: Installs the packaged artifact into the local repository for future use.
 Deploy: Deploys the packaged artifact to a remote repository (e.g., Maven Central).
+
+Q13 how to add dependencies in maven
+for that we need to modify the pom.xml file in this file in ddependency section we can add new dependency
+
+Q14 what is build profile in maven
+Profiles are useful when you need different configurations for different environments or situations. 
+For example, you may want:
+A different set of dependencies for a development environment than for production.
+Different plugin configurations for testing and production.
+Environment-specific properties, such as database URLs or API keys.
+
+Q15 what is the naming format in groupid
+naming formate is used to avoid the confusion with other projects, it is like give a unique name to groupid
+and it uses reverse domain name if we have a domain name 
+
+Q16 how can i identify my project in maven
+using groupid artifactid and version we can identify the project
+
+
+
+
+
 
 
 1. Waterfall Model
