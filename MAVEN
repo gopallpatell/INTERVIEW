@@ -122,6 +122,38 @@ and it uses reverse domain name if we have a domain name
 Q16 how can i identify my project in maven
 using groupid artifactid and version we can identify the project
 
+what is transitive dependency in maven?
+if your project depends on library A, and library A depends on library B, then library B is a transitive dependency
+of your project.
+
+
+can we run project without maven goal?
+Yes, you can run a project without specifying a Maven goal.
+If you run the mvn package command without specifying any goals in your pom.xml file, Maven will still execute the 
+default lifecycle phases up to and including the package phase. validate, compile, test, package.
+
+what is difference between life cycle and goals of maven?
+
+ it is a set of steps or phases to complete tasks like compiling code, running tests, and packaging the project.
+mmaven goals are the specific tasks
+
+
+How does Maven Architecture work?
+Maven architecture works in three steps.
+Step 1: Read the pom.xml file.
+Step 2: Then it downloads the dependencies that are defined in pom.xml file into the local repository from the central repository.
+Step 3: After that, executes the lifecycle phases,goals etc.
+
+What is the Command for Offline Maven Project Creation?
+The command create maven project in offline mode is:
+mvn -o package
+
+
+
+
+
+
+
 
 
 
