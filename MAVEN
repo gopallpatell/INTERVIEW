@@ -1,6 +1,9 @@
 Q1 What do you mean by Maven?
   maven is opensource tool used to compile the the code and create the artifacts.
 
+module in maven..?
+In Maven, a module refers to a sub-project or a component that is part of a larger project
+
 Q2 What are the features or advantages of Maven?
 
 it will automatically download and manage the dependencies defined in pom.xml.it is free and open source.
