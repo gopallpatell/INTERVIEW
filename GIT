@@ -2,8 +2,9 @@ Basic Git Interview Questions for Freshers
 1. What is Git?
 Git is a distributed version control system (DVCS) that is used to track changes in source code during software development. It permits multiple developers to work on a project together without interrupting each other's changes. Git is especially popular for its speed, and ability to manage both small and large projects capably.
 
-git rm --cached <file_name> 	# Just Unstage 
-										# The Change will be moved back to working directory
+git rm --cached <file_name> 	# Just Unstag
+
+# The Change will be moved back to working directory
 		
 		
 		git rm -f <file_name>			# Just Unstage 
