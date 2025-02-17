@@ -2,28 +2,26 @@ Q1 What do you mean by Maven?
   maven is opensource tool used to compile the the code and create the artifacts.
 
 module in maven..?
-In Maven, a module refers to a sub-project or a component that is part of a larger project
+  In Maven, a module refers to a sub-project or a component that is part of a larger project
 
 Q2 What are the features or advantages of Maven?
-
-it will automatically download and manage the dependencies defined in pom.xml.it is free and open source.
-we can easily intergate with jenkins and IDEs
-Free and Open Source: No cost, with strong community support.
+  it will automatically download and manage the dependencies defined in pom.xml.it is free and open source.
+  we can easily intergate with jenkins and IDEs
+  Free and Open Source: No cost, with strong community support.
 
 Q3 What is meant by Maven build lifecycle? Name these cycles.
-   it is a set of steps or phases to complete tasks like compiling code, running tests, and packaging the project.
-Default Lifecycle: Handles the core tasks of building and deploying a project.
-Clean Lifecycle: Cleans the project by removing old build files.
-Site Lifecycle: Creates project documentation.
+  it is a set of steps or phases to complete tasks like compiling code, running tests, and packaging the project.
+  Default Lifecycle: Handles the core tasks of building and deploying a project.
+  Clean Lifecycle: Cleans the project by removing old build files.
+  Site Lifecycle: Creates project documentation.
 
 Default Lifecycle: Manages core build tasks like:
-
-validate: Check project readiness.
-compile: Compile code.
-test: Run tests.
-package: Create JAR/WAR.
-install: Add to local repository.
-deploy: Publish to a remote repository.
+ validate: Check project readiness.
+ compile: Compile code.
+ test: Run tests.
+ package: Create JAR/WAR.
+ install: Add to local repository.
+ deploy: Publish to a remote repository.
 
 Clean Lifecycle: Cleans the project:
 clean: Removes old build files.
@@ -32,66 +30,51 @@ Site Lifecycle: Generates project documentation:
 site: Creates and publishes docs.
 
 Q4  What do you mean by POM and what does it contain?
+  It is used to define the properties of application artifacts 
+  - It is used to define dependencies and the plugins required to perform build/unit-testing
 
-It is used to define the properties of application artifacts 
-				- It is used to define dependencies and the plugins required to perform build/unit-testing
-
-Q5   What do you mean by a Maven Repository?
-
-Maven Repositories Contains the Maven Dependencies and Plugins 
+Q5  What do you mean by a Maven Repository?
+  Maven Repositories Contains the Maven Dependencies and Plugins 
 
 Q6  Explain Maven Artifact.
-
-artifacts are the output of the maven build. artifacts are the binarys converted from high lavel language to system understable language.
+  artifacts are the output of the maven build. artifacts are the binarys converted from high lavel language to system understable language.
 
 Q7 List down the various scopes of Maven Dependency.
+  Maven scopes control when and how dependencies are used    
+  Maven Scope determines when a dependency is available in your project:
 
-Maven scopes control when and how dependencies are used    
-
-Maven Scope determines when a dependency is available in your project:
-
-compile: Always available (default).
-provided: Available at compile/runtime but not in the final artifact.
-runtime: Available only at runtime.
-test: Available only for tests.
-system: Uses a local file path for the dependency.
-import
+  compile: Always available (default).
+  provided: Available at compile/runtime but not in the final artifact.
+  runtime: Available only at runtime.
+  test: Available only for tests.
+  system: Uses a local file path for the dependency.
+  import
 
 Q8  What are the differences between Maven and Ant?
-
-Maven and Ant are tools for building projects:
-
-Maven:
-
-Simplifies project management with conventions.
-Manages dependencies and build lifecycle automatically.
-Easier to use and more modern.
-Ant:
-
-Requires custom build scripts.
-Manages dependencies manually.
-More flexible but more complex to set up.
+    Maven and Ant are tools for building projects:
+  Maven:
+  it will download and manage dependancy automatically
+  Easier to use and more modern.
+  Ant:
+  Requires custom build scripts.
+  Manages dependencies manually.
+  More flexible but more complex to set up.
 
 Q9 What do you mean by Maven Archetype?
+  it is a plugin
+  Maven Archetype is a template for creating a new Maven project with a predefined structure and configuration. 
+  maven-archetype-quickstart: A simple Java project setup (ideal for small Java applications).
+  maven-archetype-spring: A template specifically for creating Spring-based applications.
 
-it is a plugin
-Maven Archetype is a template for creating a new Maven project with a predefined structure and configuration. 
-maven-archetype-quickstart: A simple Java project setup (ideal for small Java applications).
-maven-archetype-spring: A template specifically for creating Spring-based applications.
-
-<groupId>: A unique identifier for the group or organization 
-<artifactId>: A unique identifier for the project or module.
+  <groupId>: A unique identifier for the group or organization 
+  <artifactId>: A unique identifier for the project or module.
 
 Q10 What is known as SNAPSHOT in Maven?
-
-SNAPSHOT is a version used for packages that are continuously updated:
-
+  SNAPSHOT is a version used for packages that are continuously updated:
 
 Q11  What does goal in Maven mean? 
-
-a goal is a specific task in Maven,
-
-Maven Goals : 
+  a goal is a specific task in Maven,
+  Maven Goals : 
 				This defines the actions we perform using Maven 
 
 				● mvn compile 	- to compile the source code
@@ -100,99 +83,96 @@ Maven Goals :
 				● mvn clean 	- to clean the target folder.
 
 Q12  Name the build phases in Maven Build Lifecycle.
-
-Validate: Checks that the project is correct and all required information is available.
-Compile: Compiles the source code of the project.
-Test: Runs unit tests to ensure the code behaves as expected.
-Package: Packages the compiled code into a distributable format (e.g., JAR, WAR).
-Install: Installs the packaged artifact into the local repository for future use.
-Deploy: Deploys the packaged artifact to a remote repository (e.g., Maven Central).
+  Validate: Checks that the project is correct and all required information is available.
+  Compile: Compiles the source code of the project.
+  Test: Runs unit tests to ensure the code behaves as expected.
+  Package: Packages the compiled code into a distributable format (e.g., JAR, WAR).
+  Install: Installs the packaged artifact into the local repository for future use.
+  Deploy: Deploys the packaged artifact to a remote repository (e.g., Maven Central).
 
 Q13 how to add dependencies in maven
-for that we need to modify the pom.xml file in this file in ddependency section we can add new dependency
+  for that we need to modify the pom.xml file in this file in ddependency section we can add new dependency
 
 Q14 what is build profile in maven
-Profiles are useful when you need different configurations for different environments or situations. 
-For example, you may want:
-A different set of dependencies for a development environment than for production.
-Different plugin configurations for testing and production.
-Environment-specific properties, such as database URLs or API keys.
+  Profiles are useful when you need different configurations for different environments or situations. 
+  For example, you may want:
+  A different set of dependencies for a development environment than for production.
+  Different plugin configurations for testing and production.
+  Environment-specific properties, such as database URLs or API keys.
 
 Q15 what is the naming format in groupid
-naming formate is used to avoid the confusion with other projects, it is like give a unique name to groupid
-and it uses reverse domain name if we have a domain name 
+  naming formate is used to avoid the confusion with other projects, it is like give a unique name to groupid
+  and it uses reverse domain name if we have a domain name 
 
 Q16 how can i identify my project in maven
-using groupid artifactid and version we can identify the project
+  using groupid artifactid and version we can identify the project
 
-what is transitive dependency in maven?
-if your project depends on library A, and library A depends on library B, then library B is a transitive dependency
-of your project.
-
-
-can we run project without maven goal?
-Yes, you can run a project without specifying a Maven goal.
-If you run the mvn package command without specifying any goals in your pom.xml file, Maven will still execute the 
-default lifecycle phases up to and including the package phase. validate, compile, test, package.
-
-what is difference between life cycle and goals of maven?
-
- it is a set of steps or phases to complete tasks like compiling code, running tests, and packaging the project.
-mmaven goals are the specific tasks
+Q17 what is transitive dependency in maven?
+  if your project depends on library A, and library A depends on library B, then library B is a transitive dependency
+  of your project.
 
 
-How does Maven Architecture work?
-Maven architecture works in three steps.
-Step 1: Read the pom.xml file.
-Step 2: Then it downloads the dependencies that are defined in pom.xml file into the local repository from the central repository.
-Step 3: After that, executes the lifecycle phases,goals etc.
+18 can we run project without maven goal?
+  Yes, you can run a project without specifying a Maven goal.
+  If you run the mvn package command without specifying any goals in your pom.xml file, Maven will still execute the 
+  default lifecycle phases up to and including the package phase. validate, compile, test, package.
 
-What is the Command for Offline Maven Project Creation?
-The command create maven project in offline mode is:
-mvn -o package
+19 what is difference between life cycle and goals of maven?
+  it is a set of steps or phases to complete tasks like compiling code, running tests, and packaging the project.
+  maven goals are the specific tasks
 
-Explain the difference between compile-time and runtime dependencies in Maven.
-1. Compile-Time Dependencies
-Definition: These dependencies are required when compiling the source code.
-2. Runtime Dependencies
-Definition: These dependencies are needed only at runtime, not at compile-time
+20 How does Maven Architecture work?
+  Maven architecture works in three steps.
+  Step 1: Read the pom.xml file.
+  Step 2: Then it downloads the dependencies that are defined in pom.xml file into the local repository from the central repository.
+  Step 3: After that, executes the lifecycle phases,goals etc.
 
-What is the purpose of a Maven plugin? 
-A8: Maven plugins are used to extend the build process and provide additional
-functionality. Plugins can perform tasks such as compiling code, running tests, generating reports, deploying artifacts, 
-and more. They are configured in the POM file under the `<plugins>` section.
+21 What is the Command for Offline Maven Project Creation?
+  The command create maven project in offline mode is:
+  mvn -o package
+
+22 Explain the difference between compile-time and runtime dependencies in Maven.
+  1. Compile-Time Dependencies
+  Definition: These dependencies are required when compiling the source code.
+  2. Runtime Dependencies
+  Definition: These dependencies are needed only at runtime, not at compile-time
+
+22 What is the purpose of a Maven plugin? 
+  Maven plugins are used to extend the build process and provide additional
+  functionality. Plugins can perform tasks such as compiling code, running tests, generating reports, deploying artifacts, 
+  and more. They are configured in the POM file under the `<plugins>` section.
+
+23 How do you create a Maven project from scratch? 
+  To create a Maven project from scratch, you can use the Maven Archetype plugin.
+  Run the command `mvn archetype:generate` and select an appropriate archetype, such as `maven-archetype-quickstart`. 
+  Maven will generate the project structure and necessary files based on the selected archetype.
 
 
-How do you create a Maven project from scratch? 
-A9: To create a Maven project from scratch, you can use the Maven Archetype plugin.
-Run the command `mvn archetype:generate` and select an appropriate archetype, such as `maven-archetype-quickstart`. 
-Maven will generate the project structure and necessary files based on the selected archetype.
+24 How can you skip tests during a Maven build?
+   You can skip tests during a Maven build by using the `-DskipTests
 
+25 What is the purpose of the Maven Shade Plugin?
+  The Maven Shade Plugin is used for creating JAR, which contains all the dependencies required by the project.
 
-How can you skip tests during a Maven build?
-A2: You can skip tests during a Maven build by using the `-DskipTests
+26 How can you create custom Maven plugins?
+   Custom Maven plugins can be created by implementing the Mojo
 
-What is the purpose of the Maven Shade Plugin?
-A5: The Maven Shade Plugin is used for creating JAR, which contains all the dependencies required by the project.
+27 How can you specify a custom local repository location in Maven?
+   You can specify a custom local repository location by modifying the `settings.xml` file in your Maven installation. 
+   Inside the `<settings>` element, add or modify the `<localRepository>` element and specify the desired directory path.
 
-How can you create custom Maven plugins?
-A7: Custom Maven plugins can be created by implementing the Mojo
+28 What is the Maven reactor? 
+   The Maven reactor is the mechanism used by Maven to build multiple projects together as a single build.
 
-How can you specify a custom local repository location in Maven?
-A9: You can specify a custom local repository location by modifying the `settings.xml` file in your Maven installation. 
-Inside the `<settings>` element, add or modify the `<localRepository>` element and specify the desired directory path.
-
-Q1: What is the Maven reactor? 
-A1: The Maven reactor is the mechanism used by Maven to build multiple projects together as a single build.
-
-Q7: How can you control the order of plugin executions in Maven?
-A7: By default, plugins in Maven are executed in the order they are declared in the POM file.
-However, you can explicitly control the order of plugin executions by using the `<executions>` element within
-the `<plugins>` section. By specifying the desired order using the `<phase>` element,
-you can enforce a specific execution sequence.
-
-Q8: What are Maven multi-module projects? 
-A8: Maven multi-module projects are projects that consist of multiple modules, where each module represents a separate project.
+29  How can you control the order of plugin executions in Maven?
+  By default, plugins in Maven are executed in the order they are declared in the POM file.
+  However, you can explicitly control the order of plugin executions by using the `<executions>` element within
+  the `<plugins>` section. By specifying the desired order using the `<phase>` element,
+  you can enforce a specific execution sequence.
+  
+30  What are Maven multi-module projects? 
+  Maven multi-module projects are projects that consist of multiple modules, 
+  where each module represents a separate project.
 
 
 
