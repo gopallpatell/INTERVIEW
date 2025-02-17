@@ -151,6 +151,22 @@ What is the Command for Offline Maven Project Creation?
 The command create maven project in offline mode is:
 mvn -o package
 
+Explain the difference between compile-time and runtime dependencies in Maven.
+1. Compile-Time Dependencies
+Definition: These dependencies are required when compiling the source code.
+2. Runtime Dependencies
+Definition: These dependencies are needed only at runtime, not at compile-time
+
+What is the purpose of a Maven plugin? 
+A8: Maven plugins are used to extend the build process and provide additional
+functionality. Plugins can perform tasks such as compiling code, running tests, generating reports, deploying artifacts, 
+and more. They are configured in the POM file under the `<plugins>` section.
+
+
+How do you create a Maven project from scratch? 
+A9: To create a Maven project from scratch, you can use the Maven Archetype plugin.
+Run the command `mvn archetype:generate` and select an appropriate archetype, such as `maven-archetype-quickstart`. 
+Maven will generate the project structure and necessary files based on the selected archetype.
 
 
 
