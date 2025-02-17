@@ -169,6 +169,40 @@ Run the command `mvn archetype:generate` and select an appropriate archetype, su
 Maven will generate the project structure and necessary files based on the selected archetype.
 
 
+How can you skip tests during a Maven build?
+A2: You can skip tests during a Maven build by using the `-DskipTests
+
+What is the purpose of the Maven Shade Plugin?
+A5: The Maven Shade Plugin is used for creating JAR, which contains all the dependencies required by the project.
+
+How can you create custom Maven plugins?
+A7: Custom Maven plugins can be created by implementing the Mojo
+
+How can you specify a custom local repository location in Maven?
+A9: You can specify a custom local repository location by modifying the `settings.xml` file in your Maven installation. 
+Inside the `<settings>` element, add or modify the `<localRepository>` element and specify the desired directory path.
+
+Q1: What is the Maven reactor? 
+A1: The Maven reactor is the mechanism used by Maven to build multiple projects together as a single build.
+
+Q7: How can you control the order of plugin executions in Maven?
+A7: By default, plugins in Maven are executed in the order they are declared in the POM file.
+However, you can explicitly control the order of plugin executions by using the `<executions>` element within
+the `<plugins>` section. By specifying the desired order using the `<phase>` element,
+you can enforce a specific execution sequence.
+
+Q8: What are Maven multi-module projects? 
+A8: Maven multi-module projects are projects that consist of multiple modules, where each module represents a separate project.
+
+
+
+
+
+
+
+
+
+
 
 
 
