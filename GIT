@@ -36,6 +36,7 @@ git ls-files
 
 7. What is the git push command?
   The 'git push' command is used to share local repository changes to a remote repository. 
+  git push origin my-branch
 
 8. What is the git pull command?
   The 'git pull' command updates the current local branch with changes from a remote repository and combining it with a local repository.
