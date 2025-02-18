@@ -220,14 +220,33 @@ Advanced Git Interview Questions for Experienced
 What is Git and its types?
  Git is a distributed version control system. It has two types of repositories: bare repository (no working directory, used on servers) and non-bare repository (includes a working directory for developers).
 
+git merge --squash
+  The git merge --squash command is a powerful feature that allows you to combine multiple commits from 
+  one branch into a single commit on the target branch, effectively "squashing" the commits.
+  git merge --squash feature-branch
 
+for squash or combine selective commits
+  Interactive rebase allows you to choose specific commits to modify, reorder, or squash.
+  This can be a great way to combine only certain commits into one, while keeping others separate.
+  git rebase -i HEAD~5           # it will combine last five commits into one commit 
 
+Cherry-pick
+  If you want to pick specific commits from one branch and apply them to another, git cherry-pick is a great option.
+  git cherry-pick commit-hash1 commit-hash2
 
+What is the purpose of the "git bisect" command
+  git bisect is a quick way to find the "bad" commit in your code using a binary search. 
+  Imagine you have a problem (like a bug) in your code, and you don’t know when or where it was introduced.
+  You know that at some point, your code was working fine, and at another point, it’s broken. 
+  git bisect helps you find the exact commit (change) where the bug was introduced by checking commits one by one,
+  but in a very smart way using binary search.
 
+Emma wants to see the history of commits for a particular file in the repository. How can she do that?
+ using git commit filename
 
-
-
-
+You are working on a feature branch in Git, and you realize that some of the changes you made are incorrect 
+and need to be removed. How can you selectively remove specific commits from your branch history?
+  using git rebase -i 
 
 
 
