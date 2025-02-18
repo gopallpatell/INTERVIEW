@@ -82,8 +82,8 @@ It grabs all the changes you have made to files—like additions, or deletions o
 
 19. What is `git checkout`?
   'git checkout' helps you switch between branches or return files to a previous state in Git. Now, 
-  it is suggested to use 'git switch' for changing branches and 'git restore' to return files. 
-  These commands are more intent on their particular tasks for better clearness and capability.
+  it is also used for restore the files
+  git checkout <commit-hash> -- <file-name>
 
 20. How do you switch branches in Git?
   To switch branches in Git, use 'git checkout ' to move to a present branch. On the other hand, use git switch in newer Git versions for the same objective. This permits you to work on different versions or features of your project stored in separate branches.
@@ -113,7 +113,7 @@ Intermediate Git Interview Questions and Answers
   'git remote' : Controls connections to remote repositories. It sets up links to remote repositories but doesn't download any files.
 
 26. What are the benefits of using a pull request in a project?
-  Teams can together work on distinct parts of the system and later combine their changes using pull requests. This way boosts team capability.
+   using pull reuest we can preview the changes before merging them.
 
 27. What is a Git bundle?
   A Git bundle is a collective file that wraps all data from Git repository, such as commits, branches, and tags.
@@ -180,11 +180,11 @@ Intermediate Git Interview Questions and Answers
   Use `git add <file_name>` to add a file to the staging area, forming it ready for a commit.
 
 40. What is `git diff`?
-  'git diff' is a command in Git that presents the differences between varied states of files in a repository. It equates changes between the working directory, the staging area (index), and the last commit. It assists track changes, additions, and deletions before committing changes to the repository.
+   it is used to see the diff btwn two branches and in btwn two commits also we can see diff btwv files and branches,files and commits.
 
 Advanced Git Interview Questions for Experienced
 41. What is the Git object model?
-  The Git object model comprises four major types: blobs (which store file data), trees (which store directory structures), commits (which store repository snapshots), and tags (which store references to commits). These objects are the pillar of Git's version control system, permitting for capable tracking and management of changes.
+  it is like how git is save your data : blobs (which store file data), trees (which store directory structures), commits (which store repository snapshots), and tags (which store references to commits). These objects are the pillar of Git's version control system, permitting for capable tracking and management of changes.
 
 42. Explain `git rebase` and when you would use each?
   'git rebase' moves commits from one branch to another, making a straight, linear history. Use rebase to enhance and clean up the commit history before merging.
@@ -196,7 +196,8 @@ Advanced Git Interview Questions for Experienced
   Git stores data by saving snapshots of your project at diverse points in time. Each snapshot is a commit, which covers information about the project’s files (blobs) and directories (trees). These snapshots are recognized by unique hashes, creating it easy to track changes and retrieve history.
 
 45. Explain what is meant by the "detached HEAD" state in Git?
-  When 'HEAD' points directly to a commit instead of a branch, Git is in a detached 'HEAD' state. Changes made in this state won’t be referenced by any branch and might be lost if not saved.
+  When 'HEAD' points directly to a commit instead of a branch, Git is in a detached 'HEAD' state. 
+  Changes made in this state won’t be referenced by any branch and might be lost if not saved.
 
 46. Explain the difference between git reset, git revert, and git checkout?
   git reset: Moves HEAD to different commit, potentially changing history.
@@ -207,7 +208,8 @@ Advanced Git Interview Questions for Experienced
   To handle large files in Git, use Git LFS (Large File Storage). It tracks large files severally from your repository, storing them on a remote server. This prevents bloating your repository size and secures improved performance while operations like cloning and fetching.
 
 48. What is the function of the git cherry-pick command?
-  The git cherry-pick command uses exact commits from one branch to another, allowing selective merging of changes without merging entire branches.
+  The git cherry-pick command uses exact commits from one branch to another, 
+  allowing selective merging of changes without merging entire branches.
 
 49. What is ‘bare repository’ in Git?
  A bare repository in Git is one missing a working directory. It only contains version control data, making it ideal for sharing and collaboration without changing files directly.
@@ -215,6 +217,23 @@ Advanced Git Interview Questions for Experienced
 50. What is branching in Git?
  Branching in Git permits forming separate lines of development. It allows users to work on features or fixes separately from the main codebase, helping parallel development and simpler integration of changes.
 
-
 What is Git and its types?
-Git is a distributed version control system. It has two types of repositories: bare repository (no working directory, used on servers) and non-bare repository (includes a working directory for developers).
+ Git is a distributed version control system. It has two types of repositories: bare repository (no working directory, used on servers) and non-bare repository (includes a working directory for developers).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
