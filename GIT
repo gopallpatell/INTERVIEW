@@ -278,6 +278,21 @@ and need to be removed. How can you selectively remove specific commits from you
 60 git branch -m: 
   Rename a branch. Example: `git branch -m new_branchname`
 
+61 How do you implement branch protection in GitHub?
+  for that we need to set rules and restriction to the branch.
+  1 Require pull request reviews before merging
+  2 Require linear history
+  3 Prevent deletions:
+
+62 What is an orphan branch in Git?
+  An orphan branch in Git is a branch with no commit history. 
+  It's like starting a fresh branch, but without any past code or changes from other branches. 
+  git checkout --orphan <branch_name>
+
+63 what is tagging in git
+  tagging in git is like give a specific tabel to the commit is usefull in release it is like v1.0 v2.0 
+  Lightweight tag: It’s just a simple label for a commit.
+  Annotated tag: A label with extra information, like who made the tag and why.
 
 
 
