@@ -225,6 +225,59 @@ Q29   You want to update a running container with a new version of the applicati
   /host/path: The full path to the directory or file on your host machine.
   /container/path: The path inside the container where the file or directory will be mounted.
 
+33. How can you link multiple Docker containers together?
+  Docker provides a feature called container networking, which allows you to link multiple containers together.
+   or we can use docker compose 
+ docker run -d --name my-container --network my-network nginx
+
+34 How do you optimize a Docker image to reduce its size?
+  Combine commands (RUN, COPY, ADD) to reduce layers.
+  Remove unnecessary files (e.g., temp files, package manager cache).
+  Use multi-stage builds to separate build dependencies from runtime dependencies.
+  remove unneccessory layers
+
+35. What is the difference between ENTRYPOINT and CMD in Docker?
+ ENTRYPOINT: Defines the main command that should always run when the container starts. It is usually the primary process.
+ CMD: Defines the default arguments for the command (or the command itself if ENTRYPOINT is not set). It's the fallback if 
+ no command is provided when the container starts..
+  entrypoint is a main command and cmd is defualt commmand if entrypoint command is not define then cmd will execute.
+
+36 How do you troubleshoot a failed container in Docker?
+  first we will check docker logs then we inspect the container we run in the interactive mode we need to check the port 
+  mapping  then rebuild the image all this things to troubleshoot
+
+37 cmd command if I run multiple time then what happen
+  If you run the CMD command multiple times in a Dockerfile, only the last CMD instruction will be used when the container 
+  starts. Docker will ignore any previous CMD instructions that appear before it.
+
+38. I have application and application database also, how to deploy this both in one using docker
+  we use docker compose and we add depends_on 
+
+39. I am trying to pull image using image name  that image not getting accessible through docker hub repo , so what is the 
+    problem
+  Incorrect Image Name or Tag: Ensure the image name and tag are correct. Example: docker pull ubuntu:latest.
+  Private Repository: If the image is private, you need to log in to Docker Hub using docker login.
+  Image Not Pushed: The image might not be uploaded to Docker Hub. Verify if it's available on the Docker Hub repository.
+  Tag Doesn't Exist: The tag you're trying to pull might not exist. Check the available tags on Docke
+
+40. what issue you face while creating container like it created and stopped what the issue
+   it happen if entrypoint is wrong 
+   insuffeciant memory or cpu
+   if we create container in detatched mode then container will go in stoped state imediately
+   dockerfile issue
+
+41 what is multi stage in dockerfile
+   Multi-stage builds in Docker allow you to use multiple FROM statements in a single Dockerfile to optimize the build 
+   process, reduce image size, and separate the build environment from the runtime environment.
+
+42. how to bind the volumes to container
+   docker run -v <host_path>:<container_path> <image_name>
+
+43. what is difference between cmd and env in dockerfile what will happen we use both of them in dockerfile
+  cmd is for default commnd and env is for invironment variable it is used for sensitive data and api keys
+  we can use both cmd is for default execution and env for passing env variable 
+
+44. 
 
 
 
