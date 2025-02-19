@@ -213,3 +213,21 @@ Q29   You want to update a running container with a new version of the applicati
   docker commit is used to create new image based on the modified continers or we can say existing containers
   docker commit <container_id> my_ubuntu_with_vim:latest
 
+31 Port Mapping / Port Binding ::::
+  - It is used to expose the container to access thru internet 
+  docker run -it -p <host_Port>:<container_Port> tomcat:8.0
+  docker run -it -p 8089:8080 tomcat:8.0
+
+32 docker mount 
+  docker run --mount source=my_data,target=/data my_image
+
+  docker run -v /host/path:/container/path my_image
+  /host/path: The full path to the directory or file on your host machine.
+  /container/path: The path inside the container where the file or directory will be mounted.
+
+
+
+
+
+
+
