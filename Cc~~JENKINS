@@ -147,3 +147,62 @@
 
 45. Discuss the use of Jenkins Shared Libraries for pipeline reuse.
   Shared libraries is used to store the pipelines for reusable work in version controle system 
+
+46 . Installing a tool in Jenkins
+  Answer: for that we need to go in the manage jenkins in this we have globle tool configuration we can add any tool 
+  and select install automatically.
+
+47. . Connecting Jenkins to Ansible
+  1. Install Ansible on the Jenkins Server
+  2. Configure SSH Access with terget nodes
+  3. Install the Ansible Plugin in Jenkins
+  4. Configure Ansible in Jenkins
+  5. Create a Jenkins Pipeline to Run Ansible Playbooks
+  6. after that go to snippet genrator and select ansible then give the 
+                    playbook: 'path/to/your/playbook.yml', // Path to your Ansible playbook
+                    inventory: 'path/to/your/inventory',   // Path to your inventory file
+                    credentialsId: 'your-ssh-credentials', // Jenkins credentials ID for SSH
+     Give playbook file path as ansible-paybook.yml and give inventory file path as hosts or we can
+     use default directory that is /etc/ansible/hosts
+
+48 connecting jenkins to kkubernetes
+  1. create kubernetes master node and one workernode 
+  2. join terget nodes with kubediam join command
+  3. then add kubernetes server in systems under manage jenkins and  Configure it with hostname, username and remote directory.
+  4. and install kubernetes plugin
+  5. write the menifest fille
+  6. then Select source file as *.yaml, remote directory as ‘.’ And exec command as kubectl apply -f kubedeploy -n prod 
+     to create a prod environment and deploy the application on it.
+
+49. How does Jenkins handle distributed builds?
+    Jenkins handles distributed builds using a master-agent architecture, where the workload of building, 
+    testing, and deploying is distributed across multiple machines (agents). 
+
+50. What are the different Jenkins authentication methods?
+   using Custom Authentication (via Plugin) and using security realm plugin & Public/Private Key Authentication (for SCM)
+
+51. where can i see the jenkins build job output or logs other than jenkins console output
+   we can check in the system log also we can check in the jenins home directory we have  jobs folder under this we have jobs 
+   jobs name and builds in this we have logs of buids 
+   and we can see in the build history we have jobs option in manage jjenkins under this we have build history we can check 
+   the logs in this 
+
+52. what are the ways to configure the jenkins cicd pipeline while building the job
+   we can configure it with jenkinsfile to version controle and aslo we can manually add pipeline while creating the job 
+   and using build triggers we can configure the job.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
