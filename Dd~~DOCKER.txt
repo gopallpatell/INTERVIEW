@@ -1,53 +1,38 @@
 Q.1 Tell me some about Hypervisor. 
-
-hypervisor is used to create the vms using hypervisor we can create multiple vms on a single physical server
+  hypervisor is used to create the vms using hypervisor we can create multiple vms on a single physical server
 
 Q.2 Can you state the advantages of Docker over Hypervisor?
-
-Virtual Machines :
-	
+  Virtual Machines :
 		- VMs are application level Virtualization 
 		- VMs are created using Hypervisor 
 		- VMs are used to run the Operating Systems
 		- VMs will continue to execute even if there is no task or active applications
 		- VMs consume more space and time to start up.
-		
-	Containers :
-	
+  Containers :
 		- Containers are hardware level Virtualization 
 		- Containers are created using Container Engine 
 		- Containers are used to run the the Application. NOT Operating Systems
 		- Containers will immediately go to EXIT state, if there is no task or active applications
 		- Containers consume less space and time to start up
 		- Using Containers we can reduce the no. of VM, But we cannot completely elimate VMs
-		- Container run in its own isolated address spac, the scope of the container application is within the container 
+	- Container run in its own isolated address spac, the scope of the container application is within the container 
 	
-docker commit 
-docker commit is used to create new image based on the modified continers or we can say existing containers
-docker commit <container_id> my_ubuntu_with_vim:latest
-
-
 Q.3 Define Docker images.
-
-Is a Static file that defined the properties of the Container and its dependencies 
+  Is a Static file that defined the properties of the Container and its dependencies 
 
 Q.4 what is the current docker version
+    27.5.1
 
 Q.5 Tell me something about Docker machine. 
-
-A Docker environment is the collection of everything that allows you to run Docker containers, including the Docker Engine, host machine, containers, images, 
-
-                   Docker Machine is a tool that helps you create and manage Docker environments 
-
-Here’s a breakdown of the key elements that make up a Docker environment:
-
-Docker Engine:
-
-This is the core software that runs Docker containers. It consists of a server (daemon) that manages containers, and a client (command-line interface or CLI) that you use to interact with Docker.
-
-Docker Host:
-
-The Docker host is the physical or virtual machine where the Docker Engine runs. It provides the resources (like CPU, memory, and storage) needed to run containers.
+  Docker Machine is a tool that helps you create and manage Docker environments 
+  A Docker environment is the collection of everything that allows you to run Docker containers, including the Docker 
+  Engine, host machine, containers, images, 
+ Here’s a breakdown of the key elements that make up a Docker environment:
+  Docker Engine:
+  This is the core software that runs Docker containers. 
+  Docker Host:
+  The Docker host is the physical or virtual machine where the Docker Engine runs. It provides the resources (like CPU, 
+  memory, and storage) needed to run containers.
 
 Containers:
 
@@ -394,3 +379,6 @@ Take down the old version: Once the green version is confirmed to be working, yo
 
 This approach provides full isolation between the old and new versions, ensuring zero downtime during deployment.
 
+docker commit 
+docker commit is used to create new image based on the modified continers or we can say existing containers
+docker commit <container_id> my_ubuntu_with_vim:latest
