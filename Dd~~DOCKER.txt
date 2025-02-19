@@ -3,13 +3,13 @@ Q.1 Tell me some about Hypervisor.
 
 Q.2 Can you state the advantages of Docker over Hypervisor?
   Virtual Machines :
-		- VMs are application level Virtualization 
+		- VMs are hardware level Virtualization 
 		- VMs are created using Hypervisor 
 		- VMs are used to run the Operating Systems
 		- VMs will continue to execute even if there is no task or active applications
 		- VMs consume more space and time to start up.
   Containers :
-		- Containers are hardware level Virtualization 
+		- Containers are application level Virtualization 
 		- Containers are created using Container Engine 
 		- Containers are used to run the the Application. NOT Operating Systems
 		- Containers will immediately go to EXIT state, if there is no task or active applications
@@ -28,52 +28,45 @@ Q.5 Tell me something about Docker machine.
   A Docker environment is the collection of everything that allows you to run Docker containers, including the Docker 
   Engine, host machine, containers, images, 
  Here’s a breakdown of the key elements that make up a Docker environment:
+
   Docker Engine:
-  This is the core software that runs Docker containers. 
+  This is the core software that runs Docker containers.
+
   Docker Host:
   The Docker host is the physical or virtual machine where the Docker Engine runs. It provides the resources (like CPU, 
   memory, and storage) needed to run containers.
 
-Containers:
-
-Containers are lightweight, isolated environments where applications run. These are packaged with everything needed to execute the application, such as code, libraries, and configurations.
+  Containers:
+  Containers are lightweight, isolated environments where applications run. 
 
 Docker Images:
-
-Images are like blueprints for containers. They contain the application's code and all necessary dependencies. You use an image to create a container.
+Is a Static file that defined the properties of the Container and its dependencies
 
 Docker Registry (e.g., Docker Hub):
-
-A registry is a place where you can store and share Docker images. Docker Hub is the most popular public registry, but you can also set up private registries.
-
+docker regestry is place where we can shave the docker images and version controle
 
 Q.6 Define Docker Swarms.
-
-It is meant only for Docker Containers.
-		- Used to Ensure High Availability of Containers by creating Replicas of Containers.
+  - Used to Ensure High Availability of Containers by creating Replicas of Containers.
+  It is meant only for Docker Containers.
 
 Q.7 then why we use kubernetes instant of docker swarn..?
+   If your app is small, Docker Swarm might be enough. But if you want to run large, complex apps that need advanced 
+   features, Kubernetes is the better choice.
 
-    If your app is small, Docker Swarm might be enough. But if you want to run large, complex apps that need advanced features, Kubernetes is the better choice.
-
-Kubernetes has a much richer set of features. It includes powerful tools like:
-
-Advanced service discovery
-Automated rollbacks and updates
-Self-healing (restarting containers that fail)
-Horizontal scaling
-Customizable resource management (CPU, memory)
-Stateful sets (for managing stateful applications like databases)
-Complex networking configurations
+  Kubernetes has a much richer set of features. It includes powerful tools like:
+  Automated rollbacks and updates
+  Self-healing (restarting containers that fail)
+  Horizontal scaling
+  Customizable resource management (CPU, memory)
+  Stateful sets (for managing stateful applications like databases)
+  Complex networking configurations
 
 Q.8  Describe the usage of Dockerfile?
-
-A Dockerfile is a text file that contains a set of instructions for building a Docker image.
-
+  A Dockerfile is a text file it is a set of instructions for building a Docker image.
 
 FROM: Defines the base image for the container.
 RUN: Executes commands to set up the environment.
-CMD: Defines the default command for the container to run.
+CMD: CMD defines the default command to run when the container starts.
 COPY: Copies files from the host to the container.
 ADD: Similar to COPY, with additional features like fetching remote files.
 WORKDIR: Sets the working directory inside the container.
@@ -85,67 +78,32 @@ USER: Specifies the user to run the container as.
 SHELL: Specifies the shell to use for RUN commands.
 
 Q.9 What is command to build  docker image from Dockerfile ?
+  $ docker build -t image_name .    # .  is for build the imagre in current directory
 
-$ docker build -t image_name .
 Q.10  What is the command to run the image as a container?
-
-$ docker run -it image_name
-
+  $ docker run -it image_name
 
 Q. 11  What is difference between ADD and COPY in Dockerfile
-
-COPY 									# To Copy the file from host volume to container volume
-
-ADD 									# To Copy the file from Host Volume as well as from URL
-
+ COPY 								# To Copy the file from host volume to container volume
+ ADD 								# To Copy the file from Host Volume as well as from URL
 
 Q.12  what are Docker Namespaces?
-
     it is used to create a seperate invironment 
-
-Just like you have your own personal space where you can do things without interfering with others, Docker namespaces create separate spaces for containers to work in.
-PID (Process ID) Namespace:
-
-It isolates the process ID number space, which means each container has its own set of process IDs. A container can't see processes running outside its own namespace (in the host or other containers).
-Example: Inside a container, a process might have the ID 1, but in the host system, it could be different.
-NET (Network) Namespace:
-
-This gives each container its own network interface (IP address, port, etc.). Containers can communicate with each other, but they cannot directly interact with the host's network unless you set it up.
-Example: If you have two containers, each can have its own IP address and can talk to each other, but they won’t interfere with the host’s network.
-MNT (Mount) Namespace:
-
-It isolates the file system. Each container has its own view of the file system, meaning changes made in one container's file system won't affect another container or the host.
-Example: One container can have a specific version of a file, while another container can have a different version, and both containers will be unaware of each other.
-UTS (Unix Time Sharing) Namespace:
-
-It allows containers to have their own hostname and domain name. Containers can have different names, even though they’re running on the same host.
-Example: One container can be named web-container, and another can be named db-container, but they both run on the same host.
-IPC (Inter-Process Communication) Namespace:
-
-This namespace isolates the IPC resources such as shared memory and semaphores. Containers can’t access shared memory or IPC resources from other containers.
-Example: If two containers use shared memory, they cannot read from or write to each other’s memory.
-USER Namespace:
-
-It isolates the user and group IDs, allowing containers to run as a non-root user, even though the host system might run containers as root. This helps with security.
-Example: A container can run as a non-root user inside, even though it might have root privileges on the host machine.
-
-
+  like we can create a invironment for user means that user can run the container 
+  also we can create seperate namespace for mount points means the mount volume is responsible for selected containers
 
 Q. 13 Why is it necessary to monitor a  Docker?
-
-monitoring Docker containers is like checking on your car while driving. 
-You look at the speed, fuel, and engine lights to make sure everything is running smoothly. If something goes wrong, you can fix it before it becomes a bigger problem!
-
+  monitoring Docker containers is like checking on your car while driving. 
+  You look at the speed, fuel, and engine lights to make sure everything is running smoothly. If something goes wrong, you 
+  can fix it before it becomes a bigger problem!
 
 Q. 14  Define Docker compose?
-
-
-Docker Compose is a tool that helps you run and manage multiple Docker containers at the same time, with just one command.
+  Docker Compose is a tool that helps you run and manage multiple Docker containers at the same time, with just one command.
 
 Q. 15  What is depends_on in Docker compose
-
-it is used when one server is depends on the another server. like if i am using a web server and one db server and i want to start db server first then i can use depend on after the 
-web server like this 
+  it is used when one server is depends on the another server. like if i am using a web server and one db server and i want 
+  to start db server first then i can use depend on after the 
+  web server like this 
 
 version: '3'
 services:
@@ -155,7 +113,6 @@ services:
       - db
     ports:
       - "80:80"
-      
   db:
     image: postgres
     environment:
@@ -166,219 +123,93 @@ like a web app needing a database to be available first.
 
 
 Q. 16  Describe the role of Docker load and save command.
+  it is use to import and export the docker images without internet. 
+  using docker save -o file.tar  gopallpatell/netflix:v1.0   we can compress the image in a file for exporting the image 
+  and using docker load -i file.tar to extract that file offline 
 
- it is use to import and export the docker images without internet. 
-
-using docker save -o file.tar  gopallpatell/netflix:v1.0   we can compress the image in a file for exporting the image 
-
-and using docker load -i file.tar to extract that file offline 
-
-
-docker save: Creates a tarball of a Docker image that you can transfer or back up.
-docker load: Loads a Docker image from a tarball into your local Docker environment.
-
-
+  docker save: Creates a tarball of a Docker image that you can transfer or back up.
+  docker load: Loads a Docker image from a tarball into your local Docker environment.
 
 Q. 17 Which is the most feasible type of application for Docker containers – Stateless or Stateful?
-
-       Stateless applications are generally more feasible and suited for Docker containers compared to stateful applications. 
-
-bcz dont need to give any input for this type of application.
-
-
+  Stateless applications are generally more feasible and suited for Docker containers compared to stateful 
+  applications. 
+  bcz dont need to give any input for this type of application.
                   Stateless Applications
 				- Application that will not have any state of execution
 				- Applications that will not create any output/need any input.
-		
-			Stateful Applications ::
+		  Stateful Applications ::
 				- Application that will have state of execution
 				- Applications that requires some input and generate some output
 
-
-
 Q 18.  Differentiate between a Docker layer and a image.
-
-Layers are the individual steps to create and building the image 
-
-docker Image is the final, complete result that you can use to create something (like a container in Docker).
-
-
+  Layers are the individual steps to create and building the image 
+  docker Image is the final, complete result that you can use to create something (like a container in Docker).
 
 Q.19 vertualization
-
-
-Virtualization allows multiple virtual computers (VMs) to run on a single physical machine, improving efficiency and flexibility.
-
-
-Hypervisor:
-
-The hypervisor is the software that manages and runs virtual machines. 
-It sits between the physical hardware and the VMs, allocating resources like CPU, memory, and storage to each VM.
-
-a hypervisor is the software that allows multiple virtual computers to run on a single physical machine.
-
-
+  Virtualization allows multiple virtual computers (VMs) to run on a single physical machine, improving efficiency and 
+  flexibility.
+  Hypervisor:
+  The hypervisor is the software that manages and runs virtual machines. 
+  It sits between the physical hardware and the VMs, allocating resources like CPU, memory, and storage to each VM.
+  a hypervisor is the software that allows multiple virtual computers to run on a single physical machine.
  
 Q.20  What if you have accidentally out of the Docker containers, will you loose the files?
+  If you have a container running a web application and the database is storing data in a Docker volume or a bind mount, 
+  even if the container crashes or is removed, the database files will still be available in the volume or on the host 
+  system.
 
-
-If you have a container running a web application and the database is storing data in a Docker volume or a bind mount, 
-even if the container crashes or is removed, the database files will still be available in the volume or on the host system.
-
-Conclusion:
-
-Without volumes or mounts: Yes, you will lose the files inside the container.
-
-With volumes or mounts: No, your files are safe and persistent even if you remove the container.
+  Conclusion:
+  Without volumes or mounts: Yes, you will lose the files inside the container.
+  With volumes or mounts: No, your files are safe and persistent even if you remove the container.
 
 
 Q.21   What are factors that decides the number of containers you can run on?
-
-System resources like CPU, RAM, and disk space are the main limiting factors.
-Proper resource allocation and limits on each container can help optimize performance.
-The size of images, the type of containerized applications, and networking will also influence how many containers you can run.
-Using orchestration tools like Kubernetes or Docker Swarm can help you manage and scale container workloads more effectively.
-
+  System resources like CPU, RAM, and disk space are the main limiting factors.
 
 Q.22 What is Dockerfile Instructions ?
-
-Dockerfile contains a set of Instructions to build Docker Image
-
+  Dockerfile contains a set of Instructions to build Docker Image
 
 Q23  What is Docker Prune ?
+  docker prune ins used to delete the unused container, images and volumes 
 
-Docker Prune is a set of commands that allows you to clean up and remove unused Docker resources to free up system space and improve performance. 
-It helps you get rid of unnecessary Docker objects like containers, images, volumes, and networks that are no longer in use.
-
-
-Here are the docker prune commands in one line:
-
-docker system prune: Removes stopped containers, unused networks, dangling images, and build cache.
-docker container prune: Removes stopped containers.
-docker image prune: Removes dangling images (images not tagged or used by any container).
-docker volume prune: Removes unused Docker volumes.
-docker network prune: Removes unused Docker networks.
+  Here are the docker prune commands in one line:
+  docker system prune: Removes stopped containers, unused networks, dangling images, and build cache.
+  docker container prune: Removes stopped containers.
+  docker image prune: Removes dangling images (images not tagged or used by any container).
+  docker volume prune: Removes unused Docker volumes.
+  docker network prune: Removes unused Docker networks.
 
 
 Q24 why docker is important for devops.?
-
-Docker is important for DevOps because it simplifies and streamlines the development, testing, and deployment process. Here’s why:
-
-Consistency: Docker ensures that applications run the same way in different environments (development, testing, production) by packaging them with all dependencies in containers.
-
-Portability: Containers can be run on any machine, whether it's a developer's laptop, a test server, or a production cloud environment, making deployment easier.
-
-Automation: Docker integrates well with CI/CD pipelines, allowing for automated testing, building, and deployment of applications.
-
-Isolation: Containers provide isolation for different applications and services, reducing conflicts and making it easier to manage dependencies.
-
-Scalability: Docker makes it easy to scale applications by quickly spinning up new containers, which is especially useful in cloud environments.
-
-Faster Deployment: Docker containers are lightweight and fast to start, enabling faster delivery of applications and updates.
-
+  Docker is important for DevOps because it simplifies and streamlines the development, testing, and deployment process. 
+  Here’s why:
+  lie for isolation and scalability we can run multiple container on a single vm 
 
 Q25   Please Explain How Does Docker Work?
-
-it used containerization 
-
-containerization is the process of packaging the application and its dependences.
-
-
-First, you build a Docker image using a Dockerfile or pull an image from a registry (like Docker Hub).
-Then, you run a container from the image, and Docker takes care of setting up the environment for your application to run.
-The container is isolated but can communicate with other containers or the host system as needed, using features like networking and volumes.
-
-
+  First, you build a Docker image using a Dockerfile or pull an image from a registry (like Docker Hub).
+  Then, you run a container from the image, and Docker takes care of setting up the environment for your application to run.
+  The container is isolated but can communicate with other containers or the host system as needed, using features like 
+   networking and volumes.
 
 Q26  What is the difference between containerization and virtualization?
-
-
-Virtualization allows multiple virtual computers (VMs) to run on a single physical machine, improving efficiency and flexibility.
-
-
-containerization is the process of packaging the application and its dependences.
-it can be also used to run multiple application in one VM
+  Virtualization allows multiple virtual computers (VMs) to run on a single physical machine, improving efficiency and 
+  flexibility.
+  containerization is the process of packaging the application and its dependences.
+  it can be also used to run multiple application in one VM
 
 
 Q27 How do you keep your Docker images up to date?
+  Using a continuous integration (CI) pipeline: A CI pipeline can automatically build and test Docker images.
+  or we can version controle the image 
 
+Q29   You want to update a running container with a new version of the application without downtime. How can you achieve 
+   zero-downtime deployments in Docker?
+  1. Rolling update: Docker Swarm will update one container at a time, 
+  2. Blue-Green Deployment (Manual Method)
+  In more advanced scenarios, you can implement a blue-green deployment strategy manually, where you run two identical 
+  environments (blue and green), switching traffic between them.
 
-Using a continuous integration (CI) pipeline: A CI pipeline can automatically build and test Docker images.
+30. docker commit 
+  docker commit is used to create new image based on the modified continers or we can say existing containers
+  docker commit <container_id> my_ubuntu_with_vim:latest
 
-
-Securing Docker containers is important to ensure that your applications and data remain safe. Here are some easy ways to secure Docker containers:
-
-1. Use Official and Trusted Images:
-Always use official or trusted Docker images from the Docker Hub or other trusted registries. This reduces the risk of using compromised or insecure images.
-
-2. Keep Docker and Images Updated:
-Regularly update Docker to the latest version to get security fixes.
-Update your images to ensure they have the latest security patches.
-
-3. Limit Container Privileges:
-Run containers with the least privileges necessary. Avoid using the --privileged flag, which gives containers full control over the host system.
-Run containers as a non-root user inside the container whenever possible.
-
-4. Use Docker Security Scanning Tools:
-Use tools like Clair, Anchore, or Docker's Docker Security Scanning to check your images for vulnerabilities before using them in production.
-
-5. Enable Container Isolation:
-Use user namespaces to isolate containers, which makes it harder for an attacker to escalate privileges from a container to the host.
-Enable network isolation to control how containers can communicate with each other and the host.
-
-6. Limit Resource Usage:
-Set resource limits (like CPU, memory) on containers using Docker flags (--memory, --cpus) to prevent one container from using too many resources and affecting others.
-
-7. Use Firewalls and Network Policies:
-Control container communication using Docker networks and firewalls to limit exposure.
-Use Docker Compose to define network rules and isolate containers.
-
-8. Use Volumes for Persistent Data:
-Store persistent data (e.g., databases) in Docker volumes rather than inside containers. Volumes are easier to manage and secure.
-
-9. Scan Logs and Monitor Containers:
-Regularly check container logs for suspicious activity.
-Use tools like Prometheus or Datadog to monitor the behavior of containers in real time.
-
-10. Use Docker Content Trust (DCT):
-Enable Docker Content Trust (DOCKER_CONTENT_TRUST=1) to ensure that only signed images are pulled, reducing the risk of using tampered images.
-
-11. Use Secrets Management:
-For sensitive data like passwords or API keys, use Docker secrets (available in Docker Swarm) or external secrets management tools to store them securely.
-
-12. Minimize the Attack Surface:
-Keep your containers minimal by only installing what’s necessary. The fewer components you have, the fewer potential vulnerabilities there are.
-
-
-
-
-
-Q29   You want to update a running container with a new version of the application without downtime. How can you achieve zero-downtime deployments in Docker?
-
-
-1. Rolling update: Docker Swarm will update one container at a time, 
-replacing the old container with the new version. It will ensure that there’s always at least one container running during the process, achieving zero downtime.
-
-docker service update --image myapp:latest --update-parallelism 1 myapp
-
-Testing: Update Version of "nginx:stable-otel" to "nginx:stable-perl"
-
-kubectl set image deploy nginx-deploy nginx-container=nginx:stable-perl
-
-2. Blue-Green Deployment (Manual Method)
-In more advanced scenarios, you can implement a blue-green deployment strategy manually, where you run two identical environments (blue and green), switching traffic between them.
-
-Steps for Blue-Green Deployment:
-Deploy both versions: Run both the current (blue) and new (green) versions of the application as separate containers or services.
-
-Switch traffic: Use a reverse proxy (like NGINX or Traefik) or a load balancer to switch traffic between the two versions:
-
-Initially, direct traffic to the blue version.
-When the green version is ready, update the load balancer to route traffic to the green version.
-Take down the old version: Once the green version is confirmed to be working, you can stop and remove the blue version.
-
-This approach provides full isolation between the old and new versions, ensuring zero downtime during deployment.
-
-docker commit 
-docker commit is used to create new image based on the modified continers or we can say existing containers
-docker commit <container_id> my_ubuntu_with_vim:latest
