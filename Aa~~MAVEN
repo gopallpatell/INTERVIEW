@@ -110,7 +110,7 @@ Q16 how can i identify my project in maven
 Q17 what is transitive dependency in maven?
   if your project depends on library A, and library A depends on library B, then library B is a transitive dependency
   of your project.
-
+ Library: A pre-written set of code that you can use to build your own software.
 
 18 can we run project without maven goal?
   Yes, you can run a project without specifying a Maven goal.
@@ -150,6 +150,8 @@ Q17 what is transitive dependency in maven?
 
 24 How can you skip tests during a Maven build?
    You can skip tests during a Maven build by using the `-DskipTests
+   mvn install -DskipTests
+
 
 25 What is the purpose of the Maven Shade Plugin?
   The Maven Shade Plugin is used for creating JAR, which contains all the dependencies required by the project.
