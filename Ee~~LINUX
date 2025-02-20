@@ -143,7 +143,37 @@ Q28 why we use package managers
 								yum (Previous Version of Fedora)
 
 Q29 Create a user and generate ssh key
-  
+  useradd devopsadmin -s /bin/bash -m -d /home/devopsadmin
+  ssh-keygen -t ecdsa -b 521	
+
+30 What is shell scripting and how can you run
+  Shell scripting is a way to automate tasks in Linux by writing a series of commands in a plain text file.
+  ./myscript.sh
+
+Q31 Download any package in the system using Linux
+  sudo apt update 
+  sudo apt install git
+
+Q32 What is the wget command
+  The wget command is a command-line utility used to download files from the web. 
+
+Q33 AWK command 
+  awk is a command-line tool used to process and manipulate text by selecting 
+  awk 'NR <= 10' filename   #This will print the first 10 lines of filename.
+  awk '/hello/' filename    #This will print lines from filename that contain the string "hello".
+  awk '!/error/' filename   #The !negates the pattern match, so this command prints lines that do not contain the word "error".
+
+Q34 What are Linux namespaces and cgroups?
+  Namespaces isolate resources (like processes, network, filesystem) for different environments or containers.
+  Cgroups control and limit resource usage (like CPU, memory) for groups 
+
+Q35 How do you use systemd in Linux?
+  it is a service manager used to start stop restart enable disable the service using systemctl command line utitlity
+  sudo systemctl stop nginx
+  sudo systemctl restart nginx
+
+Q
+
 
 
 
