@@ -42,12 +42,12 @@ Q7 How do you change the password for a user account?
 Q8 What is the find command, and how do you use it?
   The find command in Linux is used to search for files and directories 
   find <directory> <options> <expression>
+  find /path/to/search -type d -name "mydir"
+  find /path/to/search -type f -name "*.jpg"
 
-Q9 What is a swap space? 
-  Swap space is a portion of a computer's hard drive or solid-state
-  drive (SSD) that is used as virtual memory when the physical RAM (Random Access Memory) is fully utilized. 
-  In simple terms, swap space is like a helper that comes into play when your
-  computer's memory is full, but it’s not as fast as your computer's regular memory (RAM).
+Q9 What is a swap space?   
+  it is used as a virtual memory when the computers memory is fully utilizzed
+  it is like a helper it will come in play when computer memory is full. it is not fast as regular memory
 
 Q10 What are the environmental variables?
   Environment variables are predefined instructions like we have PATH env variable to define a path 
@@ -142,7 +142,8 @@ Q28 why we use package managers
   - Fedora				===>	dnf (Latest Version of Fedora)
 								yum (Previous Version of Fedora)
 
-
+Q29 Create a user and generate ssh key
+  
 
 
 
