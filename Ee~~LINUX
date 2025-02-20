@@ -172,7 +172,22 @@ Q35 How do you use systemd in Linux?
   sudo systemctl stop nginx
   sudo systemctl restart nginx
 
-Q
+Q36 how to automate the scipt in linux
+   Cron is great for periodic tasks. 
+   Open your terminal.
+   Type crontab -e to edit your cron jobs.
+   Add a new cron job. The basic syntax of a cron job is:
+              * * * * * /path/to/your/script.sh
+   At is useful for one-time tasks.
+   echo "/path/to/your/script.sh" | at 10:00 AM
+
+Q37 what is this in script "#!/bin/bash" 
+  The line #!/bin/bash is called a shebang and is used at the beginning of a script to
+  indicate which interpreter should be used to execute the script.
+
+Q38 how can i share my public key to remote machine in linux
+   cat id_ecdsa.pub > authorized_keys
+  
 
 
 
