@@ -172,10 +172,52 @@
   application containers start running.
 
 34 How do you pass environment variables to a Kubernetes Pod?
+  we can directolly pass the env in pod yml file  and from configmap
 
+35. Pod is in pending state what will be the reason
+  Insufficient resources (CPU, memory) on nodes.
+  no node vailable for pods
+  Image Pull Issues
 
+36. your pod getting terminated/crashed what is the issue
+  Resource Limits Exceeded: Adjust CPU/memory limits.
+  container in createded in detatched mode.
+  Out of Memory (OOM): Increase memory limits or optimize app.
 
+37. its ok if I had 2 container in one pod , what you will suggest
+   it’s okay to have two containers in one Pod, especially when they need to work together closely 
+   However, always evaluate if they really need to be in the same Pod, as separating them can improve flexibility 
+   and scalability.
+   Can reduce scalability because both containers scale together. If one container needs more resources or scaling,
+   both containers will scale together.
 
+38. how to ,limit resources in pod
+    we can limit flag in yaml file to limit the resource on pods  like cpu and memory usage 
+   or we can also request for memory and cpu 
+
+39. I want to deploy application in Kubernetes , how to do that
+  Create a Deployment YAML file with container details.
+  Apply the YAML with kubectl apply -f <file>.yaml.
+  Create a Service to expose the app.
+  Verify with kubectl get.
+  Access the app through the Service (LoadBalancer/NodePort).
+
+40. My application is not accessible through browser what is the problem
+  Check Service: Ensure it’s of type LoadBalancer or NodePort and exposed correctly.
+  Check Pods: Make sure Pods are running (kubectl get pods) and healthy.
+  Firewall: Ensure traffic is allowed on the correct port.
+
+41. After deletion of pod data get deleted , how to retain pod data
+   To retain data after Pod deletion, use Persistent Volumes (PVs) and Persistent Volume Claims (PVCs):
+   Create a Persistent Volume (PV) to define storage.
+   Create a Persistent Volume Claim (PVC) to request storage.
+   Mount PVC in the Pod to retain data.
+
+42 what is daemonset in kubernetes
+  A DaemonSet in Kubernetes ensures that a copy of a specific Pod is running on all (or selected) nodes in the cluster.
+
+43 how deploment or service knows which pods should they manage
+  In Kubernetes, Deployments and Services use labels and selectors to identify and manage the Pods they control.
 
 
 
