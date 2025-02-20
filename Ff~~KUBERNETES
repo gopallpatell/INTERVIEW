@@ -1,6 +1,5 @@
 1 What is Kubernetes and what does it do?
-
-It is a Open-Source Container Orchestration Tool 
+  It is a Open-Source Container Orchestration Tool 
 		- Kubernetes is used to Deploy any type of Containers.
 		- It is used to ensure high availability of the Applications/services running thru Containers.
 		- Used to Ensure High Availability of Containers by creating Replicas of Containers.
@@ -8,143 +7,115 @@ It is a Open-Source Container Orchestration Tool
 		- Self-Healing
 
 2 How are Kubernetes and Docker linked?
+  Docker is focused on creating and running containers while kubernetes is used to
+  deploy that container and ensure high availability load balancing auto-scaling and self healing 
 
-Docker is focused on creating and running containers while kubernetes is used to deploy that container and ensure high availability load balancing auto-scaling and self healing 
-
-3 List the features of Kubernetes.
-
-Self-Healing: Restarts or replaces failed containers.
-Horizontal Scaling: Automatically scales applications based on demand.
-Load Balancing: Allows containers to find and communicate with each other.
-Rollouts and Rollbacks: Manages updates and can revert to previous versions if needed.
-Storage Orchestration: Manages persistent storage for containers.
-Namespace Support: Organizes resources for different teams or projects.
+3 List the features of Kubernetes. 
+  Self-Healing: Restarts or replaces failed containers.
+  Horizontal Scaling: Automatically scales applications based on demand.
+  Load Balancing: Allows containers to find and communicate with each other.
+  Rollouts and Rollbacks: Manages updates and can revert to previous versions if needed.
+  Storage Orchestration: Manages persistent storage for containers.
+  Namespace Support: Organizes resources for different teams or projects.
 
 4 What are clusters in Kubernetes?
-
-A Kubernetes cluster is a collection of nodes (machines) that work together, with the control plane managing and coordinating the worker nodes. 
-The cluster is responsible for running and managing applications in containers, ensuring high availability, scalability, and reliability.
+  A Kubernetes cluster is a collection of nodes (machines) that work together, with the control plane managing and 
+  coordinating the worker nodes. 
+  The cluster is responsible for running and managing applications in containers, 
+  ensuring high availability, scalability, and reliability.
 
 5 What do you know about Kubectl?
-
-kubectl (short for Kubernetes control) is the command-line tool used to interact with and manage Kubernetes clusters. 
+  kubectl (short for Kubernetes control) is the command-line tool used to interact with and manage Kubernetes clusters. 
 
 6 What is a node in Kubernetes?
-
-A node in Kubernetes is a machine (physical or virtual) that runs containerized applications. 
-There are two types of nodes: Master nodes that manage the cluster, and Worker nodes that run the applications.
+   A node in Kubernetes is a machine (physical or virtual) that runs containerized applications. 
+  There are two types of nodes: Master nodes that manage the cluster, and Worker nodes that run the applications.
 
 7 List the main components of Kubernetes architecture.
+ The Kubernetes architecture consists of two main parts:
+  Control Plane: Manages the cluster and makes global decisions (API Server, Scheduler, Controller Manager, etcd).
+  Node (Worker Node): Runs containers and workloads (Kubelet, Container Runtime, Kube Proxy, Pods).
 
-The Kubernetes architecture consists of two main parts:
-
-Control Plane: Manages the cluster and makes global decisions (API Server, Scheduler, Controller Manager, etcd).
-Node (Worker Node): Runs containers and workloads (Kubelet, Container Runtime, Kube Proxy, Pods).
-
-                        API_Server 				--> # Acts as an interface to the kubernetes 
-			
-			ETCD 					--> # Single point of Source for Kubernetes Components or we can say it is a data source for the cluster
-			
-			Scheduler				--> # To identify the Healthy Node for Deployments
-			
-			Controller Manager 	         	--> # To run the pods in its desired state 
-			
-			Kubelet 				--> # Is a Kubernetes Agent used to Create & Deploy the Pods
-			
-			KubeProxy				--> # Is used to enable pod networking by create Pod IP Address			
-			
-			CRI - Container RunTime Interface (Container-D) --> # It is used identify the Image from Container Registry for deployment
+            API_Server 				--> # Acts as an interface to the kubernetes 
+            ETCD 					--> # Single point of Source for Kubernetes Components or we can say it is a data source for the cluster
+	    Scheduler				--> # To identify the Healthy Node for Deployments
+	    Controller Manager 	         	--> # To run the pods in its desired state 
+	    Kubelet 				--> # Is a Kubernetes Agent used to Create & Deploy the Pods	
+	    KubeProxy				--> # Is used to enable pod networking by create Pod IP Address			
+	    CRI - Container RunTime Interface (Container-D) --> # It is used identify the Image from Container Registry for deployment
 
 8 List the different types of services in Kubernetes.
-
-ClusterIP: The ClusterIP service is used to expose a service only within the Kubernetes cluster, not to the outside world.
-NodePort: Exposes service on each node's IP, accessible externally.
-LoadBalancer: Provisions an external load balancer, exposing the service to the internet.
-ExternalName: it is used to connect with external resource like database API
+  ClusterIP: The ClusterIP service is used to expose a service only within the Kubernetes cluster, not to the outside world.
+  NodePort: Exposes service on each node's IP, accessible externally.
+  LoadBalancer: Provisions an external load balancer, exposing the service to the internet.
+  ExternalName: it is used to connect with external resource like database API
 
 9 What is Ingress network?
+  ingress is a traffic controler in lkubernetes which is used to send the 
+  traffic or route the traffice to the right service in kubernetes cluster
+  Ingress helps direct incoming internet traffic to the right service inside the cluster. For example, if someone visits example.com/api, 
+  Ingress will send that request to your "API" service, and if they visit example.com/blog, Ingress will send it to the "Blog" service
 
-ingress is a traffic controler in lkubernetes which is used to send the traffic or route the traffice to the right service in kubernetes cluster
-
-Ingress helps direct incoming internet traffic to the right service inside the cluster. For example, if someone visits example.com/api, 
-Ingress will send that request to your "API" service, and if they visit example.com/blog, Ingress will send it to the "Blog" service
-
-Single Entry Point:
-Instead of creating a separate entry for each service (like exposing each one with its own IP address), 
-you can use Ingress to create one entry point (one IP or domain) that handles traffic for all your services. This simplifies the setup.
-
-Ingress is like a traffic controller that makes sure the right visitors (users) get directed to the right service in your Kubernetes cluster.
-It helps you manage access through one main entry point (a single IP or domain).
-It can handle things like routing, load balancing, and security (SSL encryption).
+  Single Entry Point:
+  Instead of creating a separate entry for each service (like exposing each one with its own IP address), 
+  you can use Ingress to create one entry point (one IP or domain) that handles traffic for all your services. This simplifies the setup.
+  Ingress is like a traffic controller that makes sure the right visitors (users) get directed to the right service in your Kubernetes cluster.
+  It helps you manage access through one main entry point (a single IP or domain).
+  It can handle things like routing, load balancing, and security (SSL encryption).
 
 10 egress
-
-While Ingress controls incoming traffic to the cluster, Egress controls outgoing traffic of the cluster.
+  While Ingress controls incoming traffic to the cluster, Egress controls outgoing traffic of the cluster.
 
 11 Differentiate between a replica set and a replication controller.
-
-ReplicaSet and ReplicationController are both Kubernetes resources used to ensure that a specified number of replicas of a pod are running at any given time, 
-
-ReplicaSet is an updated and more flexible version of ReplicationController, introduced in Kubernetes 1.2.
-
-we have extra features in replicaset like we can set a label self healing no rolling upddate 
+  ReplicaSet and ReplicationController are both Kubernetes resources used to ensure that a specified number of replicas of a pod are running at any given time, 
+  ReplicaSet is an updated and more flexible version of ReplicationController, introduced in Kubernetes 1.2.
+  we have extra features in replicaset like we can set a label self healing no rolling upddate 
 
 12 deployment 
-
-in this we have extra features like rollback and rolling update 
-
-Deployment in Kubernetes is a higher-level resource that manages the deployment and lifecycle of your application’s pods. 
-It allows you to define the desired state of your application, such as the number of replicas, 
-the version of the application, and how updates should be rolled out. Kubernetes then takes care of ensuring that the current state matches the desired state.
+  in this we have extra features like rollback and rolling update 
+  Deployment in Kubernetes is a higher-level resource that manages the deployment and lifecycle of your application’s pods. 
+  It allows you to define the desired state of your application, such as the number of replicas, 
+  the version of the application, and how updates should be rolled out. Kubernetes then takes care of ensuring that the current state matches the desired state.
 				
-Automatically running a specified number of copies (pods) of your app.
-Ensuring that the right version of the app is always running.
-Allowing you to easily update the app and automatically handle any failures or rollbacks.
+  Automatically running a specified number of copies (pods) of your app.
+  Ensuring that the right version of the app is always running.
+  Allowing you to easily update the app and automatically handle any failures or rollbacks.
 
 13 Explain the pod in Kubernetes.
-
-A Pod is the smallest unit in Kubernetes. It can hold:
-
-One container (like a single app).
-Or multiple containers that work together (like a team of apps that need to talk to each other).
+  A Pod is the smallest unit in Kubernetes. It can hold:
+  One container (like a single app).
+  Or multiple containers that work together (like a team of apps that need to talk to each other).
 
 14 deff btn pod and deployment 
+  Pod: it is a smallest unit in kubernetes  A single instance of a container or application.
+  Deployment: it is used to manages multiple Pods, handles scaling, rolling updates, rollback and ensures high availability.
 
-Pod: it is a smallest unit in kubernetes  A single instance of a container or application.
-Deployment: it is used to manages multiple Pods, handles scaling, rolling updates, rollback and ensures high availability.
-
-15 What do you know about clusters of containers in Kubernetes?
-
-A Kubernetes Cluster consists of a control plane (master) and multiple worker nodes.
-Each node runs a container runtime (e.g., Docker, containerd) that runs Pods.
-Pods are the smallest deployable units in Kubernetes, and they can contain one or more containers.
-Kubernetes clusters provide features like scaling, self-healing, and load balancing for containerized applications, making them ideal for running large-scale distributed systems.
+15 What do you know about clusters of containers in Kubernetes? 
+  A Kubernetes Cluster consists of a control plane (master) and multiple worker nodes.
+  Each node runs a container runtime (e.g., Docker, containerd) that runs Pods.
+  Pods are the smallest deployable units in Kubernetes, and they can contain one or more containers.
+  Kubernetes clusters provide features like scaling, self-healing, and load balancing for containerized applications, making them ideal for running large-scale distributed systems.
 
 16 Explain the two types of Kubernetes pods.
-
-single conatainer pod 
-multi-container pod
+  single conatainer pod 
+  multi-container pod
 
 17 Tell me about labels in Kubernetes. 
-
-labels are like tags used to select and identify the objects such as pods.
+  labels are like tags used to select and identify the objects such as pods.
 
 18 What is persistent volume?
-
-In very simple terms, a Persistent Volume (PV) in Kubernetes is like a hard drive that stores data and doesn't go away even if the app (Pod) using it is deleted or recreated.
+  In very simple terms, a Persistent Volume (PV) in Kubernetes is like a hard drive that stores data and doesn't go away even if the app (Pod) using it is deleted or recreated.
 
 19 what is namespace in kubernetes
 
 20 How can you achieve zero downtime in Kubernetes?
-
-We can achieve zero downtime in Kubernetes through RollingUpdate strategy. 
+  We can achieve zero downtime in Kubernetes through RollingUpdate strategy. 
 
 21 list of exception you got while creating pod
-
-BadRequest – Invalid YAML syntax or missing required fields.
-NotFound – The resource doesn’t exist or is deleted.
-NotAcceptable – Invalid container image or missing registry.
-AlreadyExists – Pod name already in use.
+  BadRequest – Invalid YAML syntax or missing required fields.
+  NotFound – The resource doesn’t exist or is deleted.
+  NotAcceptable – Invalid container image or missing registry.
+  AlreadyExists – Pod name already in use.
 
 
 
