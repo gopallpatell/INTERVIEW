@@ -188,7 +188,13 @@ Q37 what is this in script "#!/bin/bash"
 Q38 how can i share my public key to remote machine in linux
    cat id_ecdsa.pub > authorized_keys
   
-
+Q39 how can i check the configuration information in linux  
+  lscpu: CPU architecture and details.
+  free -h: Memory usage. 
+  df -h: Disk usage.   
+  ip a or ifconfig: Network interfaces.   
+  top: Active processes.  
+  whoami: Current user.
 
 
 
