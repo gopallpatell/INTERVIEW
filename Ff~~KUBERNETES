@@ -121,38 +121,57 @@
    Deployment Controller
    ReplicaSet Controller
    
-18. Different services types in kubernetes 
+22. Different services types in kubernetes 
     ClusterIP: The ClusterIP service is used to expose a service only within the Kubernetes cluster, not to the outside world.
     NodePort: Exposes service on each node's IP, accessible externally.
     LoadBalancer: Provisions an external load balancer, exposing the service to the internet.
     ExternalName: it is used to connect with external resource like database API
 
-19. Use of Proxy
+23. Use of Proxy
     Is used to enable pod networking by create Pod IP Address	
 
-20. What is diff between kubectl apply and kubectl create/update
+24. What is diff between kubectl apply and kubectl create/update
   Use kubectl create when you are certain the resource doesn’t exist and you are creating it for the first time.
   Use kubectl apply for both creation and updates. It’s the recommended command for declarative configuration management
   and handling changes over time.
 
-21. How to rollback deployment in kubernetes give command
+25 How to rollback deployment in kubernetes give command
    kubectl rollout undo deployment <deployment-name>
 
-22. Scale a deployment in kubernetes command 
+26. Scale a deployment in kubernetes command 
     kubectl scale deployment nginx-deploy --replicas=5
 
-23. Different components of kubernetes master
+27. Different components of kubernetes master
     (API Server, Scheduler, Controller Manager, etcd).
 
-24 Manifest File				
+28 Manifest File				
    # Is a AppConfig file, that defines the properties of the pods to be deployed in kubernetes
 
-25. # Expose PODS using NodePort service
+29. # Expose PODS using NodePort service
   kubectl expose pod nginx-pod --type=NodePort --port=80
 
+30 How do you set resource limits on Kubernetes Pods?
+   we can limit flag in yaml file to limit the resource on pods  like cpu and memory usage 
+   or we can also request for memory and cpu 
 
+  Memory Limits: If a container exceeds its memory limit, it will be terminated and potentially restarted by Kubernetes.
+  This is called an OOM (Out of Memory) Kill.
+  CPU Limits: When a container exceeds its CPU limit, it will be throttled (i.e., Kubernetes will restrict the container's 
+  CPU usage but will not kill it).
 
+31 Explain Kubernetes taints and tolerations.
+  Taints and Tolerations are a way to control where pods can run in a Kubernetes cluster.
 
+32 How does a Kubernetes Network Policy work?
+  A Kubernetes Network Policy is a way to control the communication (traffic) between pods in a Kubernetes cluster. 
+  like which pod can comuunicate with each other 
+  We want to make sure the frontend pod can talk to the backend pod, but no other pods can talk to the backend pod.
+
+33 What is an Init Container in Kubernetes?
+  Init containers are a useful feature in Kubernetes to ensure that certain tasks are performed before the main 
+  application containers start running.
+
+34 How do you pass environment variables to a Kubernetes Pod?
 
 
 
