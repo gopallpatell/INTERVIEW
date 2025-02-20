@@ -8,3 +8,63 @@ agile is to how to build the software and devops is for how to manage and delive
 Agile: Build software in small chunks, improve regularly based on feedback, and ensure users get usable features quickly.
 DevOps: Automate the processes of building, deploying, and monitoring software to ensure it runs smoothly and can be
 updated rapidly.
+
+
+1. Waterfall Model
+
+What is it?
+The Waterfall model is a traditional, linear approach to software development where each phase must be completed before the next begins. 
+It follows a strict sequence: Requirements → Design → Development → Testing → Deployment → Maintenance.
+
+Advantages of Waterfall:
+
+Simple to Understand: Easy to follow because it’s like a step-by-step guide.
+Clear Milestones: Each phase has specific goals and deliverables, making progress easy to track.
+Good for Fixed Requirements: Works well when requirements are clearly defined from the start and unlikely to change.
+Well-Documented: Detailed documentation at every phase ensures clear project understanding.
+
+Disadvantages of Waterfall:
+
+Inflexible: Difficult to make changes once a phase is completed.
+Late Testing: Testing happens after the development phase, meaning bugs may be discovered too late.
+Slow to Deliver: Takes longer because each phase is done one after the other without overlap.
+Not Ideal for Complex Projects: If requirements change or evolve, it’s hard to adapt.
+
+2. Agile Model
+
+What is it?
+Agile is an iterative and flexible approach where the project is broken down into smaller parts called "sprints" (usually 2-4 weeks). 
+Each sprint focuses on delivering a small, working piece of the product.
+
+Advantages of Agile:
+
+Flexible: Easy to adapt to changes in requirements as they arise during development.
+Faster Delivery: Each sprint produces a working part of the product, so users get results sooner.
+Continuous Feedback: Stakeholders and customers can give feedback at the end of each sprint, improving the final product.
+Improved Quality: Frequent testing and adjustments lead to better quality products.
+
+Disadvantages of Agile:
+
+Less Predictable: Because of the iterative nature, it’s harder to predict the final product, time, and costs.
+Requires More Collaboration: Agile requires constant communication with stakeholders and team members.
+Scope Creep: If changes aren’t well-managed, the project scope can expand and cause delays.
+Not Always Suitable for Large Teams: Can be challenging to coordinate large teams or projects due to its flexible nature.
+
+Waterfall: Good for projects where everything is clearly defined at the start and not expected to change. 
+However, it is slow and inflexible if changes are needed.
+
+Agile: Great for projects where requirements evolve over time. It’s faster, adaptable, and allows for continuous improvement, 
+but it can be hard to predict costs and timelines.
+
+
+
+What is the software development life cycle (SDLC)?
+● The software development life cycle (SDLC) is a process
+used to design, develop, test, and deploy software
+applications.
+
+
+
+
+
+
