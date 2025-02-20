@@ -37,7 +37,7 @@
   Node (Worker Node): Runs containers and workloads (Kubelet, Container Runtime, Kube Proxy, Pods).
 
             API_Server 				--> # Acts as an interface to the kubernetes 
-            ETCD 					--> # Single point of Source for Kubernetes Components or we can say it is a data source for the cluster
+            ETCD 				--> # Single point of Source for Kubernetes Components or we can say it is a data source for the cluster
 	    Scheduler				--> # To identify the Healthy Node for Deployments
 	    Controller Manager 	         	--> # To run the pods in its desired state 
 	    Kubelet 				--> # Is a Kubernetes Agent used to Create & Deploy the Pods	
@@ -116,6 +116,39 @@
   NotFound – The resource doesn’t exist or is deleted.
   NotAcceptable – Invalid container image or missing registry.
   AlreadyExists – Pod name already in use.
+
+17. In kubernetes what is deployment and services
+   Deployment Controller
+   ReplicaSet Controller
+   
+18. Different services types in kubernetes 
+    ClusterIP: The ClusterIP service is used to expose a service only within the Kubernetes cluster, not to the outside world.
+    NodePort: Exposes service on each node's IP, accessible externally.
+    LoadBalancer: Provisions an external load balancer, exposing the service to the internet.
+    ExternalName: it is used to connect with external resource like database API
+
+19. Use of Proxy
+    Is used to enable pod networking by create Pod IP Address	
+
+20. What is diff between kubectl apply and kubectl create/update
+  Use kubectl create when you are certain the resource doesn’t exist and you are creating it for the first time.
+  Use kubectl apply for both creation and updates. It’s the recommended command for declarative configuration management
+  and handling changes over time.
+
+21. How to rollback deployment in kubernetes give command
+   kubectl rollout undo deployment <deployment-name>
+
+22. Scale a deployment in kubernetes command 
+    kubectl scale deployment nginx-deploy --replicas=5
+
+23. Different components of kubernetes master
+    (API Server, Scheduler, Controller Manager, etcd).
+
+24 Manifest File				
+   # Is a AppConfig file, that defines the properties of the pods to be deployed in kubernetes
+
+25. # Expose PODS using NodePort service
+  kubectl expose pod nginx-pod --type=NodePort --port=80
 
 
 
