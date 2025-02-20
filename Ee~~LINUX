@@ -196,9 +196,13 @@ Q39 how can i check the configuration information in linux
   top: Active processes.  
   whoami: Current user.
 
+20. What is a firewall in Linux? -
+A firewall is a security mechanism that controls incoming and outgoing network traffic based on a set of rules.
 
-
-
+11. head: Display the first few lines of a file.
+  Example: `head file.txt`
+12. tail: Display the last few lines of a file. 
+  Example: `tail file.txt`
 
 
 
