@@ -1,23 +1,26 @@
-terraform state to modify and manage the state of the infrastructure 
-terraform state mv <old_address> <new_address>
+1 terraform state to modify and manage the state of the infrastructure 
+  terraform state mv <old_address> <new_address>
+  The terraform state mv command allows you to rename or move a resource in the state file, 
+  so it now has a new address in Terraform’s state.
 
-terraform state rm <resource_type>.<resource_name>
-terraform state rm aws_instance.example
+2. terraform state rm <resource_type>.<resource_name>
+  terraform state rm aws_instance.example
+  Running terraform state rm removes the resource from Terraform’s state file, but does not destroy the actual AWS resource.
 
-The terraform fmt command is used to format your Terraform configuration files 
-like in proper alignment and in propermanner and with proper spacing
+3. The terraform fmt command is used to format your Terraform configuration files 
+  like in proper alignment and in propermanner and with proper spacing
 
-to delete perticuuler resource
-terraform destroy -target=aws_instance.example
+4. to delete perticuuler resource
+  terraform destroy -target=aws_instance.example
 
-to delete all resource in one go 
-terrafrom destroy
+5. to delete all resource in one go 
+  terrafrom destroy
 
-1. What is Terraform?
-Terraform is an open-source infrastructure as code (IaC) tool developed by HashiCorp that allows
-users to define and provision data center infrastructure using a high-level configuration language
-called HCL (HashiCorp Configuration Language) or JSON.
-Example:
+6. What is Terraform?
+  Terraform is an open-source infrastructure as code (IaC) tool developed by HashiCorp that allows
+  users to define and provision data center infrastructure using a high-level configuration language
+  called HCL (HashiCorp Configuration Language) or JSON.
+    Example:
 provider "aws" {
 region = "us-west-2"
 }
@@ -26,9 +29,9 @@ ami = "ami-0c55b159cbfafe1f0"
 instance_type = "t2.micro"
 }
 
-2. What are the main features of Terraform?
-Terraform's main features include Infrastructure as Code (IaC), execution plans, resource graphs,
-change automation, and state management.
+7. What are the main features of Terraform?
+  Terraform's main features include Infrastructure as Code (IaC), execution plans, resource graphs,
+  change automation, and state management.
 Example:
 terraform {
 backend "s3" {
@@ -38,62 +41,59 @@ region = "us-west-2"
 }
 
 
-3. What is the difference between Terraform and other IaC tools like
-Ansible, Puppet, and Chef?
-
-Terraform focuses on infrastructure provisioning, is declarative, and uses HCL. Tools like Ansible,
-Puppet, and Chef focus on configuration management and are procedural.
-Example:
-resource "aws_instance" "example" {
-ami = "ami-0c55b159cbfafe1f0"
-instance_type = "t2.micro"
-}
+3. What is the difference between Terraform and other IaC tools likeAnsible, Puppet, and Chef?
+  Terraform focuses on infrastructure provisioning, is declarative, and uses HCL. Tools like Ansible,
+  Puppet, and Chef focus on configuration management and are procedural.
+  Example:
+  resource "aws_instance" "example" {
+  ami = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+  }
 
 4. What is a provider in Terraform?
-A provider is a plugin, Providers define the resources and data sources available.
-it is a plugine used to define the resource and APIs
-Example:
-provider "aws" {
-region = "us-west-2"
-}
+  it is a plugine used to interact with cloud platforms like aws azure        define the resource and APIs
+  Example:
+  provider "aws" {
+  region = "us-west-2"
+  }
 
 5. How does Terraform manage dependencies?
-Terraform uses a dependency graph(resource graph) to manage dependencies.
-means it will Automatically determine correct order for resource creation, update, or deletion.
-Example:
-resource "aws_instance" "web" {
-ami = "ami-0c55b159cbfafe1f0"
-instance_type = "t2.micro"
-subnet_id = aws_subnet.example.id
-}
-resource "aws_subnet" "example" {
-vpc_id = aws_vpc.example.id
-cidr_block = "10.0.1.0/24"
-}
-resource "aws_vpc" "example" {
-cidr_block = "10.0.0.0/16"
-}
+  Terraform uses a dependency graph(resource graph) to manage dependencies.
+  means it will Automatically determine correct order for resource creation, update, or deletion.
+  Example:
+  resource "aws_instance" "web" {
+  ami = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+  subnet_id = aws_subnet.example.id
+  }
+  resource "aws_subnet" "example" {
+  vpc_id = aws_vpc.example.id
+  cidr_block = "10.0.1.0/24"
+  }
+  resource "aws_vpc" "example" {
+  cidr_block = "10.0.0.0/16"
+  }
 
 6. What is a state file in Terraform?
-it is used to store and track the current state of the infrastructure. 
-Example:
-terraform state show
+  it is used to store and track the current state of the infrastructure. 
+  Example:
+  terraform state show
 
 7. Why is it important to manage the state file in Terraform?
-it is immportant to manage the terraformm state file bcz it has all the history about the infrastructure and if we lost
-the state file then we dont have longer history about the infrastructure like what changes we made what resouces are created 
-what is the size of resource. to avoiding all this we need to keep the state file upto date and secure..
+  it is immportant to manage the terraformm state file bcz it has all the history about the infrastructure and if we lost
+  the state file then we dont have longer history about the infrastructure like what changes we made what resouces are created 
+  what is the size of resource. to avoiding all this we need to keep the state file upto date and secure..
 
 8. How can you secure the state file in Terraform?
-Use remote backends (S3, Terraform Cloud, etc.) instead of local files.
-Enable encryption for state files at rest and in transit.
-Use state locking to avoid concurrent writes.
-Restrict access to the state file using IAM policies or RBAC.
-Enable versioning to keep track of changes and roll back if needed.
-Use secrets management services to store sensitive information outside the state file.
-Limit access to only trusted users or systems.
-Back up your state file regularly.
-Example:
+  Use remote backends (S3, Terraform Cloud, etc.) instead of local files.
+  Enable encryption for state files at rest and in transit.
+  Use state locking to avoid concurrent writes.
+  Restrict access to the state file using IAM policies or RBAC.
+  Enable versioning to keep track of changes and roll back if needed.
+  Use secrets management services to store sensitive information outside the state file.
+  Limit access to only trusted users or systems.
+  Back up your state file regularly.
+  Example:
 terraform {
 backend "s3" {
 bucket = "my-terraform-state"
@@ -104,26 +104,29 @@ encrypt = true
 }
 
 9. What are modules in Terraform?
-modules are used for reusable work
+  modules are used for reusable work
 
-Modules are  used when we want to reuse anthing like i have created a ec2 instance and 
-i want to reuse this infrastructure in future for that we create module of this infrastructure 
-
+  Modules are  used when we want to reuse anthing like i have created a ec2 instance and 
+  i want to reuse this infrastructure in future for that we create module of this infrastructure 
+  or we can use module from the Terraform Registry:
 Example:
 module "vpc" {
 source = "./modules/vpc"
 }
 
 10. What is the purpose of the terraform init command
-it is used to initialize the provider or we can say it is used to initialize the Project.
+  it is used to initialize the Project like providers modules and all the things 
 
 11. What does the terraform plan command do?
-Preview the Terraform Script 
-terraform plan creates an execution plan, 
+  Preview the Terraform Script 
+  terraform plan creates an execution plan, 
+  terraform plan compares the current state with the desired state and then create the execution plan 
 
 12. What is the terraform apply command used for?
-The terraform apply command is used to apply the terraform script or create and update the infrastructure 
-the changes defined in your Terraform configuration to your actual infrastructure.
+  The terraform apply command is used to apply the terraform script or create and update the infrastructure 
+  the changes defined in your Terraform configuration to your actual infrastructure.
+   To delete infrastructure using the terraform apply command, you can modify your Terraform configuration by 
+   removing or commenting out the resources you no longer want, and then running terraform apply to apply those changes.
 
 13. What is the purpose of the terraform destroy command?
 terraform destroy is used to destroy the infrastructure managed by Terraform. It removes all
@@ -132,35 +135,49 @@ Example:
 terraform destroy
 
 14 What is a Terraform backend? 
-it is terraform state file storage loaction 
-terraform backend it is the loacation where the terraformm state file stored 
-like initially it is stored by default in local machine but for large and secure infrastructure 
-we store the state file remotely
-local backend
-remote backend 
+  it is terraform state file storage loaction 
+  terraform backend it is the loacation where the terraformm state file stored 
+  like initially it is stored by default in local machine but for large and secure infrastructure 
+  we store the state file remotely
+  local backend
+  remote backend 
 
 15 How do you handle sensitive data in Terraform?
-for that we use environment variables ,aws secret managers and we use hashicorp vault..
+  for that we use environment variables ,aws secret managers and we use hashicorp vault..
 
 16  What are Terraform workspaces?
-
-using terraform workspace we can create diff environment like dev, staging, production in single configuration script.
+  using terraform workspace we can create diff environment like dev, staging, production in single configuration script.
+  terraform workspace new <workspace_name>
+  provider "aws" {
+  region = "us-west-2"
+  }
+  resource "aws_instance" "example" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = terraform.workspace == "production" ? "t3.large" : "t3.micro"
+  }
 
 17 What is the difference between terraform taint and terraform untaint?
-terraform taint is used to recreate the resource on next apply
-terraform untaint is used to cancel the recreation of the resource on the next apply.
+  terraform taint is used to recreate the resource on next apply
+  terraform untaint is used to cancel the recreation of the resource on the next apply.
+  If you have a resource (say, an EC2 instance) that is in an unhealthy state, 
+  you can force Terraform to recreate it by marking it as tainted:
+  terraform taint aws_instance.example
 
 18 What is the purpose of the terraform refresh command?
-terraform refresh updates the state file with the actual infrastructure.
+  terraform refresh updates the state file with the actual infrastructure.
+  If you manually change the size of an instance (or any other property) outside of 
+  Terraform (e.g., through the cloud console), you can use the terraform refresh 
+  command to update the Terraform state and reflect the changes.
 
 19 What are data sources in Terraform?
 data source is used to use a external resource
+usin data block in .tf 
 Latest AWS AMI: Fetches the latest Amazon Machine Image (AMI).
 AWS VPC: Retrieves an existing Virtual Private Cloud (VPC) from AWS.
 AWS Security Group: Gets an existing Security Group in AWS.
 
 20  . How can you import existing infrastructure into Terraform?
-using terraform import command 
+  using terraform import command 
 
 terraform import <resource_type>.<resource_name> <resource_id>
 terraform import aws_instance.example i-0abcd1234efgh5678
@@ -195,104 +212,34 @@ instance_id = i-0abcdef1234567890
 public_ip = 54.123.45.67
 
 23 What are Terraform’s limitations?
-
-Mutable Infrastructure: Terraform is better suited for immutable infrastructure; updating resources may require recreation.
-No Rollback: There’s no native rollback mechanism; recovery from errors often requires manual intervention.
-Sensitive Data in State: Sensitive information may be stored in the state, requiring care in handling.
-Slow Performance: Large-scale changes or many resources can lead to slow execution.
+  Mutable Infrastructure: Terraform is better suited for immutable infrastructure; updating resources may require recreation.
+  No Rollback: There’s no native rollback mechanism; recovery from errors often requires manual intervention.
+  Sensitive Data in State: Sensitive information may be stored in the state, requiring care in handling.
+  Slow Performance: Large-scale changes or many resources can lead to slow execution.
 
 24 How do you handle dependencies in Terraform?
-
-Terraform automatically handles dependencies through resource relationships defined in configurations.
+  Terraform automatically handles dependencies through resource relationships defined in configurations.
 
 25 How do you deal with state file locking?
-for this we use backends
+  for this we use backends
 
 26 What are the benefits of using remote backends?
-it is used for large infrastructer and for versoning the infrastructure
+  it is used for large infrastructer and for versoning the infrastructure
 
 27 What is the purpose of the terraform validate command?
-The terraform validate command is used to check the syntax and 
-validity of your Terraform configuration files (.tf or .tf.json).
+  The terraform validate command is used to check the syntax and 
+  validity of your Terraform configuration files (.tf or .tf.json).
 
 28 What are depends_on in Terraform?
-when one resource is depend or relies on another resource we can use depend_on argument.
+  when one resource is depend or relies on another resource we can use depend_on argument.
 
 29 Describe a time when you had to troubleshoot a Terraform configuration issue.
-State Locking Conflicts: Multiple users trying to apply changes at the same time, causing state file lock errors.
-Resource Dependency Issues: Terraform failing to create resources in the correct order due to missing dependencies.
-Manual Changes: Changes made directly in the cloud provider (e.g., AWS) causing Terraform to conflict when 
-managing the resource.
+  State Locking Conflicts: Multiple users trying to apply changes at the same time, causing state file lock errors.
+  Resource Dependency Issues: Terraform failing to create resources in the correct order due to missing dependencies.
+  Manual Changes: Changes made directly in the cloud provider (e.g., AWS) causing Terraform to conflict when 
+  managing the resource.
 
 30  What are the different ways to pass variables in Terraform?
 environment variables,  directly in the configuration file.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
