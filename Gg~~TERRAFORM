@@ -147,7 +147,7 @@ terraform destroy
 
 16  What are Terraform workspaces?
   using terraform workspace we can create diff environment like dev, staging, production in single configuration script.
-  terraform workspace new <workspace_name>
+  terraform workspace new <workspace_name> and we can use terraform.workspace == production
   provider "aws" {
   region = "us-west-2"
   }
@@ -254,10 +254,21 @@ environment variables,  directly in the configuration file.
  2. Plan & Apply: Run terraform plan before terraform apply to ensure changes are correct,
  3. Regularly pull updates, communicate via team chats
 
+33. Is it possible to install something like tools and libraries immediately after a resource is provisioned  using terraform 
+  yes it is possible using provisioners
+ remote-exec: Executes commands on a remote machine after it has been provisioned.
+ local-exec: Executes commands locally on the machine where Terraform is running.
+  or we can done it with user_data in script to install any tool after creation of the infrastructure
 
+34 How does Terraform manage dependencies between resources?
+  Implicit Dependencies: Terraform automatically detects dependencies when one resource references another.
+  Explicit Dependencies: You can use the depends_on argument to explicitly specify dependencies when needed.
 
-
-
+  In this example, the aws_subnet resource depends on the aws_vpc resource because it references aws_vpc.main.id.
+  Terraform will automatically ensure that the VPC is created before the subn
+  
+  35 how to switch to the previous version of terraform infra
+    for that we need to restor the previous state file fron remote backends
 
 
 
