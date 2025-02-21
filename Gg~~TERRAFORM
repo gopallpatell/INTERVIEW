@@ -242,4 +242,22 @@ public_ip = 54.123.45.67
 30  What are the different ways to pass variables in Terraform?
 environment variables,  directly in the configuration file.
 
+31 If we are teammates and you use terraform and I don't use terraform then how will we be synced
+  Manual Changes Sync:
+  If you don't use Terraform, but you're making manual changes (say, via AWS Console or CLI), 
+  you could inform me about what changes you’ve made, and I can update the Terraform configurations accordingly.
+ using vcs git
+  We maintain a shared Git repository for the Terraform code, where I regularly commit and push changes.
+
+32 We both are working remotely in a team on a same project then how would you sync the terraform file
+ 1. Store all Terraform code in a shared Git repository. Use branches for individual features and pull requests for code reviews.
+ 2. Plan & Apply: Run terraform plan before terraform apply to ensure changes are correct,
+ 3. Regularly pull updates, communicate via team chats
+
+
+
+
+
+
+
 
