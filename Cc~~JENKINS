@@ -191,7 +191,12 @@
    we can configure it with jenkinsfile to version controle and aslo we can manually add pipeline while creating the job 
    and using build triggers we can configure the job.
 
-
+  Freestyle Jobs for simpler configurations using the UI.
+Declarative Pipelines for a structured, easy-to-read configuration stored in a Jenkinsfile.
+Scripted Pipelines for advanced use cases with full control over the build process.
+Shared Libraries for reusable, common pipeline logic.
+Plugins for integration with third-party tools and advanced capabilities.
+External Tool Integrations to extend Jenkins' functionality
 
 
 
