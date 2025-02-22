@@ -1,7 +1,5 @@
 Q   What is geo-targeting in CloudFront?
-
 it is a process which is used to serve the content based on their geographic location.
-
 eg; English content for users in the US
 
 Q  What is an Elastic Transcoder?
@@ -11,8 +9,6 @@ AWS Snowball is a physical data transport appliance used to securely transfer la
 systems to AWS cloud storage.To transfer terabytes of data outside and inside of the AWS environment, a small application
 called SnowBall is used. 
 
-
-
 snowball edge is a advance version of snowball which has extra feature like before transfer the data we can process the 
 data locally 
 
@@ -21,63 +17,45 @@ Amazon EC2 (Elastic Compute Cloud) is a web service provided by Amazon Web Servi
 servers, known as instances, in the cloud.
 
 1 diff between authorization and authentication.
-
-       Authentication:
-
+       Authentication
        Purpose: Verifies who the user is.
        means the person who is looking for the access, he needs authentication using username password and other things.
-  
        Authorization:
-
        Purpose: Determines what the user is allowed to do.
        means who gives the access or allowed to do anything.
 
-
 2 what is IAM..?
-
       IAM (Identity and Access Management) 
       In short, IAM ensures that the right people have the right access to the right resources.
 
-
 3. Instance type in AWS.
-
       In AWS, an instance type defines the hardware specifications (such as CPU, memory, storage, and networking capacity) 
       of a virtual server (called an EC2 instance) that you can launch in the cloud.
-  
       Choosing the right instance type depends on:
-
       Workload: Whether it's CPU, memory, or storage-intensive.
       Cost: Some instance types are more expensive based on their specifications.
       Performance: Choose an instance that matches your performance requirements for a given application.
 
-
 4.  Different way to connect with ec2.
-
     1. SSH (Secure Shell) for Linux/Unix-based EC2 Instances
     What it is: SSH is a protocol used to securely connect to a Linux/Unix-based EC2 instance.
     How to use:
     Ensure you have the private key (.pem file) associated with the EC2 instance.
     Open a terminal or command prompt.
-
     2. EC2 Instance Connect (Browser-based SSH for Linux)
-
     3. Third-Party Tools (e.g., PuTTY, MobaXterm for SSH)
 
-
 5. region vs availibility zones.
-
    Definition: A Region is a geographically isolated location that contains multiple data centers.
-
    Definition: An Availability Zone is a physically isolated data center within a region. Each region typically contains multiple Availability Zones.
 
-
 6.list of globel services in AWS.
-
-
 1. Amazon Route 53
 Service Type: Domain Name System (DNS) and Domain Registration
-Amazon Route 53 is a scalable and highly available Domain Name System (DNS) web service provided by Amazon Web Services
-(AWS). It is designed to route end-user requests to various internet resources, such as websites, web applications,
+Amazon Route 53 is a scalable and highly available Domain Name System (DNS) service that routes traffic by translating 
+ human-readable domain names (e.g., www.example.com) into IP addresses that computers use to identify each other. 
+ Additionally, Route 53 supports domain name registration, allowing you to purchase and manage domain names directly within 
+ AWS."
 
 2. AWS Identity and Access Management (IAM)
 Service Type: Security and Access Management
@@ -85,7 +63,8 @@ Description: Manages user access to AWS services and resources across all region
 
 3. Amazon CloudFront
 Service Type: Content Delivery Network (CDN)
-Amazon CloudFront is a Content Delivery Network (CDN) that helps deliver your content, such as websites, images, videos, and apps, to users faster. 
+Amazon CloudFront is a Content Delivery Network (CDN) that helps deliver your content, such as websites, images, videos, 
+and apps, to users faster. 
 It works by copying your content to servers (called edge locations) around the world.
 When someone requests your content, CloudFront sends it from the nearest server
 
@@ -94,7 +73,8 @@ Amazon S3 (Simple Storage Service) is a cloud storage service provided by Amazon
 that allows you to store and retrieve any amount of data at any time from anywhere on the web.
 
 5. AWS CloudTrail
-Amazon CloudTrail is a service provided by AWS that helps you monitor and log all the activities and API calls made in your AWS account.
+Amazon CloudTrail is a service provided by AWS that helps you monitor and log all the activities and API calls made in your 
+AWS account.
 It automatically records detailed information about every action taken on AWS resources, such as who did what and when.
 
 6. Amazon SNS (Simple Notification Service)
@@ -104,86 +84,57 @@ Description: A fully managed messaging service for sending notifications globall
 7. Amazon CloudWatch
 Amazon CloudWatch is a monitoring and observability service provided by AWS that helps you track the performance, 
 health, and activity of your AWS resources and applications in real-time.
-
 CloudTrail focuses on tracking API calls and providing an audit trail of actions in your AWS account.
-
 CloudWatch focuses on monitoring the health and performance of your AWS resources, providing metrics, logs, and alarms.
 
 
 7. what is elastic ip.
-
    elastic ip is used to get a permanent ip adress of any server to ensure high availibility of the server.
 
-
 8. what is auto scalling.
-
    auto scalling help you to ensure high availibility of the server it will automatically scale-up and scale-down the server and resources according to the workload and performance.
 
-
 9. load balancer and its type.
-
 A Load Balancer is a service that automatically distributes incoming traffic across multiple servers 
 or resources to ensure high availability, reliability, and optimal performance of your application
-
 Application Load Balancer (ALB):
-
 Sends web traffic to the right server based on the URL (like sending image requests to one server and API requests to another).
 
 Network Load Balancer (NLB):
-
 Sends fast traffic (like games or streaming) to the right server.
 
 Classic Load Balancer (CLB):
-
 Old load balancer that just sends regular traffic to servers.
 
-
 10. ALB vs NLB
-
 ALB is for web traffic with complex routing (like websites).
 NLB is for high-speed, real-time traffic (like gaming or video streaming).
 
-
 11. security groups vs NACL
-
 Security Groups are used for instance-level security, allowing only specified inbound traffic, while automatically handling return traffic.
-
 NACLs Network Access Control Lists are used for subnet-level security, allowing more granular control with both allow and deny rules for traffic in and out of the subnet.
 
-
 12. S3 Object Lifecycle:
-
 Lifecycle policies let you automatically manage your data:
-
 Transition: Move data to cheaper storage after a certain time (e.g., from Standard to Glacier).
 Expiration: Automatically delete data after a set time.
 
-
 13. AMI vs SNAPSHOT
-
 AMI An AMI is a pre-configured image based on existing image we use ami for a reapititive task like if we want to use all the configuration of a instance in future for that
 we can create the AMI based on that instance,
-
 SNAPSHOT it is used for the backup up EBS volume of the instance the EBS volume of the instance we can take manually or we can take on a perticulor time for that we use
  lifecycle policy for the taking the snapshot daily.
 
-
 14. what is ECS 
-
 Amazon ECS (Elastic Container Service) is a fully managed container orchestration service provided 
 by AWS (Amazon Web Services) that allows you to easily run, manage, and scale containerized applications on AWS. 
 
-
 15. RDS service  realtional database service
-
 database - it is collection of tables
 table - it is collection of rows and collumbs 
 
 RDS is used to your database service. For database engine we need rds service
-
 It supports multiple database engines like MySQL, SQL Server, Oracle, and Amazon Aurora, 
-
-
  mysql - it is structured quaery language. it uses tables to store the data.
    - The INSERT INTO statement is used to add new records to a table. 
    - The UPDATE statement is used to modify existing records in a table. 
@@ -191,35 +142,21 @@ It supports multiple database engines like MySQL, SQL Server, Oracle, and Amazon
    - The CREATE TABLE statement is used to create a new table in a database.
    - The DROP TABLE statement is used to delete a table and all its data.
    - The JOIN clause is used to combine rows from two or more tables, based on a related column.
-
 Oracle- Oracle Database is a powerful system used to store and manage large amounts of data.
              Oracle is often used in large businesses because it ensures data is safe, organized, and easily accessible.
-
-
 Amazon DynamoDB is ideal for applications that require fast, flexible, and scalable database solutions. It's commonly used for web and mobile applications, 
 e-commerce platforms, IoT systems, real-time data processing, gaming, and more. 
- 
-
 mongodb MongoDB is a popular NoSQL database that is designed to store large amounts of data in a flexible, scalable.
 
-
-
 16. what is cloudformation and stack in cloudformation.
-
 it is used to provisioning the AWS resources, we can provisioning only AWS resources using cloudFormation.
-
 Infrastructure as Code (IaC): Define your infrastructure in code, which can be version-controlled and reused.
-
 Automated Provisioning: Automatically creates, updates, and deletes AWS resources based on your templates.
 
-
-stack in cloudformation 
-
+stack in cloudformation
    A CloudFormation Stack is essentially a collection of AWS resources
-   
    if you have a CloudFormation template that defines an EC2 instance, an S3 bucket, and a security group, these resources will be grouped into a stack. 
    If you need to make changes to the resources (e.g., update an EC2 instance type or add a new S3 bucket), you can modify the template and update the entire stack.
-
  Resources:
   MyEC2Instance:
     Type: AWS::EC2::Instance
@@ -228,57 +165,38 @@ stack in cloudformation
       ImageId: ami-0c55b159cbfafe1f0
       KeyName: my-key-pair
 
-
-
 17. cloud deployment models
-  
 public 
 private 
 hybrid and 
 community cloud.
 
-
 18 cloud service model.
-
 Iaas   You manage: The operating system, applications, and data.
 paas   You manage: Your applications and data.
 saas   You manage: Nothing. You just use the application.
 
-
 19. what is amazon resource name 
-
  an ARN is just a way to name and find things in AWS.
 
-
-
 20.  CNAME (Canonical Name) 
-
-
 It’s commonly used to alias one domain name to another
 
-
 21.  What is AAA in aws 
-
 Authentication verifies who you are.
 Authorization defines what you can do.
 Accounting tracks what you did and when.
-
 
 22. what is AWS secret manager.
     it is used to secure save and retrive the credentials and sensitive data.
 
 23. AWS CLI 
-
 The AWS CLI is a powerful tool that allows you to manage AWS resources from the command line,
 
-
 24. what is vpc and its components.?
-
 A VPC (Virtual Private Cloud) is like your own private network in the AWS cloud where you can run your applications and store data securely.
-
 Main parts of a VPC:
 Subnets: Small sections of your VPC where you place resources. Some can connect to the internet (public), and some stay private (not connected to the internet).
-
 IP Range (CIDR Block): The range of IP addresses your VPC can use (like 10.0.0.0/16).
 
 Route Tables: Rules that control how traffic moves in and out of your VPC.
@@ -289,70 +207,109 @@ NAT Gateway/Instance: Allows private resources to access the internet without be
 
 Security Groups: Firewalls that control which traffic is allowed to reach your resources.
 
-
 25. diff b/w roles and policies.?
-
 Roles:
 A Role is like a set of permissions that you can assign to an AWS resource (such as an EC2 instance, Lambda function, or user).
-
 Policies:
 A Policy is a document that defines what actions are allowed or denied on specific AWS resources.
 
-
 26. types of scalling of ec2 in aws
-
 Vertical Scaling: Change the size of a single instance.
 Horizontal Scaling: Add or remove multiple instances to handle traffic.
 
-
 27 access controle list vs bucket policy
-
 ACL is basic and works for specific users or objects.
 Bucket Policy is more advanced, applies to the whole bucket, and can include complex rules.
 
-
 28. edge location.
-
 An Edge Location in AWS is a location where AWS CloudFront caches content for fast delivery to users. 
 
-
 29. what is ssl and tls certificates.
-
 SSL (Secure Sockets Layer):
 SSL is the older protocol that was originally used to secure communications between web browsers and servers.
-
 TLS Transport Layer Security is modern protocall it is more secure version of SSL.
-
 SSL/TLS certificates help keep your data safe when browsing by securing the communication between your browser and a website.
 
-
 30 EBS vs EFS
-
 EBS is for single-instance storage, while EFS is for shared storage across multiple instances at a same time.
 
+31  What is AWS CodePipeline
+ AWS CodePipeline is a fully managed continuous integration and continuous delivery (CI/CD) service that automates the 
+ build, test, and deployment phases of your application. 
 
-EBS
+32. what is aws lammbada
+  AWS Lambda is a serverless compute service provided by Amazon Web Services (AWS). It allows you to run your code without 
+ provisioning or managing servers. You simply upload your code to Lambda, and it automatically handles the infrastructure, 
+ scaling, and execution for you.
 
-Use: Attach to a single EC2 instance for fast, high-performance storage.
+33What other aws services are used with AWS CodePipeline
+ 1. AWS CodeCommit
+Purpose: CodeCommit is a source control service that you can use as the source stage in CodePipeline.
+ 2. AWS CodeBuild
+Purpose: CodeBuild is a fully managed build service that compiles your code, runs tests, and produces deployable artifacts.
+ 3. AWS CodeDeploy
+Purpose: CodeDeploy automates the deployment of applications to Amazon EC2 instances, AWS Lambda, or Amazon ECS.
+ 4. Amazon Elastic Container Service (ECS)
+Purpose: ECS is a container orchestration service for running Docker containers.
+ 5. Amazon Elastic Kubernetes Service (EKS)
+Purpose: EKS is a managed Kubernetes service to run containerized applications.
 
+34 What is the objective of the code pipeline
+  the abjective is to automate the process of building testing and deployint hte application
 
-EFS
+35 How does code build work
+  AWS CodeBuild is a fully managed continuous integration (CI) service that automates the process of compiling source code, 
+  running tests, and producing artifacts 
 
-Use: Shared storage that can be accessed by multiple EC2 instances at the same time.
+36 What are the different types of storage in AWS
+  (EBS, EFS, S3
 
+37 How does AWS Route 53 work?
+  Amazon Route 53 is a scalable and highly available Domain Name System (DNS) service that routes traffic by translating 
+  human-readable domain names (e.g., www.example.com) into IP addresses that computers use to identify each other. 
+  Additionally, Route 53 supports domain name registration, allowing you to purchase and manage domain names directly 
+  within AWS."
 
+38. Explain AWS CloudFormation and how it differs from Terraform.
+  Using AWS CloudFormation, you can only provision and manage AWS resources, as it is specifically designed for the AWS 
+  ecosystem. On the other hand, Terraform is a multi-cloud tool that allows you to provision resources across various cloud 
+  platforms, including AWS, Azure, Google Cloud, and more."
 
+39. What is AWS Fargate, and how does it work?
+   it is a serverless compute engine it can be integrate by both services ECS EKS 
+   it is used to run containers (e.g., Docker containers) without managing the underlying servers or infrastructure.
+When you deploy the application on ECS or EKS using Fargate, AWS handles the provisioning of the underlying infrastructure 
+ (such as EC2 instances) automatically.
+You only need to specify the CPU and memory requirements for the containers in your task definition or pod specification. 
+ Fargate takes care of everything else, including scaling and load balancing.
 
+40 what services will give you high availability, fault tolarance, scalability in aws
+Amazon CloudFront
+High Availability: CloudFront is a Content Delivery Network (CDN) that caches content at edge locations globally, ensuring 
+ fast and reliable content delivery.
+Fault Tolerance: CloudFront automatically routes traffic to the nearest healthy edge location in case one fails.
+Scalability: CloudFront scales automatically to accommodate large numbers of concurrent users and high data traffic.
 
+auto scalling 
+High Availability: Auto Scaling automatically adjusts the number of EC2 instances in a scaling group, ensuring that your 
+ application has enough resources to handle traffic and is highly available.
+Fault Tolerance: Auto Scaling can replace unhealthy instances and launch new instances to maintain desired capacity, 
+ ensuring that the application stays fault-tolerant.
+Scalability: Auto Scaling scales up or down based on load (CPU, network traffic, etc.), ensuring the application can handle 
+ changes in demand without manual intervention.
 
+ Elastic Load Balancing (ELB)
+High Availability: ELB distributes incoming traffic across multiple targets (EC2 instances, containers, etc.) across different AZs, improving availability.
+Fault Tolerance: ELB automatically detects unhealthy instances and reroutes traffic to healthy instances, ensuring continuous service even if one instance fails.
+Scalability: ELB automatically adjusts to the incoming traffic load and distributes it accordingly to ensure balanced performance.
 
+ Amazon S3 (Simple Storage Service)
+High Availability: Amazon S3 is designed to be highly available across multiple geographic regions. It automatically replicates data across multiple AZs within a region.
+Fault Tolerance: S3 automatically handles data replication and can recover from failures, ensuring that your data is durable and available even if part of the system fails.
+Scalability: S3 scales automatically to accommodate large amounts of data without any manual intervention, offering virtually unlimited storage.
 
-
-
-
-
-
-
+how can i create custom policies in aws
+ using iam services.
 
 
 
