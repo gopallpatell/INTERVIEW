@@ -187,7 +187,9 @@ Q37 what is this in script "#!/bin/bash"
 
 Q38 how can i share my public key to remote machine in linux
    cat id_ecdsa.pub > authorized_keys
-  
+   scp /local/path/to/file username@remote_host:/remote/path/to/destination
+   scp username@remote_host:/remote/path/to/file /local/path/to/destination
+
 Q39 how can i check the configuration information in linux  
   lscpu: CPU architecture and details.
   free -h: Memory usage. 
@@ -203,80 +205,4 @@ A firewall is a security mechanism that controls incoming and outgoing network t
   Example: `head file.txt`
 12. tail: Display the last few lines of a file. 
   Example: `tail file.txt`
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
