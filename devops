@@ -1,13 +1,86 @@
-Agile = How to build software fast and efficiently.
-DevOps = How to deliver and maintain that software smoothly in the real world.
+1. What do you know about DevOps?
+  devOps is a methology that aims to improve collaboration between development (Dev) and operations (Ops) teams. 
+  it focus on automating the proccess of devlopment testing and deployment
 
-The Blue Ocean Plugin is a tool that improves the user interface of Jenkins,
+2. How is DevOps different from agile methodology?
+  Agile is for development and testing, but DevOps is for the entire process devlop testing and deployment
 
-agile is to how to build the software and devops is for how to manage and deliver the software 
+  agile is to how to build the software and devops is for how to manage and deliver the software 
 
-Agile: Build software in small chunks, improve regularly based on feedback, and ensure users get usable features quickly.
-DevOps: Automate the processes of building, deploying, and monitoring software to ensure it runs smoothly and can be
-updated rapidly.
+  agile: Build software in small chunks, improve regularly based on feedback, and ensure users get usable features quickly.
+  DevOps: Automate the processes of building, deploying, and monitoring software to ensure it runs smoothly and can be
+  updated rapidly.
+
+3. What are the different phases in DevOps?
+Planning: Define features and goals.
+Development: Code the application.
+Continuous Integration (CI): Integrate code frequently and run tests.
+Continuous Testing: Run automated tests to detect defects.
+Continuous Delivery/Deployment (CD): Automate the release and deployment process.
+Release: Release the software to end users.
+Operate: Monitor the application in production.
+Monitor: Collect continuous feedback on performance.
+
+4. What is the difference between continuous delivery and continuous deployment?
+In Continuous Delivery (CD), code changes that pass automated tests are automatically
+ prepared for release to production, but manual approval is typically required to deploy to production.
+In Continuous Deployment, the changes that pass all tests are automatically
+  deployed to production without human intervention.
+
+5. What is the role of configuration management in DevOps?
+  configuration management tools are used in devops for repetitive tasks
+
+6. what do you mean by infrastructure as code
+  Infrastructure as Code (IaC) is a DevOps practice that is used to  managing and provisioning 
+  infrastructure (servers, networks, databases, etc.) through code rather than manual processes.
+
+7.  What are the benefits of using containers in DevOps? 
+   container are used in devops for isolated environment and uicly scalability
+
+8.  What is Chaos Engineering, and how does it relate to DevOps?
+  Chaos Engineering is the practice of intentionally introducing disruptions or failures in a system to 
+   test its resilience and how it reacts to unexpected issues.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 1. Waterfall Model
