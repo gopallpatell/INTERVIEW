@@ -83,18 +83,73 @@
     username: "{{ db_user }}"
     password: "{{ db_password }}"
   Using ansible-inventory Command
-    ansible-inventory -i dynamic_inventory.py --list
+    ansible-inventory -i dynamic_inventory.py --list   -  Flexible and customizable to query any system.
+    ansible-inventory -i aws_ec2.yml --list          - Easier and pre-configured for AWS environments.
 
 27 How do you use conditionals and loops in Ansible playbooks?
-   we want to execute something when a condition is met where we can use contionals like when failed 
+   we want to execute something when a condition is met where we can use contionals like when failed changed 
+
+28. why we use dynamic inventory
+    dynamic inventory will automatically fetcg the information about the hosts from the cloud platforms like aws 
+    Hostnames or IP addresses Instance IDs, Instance type
+   Ansible provides built-in dynamic inventory plugins like aws_ec2, so you don’t need to write the script yourself. 
+   
+---
+- name: Install Git and Maven on all servers
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Git on RedHat/CentOS
+      yum:
+        name: git
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Install Maven on RedHat/CentOS
+      yum:
+        name: maven
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Install Git on Debian/Ubuntu
+      apt:
+        name: git
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Install Maven on Debian/Ubuntu
+      apt:
+        name: maven
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Install Git on Windows
+      win_chocolatey:
+        name: git
+        state: present
+      when: ansible_os_family == "Windows"
+
+    - name: Install Maven on Windows
+      win_chocolatey:
+        name: maven
+        state: present
+      when: ansible_os_family == "Windows"
+
+can I run ansible playbook on windows or can I install ansible on windows
+yes One of the most common ways to run Ansible on Windows is to use WSL (Windows Subsystem for Linux). 
+    open powershel and run  wsl --install
+    sudo apt update
+    sudo apt install ansible
 
 
-
-
-
-
-
-
+defaults/: Default variables for the role.
+files/: Static files to copy to the target system.
+handlers/: Handlers for triggering specific actions (e.g., service restart).
+meta/: Metadata about the role, like dependencies.
+tasks/: The core tasks that define what the role does.
+templates/: Jinja2 templates for generating dynamic configuration files.
+vars/: Variables specific to the role that have higher precedence than defaults.
+README.md (optional): Documentation for the role.
 
 
 
