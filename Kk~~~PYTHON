@@ -89,7 +89,7 @@ Variables are used to store the value
 
 __init__ Method: It's specifically used for initializing objects in a class. 
 
-Class: A blueprint for creating objects. It defines the structure and behavior of the objects.
+Class: it is like A blueprint for creating objects It will defines the structure and behavior of the objects.
 
 objects= an object is a specific instance of a class. It is a collection of data and functions 
 
@@ -130,9 +130,34 @@ Flask: Lightweight micro based framework, flexible, and easy to get started with
 Suitable for small to medium-sized applications or APIs where you need more control.
 
 
+Q Is python a programming language or scripting language
 
 
+Q How to run a python program  on command line
+  python hello.py 
 
+Q Keyword to create a function in python
+  def for regular 
+  lambda fuction is for annonymes fuction 
+
+def function 
+ It allows you to group a block of code that performs a specific task and can be reused multiple times by calling it.
+
+lammbda fuction 
+  lambda functions are usually used when you need a function for a short period of time or for simple expressions.
+
+Q.  Is python case sensitive language 
+  This means that uppercase and lowercase letters are treated as different characters
+
+What is Python Multiprocessing?
+Multiprocessing in Python is a way to run multiple tasks at the same time. It allows you to use multiple CPU cores to do
+different tasks, so your program can run faster, especially for tasks that take a lot of time (like heavy calculations).
+
+Python has something called the Global Interpreter Lock (GIL) that makes sure only one thing runs at a time.
+
+Qqq What is the difference between Python’s *args and **kwargs?
+  *args: For passing multiple unnamed values to function 
+**kwargs: For passing multiple named values as key-value pairs to function 
 
 
 
