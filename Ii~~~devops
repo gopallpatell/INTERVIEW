@@ -41,8 +41,24 @@ In Continuous Deployment, the changes that pass all tests are automatically
   Chaos Engineering is the practice of intentionally introducing disruptions or failures in a system to 
    test its resilience and how it reacts to unexpected issues.
 
+9. Can we use Agile and DevOps together in the same project?
+  yes we can use agile is to how to build the software and devops is for how to manage and deliver the software 
 
+10. What is the benefit of DevOps from a technical and business perspective?
+ Technical Benefits: , improves collaboration, automates processes, and enhances scalability and issue resolution.
+Business Benefits: DevOps reduces time to market, cost effective,faster releases.
 
+11, How does chaos engineering work in DevOps?
+  Chaos Engineering is the practice of intentionally introducing disruptions or failures in a system to 
+   test its resilience and how it reacts to unexpected issues.
+
+12. What is log aggregation, and how does it work in DevOps?
+  Log aggregation is the process of collecting, centralizing, and managing logs from multiple sources 
+  (e.g., servers, applications, services) into one unified system for easier monitoring and analysis.
+
+How it works in DevOps:
+Collection: Logs from different systems (servers, applications, containers) are collected in real
+ -time using tools like Fluentd, Logstash, or Telegraf
 
 
 
