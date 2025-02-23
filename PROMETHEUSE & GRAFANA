@@ -19,8 +19,7 @@ it uses pulling procces or we can se scraping to collect the metrices fromm the 
 we need node exporter in target machine
 
 5 What is the role of exporters in Prometheus?
-exporters are used to collect the metrices such as cpu usage memory usage disk from the hosts where it is running and 
-expose these metrices in formate that prometheus can scrape and store 
+Exporters collect metrics from different systems and services.
 
 6 Describe the PromQL language and its key features.
 prometheus quary langauage it is quary langauage used to retreive manipulate and visualize the time series data stored
@@ -82,16 +81,44 @@ Grafana supports dashboard templating,
 Templating enables users to create reusable dashboards 
 templating helps you reuse a single dashboard for different data
 
+12. How to connect Prometheus and Grafana?
+Log in to Grafana:
+Open your browser and navigate to http://localhost:3000 (default address for Grafana).
+Log in using the default credentials (username: admin, password: admin).
+Add Prometheus as a Data Source:
+Click on the gear icon on the left sidebar to go to Configuration.
+Click on Data Sources.
+Click the "Add data source" button.
+Choose Prometheus from the list of data sources.
+Configure Prometheus Data Source:
+In the URL field, enter the address where Prometheus is running. By default, this is http://localhost:9090.
+Click on Save & Test to make sure Grafana can successfully connect to Prometheus.
+3. Create Dashboards in Grafana
+Create a Dashboard:
+After adding Prometheus as a data source, go back to the Grafana dashboard by clicking the Grafana logo at the top left.
+Click on Create (+ icon) in the sidebar, then select Dashboard.
+Add a Panel:
+Click Add new panel.
+In the panel settings, under the Query section, select Prometheus as the data source.
+Write a Prometheus query, like up (which shows if Prometheus can scrape the target), or 
+any other query for the metrics you want to visualize (e.g., node_cpu_seconds_total for CPU usage).
 
 
+14. What are exporters in Prometheus?
+  Exporters in Prometheus are specialized tools or services that collect metrics from different systems, 
+   applications, or services and expose them in a format that Prometheus can scrape and store.
 
+15. What is the import and export option in Grafana?
+ In Grafana, the import and export options are used for sharing and migrating dashboards and data sources between different 
+Grafana instances or users. These features help in transferring dashboards and configurations without needing to manually recreate them.
 
+16. Can we see metrics in Prometheus without using Grafana?
+  Go to the Graph tab (available at http://localhost:9090/graph).
+In the "Expression" field, you can write a PromQL (Prometheus Query Language) query to fetch and visualize metrics.
+For example, typing up will show if Prometheus is scraping targets successfully. node_cpu_seconds_total will show CPU usage statistics.
 
-
-
-
-
-
+17. How do the metrics get scraped in Prometheus?
+ metrics are scraped by a process called scraping, where Prometheus periodically scrabe the metrices from the target servers, databases, applications, or exporters)
 
 
 
