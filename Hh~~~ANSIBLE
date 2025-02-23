@@ -152,7 +152,9 @@ vars/: Variables specific to the role that have higher precedence than defaults.
 README.md (optional): Documentation for the role.
 
 
-
+how to debug ansible 
+we use ansible-playbook -vvv my_playbook.yml
+-vvv This is very useful for tracing where the problem is occurring.
 
 
 
