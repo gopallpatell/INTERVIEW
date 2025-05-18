@@ -295,5 +295,203 @@ and need to be removed. How can you selectively remove specific commits from you
   Annotated tag: A label with extra information, like who made the tag and why.
 
 
+What is Git?
 
+What is the difference between Git and SVN?
+
+What is a repository in Git?
+
+What is the difference between a local and a remote repository?
+
+What is a commit in Git?
+
+How do you create a new Git repository?
+
+What is the command to clone a repository?
+
+How do you check the status of your Git repository?
+
+What does git add do?
+
+What is the difference between git add and git commit?
+
+How do you commit changes in Git?
+
+What is the purpose of the .gitignore file?
+
+How do you create a branch in Git?
+
+What is the purpose of branching?
+
+How do you switch branches in Git?
+
+How do you merge branches in Git?
+
+What is a merge conflict? How do you resolve it?
+
+What is a fast-forward merge?
+
+What is a pull request?
+
+How do you delete a branch?
+
+What is the difference between git pull and git fetch?
+
+How do you view commit history?
+
+What is git log?
+
+How do you revert a commit?
+
+What is the difference between git revert and git reset?
+
+What is a detached HEAD state?
+
+How do you stash changes in Git?
+
+How do you apply stashed changes?
+
+What is the difference between git stash and committing?
+
+How do you create a tag in Git?
+
+What is the difference between lightweight and annotated tags?
+
+How do you push a tag to the remote repository?
+
+What is a remote in Git?
+
+How do you add a remote repository?
+
+How do you remove a remote repository?
+
+What is the purpose of git config?
+
+How do you configure your Git username and email?
+
+What is .git/config?
+
+What is the staging area in Git?
+
+What is the difference between working directory, staging area, and repository?
+
+How do you check the difference between files?
+
+What does git diff do?
+
+How do you undo changes in the working directory?
+
+How do you reset changes in the staging area?
+
+What is the git reflog command?
+
+How do you recover a deleted branch?
+
+How do you squash commits?
+
+What is rebasing?
+
+What is the difference between merging and rebasing?
+
+What is the use of git cherry-pick?
+
+How do you configure Git to ignore file mode changes?
+
+How do you track a new file in Git?
+
+What happens if you delete a file and commit the change?
+
+How do you rename a file in Git?
+
+How do you move a file in Git?
+
+What is the purpose of git bisect?
+
+How do you clone a specific branch?
+
+What is the difference between git clone --depth and a full clone?
+
+How do you handle large files in Git?
+
+What is Git LFS?
+
+How do you set up Git hooks?
+
+What are Git hooks?
+
+What is the difference between client-side and server-side hooks?
+
+How do you check the current branch?
+
+What is the HEAD in Git?
+
+What is the difference between origin/master and master?
+
+How do you sync your forked repository?
+
+How do you resolve merge conflicts in a pull request?
+
+What is a bare repository?
+
+When would you use a bare repository?
+
+How do you initialize a bare repository?
+
+What is the purpose of the .git directory?
+
+How do you undo the last commit?
+
+How do you undo the last commit but keep the changes?
+
+How do you remove a file from Git but keep it locally?
+
+What is the difference between git clean and git reset?
+
+How do you create an orphan branch?
+
+What is the purpose of git archive?
+
+How do you export a Git repository?
+
+What is Git submodule?
+
+How do you add and update a Git submodule?
+
+What is the difference between git fetch and git pull?
+
+How do you handle conflicts during a rebase?
+
+What is the difference between git stash pop and git stash apply?
+
+How do you view the list of remotes?
+
+What is the difference between SSH and HTTPS for Git?
+
+How do you set up SSH authentication for Git?
+
+What is the Git Index?
+
+How do you configure global Git ignore?
+
+How do you create an alias in Git?
+
+What is the purpose of the .gitignore_global file?
+
+How do you clone a repository without history?
+
+How do you configure Git to use a different editor?
+
+What is the difference between git merge --no-ff and a normal merge?
+
+How do you sign commits in Git?
+
+What is the purpose of git blame?
+
+How do you view changes made by a particular author?
+
+How do you undo a pushed commit?
+
+How do you handle Git large repositories?
+
+What are some best practices for using Git in teams?
 
