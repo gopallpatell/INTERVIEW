@@ -206,3 +206,203 @@ A firewall is a security mechanism that controls incoming and outgoing network t
 12. tail: Display the last few lines of a file. 
   Example: `tail file.txt`
 
+
+What is Linux?
+
+What are the main components of Linux OS?
+
+What is the Linux kernel?
+
+What is a shell in Linux?
+
+Name some popular Linux shells.
+
+How do you check the current shell?
+
+What is the difference between Unix and Linux?
+
+What is a Linux distribution?
+
+What is the command to list files in a directory?
+
+How do you change directory in Linux?
+
+How do you create a new file?
+
+What is the command to display the contents of a file?
+
+How do you copy files in Linux?
+
+How do you move or rename files?
+
+How do you delete files and directories?
+
+What is the command to check disk usage?
+
+What is the difference between a hard link and a soft link?
+
+What is the chmod command used for?
+
+How do you change file permissions in Linux?
+
+What are user, group, and others in Linux permissions?
+
+What is the chown command?
+
+How do you view running processes?
+
+What is the difference between ps and top commands?
+
+How do you kill a process?
+
+What is a daemon in Linux?
+
+What is the difference between foreground and background process?
+
+How do you run a process in the background?
+
+What is the significance of /etc/passwd?
+
+What is the purpose of /etc/group?
+
+How do you add a new user?
+
+How do you change a user password?
+
+What is a shell script?
+
+How do you make a shell script executable?
+
+How do you schedule tasks in Linux?
+
+What is a cron job?
+
+How do you check system logs?
+
+What is the grep command?
+
+How do you search for a string in files?
+
+What are environment variables?
+
+How do you set environment variables?
+
+What is the export command?
+
+What is the difference between su and sudo?
+
+How do you check system uptime?
+
+How do you check available memory?
+
+What is swap memory?
+
+How do you check disk partitions?
+
+What is mount and umount?
+
+What is the df command?
+
+How do you check inode usage?
+
+What are runlevels in Linux?
+
+What is systemd?
+
+How do you start, stop, and restart services using systemd?
+
+What is the difference between init and systemd?
+
+How do you check network configuration?
+
+How do you check open ports?
+
+What is the iptables command?
+
+What is SSH and how do you use it?
+
+What is a symbolic link?
+
+How do you find files by name?
+
+How do you find files by content?
+
+What is the awk command?
+
+What is the sed command?
+
+What is the difference between cat and less?
+
+How do you compress files in Linux?
+
+How do you extract compressed files?
+
+What is the tar command?
+
+How do you check Linux kernel version?
+
+How do you check the current logged-in users?
+
+What is the purpose of /proc directory?
+
+What is a kernel module?
+
+How do you load and unload kernel modules?
+
+What is the difference between soft link and hard link?
+
+What is nohup command?
+
+What is the difference between kill and kill -9?
+
+How do you check disk I/O?
+
+What is the difference between cron and at commands?
+
+What is the purpose of /var directory?
+
+How do you monitor disk space usage?
+
+What is the use of strace?
+
+What is the difference between a process and a thread?
+
+How do you change process priority?
+
+What is a zombie process?
+
+How do you check system load?
+
+What is ulimit?
+
+How do you change hostname in Linux?
+
+What is the difference between diff and cmp?
+
+How do you copy a directory recursively?
+
+What is the rsync command?
+
+How do you schedule shutdown or reboot?
+
+What is SELinux?
+
+What is the difference between TCP and UDP?
+
+How do you check network latency?
+
+What is the use of netstat?
+
+How do you configure static IP in Linux?
+
+What is the purpose of /etc/hosts?
+
+How do you change file ownership?
+
+What is the difference between binary and text files?
+
+How do you view hidden files?
+
+What is the purpose of /tmp directory?
+
+How do you set file permissions recursively?
