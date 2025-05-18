@@ -279,7 +279,205 @@ Q29   You want to update a running container with a new version of the applicati
 
 44. 
 
+What is Docker and why is it used?
 
+What is a Docker container?
+
+What is the difference between a Docker container and a virtual machine?
+
+What is a Docker image?
+
+What is the Docker engine?
+
+What are the main components of Docker architecture?
+
+What is the use of the docker run command?
+
+How can you check the running Docker containers?
+
+What is the difference between docker run and docker start?
+
+What are Dockerfile and its purpose?
+
+What are the basic Dockerfile instructions?
+
+How do you build a Docker image from a Dockerfile?
+
+What is the difference between CMD and ENTRYPOINT in a Dockerfile?
+
+What is the purpose of EXPOSE in Dockerfile?
+
+What is .dockerignore file and why is it important?
+
+What is the difference between COPY and ADD in Dockerfile?
+
+How do you stop and remove a Docker container?
+
+How do you remove a Docker image?
+
+What is the use of docker exec?
+
+What is the use of the -it option in Docker?
+
+What is the use of detached mode (-d) in Docker?
+
+How do you persist data in Docker containers?
+
+What are Docker volumes?
+
+How do you share data between containers?
+
+How can you inspect logs of a running container?
+
+How do you push an image to Docker Hub?
+
+What is the difference between Docker Hub and Docker Registry?
+
+How do you pull a specific version of an image?
+
+What is image tagging in Docker?
+
+How does Docker layer caching work?
+
+What are best practices for creating optimized Docker images?
+
+What is the difference between an image and a container?
+
+What are dangling images?
+
+How do you clean up unused Docker objects?
+
+How do you list all local Docker images?
+
+What is the difference between docker rmi and docker image rm?
+
+What is a multi-stage Docker build?
+
+Why would you use a multi-stage build?
+
+What is the purpose of the WORKDIR command?
+
+What is the benefit of using a minimal base image like alpine?
+
+What is the use of docker save and docker load?
+
+What is the use of docker export and docker import?
+
+How can you reduce the image size?
+
+What is the difference between docker build and docker-compose build?
+
+How do you scan Docker images for vulnerabilities?
+
+What is docker history used for?
+
+How do you sign Docker images?
+
+What is the LABEL instruction used for?
+
+How do you tag multiple images with one build?
+
+What is the default image storage path in Docker?
+
+What are the types of Docker networks?
+
+What is the difference between bridge, host, and none network modes?
+
+How do you inspect a Docker network?
+
+How can two containers communicate with each other?
+
+What is a user-defined bridge network?
+
+What is the docker network create command?
+
+What is port mapping in Docker?
+
+What’s the difference between -p and -P options?
+
+What is the host network and when should you use it?
+
+How can you connect a running container to a network?
+
+How do you create a container with multiple networks?
+
+What are overlay networks in Docker Swarm?
+
+What is DNS-based service discovery in Docker?
+
+How does Docker handle container-to-container communication?
+
+What is an ingress network?
+
+What is the difference between internal and external networks?
+
+What happens when a container tries to connect to the outside world?
+
+What is network aliasing in Docker?
+
+How can you troubleshoot Docker networking issues?
+
+Can containers share the same IP?
+
+What is Docker Compose?
+
+What is the default name of the Docker Compose file?
+
+How do you start multi-container apps with Compose?
+
+How do you define environment variables in Compose?
+
+What is the difference between depends_on and links in Compose?
+
+How do you scale services using Docker Compose?
+
+What is the difference between docker-compose up and docker-compose up --build?
+
+How do you override default docker-compose.yml?
+
+What is the volumes_from key used for?
+
+What are the advantages of using Compose in microservices?
+
+How do you build images using Compose?
+
+Can you use multiple Compose files?
+
+What happens when a container defined in Compose crashes?
+
+How do you specify restart policies in Compose?
+
+How do you manage secrets in Compose?
+
+What are Docker namespaces?
+
+What are Docker cgroups?
+
+How can you limit memory and CPU for a container?
+
+What is the purpose of Docker Swarm?
+
+How is Docker Swarm different from Kubernetes?
+
+What is the role of a manager and worker node in Swarm?
+
+What are Docker secrets and how do you manage them?
+
+How do you ensure security in Docker containers?
+
+What is Docker Content Trust (DCT)?
+
+What is the difference between root and non-root containers?
+
+How do you keep containers lightweight and secure?
+
+How do you monitor Docker containers?
+
+What tools are available for Docker logging?
+
+How do you troubleshoot a failed Docker container?
+
+What are some best practices for using Docker in production?
 
 
 
