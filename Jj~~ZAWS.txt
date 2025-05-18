@@ -313,7 +313,205 @@ how can i create custom policies in aws
 
 
 
+What is AWS?
 
+What are the key components of AWS?
+
+What is EC2 in AWS?
+
+Explain the difference between EC2 instance types.
+
+What is S3?
+
+What are the different storage classes available in S3?
+
+How does S3 ensure data durability?
+
+What is an IAM role?
+
+How do IAM roles differ from IAM users?
+
+What is VPC?
+
+What are subnets in AWS?
+
+What is an Internet Gateway?
+
+What is a NAT Gateway?
+
+What are security groups?
+
+What are Network ACLs?
+
+How do Security Groups differ from Network ACLs?
+
+What is AWS Lambda?
+
+What is the difference between AWS Lambda and EC2?
+
+What is CloudFormation?
+
+How does CloudFormation work?
+
+What is Elastic Load Balancer (ELB)?
+
+What are the different types of ELB?
+
+What is Auto Scaling?
+
+How does Auto Scaling work?
+
+What is Route 53?
+
+What is the difference between Route 53 and traditional DNS?
+
+What are AWS Availability Zones?
+
+What is the difference between an AWS Region and Availability Zone?
+
+What is CloudWatch?
+
+How do you monitor resources with CloudWatch?
+
+What is AWS CloudTrail?
+
+How does CloudTrail differ from CloudWatch?
+
+What is an Elastic IP?
+
+What is the difference between public and private IP addresses?
+
+What is EBS in AWS?
+
+How do EBS volumes differ from instance store?
+
+What is a snapshot in AWS?
+
+How do you secure data in S3?
+
+What are S3 buckets?
+
+What is the maximum size of an S3 object?
+
+What is AWS RDS?
+
+What are the different database engines supported by RDS?
+
+What is Multi-AZ deployment in RDS?
+
+What is read replica in RDS?
+
+How do you backup and restore an RDS database?
+
+What is AWS Elastic Beanstalk?
+
+How does Elastic Beanstalk work?
+
+What is AWS IAM?
+
+What is the principle of least privilege in AWS?
+
+What are AWS CloudFront and its use case?
+
+How does CloudFront work with S3?
+
+What is an AWS Lambda trigger?
+
+What is a VPC Endpoint?
+
+What is the difference between a gateway and an interface VPC Endpoint?
+
+What is AWS SNS?
+
+What is AWS SQS?
+
+How do SNS and SQS differ?
+
+What is AWS Elasticache?
+
+What are the caching strategies supported by AWS Elasticache?
+
+What is AWS Glacier?
+
+When do you use AWS Glacier?
+
+What is AWS KMS?
+
+How do you encrypt data in AWS?
+
+What is a CloudFormation stack?
+
+What is AWS OpsWorks?
+
+What is AWS Config?
+
+How do you use AWS Config for compliance?
+
+What is AWS Trusted Advisor?
+
+What are AWS pricing models?
+
+What is AWS Free Tier?
+
+How do you secure AWS resources?
+
+What is AWS Shield?
+
+What is AWS WAF?
+
+How does AWS help with DDoS protection?
+
+What is AWS Elastic Container Service (ECS)?
+
+What is AWS Fargate?
+
+How does ECS differ from EKS?
+
+What is AWS EKS?
+
+What is a launch configuration?
+
+How do you perform blue-green deployment in AWS?
+
+What is AWS CloudTrail log file validation?
+
+How does AWS handle identity federation?
+
+What is an AWS endpoint?
+
+What are AWS Tags?
+
+What is a Bastion Host?
+
+How do you secure access to AWS instances?
+
+What is AWS CodePipeline?
+
+What is AWS CodeBuild?
+
+What is AWS CodeDeploy?
+
+What is AWS CodeCommit?
+
+What is the difference between AWS CodePipeline and Jenkins?
+
+How do you automate deployments with AWS?
+
+What is an Elastic Beanstalk environment?
+
+What is AWS SSM?
+
+How do you use SSM Parameter Store?
+
+What is the difference between AWS S3 and EFS?
+
+What is AWS Direct Connect?
+
+How does AWS support hybrid cloud?
+
+What are the limitations of AWS Lambda?
+
+How do you optimize AWS costs?
 
 
 
