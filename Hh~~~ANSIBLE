@@ -158,6 +158,206 @@ we use ansible-playbook -vvv my_playbook.yml
 
 
 
+What is Ansible?
+
+What are the key features of Ansible?
+
+How does Ansible differ from other configuration management tools?
+
+What is the architecture of Ansible?
+
+What is an inventory file in Ansible?
+
+How do you define hosts in an Ansible inventory file?
+
+What are Ansible modules?
+
+Name some common Ansible modules.
+
+What is an Ansible playbook?
+
+What is YAML? Why is it used in Ansible playbooks?
+
+How do you run an Ansible playbook?
+
+What is an Ansible role?
+
+How do you create and use roles in Ansible?
+
+What is the purpose of the ansible.cfg file?
+
+How do you check connectivity with Ansible?
+
+What is the difference between ansible and ansible-playbook commands?
+
+How do you pass variables to Ansible playbooks?
+
+What are facts in Ansible?
+
+How do you gather facts in Ansible?
+
+How do you use conditionals in Ansible?
+
+What is an Ansible template?
+
+How do you use Jinja2 templates in Ansible?
+
+What is the purpose of the handlers section in a playbook?
+
+How do handlers work in Ansible?
+
+What is an Ansible Galaxy?
+
+How do you install roles from Ansible Galaxy?
+
+What are loops in Ansible?
+
+How do you perform loops in a playbook?
+
+How do you handle errors in Ansible playbooks?
+
+What is an idempotent operation?
+
+Why is idempotency important in Ansible?
+
+What is the purpose of register in Ansible?
+
+How do you use the debug module?
+
+How do you secure sensitive data in Ansible?
+
+What is Ansible Vault?
+
+How do you create and use encrypted files with Ansible Vault?
+
+How do you limit playbook execution to certain hosts?
+
+What is a dynamic inventory?
+
+How do you create a dynamic inventory?
+
+What is a callback plugin in Ansible?
+
+How do you use tags in Ansible playbooks?
+
+What is the use of --check option?
+
+What does the --diff option do?
+
+What is a connection plugin?
+
+What connection types does Ansible support?
+
+How do you run Ansible playbooks asynchronously?
+
+What is the difference between local and ssh connection types?
+
+How do you debug Ansible playbooks?
+
+What is a task in Ansible?
+
+How do you use include and import statements?
+
+What are variables precedence levels in Ansible?
+
+What is the use of set_fact module?
+
+How do you pass extra variables at runtime?
+
+How do you conditionally include tasks?
+
+What are Ansible facts cache?
+
+How do you update Ansible to the latest version?
+
+How do you write custom modules?
+
+What is the difference between roles and playbooks?
+
+How do you schedule Ansible playbooks?
+
+How do you integrate Ansible with Jenkins?
+
+What is an Ansible Tower?
+
+What are the advantages of Ansible Tower?
+
+How do you manage inventories in Ansible Tower?
+
+How does Ansible handle dependencies between tasks?
+
+How do you use when clause in Ansible?
+
+What is the use of with_items?
+
+How do you pause a playbook execution?
+
+How do you handle retries in Ansible?
+
+What is delegate_to used for?
+
+How do you run a task on a different host?
+
+What is serial keyword in Ansible?
+
+How do you parallelize tasks in Ansible?
+
+How do you use the wait_for module?
+
+What are the best practices for writing Ansible playbooks?
+
+What is the difference between include_tasks and import_tasks?
+
+What is the ansible-pull command?
+
+How do you run Ansible in a push model?
+
+How do you run Ansible in a pull model?
+
+What is idempotency and why is it important in Ansible?
+
+How do you use the copy module?
+
+How do you manage Windows hosts with Ansible?
+
+How do you upgrade Ansible roles?
+
+What is a fact cache and why is it useful?
+
+How do you handle variables in group_vars and host_vars?
+
+How do you write a loop with multiple variables?
+
+What is the difference between notify and handlers?
+
+How do you use Ansible modules vs shell commands?
+
+What is the purpose of the gather_facts directive?
+
+How do you disable fact gathering?
+
+How do you check Ansible version?
+
+What is the difference between ansible and ansible-playbook commands?
+
+How do you debug a failing playbook?
+
+What is the role of the meta module?
+
+How do you clear facts cache?
+
+What is the purpose of async in Ansible tasks?
+
+What is the use of poll parameter?
+
+How do you use Ansible with Docker?
+
+What is the significance of the block directive?
+
+How do you use rescue and always in Ansible blocks?
+
+How do you extend Ansible with plugins?
+
 
 
 
