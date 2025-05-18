@@ -199,7 +199,205 @@ Plugins for integration with third-party tools and advanced capabilities.
 External Tool Integrations to extend Jenkins' functionality
 
 
+What is Jenkins?
 
+What are the key features of Jenkins?
+
+What is Continuous Integration (CI)?
+
+How does Jenkins support Continuous Integration?
+
+What are the different types of Jenkins jobs?
+
+What is a Jenkins pipeline?
+
+What are the types of Jenkins pipelines?
+
+What is a Jenkinsfile?
+
+How do you create a Jenkins pipeline?
+
+What is the difference between Declarative and Scripted Pipeline?
+
+How do you trigger a Jenkins build?
+
+What is a Jenkins slave/agent?
+
+How does Jenkins master-slave architecture work?
+
+What is the purpose of Jenkins plugins?
+
+How do you install plugins in Jenkins?
+
+What is the use of the Jenkins workspace?
+
+How do you configure environment variables in Jenkins?
+
+How do you handle credentials securely in Jenkins?
+
+What is a Jenkins node?
+
+How do you create a Jenkins node?
+
+What is the use of the Jenkins queue?
+
+How do you schedule builds in Jenkins?
+
+What is a build trigger in Jenkins?
+
+How can you trigger Jenkins jobs remotely?
+
+What are post-build actions?
+
+What is the Jenkins dashboard?
+
+How do you configure Jenkins to send build notifications?
+
+What is Jenkins Blue Ocean?
+
+How do you manage Jenkins jobs?
+
+How do you archive artifacts in Jenkins?
+
+What is the use of Jenkins parameters?
+
+How do you pass parameters to Jenkins jobs?
+
+How do you implement Continuous Delivery (CD) using Jenkins?
+
+How do you integrate Jenkins with Git?
+
+How do you configure Git credentials in Jenkins?
+
+How do you configure Jenkins with GitHub?
+
+What is the difference between Git plugin and GitHub plugin?
+
+How do you rollback a Jenkins build?
+
+How do you handle failures in Jenkins pipelines?
+
+What is a Jenkinsfile library?
+
+How do you share code between Jenkins pipelines?
+
+How do you monitor Jenkins builds?
+
+What is the use of Jenkins environment variables?
+
+How do you back up Jenkins configurations?
+
+How do you restore Jenkins from a backup?
+
+What is the role of Jenkins API?
+
+How do you secure Jenkins?
+
+What are some best practices for Jenkins security?
+
+How do you manage Jenkins users and roles?
+
+What is Role-Based Access Control (RBAC) in Jenkins?
+
+How do you integrate Jenkins with Docker?
+
+How do you run Jenkins in Docker?
+
+What is Jenkins X?
+
+How do you perform Jenkins upgrades?
+
+How do you troubleshoot Jenkins builds?
+
+What is a pipeline stage?
+
+How do you define stages in Jenkins pipeline?
+
+What is parallel execution in Jenkins pipeline?
+
+How do you run parallel stages in Jenkins pipeline?
+
+What is the difference between freestyle project and pipeline project?
+
+How do you configure Jenkins to work with Maven?
+
+How do you integrate Jenkins with SonarQube?
+
+What is the use of Jenkins credentials plugin?
+
+How do you pass secrets in Jenkins pipelines?
+
+How do you trigger Jenkins jobs based on SCM changes?
+
+What is the use of Jenkinsfile validation?
+
+How do you test Jenkins pipelines?
+
+What is the difference between scripted and declarative pipeline syntax?
+
+How do you use input steps in Jenkins pipeline?
+
+What are the limitations of Jenkins?
+
+How do you configure Jenkins nodes for distributed builds?
+
+What is the Jenkins build queue?
+
+How do you implement build promotion in Jenkins?
+
+How do you clean up old builds in Jenkins?
+
+What is Jenkins artifact repository?
+
+How do you integrate Jenkins with JIRA?
+
+How do you use Jenkins with Kubernetes?
+
+How can Jenkins be integrated with AWS?
+
+How do you monitor Jenkins performance?
+
+What is the Jenkins CLI?
+
+How do you automate Jenkins configuration?
+
+What is the purpose of the Jenkinsfile post section?
+
+How do you handle exceptions in Jenkins pipeline?
+
+How do you use shared libraries in Jenkins?
+
+What is a Jenkins agent launcher?
+
+What types of agent launchers does Jenkins support?
+
+How do you configure Jenkins to send emails?
+
+What is Jenkins Groovy scripting?
+
+How do you handle environment isolation in Jenkins?
+
+What is the use of the stash and unstash steps in Jenkins pipeline?
+
+How do you integrate Jenkins with Slack?
+
+What is the difference between a Jenkinsfile and a freestyle project?
+
+How can Jenkins be scaled?
+
+What are Jenkins folders?
+
+How do you manage Jenkins logs?
+
+What is the use of node block in Jenkins pipeline?
+
+How do you secure Jenkins agents?
+
+How do you upgrade Jenkins plugins?
+
+What is the role of the checkout step in Jenkins pipeline?
+
+How do you integrate Jenkins with other CI/CD tools?
 
 
 
