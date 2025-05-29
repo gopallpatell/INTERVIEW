@@ -38,11 +38,11 @@
 
             API_Server 				--> # Acts as an interface to the kubernetes 
             ETCD 				--> # Single point of Source for Kubernetes Components or we can say it is a data source for the cluster
-	    Scheduler				--> # To identify the Healthy Node for Deployments
 	    Controller Manager 	         	--> # To run the pods in its desired state 
+            Scheduler				--> # To identify the Healthy Node for Deployments
 	    Kubelet 				--> # Is a Kubernetes Agent used to Create & Deploy the Pods	
-	    KubeProxy				--> # Is used to enable pod networking by create Pod IP Address			
 	    CRI - Container RunTime Interface (Container-D) --> # It is used identify the Image from Container Registry for deployment
+            KubeProxy				--> # Is used to enable pod networking by create Pod IP Address	
 
 8 List the different types of services in Kubernetes.
   ClusterIP: The ClusterIP service is used to expose a service only within the Kubernetes cluster, not to the outside world.
