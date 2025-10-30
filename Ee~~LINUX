@@ -9,7 +9,11 @@ Q2. How do you mount and unmount filesystems in Linux?
   umount is used to remove the device from the directory once you're done with it.
   sudo umount /mnt/mydrive
 
-
+to stop more than one container
+ docker stop $(docker ps)
+ docker rm $(docker ps -a)
+ docker rm -f $(docker ps)
+ docker rmi -f $(docker images)
 Q3 How do you troubleshoot network connectivity issues in Linux?
   Check Physical and Wi-Fi Connections: Ensure your device is properly connected to the network (Wi-Fi or Ethernet).
   Test Local Network (Router and Gateway): Verify your device can communicate with the router or gateway.
