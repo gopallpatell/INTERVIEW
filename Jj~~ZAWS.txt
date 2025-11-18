@@ -40,7 +40,13 @@ static web hosting using s3
     403 forbidden means - permission error (give the permission policy getobject policy)
     404 not found means - index.html is missing (for that we need to save the inde.html file or error.html file on s3 bucket)
 
-                                           IAM 
+REPLICATION - by default aws will replicate in 3 availability zones or we can also do manually
+            in this we have SRR and CRR
+   SRR - Copies objects from one bucket to another bucket in the SAME region.
+   CRR - Copies objects from one region to another region.
+
+                                                 IAM 
+
 what is IAM..?
       IAM (Identity and Access Management) 
       In short, IAM ensures that the right people have the right access to the right resources.
@@ -598,6 +604,7 @@ How does AWS support hybrid cloud?
 What are the limitations of AWS Lambda?
 
 How do you optimize AWS costs?
+
 
 
 
