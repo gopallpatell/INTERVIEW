@@ -1,8 +1,9 @@
-                                        S3
+                                                    S3
+ 
 Q what is S3?
    Amazon S3 (Simple Storage Service) is an object storage service provided by AWS. It allows you to store and retrieve any     amount of data from anywhere on the internet.
 
-how s3 dave or retrieve the data 
+how s3 save or retrieve the data 
    Amazon S3 stores your files in buckets on AWS servers and gives each file a unique URL. You can upload, download, or 
    access  your data from anywhere using the internet, AWS console, CLI, or API.
 
@@ -36,9 +37,55 @@ what is obejct lock in s3
 static web hosting using s3
     for that we need to go to properties in properties section in the last we have static web hsoting option 
    
-    403 forbidden means - permission error (give the permission policy)
-    404 not found means - index.html is missing
+    403 forbidden means - permission error (give the permission policy getobject policy)
+    404 not found means - index.html is missing (for that we need to save the inde.html file or error.html file on s3 bucket)
 
+                                           IAM 
+what is IAM..?
+      IAM (Identity and Access Management) 
+      In short, IAM ensures that the right people have the right access to the right resources.
+
+USER - User is an identity that represents a person or application which needs access to AWS services.
+      Username
+      Password (for Console login)
+      Access keys (for CLI or API access)
+      Permissions (what the user can or cannot do)
+
+USER GROUP - Collection of users or we can say group of user
+POLICY - A Policy defines permissions — what actions are allowed or denied for a user, group, or role.
+      what user group and role can do
+IDENTY PROVIDER - IdP is used to let users from external accounts like Azure, GitHub, or Google access AWS without creating 
+      new IAM users.
+ROLES - Roles are used to give temporary access to someone or something.
+      Example
+      You have an EC2 instance that needs to access S3.
+      Instead of giving IAM user credentials, you attach a role to the EC2.
+      The instance can now access S3 temporarily and securely.
+
+      we can say when we want to give the permission of any resource diectly to the ec2 for that we creates ROLES,
+      like we can create roles for s3 for rds.
+
+                                            AWS-CLI
+
+AWS CLI - The AWS CLI is a powerful tool that allows you to manage AWS resources from the command line,
+          
+          to install aws cli we can directly install using "sudo apt install awscli" or for latest version we can go to the 
+          officiall documentation of aws and after that we can download aws cli zip file using curl( from documentation) 
+          command after that we need to unzip that file but for that we need unzip tool in our sysytem.
+          "sudo apt install unzip" using this we can install unzip tool 
+           After that we can unzip aws cli file.
+
+to log in to aws throu CLI for that we run A command "aws configure"
+    after that we need Access key id and secret access key or region name (we can use none also for this resgion):
+
+to access any s3 bucket we use " aws s3 ls bucket-name"
+
+to copy the object or file from s3 to local.- " aws s3 cp aws;//bucke-name/object-name .   
+   ( . is for the curent loction.if we want to download somewhere lese we can give that path )
+to copy the file from local to s3- "aws s3 cp file-name s3://bucket-name/
+
+to sync the file from s3 to local.- " aws s3 sync aws://bucket-name/ .  
+to sync the file from local to s3- "aws s3 sync file-name s3://bucket-name/
 
 
 Q   What is geo-targeting in CloudFront?
@@ -66,10 +113,6 @@ servers, known as instances, in the cloud.
        Authorization:
        Purpose: Determines what the user is allowed to do.
        means who gives the access or allowed to do anything.
-
-2 what is IAM..?
-      IAM (Identity and Access Management) 
-      In short, IAM ensures that the right people have the right access to the right resources.
 
 3. Instance type in AWS.
       In AWS, an instance type defines the hardware specifications (such as CPU, memory, storage, and networking capacity) 
@@ -555,6 +598,7 @@ How does AWS support hybrid cloud?
 What are the limitations of AWS Lambda?
 
 How do you optimize AWS costs?
+
 
 
 
