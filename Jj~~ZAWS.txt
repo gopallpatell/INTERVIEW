@@ -1,3 +1,46 @@
+                                        S3
+Q what is S3?
+   Amazon S3 (Simple Storage Service) is an object storage service provided by AWS. It allows you to store and retrieve any     amount of data from anywhere on the internet.
+
+how s3 dave or retrieve the data 
+   Amazon S3 stores your files in buckets on AWS servers and gives each file a unique URL. You can upload, download, or 
+   access  your data from anywhere using the internet, AWS console, CLI, or API.
+
+what is deff btwn S3 bucket and object 
+   Objects are the files that we save in S3, and buckets are the locations where we save those objects.
+
+what is ACLs
+   we use ACl only when we want to share bucket/object access with another AWS account.
+
+what is versioning in s3
+   Versioning is used when we want to keep multiple versions of the same file in S3
+   Without versioning → old file is overwritten (lost)
+   With versioning → both files are saved as different versions.
+
+what is obejct lock in s3
+   Lock the file so nobody can delete or change it.
+
+   When Object Lock is enabled:
+   You upload a file → it becomes write-protected
+   No one can delete or change it
+   Protection stays active until the retention period ends
+📌 Two Modes of Object Lock
+   1. Governance Mode
+     Only special users (with permission) can delete/modify
+     Normal users cannot delete/modify
+   2. Compliance Mode
+     No one can delete/modify the object
+     Even root user or admin cannot remove it
+     Most secure (used for legal purposes)
+
+static web hosting using s3
+    for that we need to go to properties in properties section in the last we have static web hsoting option 
+   
+    403 forbidden means - permission error (give the permission policy)
+    404 not found means - index.html is missing
+
+
+
 Q   What is geo-targeting in CloudFront?
 it is a process which is used to serve the content based on their geographic location.
 eg; English content for users in the US
@@ -512,6 +555,7 @@ How does AWS support hybrid cloud?
 What are the limitations of AWS Lambda?
 
 How do you optimize AWS costs?
+
 
 
 
