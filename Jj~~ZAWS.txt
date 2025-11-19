@@ -1,7 +1,8 @@
                                                     S3
  
 Q what is S3?
-   Amazon S3 (Simple Storage Service) is an object storage service provided by AWS. It allows you to store and retrieve any     amount of data from anywhere on the internet.
+   Amazon S3 (Simple Storage Service) is an object storage service provided by AWS. It allows you to store and retrieve any  
+   amount of data from anywhere on the internet.
 
 how s3 save or retrieve the data 
    Amazon S3 stores your files in buckets on AWS servers and gives each file a unique URL. You can upload, download, or 
@@ -604,6 +605,7 @@ How does AWS support hybrid cloud?
 What are the limitations of AWS Lambda?
 
 How do you optimize AWS costs?
+
 
 
 
