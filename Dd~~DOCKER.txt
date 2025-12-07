@@ -33,7 +33,10 @@ version: "3.8"
       ports:
         - "80:80"
       restart: always
+      depends_on:
+        - django
     mysql:
+      container_name: mysql
       image: mysql
       ports:
         - "3306:3306"
@@ -45,23 +48,38 @@ version: "3.8"
       networks
         - my-network
        restar: always
+      healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
      django:
        build:
          context: .    # because the file is in open space not in a directory so . is for PWD
-       conatainer_name: django     # conatainer name should be the same that we use in reverse proxy in nginx in 
-                                        default.conf file "proxy_pass: http/django:8000;
-       command: sh -c "gunicorn notesapp.wsgi --bind 0.0.0.0:8000" # gunicorn is a tool that is used to serve the application in production 
+       conatainer_name: django        # conatainer name should be the same that we use in reverse proxy in nginx in  default.conf file "proxy_pass: http/django:8000;
+       command: sh -c "python mannage.py migrate --no-input && gunicorn notesapp.wsgi --bind 0.0.0.0:8000"    # gunicorn is a tool that is used to serve the application in production and migrate means it will create tables and columbs and noinput for not ask for yes or no input while creating tables an "sh -c" for shell commands.
        ports: 
          - "8000:8000"
        env_file:                      
-         - ".env"
+         - ".env"      # in env file we give the DB_NAME: test_db,DB_PASSWORD: root,DB_USER: root,DB_PORT:3306,DB_HOST:mysql 
        networks:
          - my-networks 
+       restart: always 
+       depend_on:
+         - mysql
       
 volumes: 
   my-volume
 networks
   my-network
+
+
+esc then :wq and enter
+
+docker compose up 
+
+and if we rewrite the compose file then we need to build this file for that we use "docker compose up --build"
 
 
 
@@ -547,6 +565,7 @@ What tools are available for Docker logging?
 How do you troubleshoot a failed Docker container?
 
 What are some best practices for using Docker in production?
+
 
 
 
