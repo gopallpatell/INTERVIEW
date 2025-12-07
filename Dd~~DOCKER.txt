@@ -16,6 +16,57 @@ Nginx config check करता है
 अगर multiple backend हैं → load balance
 Fast event-driven mechanism से हजारों requests handle करता है
 
+
+### Project
+web application (django) + ngnix (for reverse proxy) + MYsql(backend)
+
+it is a django app and it is connect to mysql and it wwill be served by ngnix
+
+first we need to create 3 containers
+for that we need to write docker compose file 
+vim docker-compose
+version: "3.8"
+  services:
+    nginx:
+      build:          ### or we can directly build the image using image: nginx    but wwe need to copy the file from host           context: ./nginx     to container thats why we create dockerfile in github in ./nginx direcory and build in compose.
+      ngnix_name: nginx
+      ports:
+        - "80:80"
+      restart: always
+    mysql:
+      image: mysql
+      ports:
+        - "3306:3306"
+      environments:
+        MYSQL_ROOT_PASSWWORD: root
+        MYSQL_DATABASE: mysql-db
+      volumes: 
+        - my-volume:/war/lib/mysql
+      networks
+        - my-network
+       restar: always
+     django:
+       build:
+         context: .    # because the file is in open space not in a directory so . is for PWD
+       conatainer_name: django     # conatainer name should be the same that we use in reverse proxy in nginx in 
+                                        default.conf file "proxy_pass: http/django:8000;
+       command: sh -c "gunicorn notesapp.wsgi --bind 0.0.0.0:8000" # gunicorn is a tool that is used to serve the application in production 
+       ports: 
+         - "8000:8000"
+       env_file:                      
+         - ".env"
+       networks:
+         - my-networks 
+      
+volumes: 
+  my-volume
+networks
+  my-network
+
+
+
+
+
 Q.1 Tell me some about Hypervisor. 
   hypervisor is used to create the vms using hypervisor we can create multiple vms on a single physical server
 
@@ -496,6 +547,7 @@ What tools are available for Docker logging?
 How do you troubleshoot a failed Docker container?
 
 What are some best practices for using Docker in production?
+
 
 
 
