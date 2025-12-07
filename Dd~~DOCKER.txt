@@ -6,7 +6,15 @@ Q what is the nohup
 
 we can also use ' docker stats ' to see the health and usage of the docker containers
 
+Q what is ngnix 
+  Nginx is a high-performance web server and reverse proxy used to efficiently serve and manage web traffic.
 
+Client request भेजता है
+Nginx config check करता है
+अगर static file है → direct serve
+अगर backend चाहिए → proxy_pass
+अगर multiple backend हैं → load balance
+Fast event-driven mechanism से हजारों requests handle करता है
 
 Q.1 Tell me some about Hypervisor. 
   hypervisor is used to create the vms using hypervisor we can create multiple vms on a single physical server
@@ -488,6 +496,7 @@ What tools are available for Docker logging?
 How do you troubleshoot a failed Docker container?
 
 What are some best practices for using Docker in production?
+
 
 
 
