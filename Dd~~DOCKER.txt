@@ -44,10 +44,10 @@ version: "3.8"
         MYSQL_ROOT_PASSWWORD: root
         MYSQL_DATABASE: mysql-db
       volumes: 
-        - my-volume:/war/lib/mysql
+        - ./my-volume:/war/lib/mysql
       networks
         - my-network
-       restar: always
+      restar: always
       healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
       interval: 10s
@@ -68,6 +68,12 @@ version: "3.8"
        restart: always 
        depend_on:
          - mysql
+      healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8000/admin || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
       
 volumes: 
   my-volume
@@ -81,6 +87,9 @@ docker compose up
 
 and if we rewrite the compose file then we need to build this file for that we use "docker compose up --build"
 
+errors 
+if we didnt give the proper name of networks then both containers are not being connected if we mistack in given name then 
+wwe will get the errors
 
 
 
@@ -565,6 +574,7 @@ What tools are available for Docker logging?
 How do you troubleshoot a failed Docker container?
 
 What are some best practices for using Docker in production?
+
 
 
 
