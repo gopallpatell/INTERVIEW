@@ -1,3 +1,13 @@
+### monitering and logging 
+Q what is the nohup 
+  nohup is used to write the logs in file directly. it will run the command in the background and give the output in a file
+  "nohup.out"
+  command - nohup docker attach <containerID > & 
+
+we can also use ' docker stats ' to see the health and usage of the docker containers
+
+
+
 Q.1 Tell me some about Hypervisor. 
   hypervisor is used to create the vms using hypervisor we can create multiple vms on a single physical server
 
@@ -478,6 +488,7 @@ What tools are available for Docker logging?
 How do you troubleshoot a failed Docker container?
 
 What are some best practices for using Docker in production?
+
 
 
 
