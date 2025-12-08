@@ -1,3 +1,24 @@
+how to install minikube
+ in kubestarter repo minikube instalation file 
+
+kubectl describe pod/node/deployment/svc <name> 
+ to see the detailed information about the resources like 
+Pod क्यों crash हुआ
+Image pull error
+Liveness/Readiness probe failures
+Events (Most important)
+Resource limit
+Mount volumes
+IP, Node info
+
+for namespace 
+kubectl describe <resource-type>/<resource-name> -n <namespace>
+kubectl describe pod/nginx -n nginx
+
+to go to inside the pod 
+kubectl exec -it nginx-pod -n nginx -- bash
+
+
 
 
 
