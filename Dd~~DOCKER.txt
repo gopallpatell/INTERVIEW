@@ -197,14 +197,34 @@ Q. 11  What is difference between ADD and COPY in Dockerfile
  ADD 								# To Copy the file from Host Volume as well as from URL
 
 Q.12  what are Docker Namespaces?
-    it is used to create a seperate invironment 
-  like we can create a invironment for user means that user can run the container 
-  also we can create seperate namespace for mount points means the mount volume is responsible for selected containers
+    it is used to create a isolated invironment 
+Without namespaces:
+All containers would see the same processes, same network interfaces, same filesystem.
+If you ran ps aux inside one container, you could see every process on the host.
+If you created files in /, they would affect the host filesystem.
+
+🔹 2️⃣ Namespaces are what enforce isolation
+What happens because of namespaces	Example
+PID namespace → isolates processes	ps aux in container sees only container processes
+   docker run -it --name pid-test ubuntu bash         ps aux | pgrep pid-test        # shows container’s process but container itself cannot see host processes.
+NET namespace → isolates networking	Container has its own IP & ports; cannot see host or other container IPs
+   docker run -it --name net-test ubuntu bash         ip addr
+MNT namespace → isolates filesystem	Container has its own root /; cannot touch host files
+   docker run -it --name mnt-test ubuntu bash
+UTS namespace → isolates hostname	Container thinks it has its own hostname
+   docker run -it --name uts-test --hostname mycontainer ubuntu bash
+IPC namespace → isolates shared memory	Container cannot access shared memory of host/other containers
+USER namespace → isolates users	root in container ≠ root on host
+   
 
 Q. 13 Why is it necessary to monitor a  Docker?
-  monitoring Docker containers is like checking on your car while driving. 
-  You look at the speed, fuel, and engine lights to make sure everything is running smoothly. If something goes wrong, you 
-  can fix it before it becomes a bigger problem!
+ Monitoring ensures containers run reliably, securely, and efficiently.
+  Resource usage: Track CPU, memory, disk to prevent overload.
+  Container health: Detect crashes or freezes via healthchecks.
+  Logs: Debug apps and audit activity.
+  Network: Ensure proper communication between containers.
+  Security: Detect anomalies or attacks.
+  Performance & scaling: Optimize resources and scale efficiently.  
 
 Q. 14  Define Docker compose?
   Docker Compose is a tool that helps you run and manage multiple Docker containers at the same time, with just one command.
@@ -233,8 +253,8 @@ like a web app needing a database to be available first.
 
 Q. 16  Describe the role of Docker load and save command.
   it is use to import and export the docker images without internet. 
-  using docker save -o file.tar  gopallpatell/netflix:v1.0   we can compress the image in a file for exporting the image 
-  and using docker load -i file.tar to extract that file offline 
+  using "docker save -o file.tar  gopallpatell/netflix:v1.0"   we compress the image in a file for exporting the image 
+  and using "docker load -i file.tar" to extract that file offline 
 
   docker save: Creates a tarball of a Docker image that you can transfer or back up.
   docker load: Loads a Docker image from a tarball into your local Docker environment.
@@ -317,6 +337,8 @@ Q29   You want to update a running container with a new version of the applicati
   2. Blue-Green Deployment (Manual Method)
   In more advanced scenarios, you can implement a blue-green deployment strategy manually, where you run two identical 
   environments (blue and green), switching traffic between them.
+Rolling Update: Slowly replace old parts of a machine while it’s running.
+Blue-Green: Build a new machine completely, then switch to it instantly.
 
 30. docker commit 
   docker commit is used to create new image based on the modified continers or we can say existing containers
@@ -587,6 +609,7 @@ What tools are available for Docker logging?
 How do you troubleshoot a failed Docker container?
 
 What are some best practices for using Docker in production?
+
 
 
 
