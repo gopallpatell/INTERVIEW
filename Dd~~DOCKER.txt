@@ -394,8 +394,7 @@ Blue-Green: Build a new machine completely, then switch to it instantly.
 40. what issue you face while creating container like it created and stopped what the issue
    it happen if entrypoint is wrong 
    insuffeciant memory or cpu
-   if we create container in detatched mode then container will go in stoped state imediately
-   dockerfile issue
+   Port already in use == Container fails to bind to port
 
 41 what is multi stage in dockerfile
    Multi-stage builds in Docker allow you to use multiple FROM statements in a single Dockerfile to optimize the build 
@@ -609,6 +608,7 @@ What tools are available for Docker logging?
 How do you troubleshoot a failed Docker container?
 
 What are some best practices for using Docker in production?
+
 
 
 
