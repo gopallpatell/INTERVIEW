@@ -1,7 +1,7 @@
-how to install minikube
+👉 how to install minikube
  in kubestarter repo minikube instalation file 
 
-kubectl describe pod/node/deployment/svc <name> 
+👉 kubectl describe pod/node/deployment/svc <name> 
  to see the detailed information about the resources like 
 Pod क्यों crash हुआ
 Image pull error
@@ -11,16 +11,58 @@ Resource limit
 Mount volumes
 IP, Node info
 
-for namespace 
+👉 for namespace 
 kubectl describe <resource-type>/<resource-name> -n <namespace>
 kubectl describe pod/nginx -n nginx
 
-to go to inside the pod 
+👉 to go to inside the pod 
 kubectl exec -it nginx-pod -n nginx -- bash
 
+👉 Replication controler 
+Replication Controller ensures that a specified number of pod replicas are always running.
+If any pod fails or gets deleted, it automatically creates a new one.
 
+👉 difference between ReplicaSet, Deployment, and StatefulSet in Kubernetes 👇
 
+ 1️⃣ ReplicaSet (RS)
+Ensures a specific number of identical pods are always running.
+✔ Auto-restart
+✔ Auto-scale
+❌ No rolling updates
+❌ No version control
+❌ No stable network identity
+👉 Used inside Deployment automatically.
+👉 You rarely create ReplicaSet directly.
 
+✅ 2️⃣ Deployment
+Manages ReplicaSets + provides rolling updates and rollbacks.
+✔ Rolling updates
+✔ Rollbacks
+✔ Version control
+✔ Easy to scale
+❌ No unique identity
+❌ Not for database-type workloads
+👉 Best for stateless applications like:
+Nginx
+Node.js
+Python
+Java apps
+APIs
+
+✅ 3️⃣ StatefulSet
+Used for stateful applications where each pod needs a fixed identity.
+✔ Stable pod name (pod-0, pod-1...)
+✔ Stable network identity
+✔ Stable storage (PVC per pod)
+✔ Ordered startup & shutdown
+❌ Slower scaling
+❌ Not needed for stateless apps
+👉 Used for databases:
+MySQL
+MongoDB
+
+✅ DaemonSet 
+DaemonSet ensures that exactly one pod runs on every node (or on selected nodes).
 
 1 What is Kubernetes and what does it do?
   It is a Open-Source Container Orchestration Tool 
