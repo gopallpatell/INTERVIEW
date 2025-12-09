@@ -79,3 +79,33 @@ spec:
       volumes:
       - name: backup-volume
         emptyDir: {}
+
+
+cronjob for backup
+
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: mysql-backup-cron
+spec:
+  schedule: "0 2 * * *"   # Runs every day at 2:00 AM
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: mysql-backup
+            image: mysql:5.7
+            command:
+              ["/bin/sh", "-c", "mysqldump -h db-host -u root -proot mydb > /backup/mydb.sql"]
+            volumeMounts:
+            - name: backup-storage
+              mountPath: /backup
+          restartPolicy: OnFailure
+          volumes:
+          - name: backup-storage
+            persistentVolumeClaim:
+              claimName: mysql-backup-pvc   # Your PVC name
+
+
+
