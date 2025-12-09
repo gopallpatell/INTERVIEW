@@ -1,0 +1,81 @@
+jobs
+A Job that simply prints a message and exits.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hello-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: hello
+        image: busybox
+        command: ["echo", "Hello from Kubernetes Job"]
+      restartPolicy: Never
+
+Job with Retry on Failure
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: retry-job
+spec:
+  backoffLimit: 4
+  template:
+    spec:
+      containers:
+      - name: fail-example
+        image: busybox
+        command: ["sh", "-c", "exit 1"]
+      restartPolicy: OnFailure
+
+Job with Multiple Completions
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: multi-run-job
+spec:
+  completions: 3
+  template:
+    spec:
+      containers:
+      - name: multi
+        image: busybox
+        command: ["echo", "Running task..."]
+      restartPolicy: Never
+
+for parrallel job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: parallel-job
+spec:
+  completions: 5
+  parallelism: 2
+  template:
+    spec:
+      containers:
+      - name: worker
+        image: busybox
+        command: ["sh", "-c", "echo Working... && sleep 5"]
+      restartPolicy: Never
+
+
+Real-world Job (Database Backup)
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-backup
+spec:
+  template:
+    spec:
+      containers:
+      - name: backup
+        image: mysql:5.7
+        command: ["sh", "-c", "mysqldump -h db -u root -proot mydb > /backup/db.sql"]
+        volumeMounts:
+        - name: backup-volume
+          mountPath: /backup
+      restartPolicy: OnFailure
+      volumes:
+      - name: backup-volume
+        emptyDir: {}
