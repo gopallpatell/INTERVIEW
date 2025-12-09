@@ -1,7 +1,9 @@
-👉 how to install minikube
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉
+✅how to install minikube
  in kubestarter repo minikube instalation file 
 
-👉 kubectl describe pod/node/deployment/svc <name> 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+✅ kubectl describe pod/node/deployment/svc <name> 
  to see the detailed information about the resources like 
 Pod क्यों crash हुआ
 Image pull error
@@ -11,18 +13,22 @@ Resource limit
 Mount volumes
 IP, Node info
 
-👉 for namespace 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+✅  for namespace 
 kubectl describe <resource-type>/<resource-name> -n <namespace>
 kubectl describe pod/nginx -n nginx
 
-👉 to go to inside the pod 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+✅ to go to inside the pod 
 kubectl exec -it nginx-pod -n nginx -- bash
 
-👉 Replication controler 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+✅  Replication controler 
 Replication Controller ensures that a specified number of pod replicas are always running.
 If any pod fails or gets deleted, it automatically creates a new one.
 
-👉 difference between ReplicaSet, Deployment, and StatefulSet in Kubernetes 👇
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+✅  difference between ReplicaSet, Deployment, and StatefulSet and daemonSet in Kubernetes 👇
 
  1️⃣ ReplicaSet (RS)
 Ensures a specific number of identical pods are always running.
@@ -63,6 +69,98 @@ MongoDB
 
 ✅ DaemonSet 
 DaemonSet ensures that exactly one pod runs on every node (or on selected nodes).
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+✅  what is jobs in kubernetes
+    job is used in k8s to Runs a pod until the task finishes              (written in .yml repo)
+2️⃣ Retry Job
+A job that runs a command which fails, and Kubernetes retries it 4 times until it succeeds or reaches limit.
+3️⃣ Multi-Run Job
+A job that runs the same task 3 times, one after another, until all are completed successfully.
+4️⃣ Parallel Job
+A job that runs 5 tasks, but only 2 pods run at the same time (parallel batch processing).
+5️⃣ Database Backup Job
+A job that starts a container once, runs a mysqldump command, saves the database backup, and then exits.
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+✅ pods defferent states or lifecycle
+creatingcontainer
+running
+completed
+terminating
+imagepullbackoff
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+✅  cronjob             for this also we need to create .yml (written in .yml repo)
+it is used to schedule the job/task               for this also we need to create .yml (written in .yml repo)
+cronjob      =      *       *       *       *       *
+                   min     hour    day  DayOweek  DayOmonth        
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+✅ PV and PVC 
+✅ PV =  A PersistentVolume (PV) is a piece of storage in the cluster
+Policy	
+Retain	Keep data even after PVC deleted
+Delete	Delete underlying storage when PVC deleted
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv-demo
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /mnt/data   # local storage path on node (for demo)
+
+✅ PVC = A PersistentVolumeClaim (PVC) is a request for storage by a pod.   ( means firstly wwe need to create the PV and then we need to claim that PV it is called PVC )
+ Admin creates PV (cluster storage available)
+User creates PVC (pod asks for storage)
+Kubernetes matches PVC to a PV
+Pod uses PVC to mount storage
+Data persists even if pod dies or is recreated
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-demo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
+✅ How pods/deployments use PVC 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-using-pvc
+spec:
+  containers:
+  - name: app
+    image: busybox
+    command: ["sh", "-c", "echo Hello > /data/hello.txt && sleep 3600"]
+    volumeMounts:
+    - name: storage
+      mountPath: /data
+  volumes:
+  - name: storage
+    persistentVolumeClaim:
+      claimName: pvc-demo
+
+
+✅ after all this if we go to the path /mnt/data in node where the pod is running ( assume this pod is running on workernode1 that is a container ) 
+   so we go inside that container and we can see the data in /mnt/data 
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+✅ services 
+services are used to expose the pod/deployment on web/internet 
+
+
 
 1 What is Kubernetes and what does it do?
   It is a Open-Source Container Orchestration Tool 
