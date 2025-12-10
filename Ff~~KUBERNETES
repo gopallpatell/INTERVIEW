@@ -138,6 +138,7 @@ spec:
     requests:
       storage: 5Gi
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 ✅ How pods/deployments use PVC 
 apiVersion: v1
 kind: Pod
@@ -258,7 +259,7 @@ URL path routing
 TLS/HTTPS
 Single public IP for many services
 
-
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 9 What is Ingress network?
   ingress is a traffic controler in lkubernetes which is used to send the traffic or route the traffice to the right service in kubernetes cluster
   Ingress helps direct incoming internet traffic to the right service inside the cluster. For example, if someone visits example.com/api, 
@@ -271,14 +272,17 @@ Single public IP for many services
   It helps you manage access through one main entry point (a single IP or domain).
   It can handle things like routing, load balancing, and security (SSL encryption).
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 10 egress
   While Ingress controls incoming traffic to the cluster, Egress controls outgoing traffic of the cluster.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 11 Differentiate between a replica set and a replication controller.
   ReplicaSet and ReplicationController are both Kubernetes resources used to ensure that a specified number of replicas of a pod are running at any given time, 
   ReplicaSet is an updated and more flexible version of ReplicationController, introduced in Kubernetes 1.2.
   we have extra features in replicaset like we can set a label no rolling upddate 
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 12 deployment 
   in this we have extra features like rollback and rolling update 
   Deployment in Kubernetes is a higher-level resource that manages the deployment and lifecycle of your application’s pods. 
@@ -289,62 +293,78 @@ Single public IP for many services
   Ensuring that the right version of the app is always running.
   Allowing you to easily update the app and automatically handle any failures or rollbacks.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 13 Explain the pod in Kubernetes.
   A Pod is the smallest unit in Kubernetes. It can hold:
   One container (like a single app).
   Or multiple containers that work together (like a team of apps that need to talk to each other).
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 14 deff btn pod and deployment 
   Pod: it is a smallest unit in kubernetes  A single instance of a container or application.
   Deployment: it is used to manages multiple Pods, handles scaling, rolling updates, rollback and ensures high availability.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 15 What do you know about clusters of containers in Kubernetes? 
   A Kubernetes Cluster consists of a control plane (master) and multiple worker nodes.
   Each node runs a container runtime (e.g., Docker, containerd) that runs Pods.
   Pods are the smallest deployable units in Kubernetes, and they can contain one or more containers.
   Kubernetes clusters provide features like scaling, self-healing, and load balancing for containerized applications, making them ideal for running large-scale distributed systems.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 16 Explain the two types of Kubernetes pods.
   single conatainer pod 
   multi-container pod
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 17 Tell me about labels in Kubernetes. 
   labels are like tags used to select and identify the objects such as pods.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 18 What is persistent volume?
   In very simple terms, a Persistent Volume (PV) in Kubernetes is like a hard drive that stores data and doesn't go away even if the app (Pod) using it is deleted or recreated.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 19 what is namespace in kubernetes
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 20 How can you achieve zero downtime in Kubernetes?
   We can achieve zero downtime in Kubernetes through RollingUpdate strategy. 
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 21 list of exception you got while creating pod
   BadRequest – Invalid YAML syntax or missing required fields.
   NotFound – The resource doesn’t exist or is deleted.
   NotAcceptable – Invalid container image or missing registry.
   AlreadyExists – Pod name already in use.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 24. What is diff between kubectl apply and kubectl create/update
   Use kubectl create when you are certain the resource doesn’t exist and you are creating it for the first time.
   Use kubectl apply for both creation and updates. It’s the recommended command for declarative configuration management
   and handling changes over time.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 25 How to rollback deployment in kubernetes give command
    kubectl rollout undo deployment <deployment-name>
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 26. Scale a deployment in kubernetes command 
     kubectl scale deployment nginx-deploy --replicas=5
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 27. Different components of kubernetes master
     (API Server, Scheduler, Controller Manager, etcd).
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 28 Manifest File				
    # Is a AppConfig file, that defines the properties of the pods to be deployed in kubernetes
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 29. # Expose PODS using NodePort service
   kubectl expose pod nginx-pod --type=NodePort --port=80
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 30 How do you set resource limits on Kubernetes Pods?
    we can limit flag in yaml file to limit the resource on pods  like cpu and memory usage 
    or we can also request for memory and cpu 
@@ -354,31 +374,38 @@ Single public IP for many services
   CPU Limits: When a container exceeds its CPU limit, it will be throttled (i.e., Kubernetes will restrict the container's 
   CPU usage but will not kill it).
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 31 Explain Kubernetes taints and tolerations.
   Taints and Tolerations are a way to control where pods can run in a Kubernetes cluster.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 32 How does a Kubernetes Network Policy work?
   A Kubernetes Network Policy is a way to control the communication (traffic) between pods in a Kubernetes cluster. 
   like which pod can comuunicate with each other 
   We want to make sure the frontend pod can talk to the backend pod, but no other pods can talk to the backend pod.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 33 What is an Init Container in Kubernetes?
   Init containers are a useful feature in Kubernetes to ensure that certain tasks are performed before the main 
   application containers start running.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 34 How do you pass environment variables to a Kubernetes Pod?
   we can directolly pass the env in pod yml file  and from configmap
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 35. Pod is in pending state what will be the reason
   Insufficient resources (CPU, memory) on nodes.
   no node vailable for pods
   Image Pull Issues
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 36. your pod getting terminated/crashed what is the issue
   Resource Limits Exceeded: Adjust CPU/memory limits.
   container in createded in detatched mode.
   Out of Memory (OOM): Increase memory limits or optimize app.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 37. its ok if I had 2 container in one pod , what you will suggest
    it’s okay to have two containers in one Pod, especially when they need to work together closely 
    However, always evaluate if they really need to be in the same Pod, as separating them can improve flexibility 
@@ -386,10 +413,7 @@ Single public IP for many services
    Can reduce scalability because both containers scale together. If one container needs more resources or scaling,
    both containers will scale together.
 
-38. how to ,limit resources in pod
-    we can limit flag in yaml file to limit the resource on pods  like cpu and memory usage 
-   or we can also request for memory and cpu 
-
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 39. I want to deploy application in Kubernetes , how to do that
   Create a Deployment YAML file with container details.
   Apply the YAML with kubectl apply -f <file>.yaml.
@@ -397,20 +421,20 @@ Single public IP for many services
   Verify with kubectl get.
   Access the app through the Service (LoadBalancer/NodePort).
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 40. My application is not accessible through browser what is the problem
   Check Service: Ensure it’s of type LoadBalancer or NodePort and exposed correctly.
   Check Pods: Make sure Pods are running (kubectl get pods) and healthy.
   Firewall: Ensure traffic is allowed on the correct port.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 41. After deletion of pod data get deleted , how to retain pod data
    To retain data after Pod deletion, use Persistent Volumes (PVs) and Persistent Volume Claims (PVCs):
    Create a Persistent Volume (PV) to define storage.
    Create a Persistent Volume Claim (PVC) to request storage.
    Mount PVC in the Pod to retain data.
 
-42 what is daemonset in kubernetes
-  A DaemonSet in Kubernetes ensures that a copy of a specific Pod is running on all (or selected) nodes in the cluster.
-
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 43 how deploment or service knows which pods should they manage
   In Kubernetes, Deployments and Services use labels and selectors to identify and manage the Pods they control.
 
