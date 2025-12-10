@@ -97,6 +97,10 @@ cronjob      =      *       *       *       *       *
                    min     hour    day  DayOweek  DayOmonth        
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+wwhy we need PV and PVC 
+wwhen a pod is crached or deleted the data wwill gone But your data should NOT be deleted when pods are deleted.
+So Kubernetes needs a separate storage system that lives independently of pods.
+
 ✅ PV and PVC 
 ✅ PV =  A PersistentVolume (PV) is a piece of storage in the cluster
 Policy	
@@ -161,6 +165,7 @@ spec:
 services are used to expose the pod/deployment on web/internet 
 
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 
 1 What is Kubernetes and what does it do?
   It is a Open-Source Container Orchestration Tool 
@@ -170,10 +175,12 @@ services are used to expose the pod/deployment on web/internet
 		- It supports Auto-Scaling & Load Balancing.
 		- Self-Healing
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 2 How are Kubernetes and Docker linked?
   Docker is focused on creating and running containers while kubernetes is used to
   deploy that container and ensure high availability load balancing auto-scaling and self healing 
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 3 List the features of Kubernetes. 
   Self-Healing: Restarts or replaces failed containers.
   Horizontal Scaling: Automatically scales applications based on demand.
@@ -182,41 +189,78 @@ services are used to expose the pod/deployment on web/internet
   Storage Orchestration: Manages persistent storage for containers.
   Namespace Support: Organizes resources for different teams or projects.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 4 What are clusters in Kubernetes?
   A Kubernetes cluster is a collection of nodes (machines) that work together, with the control plane managing and 
   coordinating the worker nodes. 
   The cluster is responsible for running and managing applications in containers, 
   ensuring high availability, scalability, and reliability.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 5 What do you know about Kubectl?
-  kubectl (short for Kubernetes control) is the command-line tool used to interact with and manage Kubernetes clusters. 
+  kubectl (short for Kubernetes control) is the command-line tool used to interact and manage Kubernetes clusters. 
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 6 What is a node in Kubernetes?
    A node in Kubernetes is a machine (physical or virtual) that runs containerized applications. 
   There are two types of nodes: Master nodes that manage the cluster, and Worker nodes that run the applications.
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 7 List the main components of Kubernetes architecture.
  The Kubernetes architecture consists of two main parts:
   Control Plane: Manages the cluster and makes global decisions (API Server, Scheduler, Controller Manager, etcd).
   Node (Worker Node): Runs containers and workloads (Kubelet, Container Runtime, Kube Proxy, Pods).
 
-            API_Server 				--> # Acts as an interface to the kubernetes 
+            API_Server 				--> # Acts as an interface to the kubernetes or we can say it is the brain + entry gate of the Kubernetes cluster.
             ETCD 				--> # Single point of Source for Kubernetes Components or we can say it is a data source for the cluster
-	    Controller Manager 	         	--> # To run the pods in its desired state 
+	        Controller Manager 	         	--> # To run the pods in its desired state 
             Scheduler				--> # To identify the Healthy Node for Deployments
-	    Kubelet 				--> # Is a Kubernetes Agent used to Create & Deploy the Pods	
-	    CRI - Container RunTime Interface (Container-D) --> # It is used identify the Image from Container Registry for deployment
-            KubeProxy				--> # Is used to enable pod networking by create Pod IP Address	
+	        Kubelet 				--> # Is a Kubernetes Agent used to Create & Deploy the Pods	
+	        CRI - Container RunTime Interface (Container-D) --> # It is used identify the Image from Container Registry for deployment
+            KubeProxy				--> # it enable communication between pods and services, inside and outside the cluster.
+                                             Pod IPs are assigned by the CNI plugin (like Flannel, Calico, Weave)
+You run: kubectl apply -f deploy.yaml
+kubectl sends request → API Server
+API Server validates YAML
+Saves state in etcd
+Scheduler gets notified
+Scheduler selects a node
+Kubelet on that node creates the pod
 
+API Server stores state → Controller Manager checks → Scheduler assigns → Kubelet runs → Kube-Proxy connects → Repeat forever.
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 8 List the different types of services in Kubernetes.
   ClusterIP: The ClusterIP service is used to expose a service only within the Kubernetes cluster, not to the outside world.
-  NodePort: Exposes service on each node's IP, accessible externally.
+             Backend Pod needs to talk to Database Pod
+             Frontend Pod needs to talk to Backend Pod
+             Microservices communicate internally
+  NodePort: Exposes your service outside the cluster by opening a port on every node.
+            For testing
+            When you don’t have a cloud LoadBalancer
+            Small environments or labs
+            Not good for production because:
+               Port range is limited (30000–32767)
+               No automatic load balancing
+               Must enter IP + NodePort manually
   LoadBalancer: Provisions an external load balancer, exposing the service to the internet.
+             You want public access
+             Want automatic load balancing across nodes
+            Not ideal when: 
+            You create many services → each gets a public IP (costly)
+            You want routing on paths/domains → not supported
   ExternalName: it is used to connect with external resource like database API
+Ingress (Domain + routing + rules)
+📌 What it does:
+Ingress gives:
+Domain name support
+URL path routing
+TLS/HTTPS
+Single public IP for many services
+
 
 9 What is Ingress network?
-  ingress is a traffic controler in lkubernetes which is used to send the 
-  traffic or route the traffice to the right service in kubernetes cluster
+  ingress is a traffic controler in lkubernetes which is used to send the traffic or route the traffice to the right service in kubernetes cluster
   Ingress helps direct incoming internet traffic to the right service inside the cluster. For example, if someone visits example.com/api, 
   Ingress will send that request to your "API" service, and if they visit example.com/blog, Ingress will send it to the "Blog" service
 
@@ -233,7 +277,7 @@ services are used to expose the pod/deployment on web/internet
 11 Differentiate between a replica set and a replication controller.
   ReplicaSet and ReplicationController are both Kubernetes resources used to ensure that a specified number of replicas of a pod are running at any given time, 
   ReplicaSet is an updated and more flexible version of ReplicationController, introduced in Kubernetes 1.2.
-  we have extra features in replicaset like we can set a label self healing no rolling upddate 
+  we have extra features in replicaset like we can set a label no rolling upddate 
 
 12 deployment 
   in this we have extra features like rollback and rolling update 
@@ -280,19 +324,6 @@ services are used to expose the pod/deployment on web/internet
   NotFound – The resource doesn’t exist or is deleted.
   NotAcceptable – Invalid container image or missing registry.
   AlreadyExists – Pod name already in use.
-
-17. In kubernetes what is deployment and services
-   Deployment Controller
-   ReplicaSet Controller
-   
-22. Different services types in kubernetes 
-    ClusterIP: The ClusterIP service is used to expose a service only within the Kubernetes cluster, not to the outside world.
-    NodePort: Exposes service on each node's IP, accessible externally.
-    LoadBalancer: Provisions an external load balancer, exposing the service to the internet.
-    ExternalName: it is used to connect with external resource like database API
-
-23. Use of Proxy
-    Is used to enable pod networking by create Pod IP Address	
 
 24. What is diff between kubectl apply and kubectl create/update
   Use kubectl create when you are certain the resource doesn’t exist and you are creating it for the first time.
