@@ -100,6 +100,10 @@
 
 30. How to configure Docker in Jenkins?
   Install Docker plugin, configure Docker settings in "Manage Jenkins", and use Docker commands in pipeline scripts.
+   A) Install Docker on Jenkins Server
+  (B) Give Jenkins user permission to use Docker
+  (C) Install Docker plugins (optional)
+  (D) Configure Jenkins pipeline to use Docker
 
 31. When can you use the GitHub plugin in Jenkins?
   You can use the GitHub Plugin in Jenkins when you want Jenkins to interact with your GitHub repositories
