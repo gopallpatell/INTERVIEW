@@ -1,5 +1,6 @@
 Q how internet works?
-The Internet works by sending a request from the user (client) to a server where the data is stored. DNS converts the website name into an IP address, and using that IP address the request reaches the server. then The server responds by serving the requested data back to the client.” 
+The Internet works by sending a request from the user (client) to a server where the data is stored. DNS converts the website name into an IP address, and using that IP 
+address the request reaches the server. then The server responds by serving the requested data back to the client.” 
 Ex.-
 google.com->ISP->DNS->Server
 
@@ -34,6 +35,98 @@ Bootloader - Bootloader is the first program that starts the OS when a computer 
 Bootloader runs first because it’s the “starter program” that loads the OS into the computer.
 
 
+Q Stats of processes?
+  running
+  sleeping
+  Stopped 
+  killed
+  terminating
+  Zombie
+
+Q to remove directory/folder
+  rm -r cloud/
+  rmdir cloud/
+
+Q to print the first and last line from a file 
+  first - head -n 5 file1
+  last  - tail -n 5 file1 
+  tail -f file1 - it will monitor the file which is  continuously updating like logs file so it will go inside the file and show us the continuously updating new lines.
+
+Q 'less' and 'more' command 
+   both are commands are used to see the file page by page like if we have a log.txt file with 200 pages and we want to see the file page by page then we use less and more 
+   command 
+more /var/log/log.txt
+Press Space → next page
+Press Enter → next line
+Press q → quit
+
+less /var/log/log.txt
+Press Space → next page
+Press b → previous page
+Press ↑ / ↓ → move line by line
+Press /error → search word
+Press q → quit
+
+more moves only forward, while less allows both forward and backward navigation.
+
+Q 'cp' command 
+ cp file1.txt devops/
+ cp cloud/file1.txt devops/
+ cp -r cloud/ devops/  #-r - recursively cp folder
+ 
+Q 'mv' - to move and rename the file 
+ mv file.txt devOps/     # to move the file forward
+ mv file.txt ../cloud/   # to move the file backward .. is for backward directory
+ mv devops/ Linux_for_devops  # rename
+ mv file.txt file1..txt
+
+Q 'wc'  
+to see how many lines, words, and byte present in a file
+wc file.txt   # it will work with multiple file in same command
+
+Q what is hard link and soft link 
+   Both hard link and soft link are used to link files. In a soft link, if the original file is deleted, the link breaks. But in a hard link, the file still exists even if the original file is deleted.
+ln -s file.txt softlink.txt     ln -s cloud/devops/file.txt softlink.txt
+ln file.txt hardlink.txt        ln cloud/devops/file.txt hardlink.txt
+
+ln → Hard link → data still accessible
+ln -s → Soft link → breaks the link if original file is deleted and we cant access the data.
+
+Q 'cut'
+ cut is used to give some portion or byte 
+ cut 1 file..txt       # hello dosto   is the file content
+ output - h
+ cut 1-4 file.txt
+ output - hello
+
+Q 'tee'
+tee command is used to create a file with content
+echo "hello" | tee file.txt
+
+Q 'sort'
+it is used to rearrange the words and latter in alphabetical manner..
+
+Q 'diff'
+ this command is used to see the deference between two files or dir.
+diff file.txt file1.txt 
+
+
+Q nohup?
+it is used to save the output of anything in the file that is "nohup.out"
+like if we want to save the logs of any file into a file then we can use nohup <command>
+ nohup top   nohup free -h   nohup df   nohup du 
+
+Q 'uname'  is used to se the operator/plateform  like linux/darwin(mac)
+
+Q 'uptime'  used to see how long system has being running along with load and user..
+
+Q diff in 'who' and whoami"
+ "who" is used to see hoe many users loggin in this user, time when a user login to this system.
+ "whoami" is used to see who is the current loged in user. 
+
+Q 'which' 
+  this command is used to see the current path and current version of anything
+  which java    which python     
 
 
 Q2. How do you mount and unmount filesystems in Linux?
