@@ -125,8 +125,20 @@ Q diff in 'who' and whoami"
  "whoami" is used to see who is the current loged in user. 
 
 Q 'which' 
-  this command is used to see the current path and current version of anything
-  which java    which python     
+  this command is used to see the current path and current version of anything. like we can see where the tool is installed in which folder/dir.
+  which java    which python  which docker   
+
+Q Package Management - Package Managers :::
+				- Package Managers are used to install/Uninstall/Upgrade the Packages/software 
+			
+					- Centos / RHEL 		===> 	yum package Manager 
+					- Debian / Ubuntu 		===>	apt/apt-get package Manager 
+					- Fedora				===>	dnf (Latest Version of Fedora)
+													yum (Previous Version of Fedora)
+
+Q 'ctrl + r' it is used to search the command in cli 
+  using this we can search the previously used commands         # to remove any tool -- sudo apt remove docker.io 
+                                                    
 
 
 Q2. How do you mount and unmount filesystems in Linux?
