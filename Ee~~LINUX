@@ -139,6 +139,94 @@ Q Package Management - Package Managers :::
 Q 'ctrl + r' it is used to search the command in cli 
   using this we can search the previously used commands         # to remove any tool -- sudo apt remove docker.io 
                                                     
+Q to create and delete a user 
+sudo useradd -m adminuser
+sudo userdel adminuser
+
+Q to create Group 
+sudo groupadd devops      # it will create devops group
+usermod -aG <group_name> <user_name
+usermod -aG docker devopsadmin
+
+Q 'chmod' is used to change the permissions of files
+
+Q What is umask in Linux?
+It decides which permissions should NOT be given when a new file or directory is created.
+File default = 666 → rw-rw-rw-
+Directory default = 777 → rwxrwxrwx
+
+in linux umask is 0002    so permission is rwxrwxr-x
+how to change the umask
+Temporary       	umask 027
+Permanent (user)	~/.bashrc     vi ~/.bashrc -> add at the end umask 027 -> source ~/.bashrc
+
+Q "chown" It is used to change the owner and group of a file or directory.
+chown [OPTIONS] owner:group file_name
+for only user
+chown user1 file.txt
+                          only group
+                          chown :devops file.txt
+user and group
+chown user1:devops file.txt
+                           Change ownership recursively (directory + files)
+                            chown -R user1:devops /project or file(file.txt)
+
+           
+Q What is zip?                                     # other tools gunzip,gzip
+zip is a file compression tool.
+It is used to combine multiple files/folders into one compressed .zip file to:
+zip is a compression tool used to reduce file size and bundle files into a single archive.
+- Save disk space
+- Transfer files easily
+- Backup data
+
+to install zip --- sudo apt install zip unzip -y 
+
+zip file.zip file.txt         zip files.zip file1.txt file2.txt
+dir zip ---- zip -r folder.zip myfolder
+
+unzip
+unzip file.zip
+
+-e Password protect zip
+zip -e secure.zip file.txt
+
+Check zip contents (without extracting)
+unzip -l file.zip
+
+
+Q How do you compress and decompress files in Linux? 
+  tar -czvf jayesh.tar.gz files
+  tar -xzvf jayesh.tar.gz
+
+Q what is LVM(logical volume manager)
+Physical Volume (PV) → Each EBS volume you attach to the EC2 instance is treated as a physical volume in LVM.
+sudo pvcreate /dev/xvdf
+sudo pvdisplay
+
+Volume Group (VG) → Multiple PVs can be combined into a volume group, which acts like a storage pool. This allows you to 
+manage multiple disks as a single unit.
+sudo vgcreate vg_data /dev/xvdf
+sudo vgdisplay
+
+Logical Volume (LV) → From the volume group, you create logical volumes, which behave like normal partitions. You format them
+with a filesystem and mount them for use.
+sudo lvcreate -L 10G -n lv_data vg_data
+sudo lvdisplay
+
+EBS Volume → PV → combine PVs → VG → create LV → format & mount → usable storage
+
+Create Filesystem on LV
+sudo mkfs.ext4 /dev/vg_data/lv_data
+
+mount
+sudo mkdir /data
+sudo mount /dev/vg_data/lv_data /data
+
+
+
+
+
 
 
 Q2. How do you mount and unmount filesystems in Linux?
@@ -167,13 +255,13 @@ Q4  How do you list all the processes running in Linux?
   htop: Similar to top, but with a more user-friendly, interactive interface (requires installation).
   pgrep -a <process_name>: Finds and lists all processes matching  specific name or pattern.
 
-Q5  How do you check disk space usage?
-  df -h: Displays disk space usage for all mounted file systems in a human-readable format (e.g., GB, MB).
-  du -sh <directory>: Shows the total disk space used by a specific directory in a human-readable format.
-  df Command:
-  The df or disk-free 
-  du Command:
-  The du or disk usage 
+Q5  how can i check the configuration information in linux  
+  lscpu: CPU architecture and details.
+  free -h: Memory usage. 
+  df -h: Disk usage.   
+  ip a or ifconfig: Network interfaces.   
+  top: Active processes.  
+  whoami: Current user.
 
 Q6 How do you find the process ID (PID) of a running process?
   pgrep <process_1>
@@ -240,10 +328,6 @@ Q18 What is the difference between /etc/passwd and /etc/shadow files?
   and default shells. Each line in the file represents a user account.
   The /etc/shadow file contains encrypted passwords and other security-related information. 
   It is only accessible by the root user or privileged processes
-
-Q19 How do you compress and decompress files in Linux? 
-  tar -czvf jayesh.tar.gz files
-  tar -xzvf jayesh.tar.gz
 
 Q20 What is the sed command used for in Linux?
   sed commmand is used to replace edit delete insert any text in file without opening of that file. 
