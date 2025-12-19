@@ -85,7 +85,8 @@ to see how many lines, words, and byte present in a file
 wc file.txt   # it will work with multiple file in same command
 
 Q what is hard link and soft link 
-   Both hard link and soft link are used to link files. In a soft link, if the original file is deleted, the link breaks. But in a hard link, the file still exists even if the original file is deleted.
+   Both hard link and soft link are used to link files. In a soft link, if the original file is deleted, the link breaks. But in a hard link, the file still exists even if 
+   the original file is deleted.
 ln -s file.txt softlink.txt     ln -s cloud/devops/file.txt softlink.txt
 ln file.txt hardlink.txt        ln cloud/devops/file.txt hardlink.txt
 
