@@ -14,8 +14,18 @@ Q what is the difference between web server and application server ?
 A web server serves static content, while an application server is where the application runs and processes business logic.
 Web Server → HTML, CSS, JS, images (static files)
 Application Server → Runs code, connects to database, generates dynamic data
-
 Web server delivers files, application server runs the application logic.
+
+
+Q what it the diff btwn http and https and what is the port of both?
+HTTP transfers data in plain text and is not secure; its default port is 80.
+HTTPS encrypts data using SSL/TLS for security; its default port is 443.
+
+what is ssl and tls certificates.
+SSL (Secure Sockets Layer):
+SSL is the older protocol that was originally used to secure communications between web browsers and servers.
+TLS Transport Layer Security is modern protocall it is more secure version of SSL.
+SSL/TLS certificates help keep your data safe when browsing by securing the communication between your browser and a website.
 
 Q types of Applications
  there are mainly two types of application 
@@ -78,7 +88,7 @@ Q 'mv' - to move and rename the file
  mv file.txt devOps/     # to move the file forward
  mv file.txt ../cloud/   # to move the file backward .. is for backward directory
  mv devops/ Linux_for_devops  # rename
- mv file.txt file1..txt
+ mv file.txt file1.txt
 
 Q 'wc'  
 to see how many lines, words, and byte present in a file
@@ -95,7 +105,7 @@ ln -s → Soft link → breaks the link if original file is deleted and we cant 
 
 Q 'cut'
  cut is used to give some portion or byte 
- cut 1 file..txt       # hello dosto   is the file content
+ cut 1 file.txt       # hello dosto   is the file content
  output - h
  cut 1-4 file.txt
  output - hello
@@ -117,12 +127,12 @@ it is used to save the output of anything in the file that is "nohup.out"
 like if we want to save the logs of any file into a file then we can use nohup <command>
  nohup top   nohup free -h   nohup df   nohup du 
 
-Q 'uname'  is used to se the operator/plateform  like linux/darwin(mac)
+Q 'uname'  is used to see the operator/plateform  like linux/darwin(mac)
 
 Q 'uptime'  used to see how long system has being running along with load and user..
 
 Q diff in 'who' and whoami"
- "who" is used to see hoe many users loggin in this user, time when a user login to this system.
+ "who" is used to see how many users loggin in this user, time when a user login to this system.
  "whoami" is used to see who is the current loged in user. 
 
 Q 'which' 
@@ -165,12 +175,15 @@ Q "chown" It is used to change the owner and group of a file or directory.
 chown [OPTIONS] owner:group file_name
 for only user
 chown user1 file.txt
-                          only group
-                          chown :devops file.txt
+
+only group
+chown :devops file.txt
+
 user and group
 chown user1:devops file.txt
-                           Change ownership recursively (directory + files)
-                            chown -R user1:devops /project or file(file.txt)
+
+Change ownership recursively (directory + files)
+chown -R user1:devops /project or file(file.txt)
 
            
 Q What is zip?                                     # other tools gunzip,gzip
@@ -224,23 +237,18 @@ mount
 sudo mkdir /data
 sudo mount /dev/vg_data/lv_data /data
 
-
-
-
-
-
-
 Q2. How do you mount and unmount filesystems in Linux?
   mount is used to attach a storage device (like a hard drive, USB drive, or disk image) to a specific directory (mount point) in the filesystem.
   sudo mount /dev/sdb1 /mnt/mydrive
   umount is used to remove the device from the directory once you're done with it.
   sudo umount /mnt/mydrive
 
-to stop more than one container
+Q To stop/remove/delete more than one resource
  docker stop $(docker ps)
  docker rm $(docker ps -a)
  docker rm -f $(docker ps)
  docker rmi -f $(docker images)
+
 Q3 How do you troubleshoot network connectivity issues in Linux?
   Check Physical and Wi-Fi Connections: Ensure your device is properly connected to the network (Wi-Fi or Ethernet).
   Test Local Network (Router and Gateway): Verify your device can communicate with the router or gateway.
@@ -348,26 +356,12 @@ Q22 What is the purpose of the SSH protocol in Linux, and how do you securely co
 Q23 How do you check the contents of a file without opening it in Linux? 
   using cat command
 
-Q24 How do you change the ownership of a file or directory in Linux using the chown command?
-  chown [OPTION] USER[:GROUP] FILE...
-  chown alice example.txt
-
 Q25 What is the purpose of the ping command in Linux, and how do you test network connectivity to a remote host?
   Ping command is used to test the network connectively between the local and remote hosts.
   ping remote_host_ip
 
-Q26 How do you recursively copy files and directories in Linux using the cp command? 
-  cp -R folder1 /destination/
-
 Q27 How can you find the IP address of a Linux system?
   The ‘ifconfig’ or ‘ip addr show’ command can be used to display the IP address of a Linux system.
-
-Q28 why we use package managers 
-  Package Managers are used to install/Uninstall/Upgrade the Packages/software 	
-  - Centos / RHEL 		===> 	yum package Manager 
-  - Debian / Ubuntu 		===>	apt/apt-get package Manager 
-  - Fedora				===>	dnf (Latest Version of Fedora)
-								yum (Previous Version of Fedora)
 
 Q29 Create a user and generate ssh key
   useradd devopsadmin -s /bin/bash -m -d /home/devopsadmin
@@ -417,22 +411,8 @@ Q38 how can i share my public key to remote machine in linux
    scp /local/path/to/file username@remote_host:/remote/path/to/destination
    scp username@remote_host:/remote/path/to/file /local/path/to/destination
 
-Q39 how can i check the configuration information in linux  
-  lscpu: CPU architecture and details.
-  free -h: Memory usage. 
-  df -h: Disk usage.   
-  ip a or ifconfig: Network interfaces.   
-  top: Active processes.  
-  whoami: Current user.
-
 20. What is a firewall in Linux? -
 A firewall is a security mechanism that controls incoming and outgoing network traffic based on a set of rules.
-
-11. head: Display the first few lines of a file.
-  Example: `head file.txt`
-12. tail: Display the last few lines of a file. 
-  Example: `tail file.txt`
-
 
 What is Linux?
 
