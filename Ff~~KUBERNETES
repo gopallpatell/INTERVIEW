@@ -2,6 +2,16 @@
 ✅how to install minikube
  in kubestarter repo minikube instalation file 
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉
+how to create namespace in k8s
+kubectl create namespace my-namespace
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: my-namespace
+
+
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 ✅ kubectl describe pod/node/deployment/svc <name> 
  to see the detailed information about the resources like 
@@ -30,7 +40,7 @@ If any pod fails or gets deleted, it automatically creates a new one.
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 ✅  difference between ReplicaSet, Deployment, and StatefulSet and daemonSet in Kubernetes 👇
 
- 1️⃣ ReplicaSet (RS)
+ 1️⃣ ReplicaSet (RS)                                                  # it is used in stateless application
 Ensures a specific number of identical pods are always running.
 ✔ Auto-restart
 ✔ Auto-scale
@@ -40,7 +50,7 @@ Ensures a specific number of identical pods are always running.
 👉 Used inside Deployment automatically.
 👉 You rarely create ReplicaSet directly.
 
-✅ 2️⃣ Deployment
+✅ 2️⃣ Deployment                                                         # it is used in stateless application
 Manages ReplicaSets + provides rolling updates and rollbacks.
 ✔ Rolling updates
 ✔ Rollbacks
@@ -57,7 +67,7 @@ APIs
 
 ✅ 3️⃣ StatefulSet
 Used for stateful applications where each pod needs a fixed identity.
-✔ Stable pod name (pod-0, pod-1...)
+✔ Stable pod name (pod-0, pod-1...)     # If a Pod crashes or is deleted, Kubernetes recreates it with the same name.
 ✔ Stable network identity
 ✔ Stable storage (PVC per pod)
 ✔ Ordered startup & shutdown
@@ -67,7 +77,7 @@ Used for stateful applications where each pod needs a fixed identity.
 MySQL
 MongoDB
 
-✅ DaemonSet 
+✅ DaemonSet                                         # it is used in stateless application
 DaemonSet ensures that exactly one pod runs on every node (or on selected nodes).
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
@@ -236,6 +246,23 @@ API Server stores state → Controller Manager checks → Scheduler assigns → 
              Backend Pod needs to talk to Database Pod
              Frontend Pod needs to talk to Backend Pod
              Microservices communicate internally
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    name: MyApp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 9376
+  type: ClusterIP
+
+a ClusterIP service cannot be accessed directly from a browser; you must use "kubectl port-forward" (or another in-cluster access method).
+kubectl port-forward svc/my-service 8080:80
+
   NodePort: Exposes your service outside the cluster by opening a port on every node.
             For testing
             When you don’t have a cloud LoadBalancer
@@ -260,6 +287,11 @@ TLS/HTTPS
 Single public IP for many services
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+Q To see all the resource pod/deployment/service
+kubectl get all -n <namespace>
+
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 9 What is Ingress network?
   ingress is a traffic controler in lkubernetes which is used to send the traffic or route the traffice to the right service in kubernetes cluster
   Ingress helps direct incoming internet traffic to the right service inside the cluster. For example, if someone visits example.com/api, 
@@ -271,6 +303,60 @@ Single public IP for many services
   Ingress is like a traffic controller that makes sure the right visitors (users) get directed to the right service in your Kubernetes cluster.
   It helps you manage access through one main entry point (a single IP or domain).
   It can handle things like routing, load balancing, and security (SSL encryption).
+
+firstly we need to Install an Ingress Controller
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+
+verify
+kubectl get pods -n ingress-nginx
+
+after that we need to Create the different Services in this namespace (nginx) for that we need to create deployment in same namespace(nginx) first and after that create 
+service for that deployment in same namespace(nginx)    we can create multiple svc like for mobile,clothes,accessories, all so on and all that services run in same namspace
+
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minimal-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx-example
+  rules:
+  - http:
+      paths:
+      - path: /mobile
+        pathType: Prefix
+        backend:
+          service:
+            name: mobile
+            port:
+              number: 80
+      - path: /clothes
+        pathType: Prefix
+        backend:
+          service:
+            name: clothes
+            port:
+              number: 8080
+
+after that we need to expose or forward the ingress controller svc
+kubectl port-forward svc/ingress-nginx-controller -n ingress-nginx 8080:80
+
+so now wwe can add multiple services in ingress  it is called microservices
+
+Deleting a namespace deletes all workloads and networking objects inside it, immediately making the application inaccessible.
+Yes, a single kubectl delete namespace can shut down everything, unless you put safeguards in place. Here’s how this is prevented in real-world clusters.
+
+kubectl auth can-i delete namespaces --all-namespaces
+
+1️⃣ RBAC (MOST IMPORTANT) 🔐
+Restrict who can delete namespaces
+
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+
+
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 10 egress
