@@ -7,10 +7,6 @@ difference between -v and --mount
 --mount is the newer, explicit, recommended syntax, e.g.:
    docker run --mount type=bind,source=/host/path,target=/container/path image
 
-
-
-
-
 ### monitering and logging 
 Q what is the nohup 
   nohup is used to write the logs in file directly. it will run the command in the background and give the output in a file
@@ -608,6 +604,7 @@ What tools are available for Docker logging?
 How do you troubleshoot a failed Docker container?
 
 What are some best practices for using Docker in production?
+
 
 
 
