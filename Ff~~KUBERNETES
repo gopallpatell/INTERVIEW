@@ -77,6 +77,148 @@ Used for stateful applications where each pod needs a fixed identity.
 MySQL
 MongoDB
 
+apiVersion: apps/v1                  # API group/version that supports StatefulSet
+kind: StatefulSet                   # Declares this object as a StatefulSet (for stateful apps)
+metadata:
+  name: mysql                       # Name of the StatefulSet (pods: mysql-0, mysql-1, mysql-2)
+spec:
+  serviceName: mysql                # Headless Service name (required for stable DNS)
+                                    # Enables mysql-0.mysql, mysql-1.mysql, etc.
+  replicas: 3                       # Number of MySQL pods to run
+  selector:                         # Defines which pods this StatefulSet manages
+    matchLabels:
+      app: mysql                    # Pods with this label belong to this StatefulSet
+  template:                         # Pod template (used to create each pod)
+    metadata:
+      labels:
+        app: mysql                  # Pod label (must match selector above)
+    spec:
+      terminationGracePeriodSeconds: 30
+                                    # Time (seconds) given to MySQL to shut down gracefully
+                                    # Prevents data corruption
+      containers:
+      - name: mysql                 # Container name inside the pod
+        image: mysql:8.0            # Docker image pulled from Docker Hub
+                                    # mysql = repository, 8.0 = version tag
+        ports:
+        - containerPort: 3306       # MySQL default port inside the container
+          name: mysql               # Named port (used by Service)
+        env:                        # Environment variables passed to MySQL
+        - name: MYSQL_ROOT_PASSWORD # Sets root password (required to start MySQL)
+          value: rootpassword       # Plain text password (use Secret in production)
+        - name: MYSQL_DATABASE      # Database created automatically at startup
+          value: appdb
+        - name: MYSQL_USER          # Non-root user created automatically
+          value: appuser
+        - name: MYSQL_PASSWORD      # Password for the non-root user
+          value: apppassword
+        volumeMounts:
+        - name: mysql-data          # Volume name (must match PVC template below)
+          mountPath: /var/lib/mysql # Directory where MySQL stores its data files
+  volumeClaimTemplates:             # Template for PersistentVolumeClaims
+                                    # Kubernetes creates ONE PVC per pod
+  - metadata:
+      name: mysql-data              # Base PVC name
+                                    # Actual PVCs:
+                                    # mysql-data-mysql-0
+                                    # mysql-data-mysql-1
+                                    # mysql-data-mysql-2
+    spec:
+      accessModes:
+      - ReadWriteOnce               # Volume can be mounted by only ONE pod
+                                    # Required for databases
+      storageClassName: my-storage-class
+                                    # Storage provisioner used
+                                    # Example: gp3, standard, local-path
+      resources:
+        requests:
+          storage: 10Gi             # Disk size allocated PER pod
+                                    # Total storage = 3 × 10Gi
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+🔐 What is a Secret?
+A Secret stores sensitive data such as:
+Passwords
+Tokens
+Keys
+Why use it?
+Avoid hardcoding passwords in YAML
+Better security
+Can be rotated without changing app code
+👉 Examples:
+MySQL root password
+DB user password
+
+2️⃣ Create Secret (MySQL passwords)
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+type: Opaque
+stringData:
+  MYSQL_ROOT_PASSWORD: rootpassword
+  MYSQL_PASSWORD: apppassword
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+⚙️ What is a ConfigMap?
+A ConfigMap stores non-sensitive configuration such as:
+App settings
+DB names
+Environment values
+Config files
+👉 Examples:
+Database name
+MySQL user
+Application config values
+
+1️⃣ Create ConfigMap (MySQL configuration)
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-config
+data:
+  MYSQL_DATABASE: appdb
+  MYSQL_USER: appuser
+
+
+3️⃣ Updated StatefulSet using ConfigMap + Secret
+❌ Before (BAD – hardcoded)
+env:
+- name: MYSQL_ROOT_PASSWORD
+  value: rootpassword
+
+✅ After (GOOD – secure + clean)
+envFrom:
+- configMapRef:
+    name: mysql-config
+- secretRef:
+    name: mysql-secret
+
+4️⃣ Full StatefulSet (only env section changed)
+containers:
+- name: mysql
+  image: mysql:8.0
+  ports:
+  - containerPort: 3306
+    name: mysql
+  envFrom:
+  - configMapRef:
+      name: mysql-config
+  - secretRef:
+      name: mysql-secret
+  volumeMounts:
+  - name: mysql-data
+    mountPath: /var/lib/mysql
+
+
+
+
+✅ One-line summary
+
+ConfigMap stores configuration, Secret stores credentials, and both are injected into pods as environment variables for 
+secure, maintainable Kubernetes deployments.
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 ✅ DaemonSet                                         # it is used in stateless application
 DaemonSet ensures that exactly one pod runs on every node (or on selected nodes).
 
@@ -355,7 +497,257 @@ Restrict who can delete namespaces
 
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+30 How do you set resource limits on Kubernetes Pods?
+   we can limit flag in yaml file to limit the resource on pods  like cpu and memory usage 
+   or we can also request for memory and cpu 
 
+  Memory Limits: If a container exceeds its memory limit, it will be terminated and potentially restarted by Kubernetes.
+  This is called an OOM (Out of Memory) Kill.
+  CPU Limits: When a container exceeds its CPU limit, it will be throttled (i.e., Kubernetes will restrict the container's 
+  CPU usage but will not kill it).
+
+resources:
+  requests:
+    cpu: "500m"        # Guaranteed CPU
+    memory: "1Gi"      # Guaranteed memory
+  limits:
+    cpu: "1"           # Max CPU allowed
+    memory: "2Gi"      # Max memory allowed
+
+containers:
+- name: mysql
+  image: mysql:8.0
+  resources:
+    requests:
+      cpu: "500m"
+      memory: "1Gi"
+    limits:
+      cpu: "1"
+      memory: "2Gi"
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+What are Probes in Kubernetes?
+Probes tell Kubernetes when to start traffic, restart containers, and check health of your application.
+They are critical for production workloads.
+🔹 Types of Probes (VERY IMPORTANT)
+1️⃣ Liveness Probe
+👉 Is the container alive?
+If it fails → container is restarted
+Used to recover from deadlocks
+
+2️⃣ Readiness Probe
+👉 Is the container ready to receive traffic?
+If it fails → traffic is stopped
+Pod is NOT restarted
+
+3️⃣ Startup Probe
+👉 Is the app finished starting up?
+Disables liveness until startup completes
+Prevents premature restarts
+
+🧠 Real-world behavior
+Probe	Fails →
+Liveness	Container restart
+Readiness	Traffic removed
+Startup	Startup still in progress
+🔧 Probe methods
+exec (run command inside container)
+httpGet
+tcpSocket
+
+exec Probe
+An exec probe is used to check application health by running a command inside the container
+What it’s used for (real-world)
+Databases (MySQL, PostgreSQL, Redis)
+
+livenessProbe:
+  exec:
+    command:
+    - sh
+    - -c
+    - mysqladmin ping -h 127.0.0.1 -u root -p$MYSQL_ROOT_PASSWORD
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
+
+readinessProbe:
+  exec:
+    command:
+    - sh
+    - -c
+    - mysqladmin ping -h 127.0.0.1 -u root -p$MYSQL_ROOT_PASSWORD
+  initialDelaySeconds: 30
+  periodSeconds: 5
+  timeoutSeconds: 3
+  failureThreshold: 3
+
+startupProbe:
+  exec:
+    command:
+    - sh
+    - -c
+    - mysqladmin ping -h 127.0.0.1 -u root -p$MYSQL_ROOT_PASSWORD
+  failureThreshold: 30
+  periodSeconds: 10
+
+httpGet Probe 
+An HTTP probe checks application health by sending an HTTP request to a container endpoint.
+Where HTTP probes are used
+✅ Web apps (Nginx, Spring Boot, Node.js)
+❌ Databases (MySQL, Redis)
+
+livenessProbe:
+  httpGet:
+    path: /
+    port: 80
+  initialDelaySeconds: 10
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /
+    port: 80
+  initialDelaySeconds: 5
+  periodSeconds: 5
+
+startupProbe:
+  httpGet:
+    path: /health
+    port: 8080
+  failureThreshold: 30
+  periodSeconds: 10
+
+
+STEP 1️⃣ Deploy BLUE (current live version)
+blue-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-blue
+  namespace: prod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+      version: blue
+  template:
+    metadata:
+      labels:
+        app: myapp
+        version: blue
+    spec:
+      containers:
+      - name: myapp
+        image: myapp:v1
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+31 Explain Kubernetes taints and tolerations.
+  Taints and Tolerations are a way to control where pods can run in a Kubernetes cluster.
+taints- like we can taints a nodes(worker-node) so if we taints a node than pod can not run on that node
+kubectl taint nodes node1 role=db:NoSchedule
+kubectl taint nodes node1 role=db:NoSchedule-               # '-' it used to untained means now pod can run on this pod
+
+tolerance- but if we still want to run the pod on taints node for that we use tolerance.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mysql-pod
+spec:
+  tolerations:
+  - key: "role"
+    operator: "Equal"
+    value: "db"
+    effect: "NoSchedule"
+  containers:
+  - name: mysql
+    image: mysql:8.0
+
+so now pod can still run node1     # or we can say we can run the pod on taints node using tolerations in menifest file
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+HPA (Horizental Pod Autoscalling)
+Increases or decreases the number of pods
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: web-hpa
+  namespace: Autoscalling  
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: web
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+VPA (Vertical Pod Autoscalling)
+Adjusts CPU & memory requests automatically
+
+we need to download VPA for that we can go to google and search 'kubernetes VPA' 
+
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: web-vpa
+  namespace: Autoscalling
+spec:
+  targetRef:
+    apiVersion: "apps/v1"
+    kind: Deployment
+    name: web
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: "*"
+      minAllowed:
+        cpu: "200m"
+        memory: "256Mi"
+      maxAllowed:
+        cpu: "2"
+        memory: "4Gi"
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+Q  k8s Metrics
+Metrics Server scrapes resource metrics from the kubelets running on each node and provides them in a central API endpoint (/apis/metrics.k8s.io/).
+CPU usage (millicores)
+Memory usage (bytes)
+
+so firstly we need to install metrics server 
+1st run this
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+2nd
+kubectl -n kube-system edit deployment metrics-server                # this will open a file so edit that file 
+Add these args under containers.args:
+- --kubelet-insecure-tls
+- --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+
+3rd
+kubectl get pods -n kube-system | grep metrics-server
+kubectl top nodes
+output-
+NAME	CPU(cores)	CPU%	MEMORY(bytes)	MEMORY%
+node1	  120m	     6%	       1024Mi	      25%
+node2	  250m	     12%	   2048Mi	      50%
 
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
@@ -451,18 +843,9 @@ Restrict who can delete namespaces
   kubectl expose pod nginx-pod --type=NodePort --port=80
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
-30 How do you set resource limits on Kubernetes Pods?
-   we can limit flag in yaml file to limit the resource on pods  like cpu and memory usage 
-   or we can also request for memory and cpu 
-
-  Memory Limits: If a container exceeds its memory limit, it will be terminated and potentially restarted by Kubernetes.
-  This is called an OOM (Out of Memory) Kill.
-  CPU Limits: When a container exceeds its CPU limit, it will be throttled (i.e., Kubernetes will restrict the container's 
-  CPU usage but will not kill it).
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
-31 Explain Kubernetes taints and tolerations.
-  Taints and Tolerations are a way to control where pods can run in a Kubernetes cluster.
+
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 32 How does a Kubernetes Network Policy work?
