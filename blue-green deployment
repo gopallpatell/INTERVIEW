@@ -1,0 +1,233 @@
+🟦🟩 BLUE-GREEN DEPLOYMENT (REAL-TIME WORKING)
+Scenario
+
+App name: myapp
+Current version (LIVE): v1 (Blue)
+New version to release: v2 (Green)
+Goal: Zero downtime + instant rollback
+
+🧠 Core idea (before YAML)
+Two deployments run at the same time
+A Service decides which one gets traffic
+Switching traffic = changing a label selector
+No pod restarts, no downtime
+
+STEP 0️⃣ Namespace (isolation – production practice)
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prod
+
+kubectl apply -f namespace.yaml
+
+
+🔹 What happens
+Kubernetes creates an isolated environment
+All prod resources live here
+
+STEP 1️⃣ Deploy BLUE (current live version)
+blue-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-blue
+  namespace: prod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+      version: blue
+  template:
+    metadata:
+      labels:
+        app: myapp
+        version: blue
+    spec:
+      containers:
+      - name: myapp
+        image: myapp:v1
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+kubectl apply -f blue-deployment.yaml
+
+
+🔹 What happens internally
+Deployment creates a ReplicaSet
+ReplicaSet creates 3 Pods
+Pods labeled: app=myapp, version=blue
+Readness probe ensures traffic goes only to healthy pods
+
+STEP 2️⃣ Create Service (routes traffic to BLUE)
+service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+  namespace: prod
+spec:
+  type: ClusterIP
+  selector:
+    app: myapp
+    version: blue
+  ports:
+  - port: 80
+    targetPort: 80
+
+kubectl apply -f service.yaml
+
+
+🔹 What happens
+Service selects only blue pods
+Traffic flow:
+User → Service → Blue Pods (v1)
+
+
+🟦 Blue is LIVE
+
+STEP 3️⃣ Deploy GREEN (new version, no traffic yet)
+green-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-green
+  namespace: prod
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+      version: green
+  template:
+    metadata:
+      labels:
+        app: myapp
+        version: green
+    spec:
+      containers:
+      - name: myapp
+        image: myapp:v2
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5
+
+kubectl apply -f green-deployment.yaml
+
+
+🔹 What happens
+Green pods are created
+They run in parallel
+Service still points to Blue
+Users don’t see Green
+
+🟢 Green is READY but hidden
+
+STEP 4️⃣ Test GREEN (real-time validation)
+Port-forward for testing
+kubectl port-forward deploy/myapp-green 8081:80 -n prod
+
+Open:
+http://localhost:8081
+
+
+🔹 What you check
+App loads
+APIs respond
+Logs are clean
+DB migrations OK
+
+💡 This is what QA & DevOps do before release
+
+STEP 5️⃣ TRAFFIC SWITCH (THE REAL MAGIC) 🔄
+Now comes the actual deployment moment.
+Update service.yaml
+spec:
+  selector:
+    app: myapp
+    version: green
+
+kubectl apply -f service.yaml
+
+🔹 What happens in milliseconds
+Service stops sending traffic to Blue
+Service starts sending traffic to Green
+No pod restarts
+No connection drops
+User → Service → Green Pods (v2)
+
+🟢 Green is LIVE
+🟦 Blue is idle but still running
+
+STEP 6️⃣ Monitoring (real production step)
+kubectl get pods -n prod
+kubectl logs -l version=green -n prod
+kubectl describe svc myapp-service -n prod
+
+
+🔹 What SRE watches
+Error rate
+Latency
+CPU/memory
+Logs
+
+STEP 7️⃣ ROLLBACK (instant, no rebuild)
+If something goes wrong 🚨
+Switch back to BLUE
+spec:
+  selector:
+    app: myapp
+    version: blue
+
+kubectl apply -f service.yaml
+
+🔹 What happens
+Traffic instantly goes back
+Green pods stay (for debugging)
+Zero downtime rollback
+
+STEP 8️⃣ Cleanup (after confidence)
+Once Green is stable
+kubectl delete deployment myapp-blue -n prod
+
+🔹 What happens
+Blue pods terminate
+Green becomes the new baseline
+REAL-WORLD PRODUCTION FLOW (SUMMARY)
+Deploy Blue → Live
+Deploy Green → Hidden
+Test Green
+Switch Service → Green
+Monitor
+Delete Blue
+
+WHY COMPANIES LOVE BLUE-GREEN
+✅ Zero downtime
+✅ Instant rollback
+✅ No risky rolling restarts
+✅ Easy to automate (CI/CD, ArgoCD, Helm)
+
+ONE-LINE FINAL SUMMARY
+Blue-Green deployment runs two app versions in parallel and switches traffic instantly using a Service selector, 
+giving zero-downtime releases and immediate rollback.
+
+If you want next, I can:
+
+Convert this to Ingress-based Blue-Green
+
+Show ArgoCD Blue-Green
+
+Compare Blue-Green vs Canary
+
+Add database migration safety
