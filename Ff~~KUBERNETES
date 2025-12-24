@@ -823,6 +823,11 @@ spec:
 Cluster-level RBAC (IN-CLUSTER / GLOBAL ACCESS)
 ClusterRole → ServiceAccount → ClusterRoleBinding → Pod
 
+using Cluster role we can create dashbaords
+Dashboards are created to provide a visual, centralized view of a system so humans can monitor, understand, and manage it easily.
+Dashboards exist to help humans see and manage what’s happening inside the cluster without using only CLI commands.
+ClusterRole is used for controllers, operators, monitoring, networking, and any component that needs cluster-wide or node-level access, not just dashboards.”
+
 BIGGEST difference
 Feature                     	Namespace-level	                                  Cluster-level
 Scope	                      One namespace only	                            Entire cluster
@@ -834,6 +839,10 @@ kubectl auth can-i create pods
 kubectl auth can-i delete pods -n dev            # it used by user 
 kubectl auth can-i get/delete/create/apply/watch/update/list pods/deployment/service/hpa/vpa/secrets/configmaps --as=pod-reader -n dev     #it is used by k8s admin 
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+Custom Resource Defination(CRDs)
+Using CRDs, we can create our own custom resources in Kubernetes just like Pods, Services, or Deployments.
+Create CRD → Create Custom Resources → Interact with CR like native resource
 
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
