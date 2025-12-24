@@ -495,6 +495,9 @@ kubectl auth can-i delete namespaces --all-namespaces
 1️⃣ RBAC (MOST IMPORTANT) 🔐
 Restrict who can delete namespaces
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+10 egress
+  While Ingress controls incoming traffic to the cluster, Egress controls outgoing traffic of the cluster.
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 30 How do you set resource limits on Kubernetes Pods?
@@ -673,6 +676,7 @@ spec:
     image: mysql:8.0
 
 so now pod can still run node1     # or we can say we can run the pod on taints node using tolerations in menifest file
+
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 HPA (Horizental Pod Autoscalling)
 Increases or decreases the number of pods
@@ -749,10 +753,88 @@ NAME	CPU(cores)	CPU%	MEMORY(bytes)	MEMORY%
 node1	  120m	     6%	       1024Mi	      25%
 node2	  250m	     12%	   2048Mi	      50%
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+Node Affinity
+Node affinity is a Kubernetes feature that lets you control which nodes a Pod is allowed or preferred to run on, based on labels on nodes.
+Run this Pod only (or preferably) on nodes that match certain conditions.”
+Node affinity lets you tell Kubernetes where Pods should (or must) run based on node labels.
+affinity:
+  nodeAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+            - key: zone
+              operator: In
+              values:
+                - ap-south-1
+
+now the pod is creating only in ap-south-1 Zone 
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
-10 egress
-  While Ingress controls incoming traffic to the cluster, Egress controls outgoing traffic of the cluster.
+RBAC (Role Base Access Control)
+RBAC (Role-Based Access Control) in Kubernetes controls who can do what on which resources in the cluster.
+Think of it like this:
+WHO (user/service account)
+CAN DO WHAT (verbs like get, create, delete)
+ON WHICH RESOURCES (pods, services, deployments)
+IN WHICH SCOPE (namespace or cluster)
+
+Namespace-level RBAC (MOST COMMON)
+firstly we need to create the role
+then we need to create ServiceAccount 
+then we need to binding role to serviceAccount 
+then add to pod/deployment
+Role → ServiceAccount → RoleBinding → Pod                      #Users are for humans.
+                                                                ServiceAccounts are for applications (bots, pods).
+role
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: pod-reader
+  namespace: dev
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list"]
+
+service aacount
+kubectl create serviceaccount app-sa -n dev
+
+Role Binding 
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: pod-reader-binding
+  namespace: dev
+subjects:
+- kind: ServiceAccount
+  name: app-sa
+  namespace: dev
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+
+pod
+spec:
+  serviceAccountName: app-sa
+
+Cluster-level RBAC (IN-CLUSTER / GLOBAL ACCESS)
+ClusterRole → ServiceAccount → ClusterRoleBinding → Pod
+
+BIGGEST difference
+Feature                     	Namespace-level	                                  Cluster-level
+Scope	                      One namespace only	                            Entire cluster
+Affects	            Pods, Services, ConfigMaps in that namespace	   Nodes, PVs, Namespaces, all resources
+Risk	                            Low	                                             High (powerful)
+
+
+kubectl auth can-i create pods
+kubectl auth can-i delete pods -n dev            # it used by user 
+kubectl auth can-i get/delete/create/apply/watch/update/list pods/deployment/service/hpa/vpa/secrets/configmaps --as=pod-reader -n dev     #it is used by k8s admin 
+
+
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 11 Differentiate between a replica set and a replication controller.
