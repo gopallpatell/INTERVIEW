@@ -970,6 +970,129 @@ Helm is like a package manager for Kubernetes.
 Just like npm installs JavaScript packages Or pip installs Python packages
 Helm installs apps on Kubernetes in a structured way.
 
+to create helm
+helm create helm-name (apache-helm) 
+
+. Install Helm
+helm version   # check
+brew install helm   # Mac
+
+2. Create a Chart
+helm create myapp 
+
+3. Configure Values
+Edit values.yaml for image, replicas, service type, etc.
+
+4. Update Templates (Optional)
+Edit files in templates/ if needed (e.g., deployment.yaml).
+
+5. Install the Chart
+helm install myapp-dev/prod/staging ./myapp
+helm install myapp-dev/prod/staging ./myapp -n dev/prod/staging --create-namespace
+
+Increase Number of Replicas
+Edit values.yaml (or environment-specific values file):
+replicaCount: 4
+helm upgrade myapp-dev ./myapp -n dev -f values-dev.yaml
+
+Use --set directly in command
+helm upgrade myapp-dev ./myapp -n dev --set replicaCount=4
+
+Rollback a Release
+If an upgrade causes problems, you can rollback to a previous release version.
+List revision history:
+helm history myapp-dev -n dev
+Shows revision numbers and timestamps.
+
+helm rollback myapp-dev <revision-number> -n dev
+helm rollback myapp-dev 2 -n dev
+
+6. Upgrade Chart
+helm upgrade myapp-dev/prod/staging ./myapp -n dev/prod/staginge
+
+7. Uninstall Chart
+helm uninstall myapp-dev/prod/staging -n dev/prod/staging
+
+8. Package Chart (Optional)
+helm package myapp
+
+myapp/
+  Chart.yaml          # Chart metadata   #This file contains basic information about your Helm chart, like its name, version, and description. It’s required for every chart.
+  values.yaml         # Default configuration values #replicaCount → Number of pods, image.repository → Docker image name, image.tag → Version, service.type → clusterip,NodePort
+  charts/             # Subcharts (dependencies)
+  templates/          # Kubernetes manifest templates
+  .helmignore         # Files to ignore in packaging
+
+A Spring Boot app on Kubernetes mainly uses Deployment, Service, Ingress, ConfigMap, Secret, HPA, and Monitoring resources, all managed easily using Helm.
+
+If a required Kubernetes resource is not present in the Helm chart, we add a new template YAML file under templates/, parameterize it using values.yaml, and deploy
+it using helm upgrade.
+
+Why Do We Use Helm Repositories?
+We use Helm repositories to store, version, share, and reuse Helm charts so applications can be installed consistently across environments.
+
+helm install myapp ./myapp
+👉 Only works if the chart exists locally.
+
+Benefits of Using Helm Repo
+Package Chart (Optional)
+helm package myapp
+
+1️⃣ Centralized Storage
+Charts stored in one central place
+Everyone installs from the same source
+Example:
+helm install myapp myrepo/myapp
+
+2️⃣ Version Control
+Each chart has versions:
+myapp-1.0.0.tgz
+myapp-1.1.0.tgz
+
+Allows:
+Easy upgrades
+Safe rollbacks
+
+3️⃣ Easy Sharing Across Teams
+Dev, QA, Prod teams use the same chart
+No need to copy files manually
+
+Create Helm chart in repo
+Customize templates
+Git version control & tag
+Package chart
+Publish to Helm/OCI repo
+Install with helm install elsewhere
+
+for git
+if we use git for version controle we can push to git and whenever we need for reuse we can git clone and got to dir and install helm
+
+for dockerhub
+helm registry login registry-1.docker.io
+helm package myapp
+myapp-0.1.0.tgz
+helm push myapp-0.1.0.tgz oci://registry-1.docker.io/<dockerhub-username>
+helm install insureme \
+  oci://registry-1.docker.io/mukunddeotale49/myapp \
+  --version 0.1.0 \
+  -n prod --create-namespace
+
+OCI = Open Container Initiative
+
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm install monitoring prometheus-community/kube-prometheus-stack -n monitoring --create-namespace
+
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm install grafana grafana/grafana -n monitoring --create-namespace
+
+kubectl port-forward svc/monitoring-grafana 3000:80 -n monitoring
+Login
+
+
+
+
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 13 Explain the pod in Kubernetes.
   A Pod is the smallest unit in Kubernetes. It can hold:
