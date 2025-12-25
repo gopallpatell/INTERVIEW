@@ -1117,6 +1117,13 @@ For Kind
 For Kubeadm
 # Install Istio CLI
 
+Istio is a traffic manager for microservices
+
+Kubernetes runs containers: Kubernetes starts and keeps your app containers alive (example: runs frontend and backend pods).
+Istio controls traffic: Istio decides how services talk to each other (example: send 90% traffic to backend v1 and 10% to v2).
+Envoy enforces rules: Envoy proxies actually apply those decisions to requests (example: retry a failed request or block unauthorized calls).
+Control plane manages Envoy: Istio control plane configures all Envoy proxies centrally (example: push new routing rules without redeploying apps).
+Kiali visualizes everything: Kiali shows a live graph of services and traffic health (example: see frontend → backend → payment with errors and latency)
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 13 Explain the pod in Kubernetes.
