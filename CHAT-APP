@@ -1,0 +1,82 @@
+it is a 3 tier application where frontend is running on ReactJs and backend runs on NodeJs and dataBase in MongoDB
+
+
+   frontend create image > DockerHub > Container > Pods > Service > Ingress 
+   backend  create image > DockerHub > Container > Pods > Service > Ingress
+
+we use VSCode here clone the chat app repo in vscod
+https://github.com/gopallpatell/full-stack_chatApp.git
+then we create K8s folder
+
+go to frontend dir then
+firstly we build the image for Frontend
+ docker build -t gopallpatell/frontend-chatapp:V1 . 
+docker login -u gopallpatell
+password:             #we generate token for that
+docker push gopallpatell/frontend-chatapp:V1       # docker image tag v1 v1.0     -   to retag the image  
+then firstly we create namespace for that we create namespace.yaml file in k8s folder
+kubectl create -f namespace.yaml 
+then created frontend-deployment.yaml 
+
+but firstly we need to run the backend and also need to create and run the service for backend because it uses nginx for 
+reverse proxy and defined proxy_pass in config file(default.conf) then frontend will run 
+
+kubectl apply -f frontend-deployment.yaml
+then
+service.yaml
+kubectle apply -f frontend-service.yml
+kubectl port-forward service/frontend-service -n chat-app 80:80 
+kubectl port-forward service/frontend-service -n chat-app 80:80 &   # ampercent used to run on backend
+if permission is not given 
+sudo -E kubectl port-forward service/frontend-service -n chat-app 80:80 & 
+
+go to backend dir                                             # All things in same namsespace
+then we build the image for backenend
+ docker build -t gopallpatell/backend-chatapp:V1 . 
+docker push gopallpatell/backend-chatapp:V1 
+then created bakend-deployment.yaml                                  
+kubectl apply -f backend-deployment.yaml
+then
+service.yaml
+kubectle apply -f backend-service.yml
+kubectl port-forward service/backend-service -n chat-app 5001:5001 
+kubectl port-forward service/backend-service -n chat-app 5001:5001 &   # ampercent used to run on background
+
+
+database MongoDB
+then created mongodb-deployment.yaml# use the mongoDB image in this 
+then create PV.yaml and PVC.yaml for mongoDB  than attatch PVC to deployment
+then apply all of them kubectl apply -f mongod-pv.yaml -f mongodb-pvc.yml -f mongodb-deployment.yaml
+mongodb-service.yaml
+kubectle apply -f mongodb-service.yml
+
+now if we want to access thru internet using port-forward(localhost:80) connection will be not stabled beacause we need to 
+connect the backend to DataBase first   # need to add MONGODB_URI in backend-deployment.yml
+
+create secret.yml for save the env secrretly and encode with base64 
+
+kubectl port-forward service/backend-service -n chat-app 5001:5001 & 
+
+sudo -E kubectl port-forward service/frontend-service -n chat-app 80:80 &
+
+now access thru internet
+
+then create ingress.yaml         
+but for minikube we need to downlod minikube-ingress "minikube addons enable ingress"
+kubectl get pods -n ingress-nginx
+kubectl get svc -n ingress-nginx
+we need to forward the port for the ingress-nginx-controller      #because it is inikube ingress
+sudo -E kubectl port-forward service/ingress-nginx-controller -n ingress-nginx 80:80 &
+
+now we can access the application with .com(chat-tws.com) that we defined in engress file
+
+
+
+
+
+
+
+
+
+
+   
