@@ -52,6 +52,14 @@ Ensures a specific number of identical pods are always running.
 
 ✅ 2️⃣ Deployment                                                         # it is used in stateless application
 Manages ReplicaSets + provides rolling updates and rollbacks.
+ in this we have extra features like rollback and rolling update 
+  Deployment in Kubernetes is a higher-level resource that manages the deployment and lifecycle of your application’s pods. 
+  It allows you to define the desired state of your application, such as the number of replicas, 
+  the version of the application, and how updates should be rolled out. Kubernetes then takes care of ensuring that the current state matches the desired state.
+				
+  Automatically running a specified number of copies (pods) of your app.
+  Ensuring that the right version of the app is always running.
+  Allowing you to easily update the app and automatically handle any failures or rollbacks.
 ✔ Rolling updates
 ✔ Rollbacks
 ✔ Version control
@@ -852,15 +860,115 @@ Create CRD → Create Custom Resources → Interact with CR like native resource
   we have extra features in replicaset like we can set a label no rolling upddate 
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
-12 deployment 
-  in this we have extra features like rollback and rolling update 
-  Deployment in Kubernetes is a higher-level resource that manages the deployment and lifecycle of your application’s pods. 
-  It allows you to define the desired state of your application, such as the number of replicas, 
-  the version of the application, and how updates should be rolled out. Kubernetes then takes care of ensuring that the current state matches the desired state.
-				
-  Automatically running a specified number of copies (pods) of your app.
-  Ensuring that the right version of the app is always running.
-  Allowing you to easily update the app and automatically handle any failures or rollbacks.
+When you should use Docker Scout 
+Docker Scout helps you know what’s inside your Docker image, find security issues, and keep it safe over time.
+docker scout quickview myimage:latest
+
+🔍 Vulnerability scanning
+👉 It checks your Docker image for security problems
+Looks inside your image layer by layer
+Finds known security bugs (CVEs)
+Tells you how serious each problem is
+Shows which problems are easy to fix and which are not
+💡 Think of it like a virus scan for your Docker image
+docker scout cves myimage:latest
+
+🧱 Software Bill of Materials (SBOM)
+👉 It makes a list of everything inside your image
+Lists all OS packages (like Linux tools)
+Lists all app libraries (like npm, pip, etc.)
+Helps you know exactly what software you are shipping
+💡 Like a shopping bill showing every item in your container
+docker scout sbom myimage:latest
+
+🔄 Base image recommendations
+👉 It checks if your base image is safe and up to date
+Warns you if your base image is old or risky
+Suggests better, safer, or smaller images
+Tells you whether problems come from:
+the base image, or
+your own application
+💡 Like saying: “The problem is in the foundation, not your house.”
+
+📈 Continuous monitoring
+👉 It keeps watching your image even after you build it
+Monitors your image over time
+Alerts you if new security problems are discovered later
+Works with Docker Hub and CI/CD pipelines
+💡 Like a security guard that keeps checking your image every day
+
+docker scout compare myimage:old myimage:new
+
+Vulnerability	   
+Old base image	
+Old dependencies
+Running as root	
+
+npm = JavaScript, pip = Python, mvn = Java
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+Resource Usage Analysis
+it used to see the resource utalization
+kubectl top nodes
+output-
+NAME	CPU(cores)	CPU%	MEMORY(bytes)	MEMORY%
+node1	  120m	     6%	       1024Mi	      25%
+node2	  250m	     12%	   2048Mi	      50%
+
+kubectl top nodes -n apache
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+monitering and logging in k8s
+
+Monitoring in Kubernetes
+
+What monitoring checks
+CPU usage 🧠
+Memory usage 💾
+Pod status (Running / CrashLoopBackOff)
+Node health
+Network usage
+
+Most used monitoring tools
+1️⃣ Prometheus (MOST POPULAR)
+Collects metrics from:
+Nodes
+Pods
+Services
+Stores time-based data
+💡 Think of Prometheus as a data collector
+
+2️⃣ Grafana
+Shows metrics as graphs and dashboards
+Uses Prometheus data
+💡 Think of Grafana as a TV screen for metrics
+Example (real)
+If CPU goes above 80% → alert is sent 🚨
+
+Logging 
+kubectl get pods
+kubectl log pod-name
+kubectl describe pod pod-name
+
+to seee the previous crash logs
+kubectl logs pod-name --previous
+
+If pod has multiple containers
+kubectl logs pod-name -c container
+
+for cluster level
+Pods → Fluent Bit → Loki → Grafana
+Fluent Bit / Fluentd (collect logs)
+Loki or Elasticsearch (store logs)
+Grafana or Kibana (view logs)
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+Helm                        # to download the helm we can go for official documentation
+Helm simplifies deploying and managing apps in Kubernetes by packaging all resources together.
+
+Helm lets you install, upgrade, and delete apps with one command
+Helm is like a package manager for Kubernetes.
+Just like npm installs JavaScript packages Or pip installs Python packages
+Helm installs apps on Kubernetes in a structured way.
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 13 Explain the pod in Kubernetes.
