@@ -1088,9 +1088,34 @@ helm repo update
 helm install grafana grafana/grafana -n monitoring --create-namespace
 
 kubectl port-forward svc/monitoring-grafana 3000:80 -n monitoring
-Login
+Login  and add data source in grafana as prometheus
 
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+Init Container
+Definition: A container that runs before the main container starts in a Pod.
+Purpose: Perform setup tasks that must finish before the main app runs.
+Example Use Cases
+Initialize a database schema
+Download config files
+Wait for another service to be ready
 
+Sidecar Container
+Definition: A container that runs alongside the main container in the same Pod.
+Purpose: Add auxiliary functionality like logging, monitoring, or proxying.
+Example Use Cases
+Push logs to ELK/Fluentd 
+Metrics exporter (Prometheus)
+Service mesh proxy (Istio Envoy)
+
+👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
+what is service mesh 
+A service mesh is an infrastructure layer that helps manage communication between microservices in a distributed application.
+
+for service mesh we need a tool to do this (istio, linkerd)
+For Kind
+# Install Istio CLI
+For Kubeadm
+# Install Istio CLI
 
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
@@ -1163,11 +1188,6 @@ Login
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 29. # Expose PODS using NodePort service
   kubectl expose pod nginx-pod --type=NodePort --port=80
-
-👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
-
-👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
-
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 32 How does a Kubernetes Network Policy work?
