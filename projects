@@ -1,5 +1,5 @@
+Project-1
 it is a 3 tier application where frontend is running on ReactJs and backend runs on NodeJs and dataBase in MongoDB
-
 
    frontend create image > DockerHub > Container > Pods > Service > Ingress 
    backend  create image > DockerHub > Container > Pods > Service > Ingress
@@ -69,6 +69,13 @@ we need to forward the port for the ingress-nginx-controller      #because it is
 sudo -E kubectl port-forward service/ingress-nginx-controller -n ingress-nginx 80:80 &
 
 now we can access the application with .com(chat-tws.com) that we defined in engress file
+
+
+project-2
+
+
+
+
 
 
 
