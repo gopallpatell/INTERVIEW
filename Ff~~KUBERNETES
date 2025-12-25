@@ -1157,11 +1157,63 @@ Kiali visualizes everything: Kiali shows a live graph of services and traffic he
   In very simple terms, a Persistent Volume (PV) in Kubernetes is like a hard drive that stores data and doesn't go away even if the app (Pod) using it is deleted or recreated.
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
-19 what is namespace in kubernetes
+observerbility
+
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 20 How can you achieve zero downtime in Kubernetes?
   We can achieve zero downtime in Kubernetes through RollingUpdate strategy. 
+
+MONITERING
+Monitoring tells you WHAT is happening in your system.
+Examples of Metrics
+CPU usage = 70%
+Memory usage = 1.2 GB
+Request count = 500 req/sec
+Error rate = 2%
+Response time = 200 ms
+EX-
+Prometheus → collects metrics
+Grafana → visualizes metrics (dashboards)
+Kiali → shows traffic, errors, latency (Istio)
+
+LOGGING 
+Logging tells you WHAT exactly happened and WHY.
+Monitoring shows error rate = 5%
+Logs show:
+ERROR: Database connection timeout
+📄 Logging tells you:
+“Error happened because DB connection failed”
+
+Tools:
+ELK Stack (Elasticsearch, Logstash, Kibana)
+Fluentd / Fluent Bit
+Loki (Grafana
+
+TRACING
+A trace is a full journey of one request.
+Tracing says:
+Frontend: OK
+Auth: OK
+Order: OK
+Payment: slow
+✅ Now you know exactly which service is the problem
+
+Tools:
+Jaeger
+Zipkin
+Tempo
+
+Monitoring → How much?
+Logging → What happened?
+Tracing → Where did it happen?
+
+1️⃣ Monitoring
+➡ “Error rate increased”
+2️⃣ Tracing
+➡ “Payment service is slow”
+3️⃣ Logging
+➡ “Payment service DB timeout error”
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 21 list of exception you got while creating pod
