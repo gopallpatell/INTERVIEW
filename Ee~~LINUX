@@ -12,12 +12,13 @@ Client is used to request data (files, images, services), and the server serves 
 
 Q what is the difference between web server and application server ?
 A web server serves static content, while an application server is where the application runs and processes business logic.
-Web Server → HTML, CSS, JS, images (static files)
-Application Server → Runs code, connects to database, generates dynamic data
+Web Server → HTML, CSS, JS, images (static files) -- nginx, apache
+Application Server → Runs code, connects to database, generates dynamic data  -- NodeJs, Java Spring Boot
 Web server delivers files, application server runs the application logic.
 
 
 Q what it the diff btwn http and https and what is the port of both?
+HTTP and HTTPS are application-layer protocols that define how a browser and a server communicate over the web, with HTTPS providing secure communication using encryption.
 HTTP transfers data in plain text and is not secure; its default port is 80.
 HTTPS encrypts data using SSL/TLS for security; its default port is 443.
 
@@ -121,11 +122,11 @@ Q 'diff'
  this command is used to see the deference between two files or dir.
 diff file.txt file1.txt 
 
-
-Q nohup?
+Q nohup?  No Hang Up
 it is used to save the output of anything in the file that is "nohup.out"
 like if we want to save the logs of any file into a file then we can use nohup <command>
  nohup top   nohup free -h   nohup df   nohup du 
+ nohup command > output.log 2>&1 &
 
 Q 'uname'  is used to see the operator/plateform  like linux/darwin(mac)
 
@@ -156,7 +157,7 @@ sudo userdel adminuser
 
 Q to create Group 
 sudo groupadd devops      # it will create devops group
-usermod -aG <group_name> <user_name
+usermod -aG <group_name> <user_name>
 usermod -aG docker devopsadmin
 
 Q 'chmod' is used to change the permissions of files
