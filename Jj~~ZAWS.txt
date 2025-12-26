@@ -95,6 +95,8 @@ to sync the file from s3 to local.- " aws s3 sync aws://bucket-name/ .
 to sync the file from local to s3- "aws s3 sync file-name s3://bucket-name/
 
 
+
+
 Q   What is geo-targeting in CloudFront?
 it is a process which is used to serve the content based on their geographic location.
 eg; English content for users in the US
@@ -605,6 +607,7 @@ How does AWS support hybrid cloud?
 What are the limitations of AWS Lambda?
 
 How do you optimize AWS costs?
+
 
 
 
