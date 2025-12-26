@@ -251,3 +251,11 @@ http://<NodeIP>:30080
 ✔ Browser asks username/password
 ✔ Login → Kibana opens
 ✔ Logs visible 🎉
+
+
+we need to go to 3 dots then go to "stack management" 
+in "index management" we can see all the data which is saved in file formate  we collect the filebeat data we visualize this data
+then go to "index patterns" it is allow to run multiple index as a singel index
+if we want all the we can use *  filebeat*    and for singe we can use name 
+
+
