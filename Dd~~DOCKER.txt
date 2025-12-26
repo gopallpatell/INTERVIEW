@@ -37,7 +37,8 @@ vim docker-compose
 version: "3.8"
   services:
     nginx:
-      build:          ### or we can directly build the image using image: nginx    but wwe need to copy the file from host           context: ./nginx     to container thats why we create dockerfile in github in ./nginx direcory and build in compose.
+      build:          ### or we can directly build the image using image: nginx    but wwe need to copy the file from host           
+        context: ./nginx     to container thats why we create dockerfile in github in ./nginx direcory and build in compose.
       nginx_name: nginx
       ports:
         - "80:80"
@@ -67,7 +68,9 @@ version: "3.8"
       build:
         context: .    # because the file is in open space not in a directory so . is for PWD
       conatainer_name: django        # conatainer name should be the same that we use in reverse proxy in nginx in  default.conf file "proxy_pass: http/django:8000;
-      command: sh -c "python mannage.py migrate --no-input && gunicorn notesapp.wsgi --bind 0.0.0.0:8000"    # gunicorn is a tool that is used to serve the application in production and migrate means it will create tables and columbs and noinput for not ask for yes or no input while creating tables an "sh -c" for shell commands.
+      command: sh -c "python mannage.py migrate --no-input && gunicorn notesapp.wsgi --bind 0.0.0.0:8000"    # gunicorn is a tool that is used to serve the application in 
+                                                                                    production and migrate means it will create tables and columbs and no input for not ask  
+                                                                                    for yes or no input while creating tables an "sh -c" for shell commands.
       ports: 
         - "8000:8000"
       env_file:                      
@@ -355,7 +358,7 @@ Blue-Green: Build a new machine completely, then switch to it instantly.
 33. How can you link multiple Docker containers together?
   Docker provides a feature called container networking, which allows you to link multiple containers together.
    or we can use docker compose 
- docker run -d --name my-container --network my-network nginx
+docker run -d --name my-container --network my-network nginx
 
 34 How do you optimize a Docker image to reduce its size?
   Combine commands (RUN, COPY, ADD) to reduce layers.
@@ -604,6 +607,7 @@ What tools are available for Docker logging?
 How do you troubleshoot a failed Docker container?
 
 What are some best practices for using Docker in production?
+
 
 
 
