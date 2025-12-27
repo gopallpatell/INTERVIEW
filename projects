@@ -71,10 +71,35 @@ sudo -E kubectl port-forward service/ingress-nginx-controller -n ingress-nginx 8
 now we can access the application with .com(chat-tws.com) that we defined in engress file
 
 
-project-2
+Project-2
 
+Use EKS in this to manage the cluster 
 
+EKS is AWS’s managed service to run Kubernetes on AWS.
+✅ Fully managed Kubernetes
+✅ High availability & secure
+✅ Integrates with AWS services
+IAM (security)
+ALB / NLB (load balancer)
+CloudWatch (logs & metrics)
+ECR (Docker images)
 
+so firstly we install AWS CLI to Create EKS cluster
+Step 1: Download
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip
+
+Step 2: Unzip          
+sudo apt install unzip -y
+unzip awscliv2.zip
+
+Step 3: Install
+sudo ./aws/install
+
+Verify
+aws --version
+
+then run the command "aws configure" it will ask for access key and secret acess Key which we need to create on aws console
+we need to create IAM user and give the permosion for EKS Service for that and generate the acess key and secret acessKey
 
 
 
