@@ -887,7 +887,7 @@ Create CRD → Create Custom Resources → Interact with CR like native resource
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 When you should use Docker Scout 
 Docker Scout helps you know what’s inside your Docker image, find security issues, and keep it safe over time.
-docker scout quickview myimage:latest
+docker scout quickview myimage:latest    # Common Vulnerabilities and Exposures
 
 🔍 Vulnerability scanning
 👉 It checks your Docker image for security problems
@@ -897,6 +897,16 @@ Tells you how serious each problem is
 Shows which problems are easy to fix and which are not
 💡 Think of it like a virus scan for your Docker image
 docker scout cves myimage:latest
+
+Output:
+Vulnerabilities detected: 14
+   ├─ Critical: 2
+   ├─ High: 6
+   ├─ Medium: 4
+   └─ Low: 2
+
+When Docker Scout reports Critical or High CVEs, we first upgrade the base image, update OS and application dependencies, reduce unnecessary packages, and re-scan. 
+If a CVE is not fixable, we document and monitor it.
 
 🧱 Software Bill of Materials (SBOM)
 👉 It makes a list of everything inside your image
@@ -930,6 +940,17 @@ Old dependencies
 Running as root	
 
 npm = JavaScript, pip = Python, mvn = Java
+
+doker Scout with CI/CD
+docker scout cves myapp:latest --exit-code --severity critical
+
+stage('Security Scan') {
+      steps {
+        sh 'docker scout cves myapp:latest --exit-code --severity critical'
+
+
+
+
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 Resource Usage Analysis
 it used to see the resource utalization
@@ -1104,16 +1125,158 @@ helm install insureme \
 
 OCI = Open Container Initiative
 
+Step 1: Add Helm repo
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update
-helm install monitoring prometheus-community/kube-prometheus-stack -n monitoring --create-namespace
 
-helm repo add grafana https://grafana.github.io/helm-charts
-helm repo update
-helm install grafana grafana/grafana -n monitoring --create-namespace
+Step 2: Create namespace
+kubectl create namespace monitoring
 
+Step 3: Install Prometheus + Grafana (Helm)
+helm install monitoring prometheus-community/kube-prometheus-stack -n monitoring
+
+✅ This installs:
+Prometheus
+Grafana
+Alertmanager
+Node Exporter
+Kube State Metrics
+
+Step 4: Check pods
+kubectl get pods -n monitoring
+
+You should see:
+prometheus-monitoring-...
+grafana-...
+alertmanager-...
+node-exporter-...
+kube-state-metrics-...
+
+Step 5: Access Grafana
+Get Grafana password
+kubectl get secret monitoring-grafana -n monitoring -o jsonpath="{.data.admin-password}" | base64 --decode
+
+Port forward Grafana
 kubectl port-forward svc/monitoring-grafana 3000:80 -n monitoring
-Login  and add data source in grafana as prometheus
+
+Access:
+http://localhost:3000
+
+Login:
+Username: admin
+Password: <from secret>
+
+Step 6: Prometheus access
+kubectl port-forward svc/monitoring-kube-prometheus-prometheus 9090 -n monitoring
+
+http://localhost:9090
+
+Step 7: Dashboards (Already Included)
+Grafana comes preloaded with dashboards:
+Kubernetes cluster
+Nodes CPU / Memory
+Pods / Deployments
+Namespace usage
+
+📊 No manual dashboard creation needed.
+
+Step 8: Monitor your application
+App must expose /metrics
+Example (Node.js / Java / Go):
+
+http://<pod-ip>:8080/metrics
+
+Create ServiceMonitor
+ServiceMonitor tells Prometheus:
+“From THIS service, scrape metrics from THIS endpoint every X seconds”
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: myapp-monitor
+  namespace: monitoring
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  namespaceSelector:
+    matchNames:
+    - default
+  endpoints:
+  - port: http
+    path: /metrics
+    interval: 15s
+
+Apply:
+kubectl apply -f servicemonitor.yaml
+
+✅ Prometheus automatically starts scraping.
+
+Step 9: Verify in Prometheus
+Go to:
+Status → Targets
+You should see myapp as UP.
+
+Step 10: Enable persistence (Real Production)
+Create values.yaml:
+prometheus:
+  prometheusSpec:
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: gp2
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 20Gi
+grafana:
+  persistence:
+    enabled: true
+    size: 10Gi
+
+Why persistence?
+Without persistence:
+Prometheus restart → ❌ data lost
+Grafana restart → ❌ dashboards lost
+
+Upgrade:
+helm upgrade monitoring prometheus-community/kube-prometheus-stack \
+-n monitoring -f values.yaml
+
+Alerts (Optional but Important)
+What is PrometheusRule?
+👉 It defines WHEN to alert
+Example CPU alert:
+
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: cpu-alert
+  namespace: monitoring
+spec:
+  groups:
+  - name: cpu.rules
+    rules:
+    - alert: HighCPUUsage
+      expr: cpu_usage_seconds_total > 80
+      for: 2m
+      labels:
+        severity: critical
+      annotations:
+        summary: High CPU detected
+
+Real-world DevOps Best Practices
+
+✔ Use kube-prometheus-stack
+✔ Enable persistent storage
+✔ Monitor nodes + apps
+✔ Add Alertmanager notifications (Slack / Email)
+✔ Secure Grafana (Ingress + Auth)
+
+One-line Summary
+
+Helm installs Prometheus & Grafana using kube-prometheus-stack, which automatically monitors Kubernetes and your applications.
+
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 Init Container
