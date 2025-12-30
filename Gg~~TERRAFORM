@@ -1,3 +1,12 @@
+interpolation
+tags in tf
+resource.tf 
+output..tf
+viriable.tf
+atributes
+
+
+
 1 terraform state to modify and manage the state of the infrastructure 
   terraform state mv <old_address> <new_address>
   The terraform state mv command allows you to rename or move a resource in the state file, 
