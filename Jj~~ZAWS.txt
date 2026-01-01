@@ -1,7 +1,162 @@
 RDS
+RDS is a managed database service by AWS where AWS takes care of database setup, maintenance, backups, and scaling.
+RDS lets you run relational databases in the cloud without managing servers manually.
+Relational means data is stored in tables that are connected (related) to each other.
+Data is stored in tables
+Tables have rows and columns
+Tables are linked using keys (relationships)
+
+Why relational databases are used
+Data is structured
+Easy to query using SQL
+Maintains data consistency
+Avoids duplicate data
+
+✅ Fully managed – no OS or DB admin headache
+AWS manages:
+OS installation & patching
+Database software updates
+Monitoring & maintenance
+👉 You don’t log into the server or manage the database manually.
+
+✅ High availability – Multi-AZ deployments
+RDS automatically creates a standby replica in another Availability Zone
+If the primary DB fails, AWS automatically switches to the standby
+👉 Zero/low downtime during failures.
+
+✅Automated Backups & Snapshots – point-in-time recovery
+Daily automatic backups
+Transaction logs saved continuously
+You can restore the database to any specific time (e.g., 10:35 AM yesterday)
+👉 Protects against accidental data deletion.
+
+✅ Scalable – increase storage & compute easily
+Increase CPU, RAM, or storage with a few clicks or API
+No need to stop the application for most scaling tasks
+
+👉 Handles traffic growth smoothly.
+✅ Secure – IAM, VPC, encryption, security groups
+RDS security includes:
+IAM for access control
+VPC for network isolation
+Security Groups as firewall rules
+Encryption at rest & in transit
+👉 Suitable for enterprise & healthcare/finance apps.
+
+RDS supports popular SQL databases:
+MySQL
+PostgreSQL
+MariaDB
+Oracle
+SQL Server
+Amazon Aurora
+
+Healthcare / enterprise setup
+Multi-AZ →AZ failure protection
+Automated backups → logical failure recovery
+Cross-region replica → region-level DR
+
+Amazon RDS supports disaster recovery using Multi-AZ deployments, automated backups, snapshots, and cross-region read replicas depending on the recovery requirements.
+I use Amazon RDS by creating a managed database instance inside a VPC, securing it with security groups, connecting it to my application using the RDS endpoint, and relying 
+on built-in backups, Multi-AZ, and monitoring for reliability.
+
+What you need to connect to RDS
+on Client EC2
+sudo apt install postgresql-client -y
+sudo apt install mysql-client -y
+mysql -h <rds-endpoint> -u admin -p
+
+From Application (No manual client needed)
+If your app uses:
+Java (JDBC)
+Node.js (mysql / pg library)
+Python (psycopg2 / pymysql)
+
+Important networking rule (very common mistake)
+Even if client is installed, connection will fail unless:
+Security Group allows DB port
+RDS & client are in same VPC (or via VPN/peering)
+Correct username/password
+
+IN EKS
+Store DB credentials in Kubernetes Secret
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: rds-test
+spec:
+  containers:
+  - name: postgres-client
+    image: postgres:15
+    env:
+    - name: DB_HOST
+      valueFrom:
+        secretKeyRef:
+          name: rds-secret
+          key: DB_HOST
+    - name: DB_USER
+      valueFrom:
+        secretKeyRef:
+          name: rds-secret
+          key: DB_USER
+    - name: DB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: rds-secret
+          key: DB_PASSWORD
+    - name: DB_NAME
+      valueFrom:
+        secretKeyRef:
+          name: rds-secret
+          key: DB_NAME
+    command: ["sleep", "3600"]
+
+after all this we can connect the client to DB and to create table in DB wwe need to run the quary
+it is structured quaery language. it uses tables to store the data.
+   - The INSERT INTO statement is used to add new records to a table. 
+   - The UPDATE statement is used to modify existing records in a table. 
+   - The DELETE statement is used to remove records from a table.
+   - The CREATE TABLE statement is used to create a new table in a database.
+   - The DROP TABLE statement is used to delete a table and all its data.
+   - The JOIN clause is used to combine rows from two or more tables, based on a related column.
+
+using all this we can create and insert the data in table and rows     
+
+
+
+
+
+
 DYnamodb
-ec2
-lambda
+it is serverless we dont need to create server
+
+DynamoDB is Amazon’s fully managed NoSQL database service. DynamoDB stores data as key–value or JSON documents and is built for very high speed and massive scale.
+
+Amazon DynamoDB is ideal for applications that require fast, flexible, and scalable database solutions. It's commonly used for web and mobile applications, 
+e-commerce platforms, IoT systems, real-time data processing, gaming, and more.
+
+Amazon DynamoDB is a fully managed, serverless NoSQL key-value and document database designed for high performance and massive scalability.
+
+SQL databases use structured tables with fixed schemas and support relationships, while NoSQL databases use flexible schemas and are designed for high scalability and 
+performance.      ####  Schema is the predefined structure that defines how data is stored, including fields and data types.
+
+Use SQL for structured, transactional, relational data; use NoSQL for scalable, high-performance, flexible data models.
+
+SQL (RDS): Used for structured, relational, transactional data — example: user accounts, orders, and payments in an e-commerce application.
+NoSQL (DynamoDB): Used for high-scale, low-latency, flexible data — example: user sessions, shopping carts, or real-time gaming leaderboards.
+
+When would you choose DynamoDB over RDS?
+When the application needs massive scalability, low latency, and doesn’t require joins or complex transactions
+
+
+
+
+
+what is aws lammbada
+  AWS Lambda is a serverless compute service provided by Amazon Web Services (AWS). It allows you to run your code without 
+ provisioning or managing servers. You simply upload your code to Lambda, and it automatically handles the infrastructure, 
+ scaling, and execution for you.
 
 
 
@@ -250,8 +405,7 @@ It supports multiple database engines like MySQL, SQL Server, Oracle, and Amazon
    - The JOIN clause is used to combine rows from two or more tables, based on a related column.
 Oracle- Oracle Database is a powerful system used to store and manage large amounts of data.
              Oracle is often used in large businesses because it ensures data is safe, organized, and easily accessible.
-Amazon DynamoDB is ideal for applications that require fast, flexible, and scalable database solutions. It's commonly used for web and mobile applications, 
-e-commerce platforms, IoT systems, real-time data processing, gaming, and more. 
+ 
 mongodb MongoDB is a popular NoSQL database that is designed to store large amounts of data in a flexible, scalable.
 
 16. what is cloudformation and stack in cloudformation.
@@ -343,10 +497,6 @@ EBS is for single-instance storage, while EFS is for shared storage across multi
  AWS CodePipeline is a fully managed continuous integration and continuous delivery (CI/CD) service that automates the 
  build, test, and deployment phases of your application. 
 
-32. what is aws lammbada
-  AWS Lambda is a serverless compute service provided by Amazon Web Services (AWS). It allows you to run your code without 
- provisioning or managing servers. You simply upload your code to Lambda, and it automatically handles the infrastructure, 
- scaling, and execution for you.
 
 33What other aws services are used with AWS CodePipeline
  1. AWS CodeCommit
@@ -618,6 +768,7 @@ How does AWS support hybrid cloud?
 What are the limitations of AWS Lambda?
 
 How do you optimize AWS costs?
+
 
 
 
