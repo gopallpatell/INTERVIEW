@@ -1,4 +1,15 @@
-                                                    S3
+RDS
+DYnamodb
+ec2
+lambda
+
+
+
+
+
+
+
+                                                            S3
  
 Q what is S3?
    Amazon S3 (Simple Storage Service) is an object storage service provided by AWS. It allows you to store and retrieve any  
@@ -607,6 +618,7 @@ How does AWS support hybrid cloud?
 What are the limitations of AWS Lambda?
 
 How do you optimize AWS costs?
+
 
 
 
