@@ -158,10 +158,87 @@ what is aws lammbada
  provisioning or managing servers. You simply upload your code to Lambda, and it automatically handles the infrastructure, 
  scaling, and execution for you.
 
+Lambda is not used to host full applications; it is used for event-driven and background processing, while core application  
+logic runs on EKS or EC2.
+
+App calls backend API: 
+3️⃣ Backend (Lambda / EKS app) creates a pre-signed S3 URL
+4️⃣ Backend sends URL back to frontend 
+5️⃣ Frontend uploads file directly to S3 ,
+6️⃣ File stored securely in S3 
+7️⃣ S3 triggers Lambda for processing
+Patient uploads file → S3
+S3 triggers Lambda
+Lambda processes file → stores result in RDS
+Application (EKS) reads data from RDS
+
+What problem SQS (Simple Queue service) solves 
+Imagine:
+One service sends work
+Another service processes it
+If the processor is slow or down → data should NOT be lost
+👉 SQS holds messages safely until they are processed
+
+🔹 Simple definition (interview ready)
+Amazon SQS is a managed message queue that enables asynchronous communication between services by temporarily storing 
+messages until they are processed.
 
 
+1️⃣ Scalability (BIGGEST reason)
+Healthcare apps have unpredictable traffic:
+10 uploads today
+10,000 uploads tomorrow
+Why this design works
+S3 scales automatically for any file size/count
+Lambda scales automatically per event
+EKS app stays stable and lightweight
+👉 No manual scaling needed
+🗣 Real-world reason:
+Hospitals cannot predict upload volume; this architecture handles spikes automatically.
+
+🔹 2️⃣ Cost Optimization (VERY IMPORTANT)
+Without this design:
+Backend servers handle file uploads
+Servers must stay running 24/7
+High EC2/EKS costs
+With this design:
+File uploads go directly to S3
+Lambda runs only when needed
+Pay only per request
+👉 No idle cost
+🗣 Interview line:
+We reduce infrastructure cost by offloading file uploads to S3 and using Lambda for event-based processing.
+
+🔹 3️⃣ High Availability (Healthcare requirement)
+S3 is multi-AZ by default
+Lambda runs across multiple AZs
+RDS can be Multi-AZ
+EKS pods spread across AZs
+👉 If one AZ fails → system still works
+🗣 Real-world reason:
+Patient data must always be accessible.
+
+🔹 4️⃣ Security & Compliance (CRITICAL in healthcare)
+No public S3 access
+No AWS keys on frontend
+Pre-signed URLs expire
+IAM least privilege
+Encryption at rest & in transit
+👉 Meets HIPAA / healthcare security standards
+🗣 Interview line:
+Pre-signed URLs allow secure uploads without exposing AWS credentials.
+
+🔹 7️⃣ Reliability & Fault Tolerance
+If Lambda fails → retry automatically
+Can use DLQ (Dead Letter Queue)
+Data not lost
+👉 Critical for medical data
 
 
+Why companies don’t put full apps in Lambda
+Reason               	Explanation
+Time limit	         Max 15 minutes
+Cold start	      Delay on first request
 
 
                                                             S3
@@ -262,6 +339,29 @@ to sync the file from local to s3- "aws s3 sync file-name s3://bucket-name/
 
 
 
+24. what is vpc and its components.?
+A VPC (Virtual Private Cloud) is like your own private network in the AWS cloud where you can run your applications and store data securely.
+Main parts of a VPC:
+Subnets: Small sections of your VPC where you place resources. Some can connect to the internet (public), and some stay private (not connected to the internet).
+IP Range (CIDR classles internet domain range Block): The range of IP addresses your VPC can use (like 10.0.0.0/16).
+
+Route Tables: Rules that control how traffic moves in and out of your VPC.
+
+Internet Gateway: A connection that allows your VPC to talk to the internet.
+
+NAT Gateway/Instance: Allows private resources to access the internet without being publicly visible. it will connect the  
+public subnat to private subnet
+
+Security Groups: Firewalls that control which traffic is allowed to reach your resources.
+vpc->subnet->internet gateway->route table-> then assosiate the subnet to rout table -> then route the internete gateway
+
+it is work like we create vpc first then we create subnets it will be private or public then we create internet gateway then 
+we create route tables the we add(assosiate) subnet to route table and add rout, internet gateway to route table..
+
+it works like route table is sits between subnets and internet gateway.
+and nat gateway sits between private and public subnet.
+
+vpc peering -- ICMP
 
 Q   What is geo-targeting in CloudFront?
 it is a process which is used to serve the content based on their geographic location.
@@ -450,22 +550,7 @@ Accounting tracks what you did and when.
 22. what is AWS secret manager.
     it is used to secure save and retrive the credentials and sensitive data.
 
-23. AWS CLI 
-The AWS CLI is a powerful tool that allows you to manage AWS resources from the command line,
 
-24. what is vpc and its components.?
-A VPC (Virtual Private Cloud) is like your own private network in the AWS cloud where you can run your applications and store data securely.
-Main parts of a VPC:
-Subnets: Small sections of your VPC where you place resources. Some can connect to the internet (public), and some stay private (not connected to the internet).
-IP Range (CIDR Block): The range of IP addresses your VPC can use (like 10.0.0.0/16).
-
-Route Tables: Rules that control how traffic moves in and out of your VPC.
-
-Internet Gateway: A connection that allows your VPC to talk to the internet.
-
-NAT Gateway/Instance: Allows private resources to access the internet without being publicly visible.
-
-Security Groups: Firewalls that control which traffic is allowed to reach your resources.
 
 25. diff b/w roles and policies.?
 Roles:
@@ -768,6 +853,7 @@ How does AWS support hybrid cloud?
 What are the limitations of AWS Lambda?
 
 How do you optimize AWS costs?
+
 
 
 
