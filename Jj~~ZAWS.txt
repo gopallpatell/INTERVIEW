@@ -343,20 +343,34 @@ to sync the file from local to s3- "aws s3 sync file-name s3://bucket-name/
 A VPC (Virtual Private Cloud) is like your own private network in the AWS cloud where you can run your applications and store data securely.
 Main parts of a VPC:
 Subnets: Small sections of your VPC where you place resources. Some can connect to the internet (public), and some stay private (not connected to the internet).
-IP Range (CIDR classles internet domain range Block): The range of IP addresses your VPC can use (like 10.0.0.0/16).
+IP Range CIDR (classles internet domain range Block): The range of IP addresses your VPC can use (like 10.0.0.0/16).
 
-Route Tables: Rules that control how traffic moves in and out of your VPC.
+Route Tables: Controls traffic routing inside the VPC
+              Each subnet must be associated with a route table.
 
 Internet Gateway: A connection that allows your VPC to talk to the internet.
 
-NAT Gateway/Instance: Allows private resources to access the internet without being publicly visible. it will connect the  
+NAT Gateway/Instance:Allows private subnet resources to access the internet ❌ Internet cannot access them back it will connect the  
 public subnat to private subnet
 
 Security Groups: Firewalls that control which traffic is allowed to reach your resources.
+
+What is NACL (Network Access Control List)?
+A NACL (Network Access Control List) is a subnet-level firewall in a VPC that controls inbound and outbound traffic to and from subnets.
+
+ VPC Endpoint -- A VPC Endpoint allows your resources in a private subnet to access AWS services privately, without using the Internet, IGW, or NAT Gateway.
+Without VPC Endpoint:
+Private EC2 → NAT Gateway → Internet → S3
+With VPC Endpoint:
+Private EC2 → VPC Endpoint → S3
+Real-time example
+App in private subnet uploads logs to S3
+No NAT Gateway needed
+
 vpc->subnet->internet gateway->route table-> then assosiate the subnet to rout table -> then route the internete gateway
 
 it is work like we create vpc first then we create subnets it will be private or public then we create internet gateway then 
-we create route tables the we add(assosiate) subnet to route table and add rout, internet gateway to route table..
+we create route tables then we add(assosiate) subnet to route table and add rout, internet gateway to route table..
 
 it works like route table is sits between subnets and internet gateway.
 and nat gateway sits between private and public subnet.
