@@ -361,8 +361,10 @@ A NACL (Network Access Control List) is a subnet-level firewall in a VPC that co
  VPC Endpoint -- A VPC Endpoint allows your resources in a private subnet to access AWS services privately, without using the Internet, IGW, or NAT Gateway.
 Without VPC Endpoint:
 Private EC2 → NAT Gateway → Internet → S3
+
 With VPC Endpoint:
 Private EC2 → VPC Endpoint → S3
+
 Real-time example
 App in private subnet uploads logs to S3
 No NAT Gateway needed
@@ -375,7 +377,127 @@ we create route tables then we add(assosiate) subnet to route table and add rout
 it works like route table is sits between subnets and internet gateway.
 and nat gateway sits between private and public subnet.
 
-vpc peering -- ICMP
+what is vpc peering?
+VPC Peering is a private network connection between two VPCs that allows resources in both VPCs to communicate using private IP addresses.
+Inter-Region VPC Peering allows you to privately connect two VPCs that are in different AWS regions using AWS’s global backbone network.
+
+Step 1: Check CIDR Blocks
+Ensure CIDRs do not overlap.
+Example:
+VPC-A: 10.0.0.0/16
+VPC-B: 10.1.0.0/16
+
+🔸 Step 2: Create VPC Peering Connection
+AWS Console
+Go to VPC → Peering connections
+Click Create peering connection
+Select:
+Requester VPC
+Accepter VPC
+Region / Account
+Create
+Status: Pending Acceptance
+
+🔸 Step 3: Accept the Peering Request
+Go to accepter VPC
+Accept request
+Status: Active
+
+🔸 Step 4: Update Route Tables (MOST IMPORTANT 🔥)
+In VPC-A Route Table    # set the VPC-B in VPC-A
+Destination: 10.1.0.0/16  # this is the VPC-B range
+Target: pcx-xxxx
+
+In VPC-B Route Table     # set the VPC-A in VPC-B
+Destination: 10.0.0.0/16  # this is the VPC-A range
+Target: pcx-xxxx       
+Without this → ❌ no connectivity
+
+🔸 Step 5: Update Security Groups
+Allow traffic from peered VPC CIDR.
+Example (DB SG in VPC-B):
+Inbound:
+MySQL 3306 → Source: 10.0.0.0/16
+
+Ping / Connectivity testing
+For testing connectivity:
+Protocol: ICMP
+Port: All (ICMP doesn’t use ports)
+
+🔸 Step 6: Test Connectivity
+From EC2 in VPC-A:
+ping 10.1.x.x
+telnet 3306
+
+🧪 Real-Time Example
+Scenario
+App servers in VPC-A
+Database in VPC-B
+Flow
+App EC2 → VPC Peering → RDS
+
+What is transit Gateway
+Transit Gateway is used to centrally connect multiple VPCs and on-prem networks instead of creating many VPC peerings.
+Imagine you have many VPCs:
+VPC-A (App)
+VPC-B (Database)
+VPC-C (Logging)
+VPC-D (Monitoring)
+
+Instead of VPCs connecting to each other,
+👉 all VPCs connect to ONE place (Transit Gateway).
+        VPC-A
+          |
+        VPC-B
+          |
+      Transit Gateway
+          |
+        VPC-C
+          |
+    On-Prem Network
+
+Use Transit Gateway when:
+You have many VPCs
+You need VPC-to-VPC communication
+You need on-prem → AWS connectivity
+You want simple & scalable networking
+
+Go to AWS Console → VPC → Transit Gateways → Create Transit Gateway
+Provide a name and create the Transit Gateway (TGW)
+Go to Transit Gateway Attachments → Create attachment
+Select VPC, choose the VPC and its private subnets, then attach
+Repeat attachment for all VPCs you want to connect
+Open VPC route tables of each attached VPC
+Add route: Destination = other VPC CIDR, Target = Transit Gateway
+Verify Transit Gateway route table has routes for all VPC CIDRs
+Update Security Groups / NACLs to allow required traffic
+Test connectivity using private IPs
+
+Create TGW → Attach VPCs → Update Route Tables → Allow Security → Test
+
+Add route: Destination = other VPC CIDR, Target = Transit Gateway
+VPC-A CIDR: 10.0.0.0/16
+VPC-B CIDR: 10.1.0.0/16
+
+Now go to VPC-A route table and add:
+Destination: 10.1.0.0/16
+Target: Select Transit Gateway
+Choose your Transit Gateway ID (tgw-xxxx)
+Click Save changes
+
+Repeat for Other VPC
+Now go to VPC-B route table and add:
+Destination: 10.0.0.0/16
+Target: Transit Gateway (tgw-xxxx)
+Save changes
+
+What You Just Did (Simple Words)
+Told VPC-A:
+👉 “To reach VPC-B, send traffic to Transit Gateway”
+Told VPC-B:
+👉 “To reach VPC-A, send traffic to Transit Gateway”
+
+
 
 Q   What is geo-targeting in CloudFront?
 it is a process which is used to serve the content based on their geographic location.
@@ -867,6 +989,7 @@ How does AWS support hybrid cloud?
 What are the limitations of AWS Lambda?
 
 How do you optimize AWS costs?
+
 
 
 
