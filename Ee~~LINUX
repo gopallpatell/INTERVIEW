@@ -16,6 +16,9 @@ Web Server → HTML, CSS, JS, images (static files) -- nginx, apache
 Application Server → Runs code, connects to database, generates dynamic data  -- NodeJs, Java Spring Boot
 Web server delivers files, application server runs the application logic.
 
+A web server handles client requests and serves static content, while an application server processes business logic and interacts with databases.
+Web server = Files + Forward
+App server = Logic + Database
 
 Q what it the diff btwn http and https and what is the port of both?
 HTTP and HTTPS are application-layer protocols that define how a browser and a server communicate over the web, with HTTPS providing secure communication using encryption.
@@ -216,7 +219,7 @@ Q How do you compress and decompress files in Linux?
 
 Q what is LVM(logical volume manager)
 Physical Volume (PV) → Each EBS volume you attach to the EC2 instance is treated as a physical volume in LVM.
-sudo pvcreate /dev/xvdf
+sudo pvcreate /dev/xvdf   # xen virtual disk
 sudo pvdisplay
 
 Volume Group (VG) → Multiple PVs can be combined into a volume group, which acts like a storage pool. This allows you to 
@@ -237,6 +240,10 @@ sudo mkfs.ext4 /dev/vg_data/lv_data
 mount
 sudo mkdir /data
 sudo mount /dev/vg_data/lv_data /data
+
+real time use case is like when the attched volume is full and we need to extend the volume for that we use LVM it will create new volume space and we can attched with EC2
+
+EBS is created from the EC2 console by selecting volume type, size, and AZ, then attaching it to an EC2 instance in the same Availability Zone. or we can create it using CLI.
 
 Q2. How do you mount and unmount filesystems in Linux?
   mount is used to attach a storage device (like a hard drive, USB drive, or disk image) to a specific directory (mount point) in the filesystem.
@@ -261,9 +268,63 @@ Q3 How do you troubleshoot network connectivity issues in Linux?
 
 Q4  How do you list all the processes running in Linux?
   ps aux: Lists all processes running on the system with detailed information (like CPU and memory usage).
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.1 169084  1348 ?        Ss   Jan04   0:02 /sbin/init
+ec2-user   245  0.1  1.2 256432 12340 ?        S    10:12   0:01 nginx: worker
+ec2-user   310  2.5  5.4 512000 54200 ?        Sl   10:20   0:45 java -jar app.jar
+
   top: Shows a real-time, continuously updating list of processes running on the system.
   htop: Similar to top, but with a more user-friendly, interactive interface (requires installation).
   pgrep -a <process_name>: Finds and lists all processes matching  specific name or pattern.
+  In real time, pgrep -a is used to quickly verify whether a service is running, identify its PID, and see the exact command/arguments without using ps and grep.
+  pgrep -a python       pgrep -a kubelet      pgrep -a containerd           pgrep -a java
+
+
+1️⃣ Disk Full Issue (MOST COMMON ❗)
+What you say 👇
+One issue I resolved was the Linux root disk getting full, which caused the application to stop working.
+How you explain (short & easy):
+Problem: Server became unresponsive
+Checked:
+df -h
+du -sh /var/log/*
+Root Cause: Old log files consuming disk space
+Fix:
+journalctl --vacuum-time=7d         ##  removes system logs older than 7 days to free disk space.
+
+Result: Disk space freed, application recovered
+
+2️⃣ High CPU Usage by Application
+What you say 👇
+I faced a high CPU issue where a Java application was consuming most of the CPU.
+Explanation:
+Problem: Application was slow
+Checked:
+top
+ps aux --sort=-%cpu
+if the java application is used most of the cpu then we can check
+pgrep -a java 
+then find the PID of a stuck process kill -9 310
+
+Root Cause: Application stuck in loop / heavy load
+Fix: Restarted service and optimized resources
+systemctl restart app
+Result: CPU usage normalized
+
+Server slow → ps aux --sort=-%cpu → PID 310 Java app 95% CPU → check logs → infinite loop → restart service → CPU normalized → applied CPU limit in Docker → system stable
+
+3️⃣ Application / Service Down
+What you say 👇
+One time the application was not accessible because the service was down.
+Explanation:
+Checked:
+systemctl status nginx
+journalctl -u nginx      ### Useful when Nginx is not working or misbehaving.
+pgrep -a nginx
+
+Root Cause: Service failed after deployment
+Fix: Restarted service and fixed config
+Result: Application accessible again
 
 Q5  how can i check the configuration information in linux  
   lscpu: CPU architecture and details.
