@@ -2,18 +2,31 @@ Docker (In One Line)
 Docker is a tool that packages an application and all its dependencies into a lightweight, portable container that can run anywhere.
 
 difference between -v and --mount
+A Docker mount is used to attach storage from:
+Host machine
+Docker-managed volume
 -v is the old shorthand syntax (less clear), e.g.:
    docker run -v /host/path:/container/path image
 --mount is the newer, explicit, recommended syntax, e.g.:
    docker run --mount type=bind,source=/host/path,target=/container/path image
 
+docker volume create app_data
+docker run -d --mount source=/var/lib/docker/volumes/db_data,target=/var/lib/mysql mysql
+
+Use LVM (Advanced / Production)
+sudo mount /dev/vg_data/lv_data  /var/lib/docker/volumes/db_data
+
 ### monitering and logging 
 Q what is the nohup 
   nohup is used to write the logs in file directly. it will run the command in the background and give the output in a file
   "nohup.out"
-  command - nohup docker attach <containerID > & 
+  command - nohup docker logs -f <containerID> &
 
 we can also use ' docker stats ' to see the health and usage of the docker containers
+CONTAINER ID   NAME        CPU %   MEM USAGE / LIMIT   MEM %   NET I/O       BLOCK I/O     PIDS
+a1b2c3d4       web_app     35.2%   256MiB / 1GiB       25%     10MB / 8MB    1.2MB / 0B    15
+
+nohup docker stats & 
 
 Q what is ngnix 
   Nginx is a high-performance web server and reverse proxy used to efficiently serve and manage web traffic.
@@ -607,6 +620,7 @@ What tools are available for Docker logging?
 How do you troubleshoot a failed Docker container?
 
 What are some best practices for using Docker in production?
+
 
 
 
