@@ -1,3 +1,11 @@
+billing and cost management
+
+
+
+
+
+
+
 RDS
 RDS is a managed database service by AWS where AWS takes care of database setup, maintenance, backups, and scaling.
 RDS lets you run relational databases in the cloud without managing servers manually.
@@ -989,6 +997,7 @@ How does AWS support hybrid cloud?
 What are the limitations of AWS Lambda?
 
 How do you optimize AWS costs?
+
 
 
 
