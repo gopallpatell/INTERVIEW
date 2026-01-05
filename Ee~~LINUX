@@ -404,6 +404,9 @@ Q20 What is the sed command used for in Linux?
   sed commmand is used to replace edit delete insert any text in file without opening of that file. 
   In short, sed helps you make quick and automatic changes to text in files without needing to open them in an editor! 
   sed 's/old_text/new_text/' file
+sed -i 's/8080/80/g' nginx.conf    ###  to change the ports
+sed -n '3,6p' file.txt             ###  Print specific lines
+sed '5d' file.txt                  ###  Delete a line from a file
 
 Q21 How to find and kill a process in Linux?
   ps aux | grep <process>
@@ -426,9 +429,12 @@ Q27 How can you find the IP address of a Linux system?
   The ‘ifconfig’ or ‘ip addr show’ command can be used to display the IP address of a Linux system.
 
 Q29 Create a user and generate ssh key
-  useradd devopsadmin -s /bin/bash -m -d /home/devopsadmin
-  ssh-keygen -t ecdsa -b 521	
-
+  useradd devopsadmin -s /bin/bash -m -d /home/devopsadmin        ## -s = login shell     /bin/bash = default shell when user logs in
+  ssh-keygen -t ecdsa -b 521	                                if dont use this then it used default /bin/sh  User can log in, 
+                                                                                         but: Limited features
+                                                                                         No .bashrc, .bash_profile
+                                                                                         Less user-friendly                       
+ 
 30 What is shell scripting and how can you run
   Shell scripting is a way to automate tasks in Linux by writing a series of commands in a plain text file.
   ./myscript.sh
@@ -445,6 +451,10 @@ Q33 AWK command
   awk 'NR <= 10' filename   #This will print the first 10 lines of filename.
   awk '/hello/' filename    #This will print lines from filename that contain the string "hello".
   awk '!/error/' filename   #The !negates the pattern match, so this command prints lines that do not contain the word "error".
+
+Prints the first column (USER)            ps aux | awk '{print $1}'
+Prints USER and PID                       ps aux | awk '{print $1, $2}'
+
 
 Q34 What are Linux namespaces and cgroups?
   Namespaces isolate resources (like processes, network, filesystem) for different environments or containers.
@@ -463,6 +473,10 @@ Q36 how to automate the scipt in linux
               * * * * * /path/to/your/script.sh
    At is useful for one-time tasks.
    echo "/path/to/your/script.sh" | at 10:00 AM
+
+Logs fill up disk quickly.       ----- >>>    * * * * * /usr/local/bin/log_cleanup.sh
+for backups                                            * * * * * /usr/local/bin/db_incremental_backup.sh
+
 
 Q37 what is this in script "#!/bin/bash" 
   The line #!/bin/bash is called a shebang and is used at the beginning of a script to
