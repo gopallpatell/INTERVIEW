@@ -27,8 +27,8 @@
   A Jenkinsfile is a text file that defines a Jenkins Pipeline's steps and is stored in the version control system.
 
 7. What is continuous integration in Jenkins?
-  Continuous integration (CI) is the practice of frequently integrating code into a shared repository 
-  and automatically testing it to catch issues early.
+Continuous Integration in Jenkins is the process of automatically building and testing code whenever changes are pushed to the repository. Jenkins pulls the code, runs 
+builds and tests, and provides quick feedback to ensure code quality and stability.
 
 8. What are the software prerequisites for installing Jenkins?
   You need Java Development Kit (JDK) installed, and optionally a web server like Tomcat or WebSphere.
@@ -38,7 +38,24 @@
   like Git for extra security.
 
 10. State some of the advantages of using Jenkins.
-  Automated build reports, continuous integration, bug tracking, and faster development through automation.
+Open Source & Free
+Jenkins is open-source, so there is no licensing cost.
+Automates CI/CD
+Automates build, test, and deployment processes, reducing manual effort.
+Easy Integration
+Integrates easily with Git, Docker, Kubernetes, AWS, Maven, SonarQube, etc.
+Pipeline as Code
+Supports Jenkinsfile, allowing pipelines to be version-controlled.
+Large Plugin Ecosystem
+Thousands of plugins available for almost every DevOps tool.
+Early Bug Detection
+Runs builds and tests on every code change, catching issues early.    ## Jenkins runs automated tests by executing test commands like mvn test,
+Scalable Architecture
+Supports master-agent (controller-agent) architecture for distributed builds.
+Cross-Platform Support
+Works on Linux, Windows, and macOS.
+Easy Rollback & Recovery
+Helps in quick rollback by keeping build history and artifacts.
 
 11. What are the requirements for using Jenkins?
   A code repository (e.g., Git), and a build script (e.g., Maven or Ant) for Jenkins to execute.
