@@ -1,0 +1,1612 @@
+FINAL REAL-TIME DEVOPS ARCHITECTURE (COMPANY LEVEL)
+🔷 Application Type
+
+Microservices (5+ services)
+
+Frontend: React
+
+Backend: Java (Spring Boot)
+
+Database: MySQL
+
+Cloud: AWS
+
+Kubernetes: EKS (Managed)
+
+Traffic: High
+
+Environments: Dev, QA, UAT, Prod (Prod isolated)
+
+This is enterprise-grade architecture ✔️
+
+🧱 HIGH-LEVEL ARCHITECTURE (TEXT DIAGRAM)
+Users
+  ↓
+Route53 (DNS)
+  ↓
+CloudFront (optional)
+  ↓
+ALB / Nginx Ingress
+  ↓
+EKS Cluster
+  ├── React Frontend Pods
+  ├── Java Microservices Pods (5+)
+  ├── HPA (Auto Scaling)
+  ↓
+RDS MySQL (Multi-AZ)
+
+
+Side systems:
+
+Jenkins  → CI/CD
+Terraform → Infra
+Ansible → Config Mgmt
+Prometheus + Grafana → Monitoring
+ELK + CloudWatch → Logging
+Trivy → Image Scanning
+IAM + RBAC → Security
+
+🖥️ HOW MANY SERVERS ARE USED IN REAL TIME?
+
+Since you are using EKS (Managed Kubernetes), this is IMPORTANT:
+
+🔴 Kubernetes control plane is managed by AWS
+You do NOT create master nodes manually.
+
+🔹 REAL-TIME SERVER COUNT (MINIMUM & REALISTIC)
+🔸 1️⃣ Bastion / Jump Server (1 EC2)
+
+Why used:
+
+Secure SSH access
+
+No direct access to private servers
+
+1 EC2 (Linux)
+
+🔸 2️⃣ Jenkins Server (1 EC2)
+
+Why used:
+
+CI/CD pipelines
+
+Build, test, Docker, deploy
+
+1 EC2 (Medium)
+
+🔸 3️⃣ Ansible Server (1 EC2)
+
+Why used:
+
+Configure Jenkins, EKS nodes
+
+Install agents, Filebeat, monitoring tools
+
+1 EC2 (Small)
+
+🔸 4️⃣ EKS Worker Nodes (Auto Scaling Group)
+
+This is where your app runs
+
+Real-time count (HIGH TRAFFIC):
+
+Dev:   2 nodes
+QA:    2 nodes
+UAT:   2 nodes
+Prod:  4–6 nodes (auto-scaled)
+
+
+👉 Minimum at start:
+
+TOTAL EKS NODES = 8–12 (dynamic)
+
+🔸 5️⃣ Monitoring Server (Optional EC2)
+
+(If not fully inside Kubernetes)
+
+1 EC2
+(Prometheus + Grafana)
+
+🔸 6️⃣ ELK Stack (Realistic Setup)
+
+In real companies:
+
+Elasticsearch: 2 nodes
+
+Kibana: 1 node
+
+Filebeat: runs on all nodes
+
+3 EC2s
+
+🔢 TOTAL REAL-TIME SERVER COUNT
+Component	Servers
+Bastion	1
+Jenkins	1
+Ansible	1
+EKS Worker Nodes	8–12
+Monitoring	1
+ELK Stack	3
+TOTAL	15–19 servers
+
+👉 YES, real companies easily use 15+ servers
+👉 For demo we can reduce, but architecture remains SAME
+
+🔐 WHY PROD IS ISOLATED (VERY IMPORTANT)
+
+Prod has:
+
+Separate VPC
+
+Separate EKS cluster
+
+Separate IAM roles
+
+Separate RDS
+
+Separate Monitoring & Logging
+
+Reason:
+
+Security
+
+Stability
+
+Compliance
+
+🔧 TOOL USAGE — REAL-TIME EXPLANATION
+Linux
+
+OS for all EC2s
+
+Logs, services, permissions
+
+Jenkins, Ansible, Filebeat run on Linux
+
+Docker
+
+Package each microservice
+
+Immutable images
+
+Same image runs everywhere
+
+Jenkins
+
+CI/CD automation
+
+Build → Test → Scan → Push → Deploy
+
+Rollback supported
+
+Kubernetes (EKS)
+
+Run microservices
+
+HPA auto scaling
+
+Zero-downtime deployments
+
+RBAC enabled
+
+Terraform
+
+Create VPC, EKS, EC2, ALB, RDS
+
+One click infra creation
+
+Environment wise modules
+
+Ansible
+
+Configure servers
+
+Install Jenkins agents
+
+Install Filebeat
+
+Post-provision configs
+
+Prometheus + Grafana
+
+CPU, Memory, Pod metrics
+
+Alerts to Slack/Email
+
+SLA/SLO monitoring
+
+ELK + CloudWatch
+
+App logs
+
+Pod logs
+
+Infra logs
+
+Troubleshooting production issues
+
+Security
+
+Trivy image scanning
+
+Kubernetes secrets
+
+IAM + RBAC
+
+Private subnets
+
+🎯 THIS IS A REAL COMPANY PROJECT
+
+You can confidently say:
+
+“I worked on a high-traffic microservices application on AWS using EKS, Jenkins, Terraform, Ansible, Prometheus, Grafana, and ELK.”
+
+🔜 NEXT STEP (VERY IMPORTANT)
+In next message, I will start:
+🔹 STEP-BY-STEP IMPLEMENTATION
+
+1️⃣ Terraform VPC + EKS design
+2️⃣ Server creation
+3️⃣ Jenkins installation
+4️⃣ CI/CD pipeline
+5️⃣ Docker & EKS deployment
+6️⃣ Monitoring & logging
+7️⃣ Security & rollback
+
+🔹 STEP 1: AWS ACCOUNT & BASIC SETUP
+✅ What we need
+
+AWS account
+
+IAM user with AdminAccess
+
+Access Key & Secret Key
+
+Terraform installed on local / bastion
+
+Why?
+
+Jenkins & Terraform must talk to AWS securely
+
+No root user usage in real projects
+
+🔹 STEP 2: ENVIRONMENT STRATEGY (VERY IMPORTANT)
+
+You said:
+
+Dev
+
+QA
+
+UAT
+
+Prod (isolated)
+
+✅ Real-time approach
+
+We use:
+
+One Git repo
+
+Terraform modules
+
+Separate state files
+
+infra/
+ ├── modules/
+ │    ├── vpc/
+ │    ├── eks/
+ │    ├── rds/
+ │    ├── ec2/
+ ├── dev/
+ ├── qa/
+ ├── uat/
+ └── prod/
+
+Why?
+
+Same code
+
+Different environments
+
+No infra drift
+
+🔹 STEP 3: VPC DESIGN (PRODUCTION LEVEL)
+🔐 VPC Layout (PER ENVIRONMENT)
+VPC (10.0.0.0/16)
+ ├── Public Subnets (ALB, Bastion)
+ ├── Private Subnets (EKS nodes)
+ ├── DB Subnets (RDS)
+ ├── NAT Gateway
+
+Why?
+
+EKS nodes must NOT be public
+
+Database must be fully private
+
+Bastion is the only entry point
+
+🔹 STEP 4: TERRAFORM – VPC MODULE (SAMPLE)
+modules/vpc/main.tf
+resource "aws_vpc" "this" {
+  cidr_block = var.vpc_cidr
+  enable_dns_support = true
+  enable_dns_hostnames = true
+
+  tags = {
+    Name = var.env
+  }
+}
+
+Variables
+variable "vpc_cidr" {}
+variable "env" {}
+
+Why modules?
+
+Reusability
+
+Same VPC logic for Dev/QA/UAT/Prod
+
+🔹 STEP 5: EKS DESIGN (MANAGED KUBERNETES)
+What AWS manages:
+
+Kubernetes control plane
+
+API server
+
+etcd
+
+What YOU manage:
+
+Worker nodes
+
+Scaling
+
+Security
+
+Apps
+
+🔹 STEP 6: EKS CLUSTER (TERRAFORM)
+modules/eks/main.tf
+module "eks" {
+  source          = "terraform-aws-modules/eks/aws"
+  cluster_name    = "${var.env}-eks"
+  cluster_version = "1.28"
+
+  subnet_ids = var.private_subnets
+  vpc_id     = var.vpc_id
+
+  eks_managed_node_groups = {
+    default = {
+      min_size     = 2
+      max_size     = 6
+      desired_size = 2
+      instance_types = ["t3.medium"]
+    }
+  }
+}
+
+Why managed node groups?
+
+Auto healing
+
+Easy scaling
+
+AWS best practice
+
+🔹 STEP 7: HOW MANY NODES & WHY
+Initial setup
+Environment	Nodes
+Dev	2
+QA	2
+UAT	2
+Prod	4–6 (auto-scale)
+
+Later:
+
+HPA scales pods
+
+ASG scales nodes
+
+🔹 STEP 8: BASTION SERVER (SECURITY)
+Why bastion?
+
+No direct SSH to private servers
+
+Auditable access
+
+resource "aws_instance" "bastion" {
+  ami           = var.ami
+  instance_type = "t3.micro"
+  subnet_id     = var.public_subnet
+}
+
+🔹 STEP 9: JENKINS SERVER
+Jenkins EC2:
+
+t3.medium
+
+Public subnet (or private + ALB)
+
+Docker installed
+
+Why separate Jenkins?
+
+Heavy CPU usage
+
+Security isolation
+
+Build agents scalability
+
+🔹 STEP 10: CI/CD FLOW (HIGH LEVEL)
+Git Push
+ ↓
+Jenkins
+ ↓
+Maven Build + Unit Tests
+ ↓
+Docker Build
+ ↓
+Trivy Scan
+ ↓
+Push to ECR
+ ↓
+Deploy to EKS
+ ↓
+Verify + Rollback if failed
+
+🔹 STEP 11: DOCKER STRATEGY
+Each microservice:
+service-a/
+ ├── Dockerfile
+ ├── pom.xml
+
+Why Docker?
+
+Same runtime everywhere
+
+Immutable deployments
+
+Easy rollback
+
+🔹 STEP 12: KUBERNETES DEPLOYMENT
+
+Each service has:
+
+Deployment
+
+Service
+
+HPA
+
+ConfigMap
+
+Secret
+
+apiVersion: apps/v1
+kind: Deployment
+
+🔹 STEP 13: MONITORING (PROM + GRAFANA)
+
+Installed via Helm:
+
+helm install kube-prometheus-stack
+
+
+Monitors:
+
+Pods
+
+Nodes
+
+CPU
+
+Memory
+
+Alerts to Slack/Email
+
+🔹 STEP 14: LOGGING (ELK + CLOUDWATCH)
+
+Filebeat → Elasticsearch
+
+App logs → Kibana
+
+Infra logs → CloudWatch
+
+🔹 STEP 15: SECURITY
+
+✅ Trivy (image scan)
+✅ Kubernetes Secrets
+✅ IAM roles for service accounts
+✅ RBAC enabled
+✅ Private subnets
+
+
+Now we go deep into REAL Terraform code, exactly how it’s done in companies.
+
+I’ll show:
+
+Folder structure
+
+Actual Terraform files
+
+WHY each resource is used
+
+How Dev / QA / UAT / Prod are separated
+
+🔥 PHASE 2: TERRAFORM – REAL PRODUCTION SETUP
+✅ Goal of Terraform in this project
+
+Terraform will create:
+
+VPC
+
+Subnets
+
+Internet Gateway + NAT
+
+EKS cluster
+
+EKS worker nodes
+
+Bastion
+
+Jenkins server
+
+IAM roles
+
+📁 TERRAFORM PROJECT STRUCTURE (REAL TIME)
+terraform/
+├── modules/
+│   ├── vpc/
+│   ├── eks/
+│   ├── ec2/
+│   └── iam/
+├── dev/
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── terraform.tfvars
+│   └── backend.tf
+├── qa/
+├── uat/
+└── prod/
+
+
+👉 Same modules, different environments
+👉 This is how real companies manage infra
+
+🔹 STEP 1: VPC MODULE (modules/vpc)
+modules/vpc/main.tf
+resource "aws_vpc" "this" {
+  cidr_block           = var.vpc_cidr
+  enable_dns_support   = true
+  enable_dns_hostnames = true
+
+  tags = {
+    Name = "${var.env}-vpc"
+  }
+}
+
+Why?
+
+Isolated network per environment
+
+DNS needed for EKS, ALB, RDS
+
+Public & Private Subnets
+resource "aws_subnet" "public" {
+  count                   = length(var.public_subnets)
+  vpc_id                  = aws_vpc.this.id
+  cidr_block              = var.public_subnets[count.index]
+  map_public_ip_on_launch = true
+  availability_zone       = var.azs[count.index]
+
+  tags = {
+    Name = "${var.env}-public-${count.index}"
+  }
+}
+
+resource "aws_subnet" "private" {
+  count             = length(var.private_subnets)
+  vpc_id            = aws_vpc.this.id
+  cidr_block        = var.private_subnets[count.index]
+  availability_zone = var.azs[count.index]
+
+  tags = {
+    Name = "${var.env}-private-${count.index}"
+  }
+}
+
+Why?
+
+Public → ALB, Bastion
+
+Private → EKS nodes (SECURITY)
+
+Internet Gateway & NAT
+resource "aws_internet_gateway" "igw" {
+  vpc_id = aws_vpc.this.id
+}
+
+resource "aws_nat_gateway" "nat" {
+  allocation_id = aws_eip.nat.id
+  subnet_id     = aws_subnet.public[0].id
+}
+
+Why NAT?
+
+Private nodes need internet for:
+
+Docker images
+
+Updates
+
+But no public access
+
+🔹 STEP 2: EKS MODULE (modules/eks)
+modules/eks/main.tf
+module "eks" {
+  source  = "terraform-aws-modules/eks/aws"
+
+  cluster_name    = "${var.env}-eks"
+  cluster_version = "1.28"
+
+  vpc_id     = var.vpc_id
+  subnet_ids = var.private_subnets
+
+  eks_managed_node_groups = {
+    worker = {
+      min_size     = 2
+      max_size     = 6
+      desired_size = 2
+
+      instance_types = ["t3.medium"]
+    }
+  }
+}
+
+Why managed EKS?
+
+AWS handles control plane
+
+High availability
+
+Auto healing
+
+🔹 STEP 3: EC2 MODULE (Bastion + Jenkins)
+modules/ec2/main.tf
+resource "aws_instance" "this" {
+  ami           = var.ami
+  instance_type = var.instance_type
+  subnet_id     = var.subnet_id
+  key_name      = var.key_name
+
+  tags = {
+    Name = var.name
+  }
+}
+
+Used for:
+
+Bastion
+
+Jenkins
+
+Ansible
+
+🔹 STEP 4: DEV ENVIRONMENT SETUP
+dev/main.tf
+module "vpc" {
+  source = "../modules/vpc"
+  env    = "dev"
+
+  vpc_cidr = "10.0.0.0/16"
+
+  public_subnets  = ["10.0.1.0/24", "10.0.2.0/24"]
+  private_subnets = ["10.0.3.0/24", "10.0.4.0/24"]
+  azs             = ["ap-south-1a", "ap-south-1b"]
+}
+
+module "eks" {
+  source = "../modules/eks"
+
+  env             = "dev"
+  vpc_id          = module.vpc.vpc_id
+  private_subnets = module.vpc.private_subnets
+}
+
+module "jenkins" {
+  source        = "../modules/ec2"
+  name          = "dev-jenkins"
+  instance_type = "t3.medium"
+  subnet_id     = module.vpc.public_subnets[0]
+}
+
+🔹 STEP 5: TERRAFORM BACKEND (VERY IMPORTANT)
+backend.tf
+terraform {
+  backend "s3" {
+    bucket         = "company-terraform-state"
+    key            = "dev/terraform.tfstate"
+    region         = "ap-south-1"
+    dynamodb_table = "terraform-lock"
+  }
+}
+
+Why?
+
+Remote state
+
+State locking
+
+Team collaboration
+
+🔹 STEP 6: HOW TERRAFORM IS RUN (REAL TIME)
+terraform init
+terraform validate
+terraform plan
+terraform apply
+
+🔹 STEP 7: PROD IS DIFFERENT (IMPORTANT)
+
+Prod has:
+
+Separate AWS account OR
+
+Separate VPC + backend state
+
+Bigger instance sizes
+
+More EKS nodes
+
+Example:
+
+desired_size = 4
+max_size     = 10
+
+🎯 INTERVIEW READY ANSWER (TERRAFORM)
+
+“I used Terraform modules to provision AWS infrastructure including VPC, EKS, EC2, and IAM. Each environment had separate state files stored in S3 with DynamoDB locking. 
+EKS worker nodes were deployed in private subnets for security.”
+
+
+Now we’re entering the heart of DevOps — Jenkins CI/CD, exactly how it works in real companies.
+
+I’ll explain:
+
+Why Jenkins is needed
+
+How it’s installed (real commands)
+
+How it connects to AWS, Docker, EKS
+
+How a REAL microservices pipeline is built
+
+🔥 PHASE 3: JENKINS SETUP (PRODUCTION STYLE)
+🔹 STEP 1: WHY JENKINS IS NEEDED (INTERVIEW GOLD)
+
+Jenkins is used to:
+
+Automate build, test, scan, deploy
+
+Remove manual deployments
+
+Ensure consistent releases
+
+Enable fast rollback
+
+👉 In real time, every code push triggers Jenkins
+
+🔹 STEP 2: JENKINS SERVER DETAILS
+Jenkins EC2
+Item	Value
+OS	Amazon Linux 2
+Instance	t3.medium
+Disk	30 GB
+Network	Public subnet
+Access	SSH via Bastion
+🔹 STEP 3: INSTALL JENKINS (REAL COMMANDS)
+1️⃣ SSH to Jenkins server
+ssh -i key.pem ec2-user@jenkins-ip
+
+2️⃣ Install Java (Required)
+sudo yum install java-17-amazon-corretto -y
+
+Why?
+
+Jenkins runs on Java
+
+Java 17 is LTS
+
+3️⃣ Install Jenkins
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+https://pkg.jenkins.io/redhat-stable/jenkins.repo
+
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+
+sudo yum install jenkins -y
+
+4️⃣ Start Jenkins
+sudo systemctl start jenkins
+sudo systemctl enable jenkins
+
+5️⃣ Open Port 8080 (Security Group)
+Inbound:
+  TCP 8080 → Your IP / VPN
+
+🔹 STEP 4: JENKINS INITIAL SETUP
+Get Admin Password
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+Browser:
+http://<jenkins-ip>:8080
+
+
+Install:
+
+Suggested plugins
+
+🔹 STEP 5: REQUIRED JENKINS PLUGINS (REAL TIME)
+
+Install these plugins:
+
+Plugin	Why
+Git	Pull code
+Pipeline	Jenkinsfile
+Docker	Build images
+Kubernetes CLI	Deploy to EKS
+AWS Credentials	Access AWS
+Trivy	Security scan
+Blue Ocean	Pipeline UI
+Slack	Alerts
+🔹 STEP 6: INSTALL DOCKER ON JENKINS
+sudo yum install docker -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sudo usermod -aG docker jenkins
+
+
+Restart Jenkins:
+
+sudo systemctl restart jenkins
+
+Why?
+
+Jenkins builds Docker images
+
+Pushes to ECR
+
+🔹 STEP 7: CONNECT JENKINS TO AWS
+Create IAM Role for Jenkins
+
+Permissions:
+
+ECR
+
+EKS
+
+S3
+
+CloudWatch
+
+Attach role to Jenkins EC2.
+
+Why IAM role?
+
+No access keys
+
+Secure
+
+AWS best practice
+
+🔹 STEP 8: CONNECT JENKINS TO KUBERNETES (EKS)
+Install kubectl
+curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.28.0/2023-11-14/bin/linux/amd64/kubectl
+chmod +x kubectl
+sudo mv kubectl /usr/local/bin/
+
+Update kubeconfig
+aws eks update-kubeconfig \
+--region ap-south-1 \
+--name dev-eks
+
+
+Test:
+
+kubectl get nodes
+
+🔹 STEP 9: JENKINS PIPELINE FLOW (REAL TIME)
+Git Commit
+ ↓
+Jenkins Trigger
+ ↓
+Maven Build
+ ↓
+Unit Tests
+ ↓
+Docker Build
+ ↓
+Trivy Scan
+ ↓
+Push to ECR
+ ↓
+Deploy to EKS
+ ↓
+Health Check
+ ↓
+Rollback (if failed)
+
+🔹 STEP 10: REAL JENKINSFILE (MICROSERVICE)
+Jenkinsfile
+pipeline {
+  agent any
+
+  stages {
+
+    stage('Checkout') {
+      steps {
+        git 'https://github.com/company/service-a.git'
+      }
+    }
+
+    stage('Build & Test') {
+      steps {
+        sh 'mvn clean test'
+      }
+    }
+
+    stage('Docker Build') {
+      steps {
+        sh 'docker build -t service-a:${BUILD_NUMBER} .'
+      }
+    }
+
+    stage('Security Scan') {
+      steps {
+        sh 'trivy image service-a:${BUILD_NUMBER}'
+      }
+    }
+
+    stage('Push to ECR') {
+      steps {
+        sh '''
+        aws ecr get-login-password | docker login --username AWS --password-stdin <ecr-url>
+        docker tag service-a:${BUILD_NUMBER} <ecr-url>:${BUILD_NUMBER}
+        docker push <ecr-url>:${BUILD_NUMBER}
+        '''
+      }
+    }
+
+    stage('Deploy to EKS') {
+      steps {
+        sh 'kubectl apply -f k8s/'
+      }
+    }
+  }
+
+  post {
+    failure {
+      sh 'kubectl rollout undo deployment service-a'
+    }
+  }
+}
+
+🔹 STEP 11: HOW ROLLBACK WORKS (INTERVIEW IMPORTANT)
+
+Kubernetes stores previous ReplicaSets
+
+On failure:
+
+kubectl rollout undo deployment service-a
+
+🔹 STEP 12: MULTI-MICROSERVICE STRATEGY
+
+Real companies:
+
+One Jenkinsfile per service
+
+OR shared pipeline library
+
+🎯 INTERVIEW ANSWER (JENKINS)
+
+“I implemented CI/CD using Jenkins where pipelines automatically build Java microservices, run unit tests, scan Docker images for vulnerabilities, push images to ECR, 
+and deploy to EKS with rollback support.”
+
+
+🔥 PHASE 4: DOCKER + KUBERNETES (REAL TIME)
+🔹 STEP 1: DOCKER – WHY & HOW (REAL LIFE)
+Why Docker?
+
+Same app runs in Dev / QA / UAT / Prod
+
+No “works on my machine” issue
+
+Immutable releases
+
+Easy rollback
+
+Each microservice has:
+
+Dockerfile
+pom.xml
+src/
+
+🔹 STEP 2: REAL DOCKERFILE (JAVA MICROSERVICE)
+Dockerfile
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+
+COPY target/service-a.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java","-jar","app.jar"]
+
+Why this is used:
+
+JRE only (lightweight)
+
+Faster startup
+
+Secure
+
+🔹 STEP 3: BUILD & RUN LOCALLY (DEBUG)
+mvn clean package
+docker build -t service-a .
+docker run -p 8080:8080 service-a
+
+🔹 STEP 4: KUBERNETES – WHAT RUNS WHERE
+Component	Purpose
+Deployment	Run pods
+Service	Internal/external access
+ConfigMap	App configs
+Secret	DB passwords
+HPA	Auto scaling
+Ingress	External routing
+🔹 STEP 5: DEPLOYMENT YAML (CORE OBJECT)
+k8s/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-a
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: service-a
+  template:
+    metadata:
+      labels:
+        app: service-a
+    spec:
+      containers:
+      - name: service-a
+        image: <ecr-url>:latest
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: service-a-config
+        - secretRef:
+            name: service-a-secret
+
+Why Deployment?
+
+Self-healing
+
+Rolling updates
+
+Rollbacks
+
+🔹 STEP 6: SERVICE YAML
+k8s/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-a
+spec:
+  selector:
+    app: service-a
+  ports:
+    - port: 80
+      targetPort: 8080
+  type: ClusterIP
+
+Why?
+
+Stable internal DNS
+
+Load balancing between pods
+
+🔹 STEP 7: CONFIGMAP (NON-SECRET DATA)
+k8s/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: service-a-config
+data:
+  SPRING_PROFILES_ACTIVE: prod
+  DB_HOST: mysql-prod.rds.amazonaws.com
+
+🔹 STEP 8: SECRETS (SECURITY)
+k8s/secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: service-a-secret
+type: Opaque
+stringData:
+  DB_USER: admin
+  DB_PASSWORD: password123
+
+Why?
+
+No secrets in code
+
+Encrypted at rest
+
+🔹 STEP 9: HPA – AUTO SCALING (HIGH TRAFFIC)
+k8s/hpa.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: service-a-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: service-a
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 60
+
+Real-time effect:
+
+Traffic ↑ → pods ↑
+
+Traffic ↓ → pods ↓
+
+🔹 STEP 10: INGRESS (NGINX)
+Install Nginx Ingress
+helm install ingress-nginx ingress-nginx/ingress-nginx
+
+Ingress YAML
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+spec:
+  rules:
+  - host: app.company.com
+    http:
+      paths:
+      - path: /service-a
+        pathType: Prefix
+        backend:
+          service:
+            name: service-a
+            port:
+              number: 80
+
+🔹 STEP 11: DEPLOY EVERYTHING
+kubectl apply -f k8s/
+
+
+Check:
+
+kubectl get pods
+kubectl get svc
+kubectl get hpa
+
+🔹 STEP 12: ROLLING UPDATE & ROLLBACK
+Update image
+kubectl set image deployment/service-a service-a=<new-image>
+
+Rollback
+kubectl rollout undo deployment service-a
+
+🎯 INTERVIEW READY ANSWER (DOCKER + K8S)
+
+“I containerized Java microservices using Docker and deployed them on EKS using Kubernetes Deployments, Services, Ingress, HPA, ConfigMaps, and Secrets. 
+I implemented rolling updates, auto-scaling, and rollback strategies.”
+
+
+PHASE 5: MONITORING (PROMETHEUS + GRAFANA) & LOGGING (ELK + CLOUDWATCH)
+🟢 PART A: MONITORING (PROMETHEUS + GRAFANA)
+Why Monitoring is CRITICAL
+
+In real companies, 90% of issues are detected via monitoring alerts, not users.
+
+Monitoring helps:
+
+Detect CPU / memory spikes
+
+Detect pod crashes
+
+Prevent downtime
+
+Trigger auto-scaling
+
+🔹 STEP 1: INSTALL PROMETHEUS + GRAFANA (REAL WAY)
+
+We use Helm (industry standard).
+
+Add Helm repo
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+
+Install kube-prometheus-stack
+helm install monitoring prometheus-community/kube-prometheus-stack \
+-n monitoring --create-namespace
+
+What this installs
+
+Prometheus
+
+Alertmanager
+
+Grafana
+
+Node exporter
+
+Kube state metrics
+
+🔹 STEP 2: ACCESS GRAFANA
+kubectl get svc -n monitoring
+
+
+Port-forward:
+
+kubectl port-forward svc/monitoring-grafana 3000:80 -n monitoring
+
+
+Login:
+
+User: admin
+Password: prom-operator
+
+🔹 STEP 3: WHAT YOU MONITOR (REAL METRICS)
+Infrastructure
+
+Node CPU
+
+Node memory
+
+Disk usage
+
+Kubernetes
+
+Pod restarts
+
+Pod CPU / memory
+
+Deployment status
+
+HPA metrics
+
+Application
+
+Request count
+
+Latency
+
+Error rate (5xx)
+
+🔹 STEP 4: ALERTS (SLACK / EMAIL)
+Example Alert Rule
+- alert: PodCrashLoop
+  expr: kube_pod_container_status_restarts_total > 5
+  for: 2m
+  labels:
+    severity: critical
+
+Why alerts?
+
+Proactive incident response
+
+SLA compliance
+
+🟡 PART B: LOGGING (ELK STACK)
+🔹 STEP 5: WHY ELK IS USED
+
+Logs answer:
+
+❓ WHY did this fail?
+
+Monitoring tells:
+
+❓ WHAT failed?
+
+Both are needed.
+
+🔹 STEP 6: ELK ARCHITECTURE (REAL TIME)
+Pods / Nodes
+   ↓
+Filebeat
+   ↓
+Elasticsearch
+   ↓
+Kibana
+
+🔹 STEP 7: INSTALL FILEBEAT (LOG SHIPPER)
+
+Filebeat runs as DaemonSet (one pod per node).
+
+Filebeat YAML
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: filebeat
+spec:
+  selector:
+    matchLabels:
+      app: filebeat
+  template:
+    metadata:
+      labels:
+        app: filebeat
+    spec:
+      containers:
+      - name: filebeat
+        image: docker.elastic.co/beats/filebeat:8.11.0
+
+Why DaemonSet?
+
+Logs from every node
+
+Automatically scales with nodes
+
+🔹 STEP 8: ELASTICSEARCH + KIBANA
+
+Real companies use:
+
+Managed Elastic
+OR
+
+Dedicated EC2s
+
+Typical setup
+Component	Count
+Elasticsearch	2
+Kibana	1
+🔹 STEP 9: LOG TYPES COLLECTED
+Type	Tool
+App logs	ELK
+Pod logs	ELK
+Node logs	ELK
+AWS infra logs	CloudWatch
+ALB logs	CloudWatch
+🔹 STEP 10: CLOUDWATCH INTEGRATION
+
+Used for:
+
+EC2 metrics
+
+ALB logs
+
+EKS control plane logs
+
+Why both ELK & CloudWatch?
+
+CloudWatch → AWS native
+
+ELK → Deep log analysis
+
+🔴 PART C: REAL-TIME INCIDENT FLOW (VERY IMPORTANT)
+Scenario:
+
+App is slow in Prod.
+
+What DevOps does:
+
+1️⃣ Alert from Grafana (CPU spike)
+2️⃣ Check pod metrics
+3️⃣ Check logs in Kibana
+4️⃣ Identify error (DB timeout)
+5️⃣ Scale pods / rollback
+6️⃣ Notify team
+
+👉 This is actual daily DevOps work
+
+🎯 INTERVIEW READY ANSWER (MONITORING & LOGGING)
+
+“I implemented monitoring using Prometheus and Grafana to track infrastructure and application metrics, configured alerts for proactive issue detection, and centralized logging using ELK Stack along with CloudWatch for AWS-level logs.”
+
+🔐 WHAT SUPPORT DEVOPS DOES DAILY (REAL)
+
+Monitor dashboards
+
+Respond to alerts
+
+Analyze logs
+
+Scale applications
+
+Restart pods
+
+Coordinate with developers
+
+
+PHASE 6: SECURITY + REAL-TIME OPS (ENTERPRISE LEVEL)
+🛡️ PART A: SECURITY (REAL PRODUCTION PRACTICES)
+🔹 1️⃣ IAM & AWS SECURITY (FIRST LINE OF DEFENSE)
+What is done in real projects
+
+❌ No root user usage
+
+✅ IAM roles only
+
+✅ Least privilege principle
+
+Examples:
+Component	IAM Role
+Jenkins EC2	ECR + EKS deploy
+EKS Nodes	Pull images, logs
+Developers	Read-only / limited
+
+👉 Why?
+
+Prevent accidental damage
+
+Compliance & audit
+
+🔹 2️⃣ KUBERNETES RBAC (VERY IMPORTANT)
+Why RBAC?
+
+Not everyone should access Prod
+
+Fine-grained access control
+
+Example: Read-only user
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: read-only
+  namespace: prod
+rules:
+- apiGroups: [""]
+  resources: ["pods","services"]
+  verbs: ["get","list"]
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: read-only-binding
+  namespace: prod
+subjects:
+- kind: User
+  name: dev-user
+roleRef:
+  kind: Role
+  name: read-only
+  apiGroup: rbac.authorization.k8s.io
+
+
+👉 Interview tip:
+Say “Prod access is restricted using RBAC”
+
+🔹 3️⃣ KUBERNETES SECRETS MANAGEMENT
+Types of secrets used:
+
+DB password
+
+API keys
+
+Tokens
+
+How stored:
+kubectl create secret generic db-secret \
+--from-literal=DB_PASSWORD=xxxxx
+
+Best practices:
+
+❌ No secrets in Git
+
+✅ Secrets encrypted
+
+✅ IAM + KMS (optional)
+
+🔹 4️⃣ DOCKER IMAGE SECURITY (CVEs)
+Tool: Trivy
+Jenkins stage:
+trivy image --severity HIGH,CRITICAL service-a:latest
+
+If vulnerabilities found:
+
+Pipeline FAILS
+
+Deployment BLOCKED
+
+👉 This is real company policy
+
+🔹 5️⃣ NETWORK SECURITY
+Layer	Security
+VPC	Private subnets
+EKS	Security groups
+Pods	Network policies
+ALB	HTTPS only
+🔹 6️⃣ POD SECURITY (BASICS)
+
+Run as non-root
+
+Resource limits
+
+Liveness & readiness probes
+
+securityContext:
+  runAsUser: 1000
+
+🔁 PART B: REAL-TIME OPS (WHAT YOU DO DAILY)
+🧑‍💻 DAILY TASKS OF A SUPPORT DEVOPS ENGINEER
+🔹 Monitoring
+
+Watch Grafana dashboards
+
+Respond to alerts
+
+🔹 Incident handling
+kubectl get pods
+kubectl describe pod
+kubectl logs pod-name
+
+🔹 Scaling
+kubectl scale deployment service-a --replicas=5
+
+🔹 Restarting apps
+kubectl rollout restart deployment service-a
+
+🔹 Rollback (VERY COMMON)
+kubectl rollout undo deployment service-a
+
+🔹 Log analysis
+
+Kibana dashboards
+
+Filter errors
+
+Share findings with devs
+
+🔴 REAL INCIDENT EXAMPLE (INTERVIEW GOLD)
+Scenario:
+
+Users report slow API.
+
+What you do:
+
+1️⃣ Alert triggered (CPU high)
+2️⃣ Check Grafana → Pods maxed
+3️⃣ Check Kibana → DB timeout
+4️⃣ Scale pods
+5️⃣ Inform backend team
+6️⃣ Create incident report
+
+📄 PART C: CHANGE MANAGEMENT (REAL WORLD)
+
+Before deploying:
+
+Ticket approval
+
+CI pipeline success
+
+Backup ready
+
+After deployment:
+
+Monitor metrics
+
+Verify health
+
+Close change ticket
+
+🎯 FINAL INTERVIEW-READY SUMMARY (VERY IMPORTANT)
+
+“As a Support DevOps Engineer, I handled CI/CD pipelines, monitored production using Prometheus and Grafana, analyzed logs with ELK, managed Kubernetes deployments and 
+          rollbacks, enforced security with IAM, RBAC, secrets, and container image scanning, and supported high-availability microservices on AWS EKS.”
