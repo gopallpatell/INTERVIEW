@@ -1610,3 +1610,232 @@ Close change ticket
 
 “As a Support DevOps Engineer, I handled CI/CD pipelines, monitored production using Prometheus and Grafana, analyzed logs with ELK, managed Kubernetes deployments and 
           rollbacks, enforced security with IAM, RBAC, secrets, and container image scanning, and supported high-availability microservices on AWS EKS.”
+
+PHASE 1: REQUIREMENT & PLANNING
+
+Collected application requirements (microservices, React, Java, MySQL).
+
+Finalized number of services (5+ microservices).
+
+Decided environments: Dev, QA, UAT, Prod.
+
+Decided Prod must be fully isolated.
+
+Selected AWS as cloud provider.
+
+Chose managed Kubernetes (EKS) for scalability and reliability.
+
+Finalized CI/CD tool as Jenkins.
+
+Decided to use Terraform for infrastructure provisioning.
+
+Decided to use Ansible for configuration management.
+
+Finalized monitoring and logging tools (Prometheus, Grafana, ELK, CloudWatch).
+
+Defined security requirements (RBAC, secrets, image scanning).
+
+Estimated traffic as high and planned auto-scaling.
+
+🔹 PHASE 2: INFRASTRUCTURE DESIGN (HIGH LEVEL)
+
+Designed VPC architecture per environment.
+
+Planned public, private, and DB subnets.
+
+Designed network isolation for Prod.
+
+Planned Bastion server for secure access.
+
+Planned Jenkins server for CI/CD.
+
+Planned EKS cluster and worker nodes.
+
+Planned RDS MySQL as managed database.
+
+Planned monitoring and logging architecture.
+
+🔹 PHASE 3: INFRASTRUCTURE PROVISIONING (TERRAFORM)
+
+Created Terraform project structure.
+
+Created reusable Terraform modules.
+
+Created separate Terraform state for each environment.
+
+Provisioned VPC using Terraform.
+
+Created public and private subnets.
+
+Configured Internet Gateway and NAT Gateway.
+
+Provisioned EKS cluster using Terraform.
+
+Created EKS managed worker node groups.
+
+Provisioned Bastion server.
+
+Provisioned Jenkins server.
+
+Provisioned Ansible server.
+
+Configured IAM roles and policies.
+
+Stored Terraform state in S3 with locking.
+
+🔹 PHASE 4: BASE SERVER SETUP (LINUX)
+
+Installed required packages on Linux servers.
+
+Configured secure SSH access.
+
+Hardened servers using security best practices.
+
+Installed Docker where required.
+
+Configured system services and permissions.
+
+🔹 PHASE 5: JENKINS SETUP (CI/CD)
+
+Installed Jenkins on dedicated EC2.
+
+Completed Jenkins initial setup.
+
+Installed required Jenkins plugins.
+
+Integrated Jenkins with Git repository.
+
+Integrated Jenkins with AWS using IAM roles.
+
+Installed Docker on Jenkins.
+
+Connected Jenkins to EKS cluster.
+
+Designed CI/CD pipeline flow.
+
+Created Jenkinsfile for each microservice.
+
+Enabled automatic pipeline triggers on code push.
+
+🔹 PHASE 6: CONTAINERIZATION (DOCKER)
+
+Created Dockerfile for each microservice.
+
+Built Docker images for services.
+
+Tested Docker images locally.
+
+Integrated Docker image build into Jenkins pipeline.
+
+Configured image tagging strategy.
+
+Pushed images to Amazon ECR.
+
+🔹 PHASE 7: KUBERNETES DEPLOYMENT (EKS)
+
+Created Kubernetes namespace per environment.
+
+Created Kubernetes Deployment for each microservice.
+
+Created Kubernetes Service for internal communication.
+
+Created ConfigMaps for application configuration.
+
+Created Secrets for sensitive data.
+
+Configured resource requests and limits.
+
+Configured health probes.
+
+Configured Ingress using Nginx.
+
+Deployed applications to EKS.
+
+Verified pod and service health.
+
+🔹 PHASE 8: AUTO-SCALING & HIGH AVAILABILITY
+
+Configured Horizontal Pod Autoscaler.
+
+Enabled auto-scaling based on CPU/memory.
+
+Verified scaling during high traffic.
+
+Ensured zero-downtime deployments.
+
+Validated rollback strategy.
+
+🔹 PHASE 9: MONITORING SETUP
+
+Installed Prometheus in Kubernetes.
+
+Installed Grafana for visualization.
+
+Configured dashboards for infra and apps.
+
+Set up alert rules.
+
+Integrated alerts with Slack/Email.
+
+Verified alerts using test scenarios.
+
+🔹 PHASE 10: LOGGING SETUP
+
+Designed centralized logging architecture.
+
+Installed Filebeat as DaemonSet.
+
+Configured log shipping from pods and nodes.
+
+Set up Elasticsearch cluster.
+
+Set up Kibana dashboards.
+
+Integrated AWS CloudWatch logs.
+
+Verified log visibility for apps and infra.
+
+🔹 PHASE 11: SECURITY IMPLEMENTATION
+
+Implemented IAM role-based access.
+
+Configured Kubernetes RBAC.
+
+Restricted Prod environment access.
+
+Implemented Kubernetes Secrets.
+
+Integrated Trivy for image vulnerability scanning.
+
+Enforced pipeline failure on critical CVEs.
+
+Configured network security controls.
+
+Ensured private subnet deployment for workloads.
+
+🔹 PHASE 12: REAL-TIME OPERATIONS & SUPPORT
+
+Monitored dashboards daily.
+
+Responded to alerts and incidents.
+
+Analyzed logs during issues.
+
+Scaled applications during peak traffic.
+
+Restarted or rolled back deployments when needed.
+
+Coordinated with development teams.
+
+Followed change management process.
+
+Performed post-incident analysis.
+
+Optimized performance and cost.
+
+Ensured platform stability and uptime.
+
+🏆 HOW TO EXPLAIN IN INTERVIEW (ONE LINE)
+
+“I worked end-to-end on a production-grade DevOps project, starting from infrastructure design and provisioning with Terraform, implementing CI/CD using Jenkins, 
+containerizing and deploying microservices on AWS EKS, and handling monitoring, logging, security, auto-scaling, and day-to-day production support.”
