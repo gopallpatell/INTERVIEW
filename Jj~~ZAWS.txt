@@ -1,5 +1,19 @@
-billing and cost management
+Amazon CloudWatch
+Amazon CloudWatch is a monitoring and observability service provided by AWS. It helps you collect, monitor, analyze, visualize, and act on logs, metrics, and events from 
+AWS resources and applications (both AWS and on-prem).
 
+Amazon CloudWatch is an AWS monitoring service used to collect metrics, logs, and events, create alarms, and automate actions to ensure application reliability and 
+performance.
+1️⃣ EC2 CPU & Health Monitoring
+Monitor CPU/memory and alert if usage is high.
+2️⃣ Auto Scaling Trigger
+Automatically add/remove EC2 instances based on load.
+3️⃣ Application Error Alerts
+Detect errors from logs and notify DevOps via SNS.
+4️⃣ Disk Space Monitoring
+Alert before disk gets full to prevent crashes.
+5️⃣ RDS Performance Monitoring
+Monitor DB CPU and storage to avoid downtim
 
 
 
@@ -997,6 +1011,7 @@ How does AWS support hybrid cloud?
 What are the limitations of AWS Lambda?
 
 How do you optimize AWS costs?
+
 
 
 
