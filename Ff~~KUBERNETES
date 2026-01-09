@@ -811,12 +811,30 @@ kubectl port-forward svc/ingress-nginx-controller -n ingress-nginx 8080:80
 so now wwe can add multiple services in ingress  it is called microservices
 
 stateless
-User → DNS → LoadBalancer Service → Ingress Controller → Service → Pods
+Step 1: Deploy Your Stateless Application - Deployment.yml
+
+Step 2: Create ClusterIP Service
+
+Step 3: Install Ingress Controller (NGINX Ingress Controller)
+This creates:
+Ingress Controller pods
+LoadBalancer Service automatically
+kubectl get svc -n ingress-nginx
+You’ll see:
+ingress-nginx-controller   LoadBalancer   <external-ip>
+
+Step 4: Create Ingress (Routing Rules)
+
+What This Means
+Requests to myapp.example.com
+Go to myapp-service
+Then forwarded to pods
+
 User
  ↓
 Domain Name (myapp.com)
  ↓
-DNS
+DNS        ##  myapp.example.com → <Ingress Controller External IP>
  ↓
 LoadBalancer Service (Ingress Controller)
  ↓
@@ -833,15 +851,135 @@ Response back to User
 
 
 Statefull
-User → LoadBalancer / Ingress (optional)
-      ↓
-Ingress Controller          ## An Ingress Controller is a reverse proxy / load balancer running as pods in a Kubernetes cluster that route the trafic based on ingress rules
-      ↓
-ClusterIP / Headless Service
-      ↓
-StatefulSet → Pods
-      ↓
-PVC / PV → Persistent Storage
+Ingress works at Layer-7 and is used for HTTP/HTTPS applications like web apps, REST APIs, and dashboards, but not for databases or TCP-based systems.
+
+| Pattern      | Session Stored | DB Needed   | Ingress Sticky |
+| ------------ | -------------- | ---------   | -------------- |
+| Pod-Stateful | Pod RAM / PVC  | ❌ No      | ✅ Yes         |
+| DB-Stateful  | DB / Redis     | ✅ Yes     | ❌ No          |
+| Hybrid       | Both           | ✅ Yes     | Optional       |
+
+There are three Types of Stateful application
+
+1️⃣ Pod-Stateful Application (NO DB for session)
+📌 What this means
+Session stored in pod memory or pod PVC
+Same user → same pod (sticky session)
+
+Real-World Examples
+User logs in
+Session stored in:
+Pod memory (RAM) or
+Pod PVC (disk)
+Same user must always hit same pod
+
+2️⃣ DB-Stateful Application (MOST COMMON TODAY)
+📌 What this means
+Session & data stored outside pod
+Pods are stateless
+Any pod can serve any user
+
+Example 1: E-commerce (Amazon / Flipkart-like)
+Login
+Cart
+Orders
+
+3️⃣ Hybrid Stateful Application (FAST + SAFE)
+📌 What this means
+Some state in memory
+Some state in DB
+Performance + durability
+
+Example 1: Trading Platforms (Zerodha-like)
+Active trades → memory
+Account balance → DB
+
+Example 2: Online Gaming Backends
+Live game session → memory
+Player stats → DB
+
+What is Redis? (Simple Definition)
+Redis is a very fast, in-memory data store used to store temporary data like sessions, cache, and counters.
+Databases are:
+Slow compared to memory
+Expensive to query repeatedly
+
+Redis:
+Stores data in RAM
+Extremely fast
+Used for data that changes frequently
+ex- 
+1️⃣ User Session Data (MOST COMMON)
+Why changes frequently?
+Every request updates session info (last activity, auth token, etc.)
+Example
+key: session:user123
+value: {
+  "userId": 123,
+  "isLoggedIn": true,
+  "lastAccess": "2026-01-09T18:10:00"
+}
+TTL: 30 minutes
+
+Real use case
+Login system
+Kubernetes pods are stateless
+Redis keeps user logged in even if pod changes
+
+2️⃣ Shopping Cart Data
+Why changes frequently?
+Add item ❌ remove item ❌ update quantity ❌
+Example
+key: cart:user123
+value: {
+  "items": [
+    {"productId": 101, "qty": 2},
+    {"productId": 205, "qty": 1}
+  ]
+}
+Real use case
+Amazon / Flipkart
+Cart should be fast
+Not stored in DB until checkout
+
+3️⃣ OTP / Verification Codes
+Why changes frequently?
+OTP is generated, verified, and expired quickly
+Example
+key: otp:9876543210
+value: 483921
+TTL: 120 seconds
+
+Real use case
+Login OTP
+Password reset
+2FA
+
+Step 1️⃣ Namespace
+Step 2️⃣ Redis (Sessions & Cart)
+StatefulSet for Redis
+Redis Service
+3️⃣ Database (MySQL/Postgres)
+StatefulSet for Database
+Database Service
+Step 4️⃣ Stateless App Deployment
+ClusterIP Service for App
+Step 5️⃣ Ingress for External Access
+Step 6️⃣ Apply Everything
+kubectl apply -f namespace.yaml
+kubectl apply -f redis.yaml
+kubectl apply -f mysql.yaml
+kubectl apply -f app.yaml
+kubectl apply -f ingress.yaml
+
+1. User → DNS → shop.example.com
+2. Ingress Controller (TLS, path rules)
+3. ClusterIP Service → load balances
+4. Stateless App Pod receives request
+    ↳ Reads session/cart → Redis
+    ↳ Reads/writes orders/users → Database
+5. App Pod sends response → Service → Ingress → User
+6. Next request → any pod can handle
 
 
 Deleting a namespace deletes all workloads and networking objects inside it, immediately making the application inaccessible.
