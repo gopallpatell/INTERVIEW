@@ -192,6 +192,22 @@ What is ArgoCD
 Argo CD is a GitOps continuous delivery (CD) tool for Kubernetes.
 Argo CD automatically deploys and syncs Kubernetes applications from Git to the cluster.
 
+Key Real-Time Benefits of ArgoCD
+1️⃣ Self-Healing
+If someone deletes a pod manually:
+kubectl delete pod
+➡ ArgoCD recreates it automatically
+
+2️⃣ Easy Rollback
+Bad deployment?
+➡ Roll back by reverting Git commit
+➡ ArgoCD redeploys automatically
+
+3️⃣ Audit & Security
+Who changed what → Git history
+No cluster credentials in Jenkins
+Read-only Git access
+
 GitOps = Git is the only place where deployment changes are made
 Argo CD is a GitOps-based continuous delivery tool that automatically deploys and synchronizes Kubernetes applications using Git as the source of truth.
 
@@ -264,10 +280,17 @@ Manages ReplicaSets + provides rolling updates and rollbacks.
   Deployment in Kubernetes is a higher-level resource that manages the deployment and lifecycle of your application’s pods. 
   It allows you to define the desired state of your application, such as the number of replicas, 
   the version of the application, and how updates should be rolled out. Kubernetes then takes care of ensuring that the current state matches the desired state.
-				
-  Automatically running a specified number of copies (pods) of your app.
-  Ensuring that the right version of the app is always running.
-  Allowing you to easily update the app and automatically handle any failures or rollbacks.
+
+Deployment is used in real time for stateless applications like web apps and APIs that require rolling updates and scaling.
+
+In real time, Deployment manages ReplicaSets to handle scaling, rolling updates, and rollbacks, while ReplicaSets ensure the required number of pods are always running.
+Deployment
+   ↓
+ReplicaSet
+   ↓
+Pods
+ReplicaSet handles pod count
+Deployment handles rollout & rollback
 ✔ Rolling updates
 ✔ Rollbacks
 ✔ Version control
@@ -292,6 +315,16 @@ Used for stateful applications where each pod needs a fixed identity.
 👉 Used for databases:
 MySQL
 MongoDB
+
+StatefulSet is used in real time for databases and stateful workloads that need stable identity and persistent storage.
+StatefulSet provides stable pod names and a dedicated PVC for each pod, ensuring data persistence and correct identity in stateful applications.
+if the pod restart by any chance then the data is still safe. 
+StatefulSet
+   ↓
+Pods (directly)
+   ↓
+PVCs (one per pod)
+No ReplicaSet in between.
 
 apiVersion: apps/v1                  # API group/version that supports StatefulSet
 kind: StatefulSet                   # Declares this object as a StatefulSet (for stateful apps)
@@ -350,6 +383,27 @@ spec:
         requests:
           storage: 10Gi             # Disk size allocated PER pod
                                     # Total storage = 3 × 10Gi
+
+Resource	               apiVersion
+Pod      	                  v1	 
+Service  	                  v1	 
+ConfigMap	                  v1	 
+Secret	                      v1	 
+PersistentVolume	          v1	
+PersistentVolumeClaim	      v1	
+Namespace	                  v1	 
+Deployment	                  apps/v1	 
+ReplicaSet	                  apps/v1	 
+StatefulSet	                  apps/v1	
+DaemonSet	                  apps/v1	
+Job	                          batch/v1	
+CronJob                       batch/v1	 
+Ingress	                      networking.k8s.io/v1	 
+NetworkPolicy	              networking.k8s.io/v1	 
+HorizontalPodAutoscaler       autoscaling/v2	
+Role / RoleBinding	          rbac.authorization.k8s.io/v1	
+ClusterRole / Binding	      rbac.authorization.k8s.io/v1	 
+StorageClass	              storage.k8s.io/v1	 
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 🔐 What is a Secret?
@@ -426,30 +480,41 @@ containers:
   - name: mysql-data
     mountPath: /var/lib/mysql
 
-
-
-
 ✅ One-line summary
 
 ConfigMap stores configuration, Secret stores credentials, and both are injected into pods as environment variables for 
 secure, maintainable Kubernetes deployments.
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
-✅ DaemonSet                                         # it is used in stateless application
+✅ DaemonSet                                         
 DaemonSet ensures that exactly one pod runs on every node (or on selected nodes).
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 ✅  what is jobs in kubernetes
     job is used in k8s to Runs a pod until the task finishes              (written in .yml repo)
 In real projects, Kubernetes Jobs are used for database migrations, backups, and cleanup tasks that must run once and exit successfully.
-2️⃣ Retry Job
-A job that runs a command which fails, and Kubernetes retries it 4 times until it succeeds or reaches limit.
-3️⃣ Multi-Run Job
-A job that runs the same task 3 times, one after another, until all are completed successfully.
-4️⃣ Parallel Job
-A job that runs 5 tasks, but only 2 pods run at the same time (parallel batch processing).
-5️⃣ Database Backup Job
+1. Database Backup
+Real examples:
+MySQL backup to S3
+PostgreSQL dump
+MongoDB backup
+Redis snapshot
+
+How it works in real time:
+Runs daily / hourly
+Takes DB dump
+Uploads to S3
+Exits
+0 2 * * *  → Daily 2 AM backup
 A job that starts a container once, runs a mysqldump command, saves the database backup, and then exits.
+
+2. Migrate data from old DB to new DB
+
+3.Cleanup Jobs
+Delete logs older than 7 days
+Cleanup temp files
+Remove unused objects from S3
+0 3 * * * → Every day cleanup
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 ✅ pods defferent states or lifecycle
@@ -458,6 +523,44 @@ running
 completed
 terminating
 imagepullbackoff
+ErrImagePull	      First pull attempt failed
+
+ImagePullBackOff	  Repeated failures → backof
+Pod is created
+Kubelet tries to pull the image
+Image pull fails
+Kubernetes retries multiple times
+After repeated failures → ImagePullBackOff
+1️⃣ Wrong Image Name or Tag
+2️⃣ Image Does Not Exist in Registry
+3️⃣ Private Registry – No Access
+6️⃣ Expired or Invalid Credentials
+
+Describe the Pod
+kubectl describe pod myapp-7c9d8d
+
+Verify Image Name & Tag
+kubectl get pod myapp-7c9d8d -o yaml
+  check
+   Is the name correct?
+✔ Does the tag exist?
+✔ Any typo?
+
+Check If Image Exists in Registry
+docker pull myrepo/myapp:v2
+
+Check If Image Is Private
+
+Restart the Pod (by deleting)
+
+“CrashLoopBackOff = app issue”
+CrashLoopBackOff occurs when a container repeatedly crashes after starting, commonly due to application errors, misconfiguration, or resource limits.
+Verify container command & entrypoint
+Check missing environment variables
+Verify ConfigMap and Secret mounts
+Fix liveness/readiness probes
+Check OOMKilled and increase memory limits
+Delete pod to restart: kubectl delete pod <pod-name>
 
 👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉👉�
 ✅  cronjob             for this also we need to create .yml (written in .yml repo)
