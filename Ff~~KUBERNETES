@@ -810,6 +810,21 @@ kubectl port-forward svc/ingress-nginx-controller -n ingress-nginx 8080:80
 
 so now wwe can add multiple services in ingress  it is called microservices
 
+stateless
+User → LoadBalancer / Ingress → ClusterIP Service → Deployment → ReplicaSet → Pods
+
+Statefull
+User → LoadBalancer / Ingress (optional)
+      ↓
+Ingress Controller
+      ↓
+ClusterIP / Headless Service
+      ↓
+StatefulSet → Pods
+      ↓
+PVC / PV → Persistent Storage
+
+
 Deleting a namespace deletes all workloads and networking objects inside it, immediately making the application inaccessible.
 Yes, a single kubectl delete namespace can shut down everything, unless you put safeguards in place. Here’s how this is prevented in real-world clusters.
 
