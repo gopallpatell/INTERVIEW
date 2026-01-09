@@ -811,12 +811,31 @@ kubectl port-forward svc/ingress-nginx-controller -n ingress-nginx 8080:80
 so now wwe can add multiple services in ingress  it is called microservices
 
 stateless
-User → LoadBalancer / Ingress → ClusterIP Service → Deployment → ReplicaSet → Pods
+User → DNS → LoadBalancer Service → Ingress Controller → Service → Pods
+User
+ ↓
+Domain Name (myapp.com)
+ ↓
+DNS
+ ↓
+LoadBalancer Service (Ingress Controller)
+ ↓
+Ingress Controller Pods (NGINX) ## An Ingress Controller is a reverse proxy/load balancer running as pods in a Kubernetes cluster that route the trafic based on ingressrule
+ ↓
+Ingress Rules
+ ↓
+ClusterIP Service (myapp-service)
+ ↓
+Stateless App Pods
+ ↓
+Response back to User
+
+
 
 Statefull
 User → LoadBalancer / Ingress (optional)
       ↓
-Ingress Controller
+Ingress Controller          ## An Ingress Controller is a reverse proxy / load balancer running as pods in a Kubernetes cluster that route the trafic based on ingress rules
       ↓
 ClusterIP / Headless Service
       ↓
