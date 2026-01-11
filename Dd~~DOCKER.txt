@@ -1,7 +1,9 @@
-Docker (In One Line)
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 Docker (In One Line)
 Docker is a tool that packages an application and all its dependencies into a lightweight, portable container that can run anywhere.
 
-difference between -v and --mount
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 difference between -v and --mount
 A Docker mount is used to attach storage from:
 Host machine
 Docker-managed volume
@@ -16,8 +18,9 @@ docker run -d --mount source=/var/lib/docker/volumes/db_data,target=/var/lib/mys
 Use LVM (Advanced / Production)
 sudo mount /dev/vg_data/lv_data  /var/lib/docker/volumes/db_data
 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ### monitering and logging 
-Q what is the nohup 
+🧠 what is the nohup 
   nohup is used to write the logs in file directly. it will run the command in the background and give the output in a file
   "nohup.out"
   command - nohup docker logs -f <containerID> &
@@ -28,7 +31,8 @@ a1b2c3d4       web_app     35.2%   256MiB / 1GiB       25%     10MB / 8MB    1.2
 
 nohup docker stats & 
 
-Q what is ngnix 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 what is ngnix 
   Nginx is a high-performance web server and reverse proxy used to efficiently serve and manage web traffic.
 
 Client request भेजता है
@@ -38,8 +42,8 @@ Nginx config check करता है
 अगर multiple backend हैं → load balance
 Fast event-driven mechanism से हजारों requests handle करता है
 
-
-### Project
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 Project
 web application (django) + ngnix (for reverse proxy) + MYsql(backend)
 
 it is a django app and it is connect to mysql and it wwill be served by ngnix
@@ -116,13 +120,12 @@ errors
 if we didnt give the proper name of networks then both containers are not being connected if we mistack in given name then 
 wwe will get the errors
 
-
-
-
-Q.1 Tell me some about Hypervisor. 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠.1 Tell me some about Hypervisor. 
   hypervisor is used to create the vms using hypervisor we can create multiple vms on a single physical server
 
-Q.2 Can you state the advantages of Docker over Hypervisor?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 Can you state the advantages of Docker over Hypervisor?
   Virtual Machines :
 		- VMs are hardware level Virtualization 
 		- VMs are created using Hypervisor 
@@ -138,39 +141,44 @@ Q.2 Can you state the advantages of Docker over Hypervisor?
 		- Using Containers we can reduce the no. of VM, But we cannot completely elimate VMs
 	- Container run in its own isolated address spac, the scope of the container application is within the container 
 	
-Q.3 Define Docker images.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 Define Docker images.
   Is a Static file that defined the properties of the Container and its dependencies 
 
-Q.4 what is the current docker version
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 what is the current docker version
     27.5.1
 
-Q.5 Tell me something about Docker machine. 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 Tell me something about Docker machine. 
   Docker Machine is a tool that helps you create and manage Docker environments 
   A Docker environment is the collection of everything that allows you to run Docker containers, including the Docker 
   Engine, host machine, containers, images, 
  Here’s a breakdown of the key elements that make up a Docker environment:
 
-  Docker Engine:
+  🧠 Docker Engine:
   This is the core software that runs Docker containers.
 
-  Docker Host:
+  🧠 Docker Host:
   The Docker host is the physical or virtual machine where the Docker Engine runs. It provides the resources (like CPU, 
   memory, and storage) needed to run containers.
 
-  Containers:
+  🧠 Containers:
   Containers are lightweight, isolated environments where applications run. 
 
-Docker Images:
-Is a Static file that defined the properties of the Container and its dependencies
+ 🧠Docker Images:
+  Is a Static file that defined the properties of the Container and its dependencies
 
-Docker Registry (e.g., Docker Hub):
-docker regestry is place where we can shave the docker images and version controle
+ 🧠 Docker Registry (e.g., Docker Hub):
+  docker regestry is place where we can shave the docker images and version controle
 
-Q.6 Define Docker Swarms.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 Define Docker Swarms.
   - Used to Ensure High Availability of Containers by creating Replicas of Containers.
   It is meant only for Docker Containers.
 
-Q.7 then why we use kubernetes instant of docker swarn..?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 then why we use kubernetes instant of docker swarn..?
    If your app is small, Docker Swarm might be enough. But if you want to run large, complex apps that need advanced 
    features, Kubernetes is the better choice.
 
@@ -182,7 +190,8 @@ Q.7 then why we use kubernetes instant of docker swarn..?
   Stateful sets (for managing stateful applications like databases)
   Complex networking configurations
 
-Q.8  Describe the usage of Dockerfile?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠  Describe the usage of Dockerfile?
   A Dockerfile is a text file it is a set of instructions for building a Docker image.
 
 FROM: Defines the base image for the container.
@@ -198,17 +207,21 @@ ARG: Defines build-time variables.
 USER: Specifies the user to run the container as.
 SHELL: Specifies the shell to use for RUN commands.
 
-Q.9 What is command to build  docker image from Dockerfile ?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 What is command to build  docker image from Dockerfile ?
   $ docker build -t image_name .    # .  is for build the imagre in current directory
 
-Q.10  What is the command to run the image as a container?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠  What is the command to run the image as a container?
   $ docker run -it image_name
 
-Q. 11  What is difference between ADD and COPY in Dockerfile
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠  What is difference between ADD and COPY in Dockerfile
  COPY 								# To Copy the file from host volume to container volume
  ADD 								# To Copy the file from Host Volume as well as from URL
 
-Q.12  what are Docker Namespaces?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠  what are Docker Namespaces?
     it is used to create a isolated invironment 
 Without namespaces:
 All containers would see the same processes, same network interfaces, same filesystem.
@@ -228,8 +241,8 @@ UTS namespace → isolates hostname	Container thinks it has its own hostname
 IPC namespace → isolates shared memory	Container cannot access shared memory of host/other containers
 USER namespace → isolates users	root in container ≠ root on host
    
-
-Q. 13 Why is it necessary to monitor a  Docker?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 Why is it necessary to monitor a  Docker?
  Monitoring ensures containers run reliably, securely, and efficiently.
   Resource usage: Track CPU, memory, disk to prevent overload.
   Container health: Detect crashes or freezes via healthchecks.
@@ -238,10 +251,12 @@ Q. 13 Why is it necessary to monitor a  Docker?
   Security: Detect anomalies or attacks.
   Performance & scaling: Optimize resources and scale efficiently.  
 
-Q. 14  Define Docker compose?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 Define Docker compose?
   Docker Compose is a tool that helps you run and manage multiple Docker containers at the same time, with just one command.
 
-Q. 15  What is depends_on in Docker compose
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠  What is depends_on in Docker compose
   it is used when one server is depends on the another server. like if i am using a web server and one db server and i want 
   to start db server first then i can use depend on after the 
   web server like this 
@@ -259,11 +274,10 @@ services:
     environment:
       POSTGRES_PASSWORD: example
 
-
 like a web app needing a database to be available first.
 
-
-Q. 16  Describe the role of Docker load and save command.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠  Describe the role of Docker load and save command.
   it is use to import and export the docker images without internet. 
   using "docker save -o file.tar  gopallpatell/netflix:v1.0"   we compress the image in a file for exporting the image 
   and using "docker load -i file.tar" to extract that file offline 
@@ -271,7 +285,8 @@ Q. 16  Describe the role of Docker load and save command.
   docker save: Creates a tarball of a Docker image that you can transfer or back up.
   docker load: Loads a Docker image from a tarball into your local Docker environment.
 
-Q. 17 Which is the most feasible type of application for Docker containers – Stateless or Stateful?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 Which is the most feasible type of application for Docker containers – Stateless or Stateful?
   Stateless applications are generally more feasible and suited for Docker containers compared to stateful 
   applications. 
   bcz dont need to give any input for this type of application.
@@ -282,11 +297,13 @@ Q. 17 Which is the most feasible type of application for Docker containers – S
 				- Application that will have state of execution
 				- Applications that requires some input and generate some output
 
-Q 18.  Differentiate between a Docker layer and a image.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 Differentiate between a Docker layer and a image.
   Layers are the individual steps to create and building the image 
   docker Image is the final, complete result that you can use to create something (like a container in Docker).
 
-Q.19 vertualization
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 vertualization
   Virtualization allows multiple virtual computers (VMs) to run on a single physical machine, improving efficiency and 
   flexibility.
   Hypervisor:
@@ -294,7 +311,8 @@ Q.19 vertualization
   It sits between the physical hardware and the VMs, allocating resources like CPU, memory, and storage to each VM.
   a hypervisor is the software that allows multiple virtual computers to run on a single physical machine.
  
-Q.20  What if you have accidentally out of the Docker containers, will you loose the files?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠  What if you have accidentally out of the Docker containers, will you loose the files?
   If you have a container running a web application and the database is storing data in a Docker volume or a bind mount, 
   even if the container crashes or is removed, the database files will still be available in the volume or on the host 
   system.
@@ -303,14 +321,16 @@ Q.20  What if you have accidentally out of the Docker containers, will you loose
   Without volumes or mounts: Yes, you will lose the files inside the container.
   With volumes or mounts: No, your files are safe and persistent even if you remove the container.
 
-
-Q.21   What are factors that decides the number of containers you can run on?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠   What are factors that decides the number of containers you can run on?
   System resources like CPU, RAM, and disk space are the main limiting factors.
 
-Q.22 What is Dockerfile Instructions ?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 What is Dockerfile Instructions ?
   Dockerfile contains a set of Instructions to build Docker Image
 
-Q23  What is Docker Prune ?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 What is Docker Prune ?
   docker prune ins used to delete the unused container, images and volumes 
 
   Here are the docker prune commands in one line:
@@ -320,30 +340,33 @@ Q23  What is Docker Prune ?
   docker volume prune: Removes unused Docker volumes.
   docker network prune: Removes unused Docker networks.
 
-
-Q24 why docker is important for devops.?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 why docker is important for devops.?
   Docker is important for DevOps because it simplifies and streamlines the development, testing, and deployment process. 
   Here’s why:
   lie for isolation and scalability we can run multiple container on a single vm 
 
-Q25   Please Explain How Does Docker Work?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠   Please Explain How Does Docker Work?
   First, you build a Docker image using a Dockerfile or pull an image from a registry (like Docker Hub).
   Then, you run a container from the image, and Docker takes care of setting up the environment for your application to run.
   The container is isolated but can communicate with other containers or the host system as needed, using features like 
    networking and volumes.
 
-Q26  What is the difference between containerization and virtualization?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠  What is the difference between containerization and virtualization?
   Virtualization allows multiple virtual computers (VMs) to run on a single physical machine, improving efficiency and 
   flexibility.
   containerization is the process of packaging the application and its dependences.
   it can be also used to run multiple application in one VM
 
-
-Q27 How do you keep your Docker images up to date?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 How do you keep your Docker images up to date?
   Using a continuous integration (CI) pipeline: A CI pipeline can automatically build and test Docker images.
   or we can version controle the image 
 
-Q29   You want to update a running container with a new version of the application without downtime. How can you achieve 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠   You want to update a running container with a new version of the application without downtime. How can you achieve 
    zero-downtime deployments in Docker?
   1. Rolling update: Docker Swarm will update one container at a time, 
   2. Blue-Green Deployment (Manual Method)
@@ -352,287 +375,201 @@ Q29   You want to update a running container with a new version of the applicati
 Rolling Update: Slowly replace old parts of a machine while it’s running.
 Blue-Green: Build a new machine completely, then switch to it instantly.
 
-30. docker commit 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 docker commit 
   docker commit is used to create new image based on the modified continers or we can say existing containers
   docker commit <container_id> my_ubuntu_with_vim:latest
 
-31 Port Mapping / Port Binding ::::
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 Port Mapping / Port Binding ::::
   - It is used to expose the container to access thru internet 
   docker run -it -p <host_Port>:<container_Port> tomcat:8.0
   docker run -it -p 8089:8080 tomcat:8.0
 
-32 docker mount 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 docker mount 
   docker run --mount source=my_data,target=/data my_image
 
   docker run -v /host/path:/container/path my_image
   /host/path: The full path to the directory or file on your host machine.
   /container/path: The path inside the container where the file or directory will be mounted.
 
-33. How can you link multiple Docker containers together?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 How can you link multiple Docker containers together?
   Docker provides a feature called container networking, which allows you to link multiple containers together.
    or we can use docker compose 
 docker run -d --name my-container --network my-network nginx
 
-34 How do you optimize a Docker image to reduce its size?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠34 How do you optimize a Docker image to reduce its size?
   Combine commands (RUN, COPY, ADD) to reduce layers.
   Remove unnecessary files (e.g., temp files, package manager cache).
   Use multi-stage builds to separate build dependencies from runtime dependencies.
   remove unneccessory layers
 
-35. What is the difference between ENTRYPOINT and CMD in Docker?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 What is the difference between ENTRYPOINT and CMD in Docker?
  ENTRYPOINT: Defines the main command that should always run when the container starts. It is usually the primary process.
  CMD: Defines the default arguments for the command (or the command itself if ENTRYPOINT is not set). It's the fallback if 
  no command is provided when the container starts..
   entrypoint is a main command and cmd is defualt commmand if entrypoint command is not define then cmd will execute.
 
-36 How do you troubleshoot a failed container in Docker?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 How do you troubleshoot a failed container in Docker?
   first we will check docker logs then we inspect the container we run in the interactive mode we need to check the port 
   mapping  then rebuild the image all this things to troubleshoot
 
-37 cmd command if I run multiple time then what happen
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 cmd command if I run multiple time then what happen
   If you run the CMD command multiple times in a Dockerfile, only the last CMD instruction will be used when the container 
   starts. Docker will ignore any previous CMD instructions that appear before it.
 
-38. I have application and application database also, how to deploy this both in one using docker
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 I have application and application database also, how to deploy this both in one using docker
   we use docker compose and we add depends_on 
 
-39. I am trying to pull image using image name  that image not getting accessible through docker hub repo , so what is the 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 I am trying to pull image using image name  that image not getting accessible through docker hub repo , so what is the 
     problem
   Incorrect Image Name or Tag: Ensure the image name and tag are correct. Example: docker pull ubuntu:latest.
   Private Repository: If the image is private, you need to log in to Docker Hub using docker login.
   Image Not Pushed: The image might not be uploaded to Docker Hub. Verify if it's available on the Docker Hub repository.
   Tag Doesn't Exist: The tag you're trying to pull might not exist. Check the available tags on Docke
 
-40. what issue you face while creating container like it created and stopped what the issue
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 what issue you face while creating container like it created and stopped what the issue
    it happen if entrypoint is wrong 
    insuffeciant memory or cpu
    Port already in use == Container fails to bind to port
 
-41 what is multi stage in dockerfile
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 what is multi stage in dockerfile
    Multi-stage builds in Docker allow you to use multiple FROM statements in a single Dockerfile to optimize the build 
    process, reduce image size, and separate the build environment from the runtime environment.
 
-42. how to bind the volumes to container
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 how to bind the volumes to container
    docker run -v <host_path>:<container_path> <image_name>
 
-43. what is difference between cmd and env in dockerfile what will happen we use both of them in dockerfile
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 what is difference between cmd and env in dockerfile what will happen we use both of them in dockerfile
   cmd is for default commnd and env is for invironment variable it is used for sensitive data and api keys
   we can use both cmd is for default execution and env for passing env variable 
 
-44. 
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is Docker and why is it used?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is a Docker container?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is the difference between a Docker container and a virtual machine?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is a Docker image?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is the Docker engine?
 
-What are the main components of Docker architecture?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is the use of the docker run command?
 
-How can you check the running Docker containers?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is the difference between docker run and docker start?
 
-What are Dockerfile and its purpose?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What are the basic Dockerfile instructions?
 
-How do you build a Docker image from a Dockerfile?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is the difference between CMD and ENTRYPOINT in a Dockerfile?
 
-What is the purpose of EXPOSE in Dockerfile?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is .dockerignore file and why is it important?
 
-What is the difference between COPY and ADD in Dockerfile?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-How do you stop and remove a Docker container?
 
-How do you remove a Docker image?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is the use of docker exec?
 
-What is the use of the -it option in Docker?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is the use of detached mode (-d) in Docker?
 
-How do you persist data in Docker containers?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What are Docker volumes?
 
-How do you share data between containers?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-How can you inspect logs of a running container?
 
-How do you push an image to Docker Hub?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is the difference between Docker Hub and Docker Registry?
 
-How do you pull a specific version of an image?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is image tagging in Docker?
 
-How does Docker layer caching work?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What are best practices for creating optimized Docker images?
 
-What is the difference between an image and a container?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What are dangling images?
 
-How do you clean up unused Docker objects?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-How do you list all local Docker images?
 
-What is the difference between docker rmi and docker image rm?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is a multi-stage Docker build?
 
-Why would you use a multi-stage build?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is the purpose of the WORKDIR command?
 
-What is the benefit of using a minimal base image like alpine?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is the use of docker save and docker load?
 
-What is the use of docker export and docker import?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-How can you reduce the image size?
 
-What is the difference between docker build and docker-compose build?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-How do you scan Docker images for vulnerabilities?
 
-What is docker history used for?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-How do you sign Docker images?
 
-What is the LABEL instruction used for?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-How do you tag multiple images with one build?
 
-What is the default image storage path in Docker?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What are the types of Docker networks?
 
-What is the difference between bridge, host, and none network modes?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-How do you inspect a Docker network?
 
-How can two containers communicate with each other?
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠
 
-What is a user-defined bridge network?
 
-What is the docker network create command?
-
-What is port mapping in Docker?
-
-What’s the difference between -p and -P options?
-
-What is the host network and when should you use it?
-
-How can you connect a running container to a network?
-
-How do you create a container with multiple networks?
-
-What are overlay networks in Docker Swarm?
-
-What is DNS-based service discovery in Docker?
-
-How does Docker handle container-to-container communication?
-
-What is an ingress network?
-
-What is the difference between internal and external networks?
-
-What happens when a container tries to connect to the outside world?
-
-What is network aliasing in Docker?
-
-How can you troubleshoot Docker networking issues?
-
-Can containers share the same IP?
-
-What is Docker Compose?
-
-What is the default name of the Docker Compose file?
-
-How do you start multi-container apps with Compose?
-
-How do you define environment variables in Compose?
-
-What is the difference between depends_on and links in Compose?
-
-How do you scale services using Docker Compose?
-
-What is the difference between docker-compose up and docker-compose up --build?
-
-How do you override default docker-compose.yml?
-
-What is the volumes_from key used for?
-
-What are the advantages of using Compose in microservices?
-
-How do you build images using Compose?
-
-Can you use multiple Compose files?
-
-What happens when a container defined in Compose crashes?
-
-How do you specify restart policies in Compose?
-
-How do you manage secrets in Compose?
-
-What are Docker namespaces?
-
-What are Docker cgroups?
-
-How can you limit memory and CPU for a container?
-
-What is the purpose of Docker Swarm?
-
-How is Docker Swarm different from Kubernetes?
-
-What is the role of a manager and worker node in Swarm?
-
-What are Docker secrets and how do you manage them?
-
-How do you ensure security in Docker containers?
-
-What is Docker Content Trust (DCT)?
-
-What is the difference between root and non-root containers?
-
-How do you keep containers lightweight and secure?
-
-How do you monitor Docker containers?
-
-What tools are available for Docker logging?
-
-How do you troubleshoot a failed Docker container?
-
-What are some best practices for using Docker in production?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
