@@ -274,9 +274,18 @@ mount
 sudo mkdir /data
 sudo mount /dev/vg_data/lv_data /data
 
-real time use case is like when the attched volume is full and we need to extend the volume for that we use LVM it will create new volume space and we can attched with EC2
+real time use case is like when the attched volume is full and we need to extend the volume for that we use LVM For that we create new physical volume and attach it with VG
+then we can add this in logical volume
 
 EBS is created from the EC2 console by selecting volume type, size, and AZ, then attaching it to an EC2 instance in the same Availability Zone. or we can create it using CLI.
+
+Normal mount can only use one device per path; to use a new EBS at the same path, copy that volume to a new location for backup then unmount then mount new one and then again
+copy that backuped file in new mounted path. LVM allows dynamic expansion to include new EBS without unmounting.
+
+A normal mounted path can only use the device it is mounted on.
+/mnt/data is still using only the original 10 GB volume.
+Adding a new EBS does not automatically merge with the old volume.
+If you want to use the new EBS at the same mount point, you must do one of the
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 How do you mount and unmount filesystems in Linux?
