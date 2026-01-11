@@ -236,109 +236,125 @@ Continue normal Git workflow (commit, push to remote if needed)
   It is effective for recovering lost commits or branches that are no longer visible in the regular log.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-33. What is the HEAD in Git?
-  In Git, HEAD is a source to the current branch or commit you are working on. HEAD normally shows the recent commit of the current branch and moves when you switch branches or check out exact commits.
+🧠 What is the HEAD in Git?
+  HEAD normally shows the recent commit of the current branch and moves when you switch branches or check out exact commits.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-34. What is the purpose of `git tag -a`?
-  The intent of 'git tag -a' is to form an annotated tag in Git. Annotated tags are tags that contain additional metadata such as the tagger's name, email, date, and a message. They are valuable for labeling important points in history, like releases, and give another context compared to lightweight tags made with 'git tag' .
+🧠 What is the purpose of `git tag -a`?
+  The intent of 'git tag -a' is to form an annotated tag in Git. Annotated tags are tags that contain additional metadata such as the tagger's name, email, date, and a 
+  message. They are valuable for labeling important points in history, like releases, and give another context compared to lightweight tags made with 'git tag' .
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-35. What is the difference between `HEAD`, `working tree` and `index` in Git?
+🧠 What is the difference between `HEAD`, `working tree` and `index` in Git?
   HEAD: Points to the currently checked-out commit or branch.
   Working Tree: Includes the actual files you are currently working on or modifying.
   Index (Staging Area): Acts as a middle ground where changes are prepared before committing. It keeps snapshots of change to be included in the next commit.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-36. How to resolve a conflict in Git?
-  Discover Conflicting Files: Find the files where conflicts have take place because of changes from unique branches.
-  Correct Files to Repair Conflicts: Alter the files to sync conflicting changes and block future conflicts.
-  Stage solved Files: Use 'git add' to add the resolved files to the staging area. Commit the Changes: Complete the process by committing the changed files applying 'git commit' .
+🧠 How to resolve a conflict in Git?
+ Conflict occurs when Git can’t auto-merge changes.
+Run git status to see conflicted files.
+Open the file and find <<<<<<<, =======, >>>>>>>.   # Remove <<<<<<<, =======, >>>>>>> (header & footer markers), keep correct changes, then commit.
+Decide to keep local, remote, or both changes.
+Remove conflict markers and save the file.
+Run git add <file>.
+Run git commit -m "Resolved merge conflict".
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-37. Explain the difference between `git merge` and `git rebase` and when you would use each?
-  'git merge' merges changes from one branch into another, keeping distinguish branch histories. It forms merge commits that directly show where branches came together. 'git rebase' reforms history by using commits from one branch onto another, causing in a linear sequence of commits. Prefer 'merge' to keep distinct branch timelines and use 'rebase' for enhancing commit history before merging branches.
+🧠 Explain the difference between `git merge` and `git rebase` and when you would use each?
+  In Git, when we merge two branches using git merge, it creates a merge commit and preserves all feature branch commits (it does not combine them into a single commit by
+  default). When we use git rebase, it re-applies all feature branch commits one by one on top of the main branch, preserving each commit separately and maintaining a 
+  clean and linear commit history.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-38. What language is used in GIT?
-  Git is mainly developed using the C programming language. The core features and commands of Git, containing its data structures and algorithms, are applied in C. This choice of language confirms productivity, speed, and portability across distinct operating systems and platforms.
+🧠 What language is used in GIT?
+Git is mainly developed using the C programming language.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-39. How do you add a file to the staging area?
+🧠 How do you add a file to the staging area?
   Use `git add <file_name>` to add a file to the staging area, forming it ready for a commit.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-40. What is `git diff`?
+🧠 What is `git diff`?
    it is used to see the diff btwn two branches and in btwn two commits also we can see diff btwv files and branches,files and commits.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-Advanced Git Interview Questions for Experienced
-41. What is the Git object model?
-  it is like how git is save your data : blobs (which store file data), trees (which store directory structures), commits (which store repository snapshots), and tags (which store references to commits). These objects are the pillar of Git's version control system, permitting for capable tracking and management of changes.
+🧠 What is the Git object model?
+  it is like how git is save your data : blobs (which store file data), trees (which store directory structures), commits (which store repository snapshots), and tags 
+  (which store references to commits). 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-42. Explain `git rebase` and when you would use each?
+🧠 Explain `git rebase` and when you would use each?
   'git rebase' moves commits from one branch to another, making a straight, linear history. Use rebase to enhance and clean up the commit history before merging.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-43. What is a git hook and how might you use it?
-  A Git hook is a pattern script that instantly runs at exact points in the Git workflow, such as before or after commits, merges, or pushes. You can use hooks to apply coding rules, run tests, check for security faults, or simplify tasks. For an example, a pre-commit hook can run and tests to verify code quality before changes are committed.
+🧠 What is a git hook and how might you use it?
+  A git hook is a script that runs automatically at specific Git events.
+  It is used to automate tasks like testing, formatting, or validation.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-44. How does Git store data?
-  Git stores data by saving snapshots of your project at diverse points in time. Each snapshot is a commit, which covers information about the project’s files (blobs) and directories (trees). These snapshots are recognized by unique hashes, creating it easy to track changes and retrieve history.
+🧠 How does Git store data?
+  Git stores data by saving snapshots of your project at diverse points in time. Each snapshot is a commit, which covers information about the project’s files (blobs) 
+  and directories (trees).
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-45. Explain what is meant by the "detached HEAD" state in Git?
-  When 'HEAD' points directly to a commit instead of a branch, Git is in a detached 'HEAD' state. 
-  Changes made in this state won’t be referenced by any branch and might be lost if not saved.
+🧠 Explain what is meant by the "detached HEAD" state in Git?
+  When 'HEAD' points directly to a commit instead of a branch, 
+  Detached HEAD means HEAD points to a commit, not to a branch.
+  Happens when you checkout a specific commit or tag.    ### git checkout <commit-id>
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-46. Explain the difference between git reset, git revert, and git checkout?
+🧠 Explain the difference between git reset, git revert, and git checkout?
   git reset: Moves HEAD to different commit, potentially changing history.
   git revert: Undoes exact commit by making new commit with inverse changes.
   git checkout: Switches branches or checks out files from commit, putting you in "detached HEAD" state for direct commits.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-47. How do you handle large files with Git?
-  To handle large files in Git, use Git LFS (Large File Storage). It tracks large files severally from your repository, storing them on a remote server. This prevents bloating your repository size and secures improved performance while operations like cloning and fetching.
+🧠 How do you handle large files with Git?
+  To handle large files in Git, use Git LFS (Large File Storage). It tracks large files severally from your repository, storing them on a remote server. 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-48. What is the function of the git cherry-pick command?
-  The git cherry-pick command uses exact commits from one branch to another, 
-  allowing selective merging of changes without merging entire branches.
+🧠 What is the function of the git cherry-pick command?
+  Git cherry-pick applies a specific commit from one branch to another without merging the whole branch.
+  git cherry-pick <commit-id>
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-49. What is ‘bare repository’ in Git?
- A bare repository in Git is one missing a working directory. It only contains version control data, making it ideal for sharing and collaboration without changing files directly.
+🧠 What is branching in Git?
+ Branching in Git permits forming separate lines of development. It allows users to work on features or fixes separately from the main codebase, helping parallel development 
+ and simpler integration of changes.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-50. What is branching in Git?
- Branching in Git permits forming separate lines of development. It allows users to work on features or fixes separately from the main codebase, helping parallel development and simpler integration of changes.
+🧠 What is Git and its types?
+ Git is a distributed version control system. 
+            Local Version Control System
+Stores versions on a single local machine.
+No collaboration support.
+Example: simple file backups.
+
+            Centralized Version Control System (CVCS)
+Single central server stores code.
+Users must connect to the server.
+Example: SVN, Perforce.
+
+            Distributed Version Control System (DVCS)
+Each user has a full copy of the repository.
+Works offline, faster, more secure.
+Example: Git, Mercurial.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-51 What is Git and its types?
- Git is a distributed version control system. It has two types of repositories: bare repository (no working directory, used on servers) and non-bare repository (includes a working directory for developers).
-
-────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-52 git merge --squash
-  The git merge --squash command is a powerful feature that allows you to combine multiple commits from 
-  one branch into a single commit on the target branch, effectively "squashing" the commits.
+🧠 git merge --squash
+  The git merge --squash command is a powerful feature that allows you to combine multiple commits from one branch into a single commit on the target branch, effectively 
+  "squashing" the commits.
   git merge --squash feature-branch
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-53 for squash or combine selective commits
+🧠 for squash or combine selective commits
   Interactive rebase allows you to choose specific commits to modify, reorder, or squash.
   This can be a great way to combine only certain commits into one, while keeping others separate.
   git rebase -i HEAD~5           # it will combine last five commits into one commit 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-54 Cherry-pick
-  If you want to pick specific commits from one branch and apply them to another, git cherry-pick is a great option.
-  git cherry-pick commit-hash1 commit-hash2
-
-────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-55 What is the purpose of the "git bisect" command
+🧠 What is the purpose of the "git bisect" command
   git bisect is a quick way to find the "bad" commit in your code using a binary search. 
   Imagine you have a problem (like a bug) in your code, and you don’t know when or where it was introduced.
   You know that at some point, your code was working fine, and at another point, it’s broken. 
@@ -346,12 +362,12 @@ Advanced Git Interview Questions for Experienced
   but in a very smart way using binary search.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-56 Emma wants to see the history of commits for a particular file in the repository. How can she do that?
+🧠 Emma wants to see the history of commits for a particular file in the repository. How can she do that?
  using git commit filename
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-57 You are working on a feature branch in Git, and you realize that some of the changes you made are incorrect 
-and need to be removed. How can you selectively remove specific commits from your branch history?
+🧠 You are working on a feature branch in Git, and you realize that some of the changes you made are incorrect and need to be removed. How can you selectively remove 
+   specific commits from your branch history?
   using git rebase -i 
   git rebase -i HEAD~5
   Choose Which Commits to Remove
@@ -376,32 +392,39 @@ and need to be removed. How can you selectively remove specific commits from you
   Git will then attempt to rebase your branch, effectively removing the commits you dropped.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-58 git blame: 
+🧠 git blame: 
   Show who changed which lines in a file. Example: `git blame file.txt`
+  output:
+  a1b2c3d4 (Gopal Patel 2025-12-10 14:20:30 +0530) Line content here
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-59 git log --graph: 
+🧠 git log --graph: 
   Show the commit history in a graphical representation. Example: `git log --graph`
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-60 git branch -m: 
-  Rename a branch. Example: `git branch -m new_branchname`
+🧠 git branch -m: 
+   git branch -m is used to rename a branch in Git.
+
+  Rename current branch
+  git branch -m new-branch-name
+  Rename a specific branch
+  git branch -m old-branch-name new-branch-name
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-61 How do you implement branch protection in GitHub?
+🧠 How do you implement branch protection in GitHub?
   for that we need to set rules and restriction to the branch.
   1 Require pull request reviews before merging
   2 Require linear history
   3 Prevent deletions:
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-62 What is an orphan branch in Git?
+🧠 What is an orphan branch in Git?
   An orphan branch in Git is a branch with no commit history. 
   It's like starting a fresh branch, but without any past code or changes from other branches. 
   git checkout --orphan <branch_name>
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-63 what is tagging in git
+🧠 what is tagging in git
   tagging in git is like give a specific tabel to the commit is usefull in release it is like v1.0 v2.0 
   Lightweight tag: It’s just a simple label for a commit.
   Annotated tag: A label with extra information, like who made the tag and why.
