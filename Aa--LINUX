@@ -565,22 +565,104 @@ for backups                                            * * * * * /usr/local/bin/
 A firewall is a security mechanism that controls incoming and outgoing network traffic based on a set of rules.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 Server disk is full. How do you find the root cause?
+Check disk usage using df -h       df -h output (filesystem usage): 
+Filesystem      Size  Used  Avail  Use%  Mounted on
+/dev/sda1        50G   42G    8G    84%   /
+tmpfs            2G     0     2G     0%   /run
+
+Identify large directories with du -sh /*
+du -sh output (directory usage):
+3.2G   /var/log
+
+Look for common issues: logs (/var/log), Docker data (/var/lib/docker), temp files
+Check deleted but open files using lsof | grep deleted
+✅ Conclusion: Disk usually fills up due to logs, Docker images/containers, or uncleaned files.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 Application is slow on server. What will you check?
+CPU usage → top, htop
+Memory usage → free -h
+Disk usage / I/O → df -h, iostat
+Network latency → ping, netstat
+Application logs → check for errors or timeouts
+Running processes → ps, top
+Database performance → slow queries, connection issues
+
+✅ Conclusion: Slowness is usually caused by high CPU, low memory, disk I/O wait, network delay, or DB issues.
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠 How do you debug a crashed service?
+Check service status
+systemctl status <service-name>
+
+Check logs for errors
+journalctl -u <service-name>
+
+Verify configuration files for mistakes
+Check resource usage (CPU, memory, disk)
+Confirm dependencies (DB, network, ports)
+Restart the service and monitor
+systemctl restart <service-name>
+
+✅ Conclusion: Most crashes are due to config errors, missing dependencies, or resource exhaustion.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 How do you check which process is using a port?
+When a service fails to start, it’s often because the port is already in use by another process.
+
+1. Using ss
+ss -tulnp | grep :8080
+t → TCP
+u → UDP
+l → listening ports
+n → show port numbers
+p → show process (PID & name)
+
+📌 Output tells you which process and PID is using the port.
+
+2. Using netstat
+netstat -tulnp | grep :8080
+Shows the same info (older but still common).
+
+3. Using lsof
+lsof -i :8080
+Lists the process holding the port.
+
+Example output
+java   2345  user   123u  TCP *:8080 (LISTEN)
+➡️ Java process with PID 2345 is using port 8080.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 How do you rotate logs?
+Log rotation is done using logrotate.
+It automatically rotates, compresses, and deletes old logs based on size or time to prevent disk full issues.
+Create a logrotate config
+
+Create a file:
+sudo vi /etc/logrotate.d/myapp
+Add this:
+/var/log/myapp.log {
+    daily
+    rotate 7
+    compress
+    missingok
+    notifempty
+}
+
+What each line means
+daily → rotate logs every day
+rotate 7 → keep last 7 log files
+compress → old logs become .gz
+missingok → no error if log file is missing
+notifempty → don’t rotate if file is empty
+
+What happens after rotation
+myapp.log        → current log (new file)
+myapp.log.1      → yesterday’s log
+myapp.log.2.gz   → older compressed log
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
-
-────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 How do you debug high memory usage?
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠
