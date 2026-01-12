@@ -42,6 +42,20 @@ Nginx config check करता है
 अगर multiple backend हैं → load balance
 Fast event-driven mechanism से हजारों requests handle करता है
 
+why we use Nginx		
+
+Load Balancing
+Direct access = single server overload.
+Reverse proxy distributes traffic across multiple backend servers.
+
+High Availability
+If one backend fails, reverse proxy redirects traffic to healthy servers.
+Direct exposure has no failover.
+
+Performance
+App servers are slow at handling thousands of connections.
+Reverse proxy (NGINX) handles connections efficiently and forwards only valid requests.
+
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 Project
 web application (django) + ngnix (for reverse proxy) + MYsql(backend)
@@ -118,7 +132,7 @@ and if we rewrite the compose file then we need to build this file for that we u
 
 errors 
 if we didnt give the proper name of networks then both containers are not being connected if we mistack in given name then 
-wwe will get the errors
+we will get the errors
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠.1 Tell me some about Hypervisor. 
@@ -402,7 +416,7 @@ docker run -d --name my-container --network my-network nginx
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠34 How do you optimize a Docker image to reduce its size?
-  Combine commands (RUN, COPY, ADD) to reduce layers.
+  Combine commands (COPY, ADD) to reduce layers.
   Remove unnecessary files (e.g., temp files, package manager cache).
   Use multi-stage builds to separate build dependencies from runtime dependencies.
   remove unneccessory layers
@@ -573,3 +587,4 @@ docker run -d --name my-container --network my-network nginx
 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
