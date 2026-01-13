@@ -607,8 +607,8 @@ systemctl restart <service-name>
 ✅ Conclusion: Most crashes are due to config errors, missing dependencies, or resource exhaustion.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠 How do you check which process is using a port?
-When a service fails to start, it’s often because the port is already in use by another process.
+🧠 How do you check which process is using a port?   How do you check open connections? - I check open connections using ss -tulnp or netstat to see listening ports 
+When a service fails to start, it’s often because the port is already in use by another process.                                                       and related processes.
 
 1. Using ss
 ss -tulnp | grep :8080
@@ -663,39 +663,169 @@ myapp.log.2.gz   → older compressed log
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 How do you debug high memory usage?
+To debug high memory usage, I first check overall memory using free -h or top.
+Then I identify which process is consuming the most RAM using ps aux --sort=-%mem.
+If it’s a container or pod, I check memory limits and OOM kills using docker stats or kubectl top pod.
+I also verify swap usage and system logs for OOM errors.
+Finally, I fix the root cause by restarting or scaling the app, fixing memory leaks, or increasing memory if needed.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 How do you restart a failed service?
+A service can fail due to configuration errors, port conflicts, missing dependencies, permission issues, resource shortages, application bugs, or environment problems.
+To restart a failed service, I first check its status to confirm the failure, then restart it using the service manager. After restarting, I verify the service is running 
+and check logs to make sure it’s stable.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 How do you find large files?
+I use find to locate large files, du to check directory sizes,
+
+Find large files
+find / -type f -size +1G 2>/dev/null
+This finds files larger than 1GB.
+
+Check disk usage by directories
+du -sh /*
+Helps identify which directory is consuming most space.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 How do you secure Linux server?
+I secure a Linux server by hardening SSH, restricting ports, managing users and permissions, disabling unused services, and enabling backups and monitoring.
+
+1. Secure SSH access
+Disable root login
+Use SSH key authentication
+
+2. Allow only required ports (like 22, 80, 443)
+
+3. User and permission management
+Use least privilege
+Avoid using root
+Set correct file permissions
+
+4. Disable unused services
+systemctl disable <service>
+Reduces attack surface
+
+5. Backup & monitoring
+Regular backups
+Use monitoring and alerts
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 How do you debug cron job failure?
+to debug failed cron job we can see like file have the execute permission to run the script and we need to use the right path of the script and if we use env variable so 
+we need to ensure the env file with right variable like the variable name must be the same using all this approuch we can debug the cronjob failure
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 How do you recover deleted files?
+Restore from backup
+In real projects, we always use backups
+If a file is deleted, we restore it from:
+Server backup
+Cloud snapshot
+Git (if it’s code)
+✅ This is the main answer interviewers expect
+
+If file was code (Git)
+git checkout -- filename
+👉 Brings the file back from last commit
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 How do you find failed login attempts?
+I check authentication logs and use commands like lastb or journalctl to identify failed login attempts and suspicious IPs.
+
+Check authentication logs
+These logs record login failures
+Ubuntu / Debian
+grep "Failed password" /var/log/auth.log
+
+Use last command
+lastb
+Shows failed login attempts
+
+Check SSH logs
+journalctl -u sshd
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 How do you debug DNS issues on Linux?
+I verify DNS configuration, test resolution using nslookup or dig, check network connectivity, and ensure DNS services are running.
+
+1.Check DNS configuration
+cat /etc/resolv.conf
+Verify DNS servers are configured correctly
+
+2. Test DNS resolution
+nslookup google.com
+dig google.com
+Confirms whether DNS is resolving or not
+
+3. Check network connectivity
+ping 8.8.8.8
+If ping works but DNS fails → DNS issue
+
+4. Check local DNS service
+systemctl status systemd-resolved
+Ensure DNS service is running
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 How do you monitor system resources?
+I monitor system resources using commands like top, free, df, and ss, and use monitoring tools for alerts and trends.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 How do you debug SSH issues?
+I debug SSH issues by checking network connectivity, testing SSH in verbose mode, verifying the SSH service
+Check basic connectivity
+ping <server-ip>
+Make sure the server is reachable
+
+2. Test SSH with verbose mode
+ssh -v user@server
+Use -v (or -vv / -vvv) to see detailed connection logs
+Helps identify where it’s failing (authentication, network, or host key)
+
+3. Check SSH service on server
+systemctl status sshd
+Ensure SSH service is running
+
+Make sure port 22 (or custom SSH port) is open
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 How do you manage environment variables?
+I manage environment variables by setting them temporarily with export, permanently in shell config files, and for apps or containers via .env files or run-time options.
+1. Set environment variables temporarily
+For the current session:
+export VAR_NAME=value
+Only lasts until the terminal is closed
 
+2. Set environment variables permanently
+Add to ~/.bashrc or ~/.bash_profile:
+export VAR_NAME=value
+Then run:
+source ~/.bashrc
+Now it persests across sessions
+
+3. View environment variables
+echo $VAR_NAME
+printenv
+env
+
+4. For Docker containers
+Pass variables during run:
+docker run -e VAR_NAME=value myimage
+Or use .env files with docker-compose
+
+5. For applications
+Many apps read environment variables automatically
+Useful for secrets, config, and credentials
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠
+🧠 How do you check recent system changes on Linux
+1. Check recently installed or updated packages
+Debian/Ubuntu
+grep " install " /var/log/dpkg.log | tail -n 20
+grep " upgrade " /var/log/dpkg.log | tail -n 20
+
+2. Check recently modified files
+find / -type f -mtime -1
+Shows files modified in the last 1 day
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠
