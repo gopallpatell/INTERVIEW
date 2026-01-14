@@ -386,63 +386,267 @@ If your Jenkinsfile is inside a folder like ci/, use ci/Jenkinsfile
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 1. A pipeline suddenly fails after working fine for weeks.
+If a pipeline suddenly fails, it is usually due to recent code changes, environment or credential issues, external service failures, tool/plugin updates, or network and 
+infrastructure changes.
+1️⃣ Code Changes
+Recent commit introduced a bug
+Dependency or library version changed
+
+2️⃣ Environment Changes
+Jenkins server or agent restarted
+Disk full or memory exhausted
+Agent node offline or replaced
+
+3️⃣ Credentials Issues
+Password, token, or key expired
+Jenkins credential deleted or renamed
+
+4️⃣ Jenkins / Tool Updates
+Jenkins core or plugin auto-updated
+Tool version changed (Java, Maven, Docker, kubectl)
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 2. Your build is successful but deployment fails. What could be the reasons?
+If the build succeeds but deployment fails, the issue is usually related to environment configuration, credentials, runtime problems, container image issues, or 
+infrastructure and network failures.
+1️⃣ Environment / Infrastructure Issues
+Target server or Kubernetes cluster is down
+Insufficient CPU, memory, or disk on target environment
+Deployment node/agent not reachable
+
+2️⃣ Configuration Issues
+Wrong environment variables
+Incorrect config files (application.yml, values.yaml)
+Wrong namespace, service name, or deployment name
+
+3️⃣ Credentials & Access Issues
+Invalid or expired credentials (AWS, Kubernetes, SSH)
+Missing permissions (IAM role, RBAC)
+Wrong Jenkins credential ID used in pipeline
+
+4️⃣ Application Runtime Issues
+Application crashes after startup
+Port already in use
+Missing runtime dependencies
+
+5️⃣ Container / Image Issues
+Wrong image tag or image not found
+Image pull failure from registry (ECR/DockerHub)
+Image built successfully but not compatible with runtime
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 3. How do you prevent accidental production deployments?
+We prevent accidental production deployments by using separate environments, restricted access, branch-based deployments, manual approvals, and automated checks in 
+the CI/CD pipeline.
+1. Manual approval before production
+Add a manual approval step in the pipeline for prod
+Only authorized people (team lead / manager) can approve
+👉 No one can deploy to prod by mistake
+
+Branch-based deployment
+Deploy to production only from specific branches (like main or release)
+Block feature or dev branches from prod
+
+Role-based access control (RBAC)
+Give limited access to production
+Only selected users can trigger prod deployments
+
+Monitoring & rollback
+Enable monitoring and alerts
+Keep rollback strategy ready (previous version / image)
+👉 If something goes wrong, you can quickly recover
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 4. How do you handle secrets securely in a pipeline?
+Secrets are stored in secure secret managers like Jenkins Credentials, AWS Secrets Manager, or Vault. They are injected into the pipeline at runtime as environment variables
+and never hard-coded in code or stored in Git.”
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 5. A pipeline is very slow. How do you optimize it?
+When a pipeline is slow, I first check the pipeline logs and stage timings to understand which step is causing the delay, such as build, testing, or Docker image creation.
+After identifying the bottleneck, I optimize the pipeline by running independent jobs in parallel, using caching to avoid downloading dependencies again, and removing
+unnecessary steps that are not required for every change. I also optimize Docker builds and, if jobs are waiting in the queue, scale CI resources so the pipeline runs faster.
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 6. How do you rollback a failed deployment from Jenkins?
+When a deployment fails in Jenkins, I first identify the last stable or successful build. Jenkins keeps a history of builds, so I can see which version was deployed 
+previously. Then I trigger a rollback by redeploying that stable version. Depending on the setup, this can involve redeploying the previous Docker image, reverting 
+changes in the repository, or applying the last working configuration. I also make sure to monitor logs after rollback to confirm the system is stable.
+
+1️⃣ Identify the failed deployment
+👉 Know exactly which build failed
+
+2️⃣ Find the last successful build
+👉 Ensures rollback is safe
+
+3️⃣ Redeploy the stable version
+Trigger Jenkins job with previous build parameters
+Deploy previous Docker image or code version
+👉 Rollback to known working state
+
+5️⃣ Optional: Fix root cause
+Investigate why the failed deployment happened
+Apply fix before next deployment
+👉 Prevents future rollback
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 7. Webhook is configured but pipeline is not triggering. What will you check?
+If a webhook is configured but the pipeline is not triggering, I first check whether the webhook is actually reaching the CI/CD server. This includes verifying that the 
+webhook URL is correct, the secret/token matches, and there are no network/firewall issues blocking it. Next, I check the CI/CD tool logs to see if the event is received
+but failing due to permission, branch filter, or pipeline configuration. I also verify the repository settings, branch filters, and event types (push, pull request, etc.) 
+to ensure the webhook is configured for the correct triggers.
+
+Troubleshooting Steps
+1️⃣ Check webhook delivery
+Verify webhook URL is correct
+2️⃣ Check webhook secret/token
+Ensure it matches the CI/CD pipeline configuration
+👉 Prevents unauthorized rejection
+4️⃣ Check pipeline configuration
+Ensure pipeline is configured to trigger on the correct branch or event type
+👉 Push, PR, merge events may differ
+5️⃣ Check CI/CD logs
+Look for errors when webhook hits the server
+👉 Helps identify permission or config issues
+6️⃣ Check repository permissions
+Ensure the webhook has access to the repository
+👉 Prevents failed authentication
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 8. How do you deploy to multiple environments using one pipeline?
+To deploy to multiple environments using a single pipeline, I design the pipeline with environment-specific stages like dev, staging, and production. Each stage uses
+environment-specific configurations, secrets, and credentials so that deployments do not interfere with each other. The pipeline can include manual approvals before 
+higher environments like staging or production. Conditional checks, branch filters, and parameters ensure the right version is deployed to the right environment 
+automatically.
 
-───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠 9. How do you run jobs in parallel in Jenkins?
+Steps to Deploy to Multiple Environments
+1️⃣ Separate stages for each environment
+Example: dev → staging → production
+👉 Each environment runs independently
+2️⃣ Use environment-specific configs and secrets
+Separate database, API keys, and config files for each environment
+👉 Avoids accidental deployment with wrong settings
+3️⃣ Manual approval for higher environments
+Require approval before staging or production deployment
+👉 Prevents accidental production deployment
+4️⃣ Use conditional checks or parameters
+Deploy only if branch or tag matches environment rules
+Example: main → production, develop → staging
+👉 Ensures correct version is deployed
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 10. Jenkins master is down. What happens to running jobs?
+If the Jenkins master goes down, the running jobs on the master node will fail immediately because the master orchestrates job execution and tracks progress. However, 
+if jobs are running on agent nodes (slaves), they may continue depending on the job type and setup. Most pipelines rely on the master to provide instructions, so even 
+agent jobs often cannot complete successfully without communication with the master. After the master is back online, jobs may need to be restarted or resumed depending
+on pipeline configuration.
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 11. How do you restrict access to production jobs?
+To restrict access to production jobs, I use Role-Based Access Control (RBAC) in Jenkins or other CI/CD tools. Only authorized users, such as DevOps engineers or team leads, are allowed to trigger production jobs, while developers or testers have limited or read-only access. Production credentials, secrets, and environment configurations are stored securely and are only accessible to the restricted roles. This prevents accidental or unauthorized deployments to critical environments.
 
-───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠 12. What is pipeline as code and why is it important?
+Steps to Restrict Access
+1️⃣ Enable Role-Based Access Control (RBAC)
+Create roles like admin, developer, tester
+Assign specific permissions for each role
+
+2️⃣ Restrict job execution
+Only admins or authorized users can trigger production jobs
+👉 Others can view or trigger non-production jobs
+
+3️⃣ Secure credentials and secrets
+Store production secrets in Jenkins Credentials or Vault
+Only authorized roles can access them
+
+4️⃣ Use approval gates
+Add manual approval steps before deploying to production
+👉 Adds an extra layer of protection,
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 13. How do you send build notifications to Slack or email?
+Slack Notifications
+Create Incoming Webhook in Slack → get URL.
+Install Slack Notification Plugin in Jenkins.
+Add in Jenkinsfile:
 
+Email Notifications
+Install Email Extension Plugin in Jenkins.
+Configure SMTP server & credentials.
+Add in Jenkinsfile:
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 14. How do you pass environment-specific variables in pipelines?
+In pipelines, environment-specific variables are used to configure jobs differently for dev, staging, or production environments. These variables can be passed using
+environment sections in Jenkins pipelines, parameterized builds, or external secret/config management tools like Jenkins Credentials, Vault, or ConfigMaps in Kubernetes. 
+This ensures that the same pipeline can deploy to different environments safely without hardcoding values, and each environment gets the correct database, API keys, or 
+configuration.
+
+1️⃣ Use environment blocks in Jenkins
+Example:
+environment {
+    DB_HOST = 'dev-db.example.com'
+    API_KEY = credentials('dev-api-key')
+}
+👉 Loads variables specific to the environment
+2️⃣ Use parameterized builds
+Pass environment as a parameter (dev, staging, prod)
+Use the parameter to select configs during the run
+3️⃣ Store secrets externally
+Jenkins Credentials, Vault, AWS Secrets Manager
+Only accessible by authorized environments
+4️⃣ Use separate config files
+Example: config-dev.yml, config-prod.yml
+Pipeline picks the correct file based on the environment
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 15. How do you handle credentials rotation?
+Credentials rotation ensures that passwords, API keys, and tokens are regularly updated to maintain security. In pipelines, I handle rotation by storing all credentials in 
+secure secret management tools like Jenkins Credentials, Vault, AWS Secrets Manager, or Kubernetes Secrets. When a secret is rotated, the pipeline is updated to reference 
+the new version without hardcoding it. Automated rotation policies and pipeline configuration ensure that deployments continue smoothly without downtime while keeping 
+credentials secure.
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 16. Build passes locally but fails in Jenkins. Why?
+Jenkins environment is different (OS, Java, Node, etc.).
+Missing environment variables or secrets.
+Jenkins can’t access external services (DB, API).
+Tool versions or dependencies differ from local.
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 17. How do you archive artifacts in Jenkins?
-
-───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠 18. How do you trigger a pipeline manually?
+In Jenkins, archiving artifacts means storing the build outputs (like binaries, JARs, WARs, or reports) so they can be accessed later or used in downstream jobs. 
+This is done using the “Archive the artifacts” post-build action or the archiveArtifacts step in a Jenkins pipeline. Archiving ensures that important files from a
+build are saved, can be downloaded from the Jenkins interface, and can be used for deployment or testing in subsequent stages.
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 19. How do you deploy only approved code to production?
+To deploy only approved code to production, I implement approval gates and branch-based deployment rules in the CI/CD pipeline. The pipeline is configured to deploy to 
+production only from specific branches (like main or release) and includes manual approval steps that require an authorized person, such as a team lead or manager, 
+to review and approve the changes. Combined with automated tests, code reviews, and security scans, this ensures that only verified and authorized code reaches the
+production environment.
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 20. How do you debug a Jenkins agent issue?
+When a Jenkins agent is not working properly, I first check the connection between the master and the agent to see if the agent is online. I verify that the agent has
+the required tools, permissions, and environment variables to run the job. I also review the agent logs and job console output for errors. Common issues include outdated 
+Java versions, insufficient resources, firewall/network issues, or incorrect workspace paths. Depending on the problem, I restart the agent, update software, or reconfigure 
+its settings to restore proper communication with the Jenkins master.
+
+Steps to Debug a Jenkins Agent Issue
+1️⃣ Check agent status
+Go to Jenkins → Manage Nodes → Check if agent is online
+👉 Offline agents cannot run jobs
+
+2️⃣ Verify connection to master
+Check network/firewall between master and agent
+Ensure correct credentials or secret key
+
+5️⃣ Verify environment and tools
+Ensure required tools (Java, Docker, Maven, etc.) are installed
+Check environment variables and workspace paths
+
+6️⃣ Restart or reconnect agent
+Sometimes a simple reconnect or restart fixes transient issues
+👉 Restores communication with Jenkins master
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 21. Jenkins job is stuck in queue. Why?
@@ -455,21 +659,98 @@ If your Jenkinsfile is inside a folder like ci/, use ci/Jenkinsfile
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 24. How do you clean old builds and logs?
+I use Jenkins build retention policies to automatically delete old builds and logs. In job configuration, I enable Discard Old Builds and set limits based on the number of 
+builds or build age. For pipelines, I use the buildDiscarder option in the Jenkinsfile. I also clean workspaces using the Workspace Cleanup Plugin or scheduled cleanup jobs 
+to free disk space.
+1️⃣ Clean Old Builds & Logs (Freestyle Job)
+Steps
+Open Jenkins Dashboard
+Click your Job → Configure
+Find Discard Old Builds → ✅ check it
+Set limits:
+Max # of builds to keep → 10
+Max # of days to keep builds → 15
+Click Save
+✅ Jenkins will now automatically delete old builds and logs.
+
+2️⃣ Clean Old Builds in Pipeline (Jenkinsfile)
+Add this at the top of your Jenkinsfile:
+pipeline {
+    agent any
+    options {
+        buildDiscarder(logRotator(
+✅ Jenkins auto-removes old build history & logs.
+
+3️⃣ Clean Workspace Automatically
+Option A: Workspace Cleanup Plugin
+Manage Jenkins → Manage Plugins
+Install Workspace Cleanup Plugin
+Go to Job → Configure
+Enable Delete workspace before build starts (or after)
+Save
+Option B: Clean Workspace in Pipeline
+stage('Cleanup') {
+    steps {
+        cleanWs()
+    }
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 25. How do you handle pipeline failures outside business hours?
+I use automated alerts to notify the on-call team via Slack, email, or PagerDuty. Pipelines are configured to send failure notifications with logs and build links. For 
+critical pipelines, I enable auto-rollback or stop deployments to production. Non-critical failures are logged and reviewed the next business day, while alerts are routed
+based on severity.
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 26. How do you version your pipelines?
+I keep the pipeline (Jenkinsfile) in Git. Every change is saved as a commit, so Git automatically versions the pipeline. If something breaks, I roll back by reverting to
+an older commit.
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 27. How do you stop a running pipeline?
+I stop a running pipeline from the Jenkins UI by opening the build and clicking Stop or Abort. If needed, I can also terminate it from the Jenkins script console or by
+stopping the running agent.
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 28. What happens if a stage fails in declarative pipeline?
+If a stage fails, Jenkins marks the build as FAILED and stops executing the remaining stages. The pipeline moves to the post section where failure actions like 
+notifications or cleanup are executed.
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 29. How do you deploy rollback automatically on failure?
+I configure the pipeline to detect deployment failure and automatically roll back to the last stable version using scripts or deployment tools. This is usually done in the
+post { failure { } } section or by using built-in rollback features of tools like Kubernetes or Helm
+stage('Deploy') {
+    steps {
+        sh 'kubectl apply -f deployment.yml'
+    }
+}
+
+stage('Health Check') {
+    steps {
+        sh 'kubectl rollout status deployment/my-app'
+    }
+}
+
+post {
+    failure {
+        sh 'kubectl rollout undo deployment my-app'
+    }
+}
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 30. How do you secure Jenkins from unauthorized access?
+I secure Jenkins by enabling authentication and role-based authorization, restricting access using least privilege, protecting credentials, and securing network access
+
+Enable Authentication
+Use LDAP, Active Directory, or Jenkins user database.
+
+Role-Based Access Control (RBAC)
+Use Role Strategy Plugin to give users only required permissions.
+
+Secure Credentials
+Store secrets in Jenkins Credentials Store (never hardcode).
+
+Limit Network Access
+Restrict Jenkins with firewall/VPC/security groups.
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
