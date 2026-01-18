@@ -226,7 +226,7 @@ If any pod fails or gets deleted, it automatically creates a new one.
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠  difference between ReplicaSet, Deployment, and StatefulSet and daemonSet in Kubernetes 👇
 
- 1️⃣ ReplicaSet (RS)                                                  # it is used in stateless application
+ 1️⃣ ReplicaSet (RS)                                                  
 Ensures a specific number of identical pods are always running.
 ✔ Auto-restart
 ✔ Auto-scale
@@ -236,7 +236,7 @@ Ensures a specific number of identical pods are always running.
 👉 Used inside Deployment automatically.
 👉 You rarely create ReplicaSet directly.
 
-✅ 2️⃣ Deployment                                                         # it is used in stateless application
+✅ 2️⃣ Deployment                                                         
 Manages ReplicaSets + provides rolling updates and rollbacks.
  in this we have extra features like rollback and rolling update 
   Deployment in Kubernetes is a higher-level resource that manages the deployment and lifecycle of your application’s pods. 
