@@ -1715,9 +1715,14 @@ Helm installs Prometheus & Grafana using kube-prometheus-stack, which automatica
 Definition: A container that runs before the main container starts in a Pod.
 Purpose: Perform setup tasks that must finish before the main app runs.
 Example Use Cases
-Initialize a database schema
+Initialize a database schema      ## Schema means database structure
 Download config files
 Wait for another service to be ready
+we can also use it for dump data 
+Init Container:
+- mysqldump → upload to S3
+Main Container:
+- starts application
 
 Sidecar Container
 Definition: A container that runs alongside the main container in the same Pod.
@@ -1871,18 +1876,13 @@ Tracing → Where did it happen?
   We want to make sure the frontend pod can talk to the backend pod, but no other pods can talk to the backend pod.
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠 What is an Init Container in Kubernetes?
-  Init containers are a useful feature in Kubernetes to ensure that certain tasks are performed before the main 
-  application containers start running.
-
-───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 How do you pass environment variables to a Kubernetes Pod?
-  we can directolly pass the env in pod yml file  and from configmap
+  we can directolly pass the env in pod yml file  and from configmap.yml and secret.yml
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠. Pod is in pending state what will be the reason
   Insufficient resources (CPU, memory) on nodes.
-  no node vailable for pods
+  no node available for pods
   Image Pull Issues
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
