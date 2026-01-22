@@ -69,7 +69,21 @@ Secret variables
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠. loops 
-  we used loops for repetitive tasks..?
+  we used loops for repetitive tasks
+---
+  - hosts: samplenode1
+    become: yes
+    tasks:
+      - apt:
+         name: git
+         state: present
+      - apt:
+         name: maven
+         state: present
+      - apt:
+         name: nginx
+         state: present
+
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠. What Is The Ad-hoc Command In Ansible, And When Is It Typically Used?
@@ -78,8 +92,59 @@ Secret variables
    ansible samplenode1 -m copy -a "src=/etc/ansible/file1.txt dest=/home/ansibleadmin"
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠. 13. If we want to use reuseable components in ansible then what to do
-	--> Ansible roles
+🧠 If we want to use reuseable components in ansible then what to do
+	To implement reusable components in Ansible, we use Roles because they provide reusable automation structure.
+
+   Why not just use playbooks?
+   We don’t use only playbooks because they are not reusable. Roles help us write modular, reusable, and well-structured Ansible automation.
+
+To run a playbook or role on multiple groups at the same time, we can specify multiple host groups using colon (:) in the hosts field or use the -l limit option.
+
+roles/
+└── webserver/
+    ├── tasks/
+    │   └── main.yml
+    ├── handlers/
+    │   └── main.yml
+    ├── vars/
+    │   └── main.yml
+    ├── defaults/
+    │   └── main.yml
+    ├── templates/
+    ├── files/
+    └── meta/
+        └── main.yml
+
+# tasks file for testrole1
+      - name: Install-nginx
+        apt:
+          name: nginx
+          state: present
+        notify:
+        - start-nginx
+
+# handlers file for testrole1
+    - name: start-nginx
+      service:
+          name: nginx
+          state: started
+
+# For Playbook Use
+---
+- hosts: samplenode1
+  become: yes
+  roles:
+    - role: testrole1
+
+# vars.yaml
+host_name: samplenode1
+role_name: testrole1
+
+Use variables in a playbook 
+- hosts: "{{ host_name }}"
+  become: yes
+  roles:
+    - "{{ role_name }}"
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 . Handlers in ansible
@@ -120,7 +185,7 @@ Secret variables
 🧠. Ansible roles
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠. In ansible what is playbook and adobe commands 
+🧠. In ansible what is playbook and ad-hoc commands 
    It is used to execute a module in the target machine.	
    An ad-hoc command in Ansible is a one-time task that is executed from the command line without needing to write a playbook.
 
@@ -147,12 +212,6 @@ Secret variables
 🧠 How do you use conditionals and loops in Ansible playbooks?
    we want to execute something when a condition is met where we can use contionals like when failed changed 
 
-────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-🧠. why we use dynamic inventory
-    dynamic inventory will automatically fetcg the information about the hosts from the cloud platforms like aws 
-    Hostnames or IP addresses Instance IDs, Instance type
-   Ansible provides built-in dynamic inventory plugins like aws_ec2, so you don’t need to write the script yourself. 
-   
 ---
 - name: Install Git and Maven on all servers
   hosts: all
@@ -169,6 +228,12 @@ Secret variables
         name: maven
         state: present
       when: ansible_os_family == "Debian"
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+🧠. why we use dynamic inventory
+    dynamic inventory will automatically fetcg the information about the hosts from the cloud platforms like aws 
+    Hostnames or IP addresses Instance IDs, Instance type
+   Ansible provides built-in dynamic inventory plugins like aws_ec2, so you don’t need to write the script yourself. 
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 can I run ansible playbook on windows or can I install ansible on windows
