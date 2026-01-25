@@ -231,7 +231,8 @@ Continue normal Git workflow (commit, push to remote if needed)
 🧠 What is the difference between git reflog and log?
   Git Log: It shows a history of commits (changes) made in your Git repository. It lists out commits in linear order, showing who made each change, when they made it, and the
   commit message.
-  Git Reflog: It stands for "reference log". It records changes to the HEAD (current branch pointer) and permits you to see a timeline of recent movements within the repository, 
+  Git Reflog: It stands for "reference log". It records changes to the HEAD (current branch pointer) and permits you to see a timeline of recent movements within the 
+  repository, 
   like commits, checkouts, merges, etc. 
   It is effective for recovering lost commits or branches that are no longer visible in the regular log.
 
@@ -320,7 +321,7 @@ Git is mainly developed using the C programming language.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 What is branching in Git?
- Branching in Git permits forming separate lines of development. It allows users to work on features or fixes separately from the main codebase, helping parallel development 
+ Branching in Git permits forming separate lines of development. It allows users to work on features or fixes separately from the main codebase,helping parallel development 
  and simpler integration of changes.
 
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -368,7 +369,7 @@ Example: Git, Mercurial.
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 You are working on a feature branch in Git, and you realize that some of the changes you made are incorrect and need to be removed. How can you selectively remove 
    specific commits from your branch history?
-  using git rebase -i 
+  using git rebase -i                                 Git Revert is the best for this bcz it will not rewwrite the commit history it is safe and mosdtly used in real time
   git rebase -i HEAD~5
   Choose Which Commits to Remove
   In the text editor, you’ll see something like this:
