@@ -540,7 +540,9 @@ on pipeline configuration.
 
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 11. How do you restrict access to production jobs?
-To restrict access to production jobs, I use Role-Based Access Control (RBAC) in Jenkins or other CI/CD tools. Only authorized users, such as DevOps engineers or team leads, are allowed to trigger production jobs, while developers or testers have limited or read-only access. Production credentials, secrets, and environment configurations are stored securely and are only accessible to the restricted roles. This prevents accidental or unauthorized deployments to critical environments.
+To restrict access to production jobs, I use Role-Based Access Control (RBAC) in Jenkins or other CI/CD tools. Only authorized users, such as DevOps engineers or team leads,
+are allowed to trigger production jobs, while developers or testers have limited or read-only access. Production credentials, secrets, and environment configurations are 
+stored securely and are only accessible to the restricted roles. This prevents accidental or unauthorized deployments to critical environments.
 
 Steps to Restrict Access
 1️⃣ Enable Role-Based Access Control (RBAC)
@@ -570,6 +572,7 @@ Email Notifications
 Install Email Extension Plugin in Jenkins.
 Configure SMTP server & credentials.
 Add in Jenkinsfile:
+
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 🧠 14. How do you pass environment-specific variables in pipelines?
 In pipelines, environment-specific variables are used to configure jobs differently for dev, staging, or production environments. These variables can be passed using
